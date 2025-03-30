@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retreat_Management_System", "Retreat_Management_System.csproj", "{B3E9991D-1B25-4FD1-8397-37F3854B1C41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3E9991D-1B25-4FD1-8397-37F3854B1C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3E9991D-1B25-4FD1-8397-37F3854B1C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3E9991D-1B25-4FD1-8397-37F3854B1C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3E9991D-1B25-4FD1-8397-37F3854B1C41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CE23E3A-3CF2-4DB3-B8AD-41C8B964860B}
+	EndGlobalSection
+EndGlobal
