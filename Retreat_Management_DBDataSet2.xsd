@@ -131,7 +131,7 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        Booking.BookingID, Booking.BookingDate, Booking.Status, Booking.PaymentStatus, Payment.Amount, Payment.PaymentDate, Retreat.RetreatName, Retreat.Location, Retreat.StartDate, Retreat.EndDate, Retreat.Price, 
-                         Retreat.ContactInfo, [User].Username
+                         Retreat.ContactInfo, [User].Username, [User].UserID
 FROM            Booking INNER JOIN
                          Payment ON Booking.BookingID = Payment.BookingID INNER JOIN
                          Retreat ON Booking.RetreatID = Retreat.RetreatID INNER JOIN
@@ -155,22 +155,9 @@ FROM            Booking INNER JOIN
               <Mapping SourceColumn="Price" DataSetColumn="Price" />
               <Mapping SourceColumn="ContactInfo" DataSetColumn="ContactInfo" />
               <Mapping SourceColumn="Username" DataSetColumn="Username" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
             </Mappings>
-            <Sources>
-              <DbSource ConnectionRef="Retreat_Management_DBConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Booking.BookingID, Booking.BookingDate, Booking.Status, Booking.PaymentStatus, Payment.Amount, Payment.PaymentDate, Retreat.RetreatName, Retreat.Location, Retreat.StartDate, Retreat.EndDate, Retreat.Price, 
-                         Retreat.ContactInfo, [User].Username
-FROM            Booking INNER JOIN
-                         Payment ON Booking.BookingID = Payment.BookingID INNER JOIN
-                         Retreat ON Booking.RetreatID = Retreat.RetreatID INNER JOIN
-                         [User] ON Booking.UserID = [User].UserID AND Retreat.CreatedBy = [User].UserID</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </Sources>
+            <Sources />
           </TableAdapter>
         </Tables>
         <Sources />
@@ -180,11 +167,71 @@ FROM            Booking INNER JOIN
   <xs:element name="Retreat_Management_DBDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Retreat_Management_DBDataSet2" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Retreat_Management_DBDataSet2">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Booking" msprop:Generator_RowClassName="BookingRow" msprop:Generator_RowEvHandlerName="BookingRowChangeEventHandler" msprop:Generator_RowDeletedName="BookingRowDeleted" msprop:Generator_RowDeletingName="BookingRowDeleting" msprop:Generator_RowEvArgName="BookingRowChangeEvent" msprop:Generator_TablePropName="Booking" msprop:Generator_RowChangedName="BookingRowChanged" msprop:Generator_UserTableName="Booking" msprop:Generator_RowChangingName="BookingRowChanging" msprop:Generator_TableClassName="BookingDataTable" msprop:Generator_TableVarName="tableBooking">
+        <xs:element name="Booking" msprop:Generator_RowEvHandlerName="BookingRowChangeEventHandler" msprop:Generator_RowDeletedName="BookingRowDeleted" msprop:Generator_RowDeletingName="BookingRowDeleting" msprop:Generator_RowEvArgName="BookingRowChangeEvent" msprop:Generator_TablePropName="Booking" msprop:Generator_RowChangedName="BookingRowChanged" msprop:Generator_UserTableName="Booking" msprop:Generator_RowChangingName="BookingRowChanging" msprop:Generator_RowClassName="BookingRow" msprop:Generator_TableClassName="BookingDataTable" msprop:Generator_TableVarName="tableBooking">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BookingID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="BookingIDColumn" msprop:Generator_ColumnPropNameInRow="BookingID" msprop:Generator_UserColumnName="BookingID" msprop:Generator_ColumnVarNameInTable="columnBookingID" type="xs:int" />
+              <xs:element name="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" type="xs:int" minOccurs="0" />
+              <xs:element name="BookingDate" msprop:Generator_ColumnPropNameInTable="BookingDateColumn" msprop:Generator_ColumnPropNameInRow="BookingDate" msprop:Generator_UserColumnName="BookingDate" msprop:Generator_ColumnVarNameInTable="columnBookingDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnVarNameInTable="columnStatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaymentStatus" msprop:Generator_ColumnPropNameInTable="PaymentStatusColumn" msprop:Generator_ColumnPropNameInRow="PaymentStatus" msprop:Generator_UserColumnName="PaymentStatus" msprop:Generator_ColumnVarNameInTable="columnPaymentStatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Payment" msprop:Generator_RowEvHandlerName="PaymentRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentRowDeleted" msprop:Generator_RowDeletingName="PaymentRowDeleting" msprop:Generator_RowEvArgName="PaymentRowChangeEvent" msprop:Generator_TablePropName="Payment" msprop:Generator_RowChangedName="PaymentRowChanged" msprop:Generator_UserTableName="Payment" msprop:Generator_RowChangingName="PaymentRowChanging" msprop:Generator_RowClassName="PaymentRow" msprop:Generator_TableClassName="PaymentDataTable" msprop:Generator_TableVarName="tablePayment">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PaymentID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="PaymentIDColumn" msprop:Generator_ColumnPropNameInRow="PaymentID" msprop:Generator_UserColumnName="PaymentID" msprop:Generator_ColumnVarNameInTable="columnPaymentID" type="xs:int" />
+              <xs:element name="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_UserColumnName="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" type="xs:decimal" />
+              <xs:element name="PaymentDate" msprop:Generator_ColumnPropNameInTable="PaymentDateColumn" msprop:Generator_ColumnPropNameInRow="PaymentDate" msprop:Generator_UserColumnName="PaymentDate" msprop:Generator_ColumnVarNameInTable="columnPaymentDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Retreat" msprop:Generator_RowEvHandlerName="RetreatRowChangeEventHandler" msprop:Generator_RowDeletedName="RetreatRowDeleted" msprop:Generator_RowDeletingName="RetreatRowDeleting" msprop:Generator_RowEvArgName="RetreatRowChangeEvent" msprop:Generator_TablePropName="Retreat" msprop:Generator_RowChangedName="RetreatRowChanged" msprop:Generator_UserTableName="Retreat" msprop:Generator_RowChangingName="RetreatRowChanging" msprop:Generator_RowClassName="RetreatRow" msprop:Generator_TableClassName="RetreatDataTable" msprop:Generator_TableVarName="tableRetreat">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RetreatName" msprop:Generator_ColumnPropNameInTable="RetreatNameColumn" msprop:Generator_ColumnPropNameInRow="RetreatName" msprop:Generator_UserColumnName="RetreatName" msprop:Generator_ColumnVarNameInTable="columnRetreatName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_UserColumnName="Location" msprop:Generator_ColumnVarNameInTable="columnLocation">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_UserColumnName="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" type="xs:dateTime" />
+              <xs:element name="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_UserColumnName="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" type="xs:decimal" />
+              <xs:element name="ContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_UserColumnName="ContactInfo" msprop:Generator_ColumnVarNameInTable="columnContactInfo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReservationDataTable" msprop:Generator_RowClassName="ReservationDataTableRow" msprop:Generator_RowEvHandlerName="ReservationDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="ReservationDataTableRowDeleted" msprop:Generator_RowDeletingName="ReservationDataTableRowDeleting" msprop:Generator_RowEvArgName="ReservationDataTableRowChangeEvent" msprop:Generator_TablePropName="ReservationDataTable" msprop:Generator_RowChangedName="ReservationDataTableRowChanged" msprop:Generator_UserTableName="ReservationDataTable" msprop:Generator_RowChangingName="ReservationDataTableRowChanging" msprop:Generator_TableClassName="ReservationDataTableDataTable" msprop:Generator_TableVarName="tableReservationDataTable">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BookingID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="BookingID" msprop:Generator_ColumnPropNameInTable="BookingIDColumn" msprop:Generator_ColumnPropNameInRow="BookingID" msprop:Generator_ColumnVarNameInTable="columnBookingID" type="xs:int" />
-              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" type="xs:int" minOccurs="0" />
               <xs:element name="BookingDate" msprop:Generator_UserColumnName="BookingDate" msprop:Generator_ColumnPropNameInTable="BookingDateColumn" msprop:Generator_ColumnPropNameInRow="BookingDate" msprop:Generator_ColumnVarNameInTable="columnBookingDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus">
                 <xs:simpleType>
@@ -200,21 +247,8 @@ FROM            Booking INNER JOIN
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Payment" msprop:Generator_RowClassName="PaymentRow" msprop:Generator_RowEvHandlerName="PaymentRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentRowDeleted" msprop:Generator_RowDeletingName="PaymentRowDeleting" msprop:Generator_RowEvArgName="PaymentRowChangeEvent" msprop:Generator_TablePropName="Payment" msprop:Generator_RowChangedName="PaymentRowChanged" msprop:Generator_UserTableName="Payment" msprop:Generator_RowChangingName="PaymentRowChanging" msprop:Generator_TableClassName="PaymentDataTable" msprop:Generator_TableVarName="tablePayment">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="PaymentID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="PaymentID" msprop:Generator_ColumnPropNameInTable="PaymentIDColumn" msprop:Generator_ColumnPropNameInRow="PaymentID" msprop:Generator_ColumnVarNameInTable="columnPaymentID" type="xs:int" />
               <xs:element name="Amount" msprop:Generator_UserColumnName="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" type="xs:decimal" />
               <xs:element name="PaymentDate" msprop:Generator_UserColumnName="PaymentDate" msprop:Generator_ColumnPropNameInTable="PaymentDateColumn" msprop:Generator_ColumnPropNameInRow="PaymentDate" msprop:Generator_ColumnVarNameInTable="columnPaymentDate" type="xs:dateTime" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Retreat" msprop:Generator_RowClassName="RetreatRow" msprop:Generator_RowEvHandlerName="RetreatRowChangeEventHandler" msprop:Generator_RowDeletedName="RetreatRowDeleted" msprop:Generator_RowDeletingName="RetreatRowDeleting" msprop:Generator_RowEvArgName="RetreatRowChangeEvent" msprop:Generator_TablePropName="Retreat" msprop:Generator_RowChangedName="RetreatRowChanged" msprop:Generator_UserTableName="Retreat" msprop:Generator_RowChangingName="RetreatRowChanging" msprop:Generator_TableClassName="RetreatDataTable" msprop:Generator_TableVarName="tableRetreat">
-          <xs:complexType>
-            <xs:sequence>
               <xs:element name="RetreatName" msprop:Generator_UserColumnName="RetreatName" msprop:Generator_ColumnPropNameInTable="RetreatNameColumn" msprop:Generator_ColumnPropNameInRow="RetreatName" msprop:Generator_ColumnVarNameInTable="columnRetreatName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -230,6 +264,7 @@ FROM            Booking INNER JOIN
                 </xs:simpleType>
               </xs:element>
               <xs:element name="StartDate" msprop:Generator_UserColumnName="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" type="xs:dateTime" />
+              <xs:element name="EndDate" msprop:Generator_UserColumnName="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" type="xs:dateTime" />
               <xs:element name="Price" msprop:Generator_UserColumnName="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" type="xs:decimal" />
               <xs:element name="ContactInfo" msprop:Generator_UserColumnName="ContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_ColumnVarNameInTable="columnContactInfo" minOccurs="0">
                 <xs:simpleType>
@@ -238,61 +273,14 @@ FROM            Booking INNER JOIN
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="ReservationDataTable" msprop:Generator_RowEvHandlerName="ReservationDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="ReservationDataTableRowDeleted" msprop:Generator_RowDeletingName="ReservationDataTableRowDeleting" msprop:Generator_RowEvArgName="ReservationDataTableRowChangeEvent" msprop:Generator_TablePropName="ReservationDataTable" msprop:Generator_RowChangedName="ReservationDataTableRowChanged" msprop:Generator_RowChangingName="ReservationDataTableRowChanging" msprop:Generator_TableClassName="ReservationDataTableDataTable" msprop:Generator_RowClassName="ReservationDataTableRow" msprop:Generator_TableVarName="tableReservationDataTable" msprop:Generator_UserTableName="ReservationDataTable">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="BookingID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="BookingID" msprop:Generator_ColumnPropNameInTable="BookingIDColumn" msprop:Generator_ColumnVarNameInTable="columnBookingID" msprop:Generator_UserColumnName="BookingID" type="xs:int" />
-              <xs:element name="BookingDate" msprop:Generator_ColumnPropNameInRow="BookingDate" msprop:Generator_ColumnPropNameInTable="BookingDateColumn" msprop:Generator_ColumnVarNameInTable="columnBookingDate" msprop:Generator_UserColumnName="BookingDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PaymentStatus" msprop:Generator_ColumnPropNameInRow="PaymentStatus" msprop:Generator_ColumnPropNameInTable="PaymentStatusColumn" msprop:Generator_ColumnVarNameInTable="columnPaymentStatus" msprop:Generator_UserColumnName="PaymentStatus">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Amount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_UserColumnName="Amount" type="xs:decimal" />
-              <xs:element name="PaymentDate" msprop:Generator_ColumnPropNameInRow="PaymentDate" msprop:Generator_ColumnPropNameInTable="PaymentDateColumn" msprop:Generator_ColumnVarNameInTable="columnPaymentDate" msprop:Generator_UserColumnName="PaymentDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="RetreatName" msprop:Generator_ColumnPropNameInRow="RetreatName" msprop:Generator_ColumnPropNameInTable="RetreatNameColumn" msprop:Generator_ColumnVarNameInTable="columnRetreatName" msprop:Generator_UserColumnName="RetreatName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Location" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_UserColumnName="Location">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="StartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_UserColumnName="StartDate" type="xs:dateTime" />
-              <xs:element name="EndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_UserColumnName="EndDate" type="xs:dateTime" />
-              <xs:element name="Price" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_UserColumnName="Price" type="xs:decimal" />
-              <xs:element name="ContactInfo" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" msprop:Generator_ColumnVarNameInTable="columnContactInfo" msprop:Generator_UserColumnName="ContactInfo" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Username" msprop:Generator_ColumnPropNameInRow="Username" msprop:Generator_ColumnPropNameInTable="UsernameColumn" msprop:Generator_ColumnVarNameInTable="columnUsername" msprop:Generator_UserColumnName="Username">
+              <xs:element name="Username" msprop:Generator_UserColumnName="Username" msprop:Generator_ColumnPropNameInTable="UsernameColumn" msprop:Generator_ColumnPropNameInRow="Username" msprop:Generator_ColumnVarNameInTable="columnUsername">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="UserID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_UserColumnName="UserID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

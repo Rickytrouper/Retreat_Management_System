@@ -62,10 +62,10 @@ namespace Retreat_Management_System
                         mainForm = new OrganizerDash(); // Organizer dashboard form
                         break;
                     case "User":
-                        mainForm = new UserDash(); // User dashboard form
+                        mainForm = new UserDash(validatedUser.UserID); // User dashboard form
                         break;
                     default:
-                        mainForm = new UserDash(); // Default case
+                        mainForm = new LoginPage(); // Default case
                         break;
                 }
 

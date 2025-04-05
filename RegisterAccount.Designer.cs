@@ -193,6 +193,7 @@
             this.picbxProfile.Location = new System.Drawing.Point(28, 16);
             this.picbxProfile.Name = "picbxProfile";
             this.picbxProfile.Size = new System.Drawing.Size(121, 102);
+            this.picbxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picbxProfile.TabIndex = 15;
             this.picbxProfile.TabStop = false;
             this.picbxProfile.Click += new System.EventHandler(this.picbxProfile_Click);
