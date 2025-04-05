@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtRetreatName = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -52,9 +52,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(22, 84);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 20);
+            this.label1.Size = new System.Drawing.Size(127, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Retreat Name";
+            this.label1.Text = "Name of Retreat";
             // 
             // label2
             // 
@@ -62,9 +62,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(22, 156);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "UserName";
+            this.label2.Text = "User\'s Name";
             // 
             // label3
             // 
@@ -72,16 +72,16 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(288, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(230, 39);
+            this.label3.Size = new System.Drawing.Size(173, 39);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Booking Page";
+            this.label3.Text = "Book Now";
             // 
-            // textBox1
+            // txtRetreatName
             // 
-            this.textBox1.Location = new System.Drawing.Point(26, 118);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(157, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtRetreatName.Location = new System.Drawing.Point(26, 118);
+            this.txtRetreatName.Name = "txtRetreatName";
+            this.txtRetreatName.Size = new System.Drawing.Size(157, 20);
+            this.txtRetreatName.TabIndex = 3;
             // 
             // txtUserName
             // 
@@ -150,6 +150,7 @@
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.Size = new System.Drawing.Size(100, 20);
             this.txtExpiryDate.TabIndex = 11;
+            this.txtExpiryDate.Text = "MM/YY";
             // 
             // label8
             // 
@@ -170,16 +171,16 @@
             // 
             // btnConfirmBooking
             // 
-            this.btnConfirmBooking.Location = new System.Drawing.Point(226, 349);
+            this.btnConfirmBooking.Location = new System.Drawing.Point(454, 338);
             this.btnConfirmBooking.Name = "btnConfirmBooking";
             this.btnConfirmBooking.Size = new System.Drawing.Size(75, 34);
             this.btnConfirmBooking.TabIndex = 14;
-            this.btnConfirmBooking.Text = "Confirm Booking";
+            this.btnConfirmBooking.Text = "Book Retreat";
             this.btnConfirmBooking.UseVisualStyleBackColor = true;
             // 
             // btnCancelBooking
             // 
-            this.btnCancelBooking.Location = new System.Drawing.Point(423, 349);
+            this.btnCancelBooking.Location = new System.Drawing.Point(220, 338);
             this.btnCancelBooking.Name = "btnCancelBooking";
             this.btnCancelBooking.Size = new System.Drawing.Size(75, 34);
             this.btnCancelBooking.TabIndex = 15;
@@ -203,7 +204,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtUserName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtRetreatName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -219,7 +220,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtRetreatName;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEmail;
