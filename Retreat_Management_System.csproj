@@ -32,9 +32,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Retreat_Management_System.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,17 +62,53 @@
     <Compile Include="AddRetreat.Designer.cs">
       <DependentUpon>AddRetreat.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminAction.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Booking.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="BookingPage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BookingPage.Designer.cs">
       <DependentUpon>BookingPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.Designer.cs">
+      <DependentUpon>ForgotPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizerDash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrganizerDash.Designer.cs">
+      <DependentUpon>OrganizerDash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterAccount.Designer.cs">
+      <DependentUpon>RegisterAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Retreat_Management_DBDataSet2.cs">
+      <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Retreat_Management_DBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserModel.cs" />
     <Compile Include="EditRetreats.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditRetreats.Designer.cs">
       <DependentUpon>EditRetreats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.cs">
       <SubType>Form</SubType>
@@ -70,11 +116,44 @@
     <Compile Include="LoginPage.Designer.cs">
       <DependentUpon>LoginPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Organizer.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Retreat.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="RetreatDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RetreatDetails.Designer.cs">
       <DependentUpon>RetreatDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetreatManagement_db.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetreatManagement_db.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetreatManagement_db.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetreatManagement_db.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetreatManagement_db.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>RetreatManagement_db.tt</DependentUpon>
     </Compile>
     <Compile Include="UserDash.cs">
       <SubType>Form</SubType>
@@ -90,6 +169,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
     <EmbeddedResource Include="AddRetreat.resx">
       <DependentUpon>AddRetreat.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,8 +179,17 @@
     <EmbeddedResource Include="EditRetreats.resx">
       <DependentUpon>EditRetreats.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ForgotPassword.resx">
+      <DependentUpon>ForgotPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrganizerDash.resx">
+      <DependentUpon>OrganizerDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterAccount.resx">
+      <DependentUpon>RegisterAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetreatDetails.resx">
       <DependentUpon>RetreatDetails.cs</DependentUpon>
@@ -120,6 +209,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,9 +219,42 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EntityDeploy Include="RetreatManagement_db.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RetreatManagement_db.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RetreatManagement_db.edmx.diagram">
+      <DependentUpon>RetreatManagement_db.edmx</DependentUpon>
+    </None>
+    <None Include="Retreat_Management_DBDataSet2.xsc">
+      <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Retreat_Management_DBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Retreat_Management_DBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Retreat_Management_DBDataSet2.xss">
+      <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RetreatManagement_db.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RetreatManagement_db.Context.cs</LastGenOutput>
+      <DependentUpon>RetreatManagement_db.edmx</DependentUpon>
+    </Content>
+    <Content Include="RetreatManagement_db.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RetreatManagement_db.edmx</DependentUpon>
+      <LastGenOutput>RetreatManagement_db.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
