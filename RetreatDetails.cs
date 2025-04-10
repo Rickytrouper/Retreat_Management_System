@@ -31,13 +31,9 @@ namespace Retreat_Management_System
             bookingPage.SetRetreatName(txtRetreatName.Text); // Pass retreat name
             bookingPage.Show();
             this.Hide();
-            BookingPage dashboard = new BookingPage(); // Assuming you have a form named Dashboard
-            dashboard.Show();
-            this.Hide();
-
         }
-        
 
     }
+
 
 }
