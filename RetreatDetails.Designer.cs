@@ -2,6 +2,8 @@
 {
     partial class RetreatDetails
     {
+
+        
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -13,12 +15,15 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
             base.Dispose(disposing);
+
         }
+
 
         #region Windows Form Designer generated code
 
@@ -39,8 +44,8 @@
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtRetreatPrice = new System.Windows.Forms.TextBox();
-            this.txtRetreatName = new System.Windows.Forms.TextBox();
             this.txtRetreatDates = new System.Windows.Forms.TextBox();
+            this.cbRetreatName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -87,9 +92,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(593, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Dates";
+            this.label2.Text = "Available Date";
             // 
             // label3
             // 
@@ -145,14 +150,6 @@
             this.txtRetreatPrice.Size = new System.Drawing.Size(153, 20);
             this.txtRetreatPrice.TabIndex = 13;
             // 
-            // txtRetreatName
-            // 
-            this.txtRetreatName.Location = new System.Drawing.Point(12, 114);
-            this.txtRetreatName.Name = "txtRetreatName";
-            this.txtRetreatName.ReadOnly = true;
-            this.txtRetreatName.Size = new System.Drawing.Size(210, 20);
-            this.txtRetreatName.TabIndex = 14;
-            // 
             // txtRetreatDates
             // 
             this.txtRetreatDates.Location = new System.Drawing.Point(597, 114);
@@ -161,13 +158,21 @@
             this.txtRetreatDates.Size = new System.Drawing.Size(153, 45);
             this.txtRetreatDates.TabIndex = 15;
             // 
+            // cbRetreatName
+            // 
+            this.cbRetreatName.FormattingEnabled = true;
+            this.cbRetreatName.Location = new System.Drawing.Point(12, 114);
+            this.cbRetreatName.Name = "cbRetreatName";
+            this.cbRetreatName.Size = new System.Drawing.Size(210, 21);
+            this.cbRetreatName.TabIndex = 16;
+            // 
             // RetreatDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbRetreatName);
             this.Controls.Add(this.txtRetreatDates);
-            this.Controls.Add(this.txtRetreatName);
             this.Controls.Add(this.txtRetreatPrice);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtDescription);
@@ -199,7 +204,7 @@
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRetreatPrice;
-        private System.Windows.Forms.TextBox txtRetreatName;
         private System.Windows.Forms.TextBox txtRetreatDates;
+        private System.Windows.Forms.ComboBox cbRetreatName;
     }
 }

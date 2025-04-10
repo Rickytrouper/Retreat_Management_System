@@ -16,6 +16,12 @@ namespace Retreat_Management_System
         {
             InitializeComponent();
         }
+        // Define the SetRetreatName method
+        public void SetRetreatName(string retreatName)
+        {
+            lblRetreatName.Text = retreatName;  // Set the text of the label to the retreat name
+        }
+
 
         private void btnBook_Click(object sender, EventArgs e)
         {
@@ -65,10 +71,7 @@ namespace Retreat_Management_System
                 MessageBox.Show("Booking canceled.");
             }
         }
-        public void SetRetreatName(string name)
-        {
-            txtRetreatName.Text = name;
-        }
+       
     }
 
 }

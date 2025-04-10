@@ -7,6 +7,8 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        private System.Windows.Forms.Label lblRetreatName;  // Declare the label
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -18,7 +20,10 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            
         }
+
+
 
         #region Windows Form Designer generated code
 
