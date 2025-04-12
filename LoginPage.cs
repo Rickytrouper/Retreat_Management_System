@@ -99,5 +99,6 @@ namespace Retreat_Management_System
             //  reset the error message label
             lbErrorMessage.Text = string.Empty; 
         }
+
     }
 }

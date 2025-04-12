@@ -42,5 +42,25 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lbRetreatName;
+        private System.Windows.Forms.TextBox txtRetreatName;
+        private System.Windows.Forms.Label lbDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label lbLocation;
+        private System.Windows.Forms.TextBox txtLocation;
+        private System.Windows.Forms.Label txtStartDate;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
+        private System.Windows.Forms.Label txtEndDate;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private System.Windows.Forms.Label lbPrice;
+        private System.Windows.Forms.NumericUpDown numPrice;
+        private System.Windows.Forms.Label lbCapacity;
+        private System.Windows.Forms.NumericUpDown numCapacity;
+        private System.Windows.Forms.Button btnUploadImage;
+        private System.Windows.Forms.Label lbContact;
+        private System.Windows.Forms.TextBox txtContactInfo;
+        private System.Windows.Forms.Button btnSaveRetreat;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
