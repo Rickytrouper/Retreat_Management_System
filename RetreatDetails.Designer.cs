@@ -66,6 +66,7 @@
             this.btnBookNow.TabIndex = 1;
             this.btnBookNow.Text = "Book Now";
             this.btnBookNow.UseVisualStyleBackColor = true;
+            this.btnBookNow.Click += new System.EventHandler(this.btnBookNow_Click);
             // 
             // btnBackToDashboard
             // 

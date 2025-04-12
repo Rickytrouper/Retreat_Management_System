@@ -57,8 +57,15 @@ namespace Retreat_Management_System
             return cardNumber.Length == 16 && cvv.Length == 3;
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancelBooking_Click(object sender, EventArgs e)
         {
+            var retreatDetails = new RetreatDetails();
+            retreatDetails.Show();
+        }
+
+        /*private void btnCancel_Click(object sender, EventArgs e)
+        {
+            
             var confirm = MessageBox.Show("Cancel this booking?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
@@ -70,8 +77,8 @@ namespace Retreat_Management_System
                 txtRetreatName.Clear();
                 MessageBox.Show("Booking canceled.");
             }
-        }
-       
+        }*/
+
     }
 
 }
