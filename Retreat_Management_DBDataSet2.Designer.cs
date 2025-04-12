@@ -1333,6 +1333,8 @@ namespace Retreat_Management_System {
             
             private global::System.Data.DataColumn columnUsername;
             
+            private global::System.Data.DataColumn columnUserID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ReservationDataTableDataTable() {
@@ -1472,6 +1474,14 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UserIDColumn {
+                get {
+                    return this.columnUserID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1522,7 +1532,8 @@ namespace Retreat_Management_System {
                         EndDate,
                         Price,
                         ContactInfo,
-                        Username};
+                        Username,
+                        null};
                 rowReservationDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowReservationDataTableRow);
                 return rowReservationDataTableRow;
@@ -1565,6 +1576,7 @@ namespace Retreat_Management_System {
                 this.columnPrice = base.Columns["Price"];
                 this.columnContactInfo = base.Columns["ContactInfo"];
                 this.columnUsername = base.Columns["Username"];
+                this.columnUserID = base.Columns["UserID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1596,6 +1608,8 @@ namespace Retreat_Management_System {
                 base.Columns.Add(this.columnContactInfo);
                 this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUsername);
+                this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBookingID}, true));
                 this.columnBookingID.AutoIncrement = true;
@@ -1619,6 +1633,11 @@ namespace Retreat_Management_System {
                 this.columnContactInfo.MaxLength = 255;
                 this.columnUsername.AllowDBNull = false;
                 this.columnUsername.MaxLength = 50;
+                this.columnUserID.AutoIncrement = true;
+                this.columnUserID.AutoIncrementSeed = -1;
+                this.columnUserID.AutoIncrementStep = -1;
+                this.columnUserID.AllowDBNull = false;
+                this.columnUserID.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2170,6 +2189,17 @@ namespace Retreat_Management_System {
                 }
                 set {
                     this[this.tableReservationDataTable.UsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int UserID {
+                get {
+                    return ((int)(this[this.tableReservationDataTable.UserIDColumn]));
+                }
+                set {
+                    this[this.tableReservationDataTable.UserIDColumn] = value;
                 }
             }
             
@@ -3314,6 +3344,7 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
             tableMapping.ColumnMappings.Add("Price", "Price");
             tableMapping.ColumnMappings.Add("ContactInfo", "ContactInfo");
             tableMapping.ColumnMappings.Add("Username", "Username");
+            tableMapping.ColumnMappings.Add("UserID", "UserID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -3327,25 +3358,16 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        Booking.BookingID, Booking.BookingDate, Booking.Status, Booking.PaymentStatus, Payment.Amount, Payment.PaymentDate, Retreat.RetreatName, Retreat.Location, Retreat.StartDate, Retreat.EndDate, Retreat.Price, 
-                         Retreat.ContactInfo, [User].Username
+                         Retreat.ContactInfo, [User].Username, [User].UserID
 FROM            Booking INNER JOIN
                          Payment ON Booking.BookingID = Payment.BookingID INNER JOIN
                          Retreat ON Booking.RetreatID = Retreat.RetreatID INNER JOIN
                          [User] ON Booking.UserID = [User].UserID AND Retreat.CreatedBy = [User].UserID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        Booking.BookingID, Booking.BookingDate, Booking.Status, Booking.PaymentStatus, Payment.Amount, Payment.PaymentDate, Retreat.RetreatName, Retreat.Location, Retreat.StartDate, Retreat.EndDate, Retreat.Price, 
-                         Retreat.ContactInfo, [User].Username
-FROM            Booking INNER JOIN
-                         Payment ON Booking.BookingID = Payment.BookingID INNER JOIN
-                         Retreat ON Booking.RetreatID = Retreat.RetreatID INNER JOIN
-                         [User] ON Booking.UserID = [User].UserID AND Retreat.CreatedBy = [User].UserID";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3367,30 +3389,6 @@ FROM            Booking INNER JOIN
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual Retreat_Management_DBDataSet2.ReservationDataTableDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Retreat_Management_DBDataSet2.ReservationDataTableDataTable dataTable = new Retreat_Management_DBDataSet2.ReservationDataTableDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy(Retreat_Management_DBDataSet2.ReservationDataTableDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual Retreat_Management_DBDataSet2.ReservationDataTableDataTable GetDataBy() {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
             Retreat_Management_DBDataSet2.ReservationDataTableDataTable dataTable = new Retreat_Management_DBDataSet2.ReservationDataTableDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

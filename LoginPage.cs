@@ -14,19 +14,13 @@ namespace Retreat_Management_System
 {
     public partial class LoginPage: Form
     {
-        private UserService userService; // Service to handle user-related operations
-        // Constructor
+        private UserService userService; // Service to handle user-related operations       
     
         public LoginPage()
         {
             InitializeComponent();
             userService = new UserService(); // Initialize user service
-        }
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            // Initialization logic if necessary
-        }
-
+        }       
         private void btnSubmitLogin_Click(object sender, EventArgs e)
         {
             string userName = txtUserName.Text.Trim(); // Get the username input
@@ -50,22 +44,23 @@ namespace Retreat_Management_System
 
                 // Opening the appropriate dashboard based on user role
 
-                this.Hide(); // Hide the login form, or close it if you want
+                this.Hide(); // Hide the login form,
                 Form mainForm;
 
                 switch (validatedUser.Role)
                 {
                     case "Admin":
                         mainForm = new AdminDash(); // Admin dashboard form
+                        ((AdminDash)mainForm).SetWelcomeMessage(validatedUser.Username); // Set welcome message
                         break;
                     case "Organizer":
                         mainForm = new OrganizerDash(); // Organizer dashboard form
                         break;
                     case "User":
-                        mainForm = new UserDash(); // User dashboard form
+                        mainForm = new UserDash(validatedUser.UserID); // User dashboard form
                         break;
                     default:
-                        mainForm = new UserDash(); // Default case
+                        mainForm = new LoginPage(); // Default case
                         break;
                 }
 
@@ -77,18 +72,11 @@ namespace Retreat_Management_System
                 lbErrorMessage.Text = "Invalid username or password."; 
                
             }
-       
-    }
-
-        private bool ValidateUser(string Username, string Password)
-        {
-            throw new NotImplementedException();
         }
-
         private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ForgotPassword forgotPasswordForm = new ForgotPassword();
-            forgotPasswordForm.ShowDialog(); // Show as a dialog to focus on this form until it's closed
+            forgotPasswordForm.ShowDialog(); 
         }
 
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -96,8 +84,7 @@ namespace Retreat_Management_System
             // Create an instance of the RegistrationForm
             RegisterAccount registrationForm = new RegisterAccount();
 
-           
-            // prevent the user from interacting with the parent form until they close the registration form
+           // prevent the user from interacting with the parent form until they close the registration form
            registrationForm.ShowDialog();
            
         }
