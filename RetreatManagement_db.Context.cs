@@ -10,14 +10,11 @@
 namespace Retreat_Management_System
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class Retreat_Management_DBEntities : DbContext
     {
-        internal readonly IEnumerable<object> Reservations;
-
         public Retreat_Management_DBEntities()
             : base("name=Retreat_Management_DBEntities")
         {

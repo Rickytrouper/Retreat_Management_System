@@ -17,6 +17,21 @@ namespace Retreat_Management_System
             InitializeComponent();
         }
 
-      
+        private void btnBackToDashboard_Click(object sender, EventArgs e)
+        {
+            // back to user dash
+            UserDash userDash = new UserDash();
+            userDash.Show();
+            this.Hide(); // Hide the current form
+        }
+
+        private void btnBookNow_Click(object sender, EventArgs e)
+        {
+            // Open the BookingPage
+            BookingPage bookingPage = new BookingPage();
+            bookingPage.Show();
+            this.Hide(); // Hide the current form
+
+        }
     }
 }

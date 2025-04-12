@@ -17,5 +17,18 @@ namespace Retreat_Management_System
             InitializeComponent();
         }
 
+        private void btnConfirmBooking_Click(object sender, EventArgs e)
+        {
+            // save the booking details to the database
+
+        }
+
+        private void btnCancelBooking_Click(object sender, EventArgs e)
+        {
+            // Cancel the booking and go back to the previous page
+            RetreatDetails retreatDetails = new RetreatDetails();
+            retreatDetails.Show();
+            this.Hide(); // Hide the current form
+        }
     }
 }

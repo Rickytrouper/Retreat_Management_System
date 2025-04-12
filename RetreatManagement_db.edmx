@@ -121,6 +121,7 @@
           <Property Name="ContactInfo" Type="nvarchar" MaxLength="15" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="LastLogin" Type="datetime" />
+          <Property Name="AccountStatus" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK__AdminActi__Admin__2A164134">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -415,6 +416,7 @@
           <NavigationProperty Name="Feedbacks" Relationship="Self.FK__Feedback__UserID__1EA48E88" FromRole="User" ToRole="Feedback" />
           <NavigationProperty Name="Notifications" Relationship="Self.FK__Notificat__UserI__245D67DE" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="Retreats" Relationship="Self.FK__Retreat__Created__0B91BA14" FromRole="User" ToRole="Retreat" />
+          <Property Name="AccountStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__AdminActi__Admin__2A164134">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -689,6 +691,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Retreat_Management_DB.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

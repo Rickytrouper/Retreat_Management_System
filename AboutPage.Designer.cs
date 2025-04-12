@@ -1,6 +1,6 @@
 ﻿namespace Retreat_Management_System
 {
-    partial class EditRetreats
+    partial class AboutPage
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // EditRetreats
+            // AboutPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
-            this.Name = "EditRetreats";
-            this.Text = "EditRetreats";
+            this.Name = "AboutPage";
+            this.Text = "About";
+            this.Load += new System.EventHandler(this.AboutPage_Load);
             this.ResumeLayout(false);
 
         }

@@ -38,6 +38,8 @@ namespace Retreat_Management_System
         public DateTime DateCreated { get; set; } // Timestamp for when the user was created
 
         public DateTime? LastLogin { get; set; } // Nullable timestamp for last login (can be null if never logged in)
+        
+        public bool IsActive { get; set; } // Indicates if the user is active or inactive
 
     }
 }

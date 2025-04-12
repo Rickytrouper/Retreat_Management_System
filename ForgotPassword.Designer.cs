@@ -39,7 +39,7 @@
             // lbEmail
             // 
             this.lbEmail.AutoSize = true;
-            this.lbEmail.Location = new System.Drawing.Point(256, 205);
+            this.lbEmail.Location = new System.Drawing.Point(312, 289);
             this.lbEmail.Name = "lbEmail";
             this.lbEmail.Size = new System.Drawing.Size(187, 13);
             this.lbEmail.TabIndex = 0;
@@ -47,14 +47,14 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(259, 170);
+            this.txtEmail.Location = new System.Drawing.Point(315, 254);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(204, 20);
             this.txtEmail.TabIndex = 1;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(259, 248);
+            this.btnSubmit.Location = new System.Drawing.Point(315, 332);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(388, 248);
+            this.btnCancel.Location = new System.Drawing.Point(444, 332);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -75,7 +75,7 @@
             // lbMessage
             // 
             this.lbMessage.AutoSize = true;
-            this.lbMessage.Location = new System.Drawing.Point(256, 154);
+            this.lbMessage.Location = new System.Drawing.Point(312, 238);
             this.lbMessage.Name = "lbMessage";
             this.lbMessage.Size = new System.Drawing.Size(0, 13);
             this.lbMessage.TabIndex = 4;
@@ -84,7 +84,7 @@
             // 
             this.ldRestPassword.AutoSize = true;
             this.ldRestPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ldRestPassword.Location = new System.Drawing.Point(255, 36);
+            this.ldRestPassword.Location = new System.Drawing.Point(311, 160);
             this.ldRestPassword.Name = "ldRestPassword";
             this.ldRestPassword.Size = new System.Drawing.Size(159, 24);
             this.ldRestPassword.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 410);
+            this.ClientSize = new System.Drawing.Size(944, 681);
             this.Controls.Add(this.ldRestPassword);
             this.Controls.Add(this.lbMessage);
             this.Controls.Add(this.btnCancel);

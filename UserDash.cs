@@ -20,11 +20,15 @@ namespace Retreat_Management_System
         private string originalEmail;
         private string originalContactInfo;
 
-        public UserDash(int userId) // Assume user ID is passed as a parameter
+        public UserDash(int userId) // user ID is passed as a parameter
         {
             InitializeComponent();
             currentUserId = userId; // Set the current user ID
             reservationTableAdapter = new ReservationDataTableAdapter(); // Initialize the table adapter
+        }
+
+        public UserDash()
+        {
         }
 
         private void UserDash_Load(object sender, EventArgs e)
@@ -32,7 +36,7 @@ namespace Retreat_Management_System
             try
             {
                 LoadUserInfo();
-                CheckUserReservations();
+                
             }
             catch (Exception ex)
             {
@@ -53,7 +57,7 @@ namespace Retreat_Management_System
                     txtContactNum.Text = user.ContactInfo;
 
                     // Display welcome message
-                    lbWelcomeMessage.Text = $"Welcome, {user.FirstName} {user.LastName}!"; // Assuming User has FirstName and LastName properties
+                    lbWelcomeMessage.Text = $"Welcome, {user.FirstName} {user.LastName}!";
 
                     // Load profile picture
                     LoadProfilePicture(user.ProfilePicture);
@@ -76,32 +80,7 @@ namespace Retreat_Management_System
                 MessageBox.Show("Profile picture not found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 picbxProfile.Image = null; // Clear the image if no data found
             }
-        }
-
-        private void CheckUserReservations()
-        {
-            using (var context = new Retreat_Management_DBEntities())
-            {
-                // Check if the user has any reservations
-                var reservations = context.Reservations.Where(q =>
-                {
-                    return q.UserID == currentUserId;
-                }).ToList();
-
-                if (reservations.Any())
-                {
-                    // User has reservations, load them into the GridView
-                    reservationDataTable = new DataTable();
-                    reservationTableAdapter.Fill(this.retreat_Management_DBDataSet2.ReservationDataTable); // Fill adapter with relevant data
-                    dataGridViewReservations.DataSource = reservationDataTable;
-                }
-                else
-                {
-                    MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
+        }      
         private void StoreOriginalValues()
         {
             originalUsername = txtUserName.Text;
@@ -212,5 +191,66 @@ namespace Retreat_Management_System
                 MessageBox.Show("Error loading profile picture: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnViewReservation_Click(object sender, EventArgs e)
+        {           
+        
+            try
+            {
+                using (var context = new Retreat_Management_DBEntities())
+                {
+                    
+                    reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable); // Fill the DataTable
+
+                    // Filter reservations based on UserID directly from the DataTable
+                    var filteredReservations = retreat_Management_DBDataSet2.ReservationDataTable
+                        .Where(row => ((DataRow)row)["UserID"].ToString() == currentUserId.ToString()) 
+                        .ToList();
+
+                    if (filteredReservations.Any())
+                    {
+                        // Data binding to DataGridView
+                        dataGridViewReservations.DataSource = filteredReservations.CopyToDataTable();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking user reservations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+        }    
+
+        private void menuItemLogout_Click(object sender, EventArgs e)
+        {
+            // Close the current form
+            this.Close();
+
+            // Open the LoginPage form
+            LoginPage loginPage = new LoginPage();
+            loginPage.Show();
+        }
+
+        private void btnViewRetreats_Click(object sender, EventArgs e)
+        {
+            // Open the RetreatDetails form
+            RetreatDetails retreatDetails = new RetreatDetails(); // Create an instance of RetreatDetails
+            retreatDetails.Show();
+
+            // Close the UserDash form
+            this.Close();
+
+        }
+        private void menuItemAbout_Click(object sender, EventArgs e)
+        {
+            // Open the AboutPage form
+            AboutPage aboutPage = new AboutPage(); // Create an instance of AboutPage
+            aboutPage.Show();
+        }
     }
+    
 }

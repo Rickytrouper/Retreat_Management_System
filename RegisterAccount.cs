@@ -118,8 +118,7 @@ namespace Retreat_Management_System
                 MessageBox.Show($"Validation errors: {fullErrorMessage}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            //
-
+            
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
