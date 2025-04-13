@@ -42,6 +42,26 @@ namespace Retreat_Management_System
             cbRetreatName.ValueMember = "ID";
             cbRetreatName.DataSource = Retreat;
         }
+
+        /*private void RetreatDetails_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var retreats = retreatManagementEntities.Retreats.ToList();
+
+
+
+                cbRetreatName.DisplayMember = "RetreatName";
+                cbRetreatName.ValueMember = "Id";
+                cbRetreatName.DataSource = retreats;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading retreat list: " + ex.Message);
+            }
+        }*/
+
+
         private void cbRetreatName_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Check if an item is selected
@@ -70,11 +90,47 @@ namespace Retreat_Management_System
             }
         }
 
+
+
+
+
+        /*private void btnBookNow_Click(object sender, EventArgs e)
+        {
+            var selectedRetreat = cbRetreatName.SelectedItem as Retreat;
+
+
+
+            if (selectedRetreat != null)
+            {
+                BookingPage bookingPage = new BookingPage();
+                bookingPage.SetRetreatName(selectedRetreat.RetreatName);
+                bookingPage.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Please select a retreat first.");
+            }
+        }*/
         private void btnBookNow_Click(object sender, EventArgs e)
         {
-            var bookingPage = new BookingPage();
-            bookingPage.Show();
+            var selectedRetreat = cbRetreatName.SelectedItem as Retreat;
+
+            if (selectedRetreat != null)
+            {
+                BookingPage bookingPage = new BookingPage();
+                bookingPage.SetRetreatName(selectedRetreat.RetreatName);  // Set the retreat name on the booking page
+                bookingPage.Show();  // Show the booking page
+                this.Hide();  // Hide the current form
+            }
+            else
+            {
+                MessageBox.Show("Please select a retreat first.");
+            }
         }
+
+
+
     }
 
 
