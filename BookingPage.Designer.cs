@@ -180,7 +180,7 @@
             this.btnConfirmBooking.Name = "btnConfirmBooking";
             this.btnConfirmBooking.Size = new System.Drawing.Size(75, 34);
             this.btnConfirmBooking.TabIndex = 14;
-            this.btnConfirmBooking.Text = "Book Retreat";
+            this.btnConfirmBooking.Text = "Confirm Payment";
             this.btnConfirmBooking.UseVisualStyleBackColor = true;
             // 
             // btnCancelBooking
