@@ -59,9 +59,8 @@ namespace Retreat_Management_System
 
         private void btnCancelBooking_Click(object sender, EventArgs e)
         {
-            Close();
-            /*var retreatDetails = new RetreatDetails();
-            retreatDetails.Show();*/
+            var retreatDetails = new RetreatDetails();
+            retreatDetails.Show();
         }
 
         /*private void btnCancel_Click(object sender, EventArgs e)
