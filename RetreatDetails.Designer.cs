@@ -148,7 +148,6 @@
             // 
             this.txtRetreatPrice.Location = new System.Drawing.Point(597, 287);
             this.txtRetreatPrice.Name = "txtRetreatPrice";
-            this.txtRetreatPrice.ReadOnly = true;
             this.txtRetreatPrice.Size = new System.Drawing.Size(153, 20);
             this.txtRetreatPrice.TabIndex = 13;
             // 
@@ -157,7 +156,6 @@
             this.txtRetreatDates.Location = new System.Drawing.Point(597, 114);
             this.txtRetreatDates.Multiline = true;
             this.txtRetreatDates.Name = "txtRetreatDates";
-            this.txtRetreatDates.ReadOnly = true;
             this.txtRetreatDates.Size = new System.Drawing.Size(153, 45);
             this.txtRetreatDates.TabIndex = 15;
             // 
