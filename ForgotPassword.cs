@@ -70,22 +70,24 @@ namespace Retreat_Management_System
         // Method to send password reset email
                    private bool SendPasswordResetEmail(string email, string resetLink)
         {
-            // Simulate email sending. 
+            // Simulate email sending. In a real application, you'd deal with actual SMTP sending logic.
             try
             {
-                //  simulate sending email.
+                // Instead of using SmtpClient, we will just simulate success.
                 Console.WriteLine($"Simulated email sent to: {email}");
                 Console.WriteLine($"Reset link: {resetLink}");
 
+                // Simulating a success response for testing purposes
                 return true; // Simulate that the email has been sent successfully
             }
             catch (Exception ex)
             {
-                // Log any error 
-                Console.WriteLine($"Error while sending reset link: {ex.Message}");
-                return false;
+                // Log the error if it were to occur (though it won't in this simulated scenario)
+                Console.WriteLine($"Error in simulated sending: {ex.Message}");
+                return false; // Indicate failure, but this won't be hit in this simulation
             }
-        }        
+        }
+        
 
         // Event handler for the Cancel button
         private void btnCancel_Click(object sender, EventArgs e)

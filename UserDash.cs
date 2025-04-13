@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters;
 
@@ -20,27 +24,33 @@ namespace Retreat_Management_System
         private string originalEmail;
         private string originalContactInfo;
 
-        public UserDash(int userId) // user ID is passed as a parameter
-        {
-            InitializeComponent();
-            currentUserId = userId; // Set the current user ID
-            reservationTableAdapter = new ReservationDataTableAdapter(); // Initialize the table adapter
-        }
-
         public UserDash()
         {
+            InitializeComponent();
+            reservationTableAdapter = new ReservationDataTableAdapter(); // Initialize the table adapter
         }
 
         private void UserDash_Load(object sender, EventArgs e)
         {
+            // Loads data into the 'retreat_Management_DBDataSet2.ReservationDataTable' table.
+            this.reservationDataTableAdapter.Fill(this.retreat_Management_DBDataSet2.ReservationDataTable);
+
             try
             {
+                // Fill the DataTable with data from the database
+                reservationDataTable = new DataTable();
+                reservationTableAdapter.Fill((Retreat_Management_DBDataSet2.ReservationDataTableDataTable)reservationDataTable); // Use the Fill method to get data
+
+                // Set the DataGridView's DataSource to the DataTable
+                dataGridViewReservations.DataSource = reservationDataTable; // Assuming 'dataGridViewReservations' is the name of your DataGridView
+
+                // Load user info and store original values
                 LoadUserInfo();
-                
+                StoreOriginalValues();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading user data: " + ex.Message);
+                MessageBox.Show("Error loading reservations: " + ex.Message);
             }
         }
 
@@ -51,36 +61,13 @@ namespace Retreat_Management_System
                 var user = context.Users.FirstOrDefault(q => q.UserID == currentUserId);
                 if (user != null)
                 {
-                    // Populate user details
                     txtUserName.Text = user.Username;
                     txtEmail.Text = user.Email;
                     txtContactNum.Text = user.ContactInfo;
-
-                    // Display welcome message
-                    lbWelcomeMessage.Text = $"Welcome, {user.FirstName} {user.LastName}!";
-
-                    // Load profile picture
-                    LoadProfilePicture(user.ProfilePicture);
-
-                    // Store original values
-                    StoreOriginalValues();
                 }
             }
         }
 
-        private void LoadProfilePicture(string imagePath)
-        {
-            if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
-            {
-                picbxProfile.Image = Image.FromFile(imagePath); // Set the PictureBox image
-                picbxProfile.SizeMode = PictureBoxSizeMode.StretchImage; // Optional
-            }
-            else
-            {
-                MessageBox.Show("Profile picture not found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                picbxProfile.Image = null; // Clear the image if no data found
-            }
-        }      
         private void StoreOriginalValues()
         {
             originalUsername = txtUserName.Text;
@@ -110,17 +97,19 @@ namespace Retreat_Management_System
                 string email = txtEmail.Text.Trim();
                 string contactInfo = txtContactNum.Text.Trim();
 
-                // Validation
+                // Validation (basic example)
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email))
                 {
                     MessageBox.Show("Username and Email cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                int userId = currentUserId;
+
                 // Update the user record in the database
                 using (var context = new Retreat_Management_DBEntities())
                 {
-                    var existingUser = context.Users.FirstOrDefault(q => q.UserID == currentUserId);
+                    var existingUser = context.Users.FirstOrDefault(q => q.UserID == userId);
                     if (existingUser != null)
                     {
                         existingUser.Username = username;
@@ -145,7 +134,6 @@ namespace Retreat_Management_System
                 MessageBox.Show("Error updating profile: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void ResetTextBoxes()
         {
             // Set text boxes back to read-only
@@ -182,8 +170,17 @@ namespace Retreat_Management_System
                         .Select(q => q.ProfilePicture)
                         .FirstOrDefault();
 
-                    // Load profile picture
-                    LoadProfilePicture(imagePath);
+                    // Check if the image path is valid
+                    if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+                    {
+                        // Load the image from the file path
+                        picbxProfile.Image = Image.FromFile(imagePath); // Set the PictureBox image
+                    }
+                    else
+                    {
+                        MessageBox.Show("Profile picture not found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        picbxProfile.Image = null; // Clear the image if no data found
+                    }
                 }
             }
             catch (Exception ex)
@@ -191,66 +188,5 @@ namespace Retreat_Management_System
                 MessageBox.Show("Error loading profile picture: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnViewReservation_Click(object sender, EventArgs e)
-        {           
-        
-            try
-            {
-                using (var context = new Retreat_Management_DBEntities())
-                {
-                    
-                    reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable); // Fill the DataTable
-
-                    // Filter reservations based on UserID directly from the DataTable
-                    var filteredReservations = retreat_Management_DBDataSet2.ReservationDataTable
-                        .Where(row => ((DataRow)row)["UserID"].ToString() == currentUserId.ToString()) 
-                        .ToList();
-
-                    if (filteredReservations.Any())
-                    {
-                        // Data binding to DataGridView
-                        dataGridViewReservations.DataSource = filteredReservations.CopyToDataTable();
-                    }
-                    else
-                    {
-                        MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error checking user reservations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        
-        }    
-
-        private void menuItemLogout_Click(object sender, EventArgs e)
-        {
-            // Close the current form
-            this.Close();
-
-            // Open the LoginPage form
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
-        }
-
-        private void btnViewRetreats_Click(object sender, EventArgs e)
-        {
-            // Open the RetreatDetails form
-            RetreatDetails retreatDetails = new RetreatDetails(); // Create an instance of RetreatDetails
-            retreatDetails.Show();
-
-            // Close the UserDash form
-            this.Close();
-
-        }
-        private void menuItemAbout_Click(object sender, EventArgs e)
-        {
-            // Open the AboutPage form
-            AboutPage aboutPage = new AboutPage(); // Create an instance of AboutPage
-            aboutPage.Show();
-        }
     }
-    
 }

@@ -34,7 +34,6 @@ namespace Retreat_Management_System
         public string ContactInfo { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
-        public string AccountStatus { get; set; }
     
         public virtual ICollection<AdminAction> AdminActions { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
