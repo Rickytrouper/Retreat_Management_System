@@ -155,7 +155,6 @@
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.Size = new System.Drawing.Size(100, 20);
             this.txtExpiryDate.TabIndex = 11;
-            this.txtExpiryDate.Text = "MM/YY";
             // 
             // label8
             // 

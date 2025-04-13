@@ -23,7 +23,7 @@ namespace Retreat_Management_System
         }
 
 
-        private void btnBook_Click(object sender, EventArgs e)
+        private void btnConfirmBooking_Click(object sender, EventArgs e)
         {
             string username = txtUserName.Text;
             string email = txtEmail.Text;
