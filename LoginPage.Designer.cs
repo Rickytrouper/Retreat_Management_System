@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Retreat_Management_System
+﻿namespace Retreat_Management_System
 {
     partial class LoginPage
     {
@@ -21,7 +19,7 @@ namespace Retreat_Management_System
             }
             base.Dispose(disposing);
         }
-        
+
         #region Windows Form Designer generated code
 
         /// <summary>
