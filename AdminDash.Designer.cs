@@ -229,6 +229,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminDash";
             this.Text = "Admin Dash";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminDash_FormClosing);
             this.groupBoxRetreatManament.ResumeLayout(false);
             this.groupBoxRetreatManament.PerformLayout();
             this.groupBoxUserManagement.ResumeLayout(false);

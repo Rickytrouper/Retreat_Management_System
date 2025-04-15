@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
 
 
 namespace Retreat_Management_System
@@ -22,6 +23,17 @@ namespace Retreat_Management_System
                                      && u.Password == password); // Use hashed passwords in production
 
             return user; // Returns the user if found, otherwise null
+        }
+
+        internal void UpdateUserLastLogin(User user)
+        {
+            // Find the user in the database
+            var existingUser = retreat_Management_DBEntities.Users.SingleOrDefault(u => u.UserID == user.UserID);
+            if (existingUser != null)
+            {
+                existingUser.LastLogin = user.LastLogin; // Update last login time
+                retreat_Management_DBEntities.SaveChanges(); // Save
+            }
         }
     }
 }

@@ -13,13 +13,13 @@ namespace Retreat_Management_System
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           // Application.Run(new LoginPage());
-            Application.Run(new RetreatDetails());
-            Application.Run(new BookingPage());
-            
+            Application.Run(new LoginPage());
+            //Application.Run(new RetreatDetails());
+            //Application.Run(new BookingPage());
+
         }
     }
 }

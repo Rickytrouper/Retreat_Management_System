@@ -68,6 +68,8 @@
             this.retreat_Management_DBDataSet2 = new Retreat_Management_System.Retreat_Management_DBDataSet2();
             this.reservationDataTableAdapter = new Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters.ReservationDataTableAdapter();
             this.lbReservationDetails = new System.Windows.Forms.Label();
+            this.btnUpdatePic = new System.Windows.Forms.Button();
+            this.lbProfilePic = new System.Windows.Forms.Label();
             this.menuStripUserDash.SuspendLayout();
             this.groupUserInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
@@ -411,11 +413,33 @@
             this.lbReservationDetails.TabIndex = 6;
             this.lbReservationDetails.Text = "Reservation Details";
             // 
+            // btnUpdatePic
+            // 
+            this.btnUpdatePic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdatePic.Location = new System.Drawing.Point(730, 170);
+            this.btnUpdatePic.Name = "btnUpdatePic";
+            this.btnUpdatePic.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdatePic.TabIndex = 7;
+            this.btnUpdatePic.Text = "Update";
+            this.btnUpdatePic.UseVisualStyleBackColor = true;
+            this.btnUpdatePic.Click += new System.EventHandler(this.btnUpdatePic_Click);
+            // 
+            // lbProfilePic
+            // 
+            this.lbProfilePic.AutoSize = true;
+            this.lbProfilePic.Location = new System.Drawing.Point(608, 107);
+            this.lbProfilePic.Name = "lbProfilePic";
+            this.lbProfilePic.Size = new System.Drawing.Size(72, 13);
+            this.lbProfilePic.TabIndex = 8;
+            this.lbProfilePic.Text = "Profile Picture";
+            // 
             // UserDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 683);
+            this.Controls.Add(this.lbProfilePic);
+            this.Controls.Add(this.btnUpdatePic);
             this.Controls.Add(this.lbReservationDetails);
             this.Controls.Add(this.dataGridViewReservations);
             this.Controls.Add(this.groupBoxUserAction);
@@ -426,6 +450,7 @@
             this.MainMenuStrip = this.menuStripUserDash;
             this.Name = "UserDash";
             this.Text = "  User Dash";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserDash_FormClosing);
             this.Load += new System.EventHandler(this.UserDash_Load);
             this.menuStripUserDash.ResumeLayout(false);
             this.menuStripUserDash.PerformLayout();
@@ -484,5 +509,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactInfoDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lbReservationDetails;
+        private System.Windows.Forms.Button btnUpdatePic;
+        private System.Windows.Forms.Label lbProfilePic;
     }
 }

@@ -54,24 +54,7 @@ namespace Retreat_Management_System
 
         private bool ProcessPayment(string cardNumber, string expiry, string cvv)
         {
-            return cardNumber.Length == 16 && cvv.Length == 3;
+            throw new NotImplementedException();
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            var confirm = MessageBox.Show("Cancel this booking?", "Confirm", MessageBoxButtons.YesNo);
-            if (confirm == DialogResult.Yes)
-            {
-                txtUserName.Clear();
-                txtEmail.Clear();
-                txtCardNumber.Clear();
-                txtExpiryDate.Clear();
-                txtCVV.Clear();
-                txtRetreatName.Clear();
-                MessageBox.Show("Booking canceled.");
-            }
-        }
-       
     }
-
 }

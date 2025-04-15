@@ -10,9 +10,9 @@ namespace Retreat_Management_System
 {
     public partial class UserDash : Form
     {
-        // Declare the adapter
+         // Declare the adapter
         private ReservationDataTableAdapter reservationTableAdapter;
-        private DataTable reservationDataTable;
+       // private DataTable reservationDataTable;
         private int currentUserId;
 
         // Store original values for cancel operation.
@@ -26,9 +26,11 @@ namespace Retreat_Management_System
             currentUserId = userId; // Set the current user ID
             reservationTableAdapter = new ReservationDataTableAdapter(); // Initialize the table adapter
         }
-
+        
         public UserDash()
         {
+            InitializeComponent();
+            this.FormClosing += UserDash_FormClosing;
         }
 
         private void UserDash_Load(object sender, EventArgs e)
@@ -238,7 +240,7 @@ namespace Retreat_Management_System
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
             // Open the RetreatDetails form
-            RetreatDetails retreatDetails = new RetreatDetails(); // Create an instance of RetreatDetails
+            RetreatDetails retreatDetails = new RetreatDetails(); 
             retreatDetails.Show();
 
             // Close the UserDash form
@@ -248,8 +250,39 @@ namespace Retreat_Management_System
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
             // Open the AboutPage form
-            AboutPage aboutPage = new AboutPage(); // Create an instance of AboutPage
+            AboutPage aboutPage = new AboutPage(); 
             aboutPage.Show();
+        }
+      
+
+        private void UserDash_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // close loginpage when userdash closes
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is LoginPage)
+                {
+                    form.Close();
+                    break;
+                }
+            }
+        }
+
+        private void btnUpdatePic_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
+                openFileDialog.Title = "Select a Profile Picture";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+                    picbxProfile.Image = Image.FromFile(filePath);
+                    picbxProfile.SizeMode = PictureBoxSizeMode.StretchImage; 
+                }
+            }
+
         }
     }
     

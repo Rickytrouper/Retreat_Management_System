@@ -22,57 +22,69 @@ namespace Retreat_Management_System
             userService = new UserService(); // Initialize user service
         }       
         private void btnSubmitLogin_Click(object sender, EventArgs e)
+{
+    string userName = txtUserName.Text.Trim(); // Get the username input
+    string password = txtPassword.Text.Trim(); // Get the password input
+
+    // Validate the inputs 
+    if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+    {
+        MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        return;
+    }
+
+    User validatedUser = userService.ValidateUser(userName, password); // Validate user
+
+    if (validatedUser != null) // Check if the user is validated
+    {
+        // Check if the user account is suspended
+        if (validatedUser.AccountStatus == "Suspended")
         {
-            string userName = txtUserName.Text.Trim(); // Get the username input
-            string password = txtPassword.Text.Trim(); // Get the password input
-
-            // Validate the inputs (simple check, you can enhance it)
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-             User validatedUser = userService.ValidateUser(userName, password); // Validate user
-
-            if (validatedUser != null) // Check if the user is validated
-            {
-                MessageBox.Show($"Login successful! Welcome, {validatedUser.Username}.\nYour role is: {validatedUser.Role}",
-                                "Login Success",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-
-                // Opening the appropriate dashboard based on user role
-
-                this.Hide(); // Hide the login form,
-                Form mainForm;
-
-                switch (validatedUser.Role)
-                {
-                    case "Admin":
-                        mainForm = new AdminDash(); // Admin dashboard form
-                        ((AdminDash)mainForm).SetWelcomeMessage(validatedUser.Username); // Set welcome message
-                        break;
-                    case "Organizer":
-                        mainForm = new OrganizerDash(); // Organizer dashboard form
-                        break;
-                    case "User":
-                        mainForm = new UserDash(validatedUser.UserID); // User dashboard form
-                        break;
-                    default:
-                        mainForm = new LoginPage(); // Default case
-                        break;
-                }
-
-                mainForm.Show(); // Show the appropriate dashboard
-            }
-            else
-            {
-                // Display error message
-                lbErrorMessage.Text = "Invalid username or password."; 
-               
-            }
+            MessageBox.Show("Your account is suspended. Please contact the administrator.", "Account Suspended", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return; // Stop further processing
         }
+
+           // Update the LastLogin property
+         validatedUser.LastLogin = DateTime.Now; // Set current date and time
+         userService.UpdateUserLastLogin(validatedUser); // Custom service method to update the user
+
+
+
+                MessageBox.Show($"Login successful! Welcome, {validatedUser.Username}.\nYour role is: {validatedUser.Role}",
+                        "Login Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+        // Opening the appropriate dashboard based on user role
+        this.Hide(); // Hide the login form
+        Form mainForm;
+
+        switch (validatedUser.Role)
+        {
+            case "Admin":
+                mainForm = new AdminDash(); // Admin dashboard form
+                ((AdminDash)mainForm).SetWelcomeMessage(validatedUser.Username); // Set welcome message
+                break;
+            case "Organizer":
+                mainForm = new OrganizerDash(); // Organizer dashboard form
+                break;
+            case "User":
+                mainForm = new UserDash(validatedUser.UserID); // User dashboard form
+                break;
+            default:
+                mainForm = new LoginPage(); // Default case
+                break;
+        }
+
+        mainForm.Show(); // Show the appropriate dashboard
+    }
+    else
+    {
+        // Display error message
+        lbErrorMessage.Text = "Invalid username or password."; 
+    }
+}
+
         private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ForgotPassword forgotPasswordForm = new ForgotPassword();
@@ -84,7 +96,7 @@ namespace Retreat_Management_System
             // Create an instance of the RegistrationForm
             RegisterAccount registrationForm = new RegisterAccount();
 
-           // prevent the user from interacting with the parent form until they close the registration form
+           
            registrationForm.ShowDialog();
            
         }
