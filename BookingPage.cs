@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-    public partial class BookingPage : Form
+    public partial class BookingPage: Form
     {
         public BookingPage()
         {

@@ -106,19 +106,6 @@ namespace Retreat_Management_System
                 MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close(); // Close the form 
             }
-
-            // catch block for  data base error
-
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-            {
-                var errorMessages = dbEx.EntityValidationErrors.SelectMany(validationResult => validationResult.ValidationErrors)
-                    .Select(validationError => validationError.ErrorMessage);
-
-                var fullErrorMessage = string.Join("; ", errorMessages);
-                MessageBox.Show($"Validation errors: {fullErrorMessage}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

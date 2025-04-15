@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Retreat_Management_System
+﻿namespace Retreat_Management_System
 {
     partial class LoginPage
     {
@@ -21,7 +19,7 @@ namespace Retreat_Management_System
             }
             base.Dispose(disposing);
         }
-        
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -133,7 +131,7 @@ namespace Retreat_Management_System
             this.lblogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblogin.Location = new System.Drawing.Point(367, 180);
             this.lblogin.Name = "lblogin";
-            this.lblogin.Size = new System.Drawing.Size(85, 31);
+            this.lblogin.Size = new System.Drawing.Size(62, 24);
             this.lblogin.TabIndex = 9;
             this.lblogin.Text = "Login";
             // 
@@ -141,7 +139,7 @@ namespace Retreat_Management_System
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.ClientSize = new System.Drawing.Size(679, 438);
             this.Controls.Add(this.lblogin);
             this.Controls.Add(this.btnClearFields);
             this.Controls.Add(this.lbErrorMessage);

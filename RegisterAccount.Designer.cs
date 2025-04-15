@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbPageLable = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbUserName = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtCrePassword = new System.Windows.Forms.TextBox();
@@ -53,21 +53,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
             this.SuspendLayout();
             // 
-            // lbPageLable
+            // label1
             // 
-            this.lbPageLable.AutoSize = true;
-            this.lbPageLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPageLable.Location = new System.Drawing.Point(358, 59);
-            this.lbPageLable.Name = "lbPageLable";
-            this.lbPageLable.Size = new System.Drawing.Size(117, 31);
-            this.lbPageLable.TabIndex = 0;
-            this.lbPageLable.Text = "Sign Up";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(358, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Sign Up";
             // 
             // lbUserName
             // 
             this.lbUserName.AutoSize = true;
             this.lbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserName.Location = new System.Drawing.Point(36, 250);
+            this.lbUserName.Location = new System.Drawing.Point(25, 157);
             this.lbUserName.Name = "lbUserName";
             this.lbUserName.Size = new System.Drawing.Size(79, 16);
             this.lbUserName.TabIndex = 1;
@@ -75,14 +75,14 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(168, 249);
+            this.txtUserName.Location = new System.Drawing.Point(157, 156);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(238, 20);
             this.txtUserName.TabIndex = 2;
             // 
             // txtCrePassword
             // 
-            this.txtCrePassword.Location = new System.Drawing.Point(168, 296);
+            this.txtCrePassword.Location = new System.Drawing.Point(157, 203);
             this.txtCrePassword.Name = "txtCrePassword";
             this.txtCrePassword.Size = new System.Drawing.Size(238, 20);
             this.txtCrePassword.TabIndex = 4;
@@ -91,7 +91,7 @@
             // 
             this.lbCrePassword.AutoSize = true;
             this.lbCrePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCrePassword.Location = new System.Drawing.Point(36, 300);
+            this.lbCrePassword.Location = new System.Drawing.Point(25, 207);
             this.lbCrePassword.Name = "lbCrePassword";
             this.lbCrePassword.Size = new System.Drawing.Size(116, 16);
             this.lbCrePassword.TabIndex = 3;
@@ -99,7 +99,7 @@
             // 
             // txtConPassword
             // 
-            this.txtConPassword.Location = new System.Drawing.Point(168, 346);
+            this.txtConPassword.Location = new System.Drawing.Point(157, 253);
             this.txtConPassword.Name = "txtConPassword";
             this.txtConPassword.Size = new System.Drawing.Size(238, 20);
             this.txtConPassword.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             this.lbConPassword.AutoSize = true;
             this.lbConPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbConPassword.Location = new System.Drawing.Point(36, 350);
+            this.lbConPassword.Location = new System.Drawing.Point(25, 257);
             this.lbConPassword.Name = "lbConPassword";
             this.lbConPassword.Size = new System.Drawing.Size(121, 16);
             this.lbConPassword.TabIndex = 5;
@@ -116,7 +116,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(528, 249);
+            this.txtEmail.Location = new System.Drawing.Point(517, 156);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(238, 20);
             this.txtEmail.TabIndex = 8;
@@ -125,7 +125,7 @@
             // 
             this.lbEmail.AutoSize = true;
             this.lbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmail.Location = new System.Drawing.Point(421, 250);
+            this.lbEmail.Location = new System.Drawing.Point(410, 157);
             this.lbEmail.Name = "lbEmail";
             this.lbEmail.Size = new System.Drawing.Size(101, 16);
             this.lbEmail.TabIndex = 7;
@@ -137,7 +137,7 @@
             this.cbRole.Items.AddRange(new object[] {
             "User",
             "Organizer"});
-            this.cbRole.Location = new System.Drawing.Point(168, 397);
+            this.cbRole.Location = new System.Drawing.Point(157, 304);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(238, 21);
             this.cbRole.TabIndex = 9;
@@ -146,7 +146,7 @@
             // 
             this.lbSelectRole.AutoSize = true;
             this.lbSelectRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSelectRole.Location = new System.Drawing.Point(36, 402);
+            this.lbSelectRole.Location = new System.Drawing.Point(25, 309);
             this.lbSelectRole.Name = "lbSelectRole";
             this.lbSelectRole.Size = new System.Drawing.Size(83, 16);
             this.lbSelectRole.TabIndex = 10;
@@ -154,7 +154,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(168, 443);
+            this.txtFirstName.Location = new System.Drawing.Point(157, 350);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(238, 20);
             this.txtFirstName.TabIndex = 12;
@@ -163,7 +163,7 @@
             // 
             this.lbFirstName.AutoSize = true;
             this.lbFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFirstName.Location = new System.Drawing.Point(36, 447);
+            this.lbFirstName.Location = new System.Drawing.Point(25, 354);
             this.lbFirstName.Name = "lbFirstName";
             this.lbFirstName.Size = new System.Drawing.Size(78, 16);
             this.lbFirstName.TabIndex = 11;
@@ -171,7 +171,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(528, 443);
+            this.txtLastName.Location = new System.Drawing.Point(517, 350);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(238, 20);
             this.txtLastName.TabIndex = 14;
@@ -180,7 +180,7 @@
             // 
             this.lbLastName.AutoSize = true;
             this.lbLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLastName.Location = new System.Drawing.Point(433, 447);
+            this.lbLastName.Location = new System.Drawing.Point(422, 354);
             this.lbLastName.Name = "lbLastName";
             this.lbLastName.Size = new System.Drawing.Size(78, 16);
             this.lbLastName.TabIndex = 13;
@@ -189,17 +189,16 @@
             // picbxProfile
             // 
             this.picbxProfile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picbxProfile.Location = new System.Drawing.Point(31, 88);
+            this.picbxProfile.Location = new System.Drawing.Point(28, 16);
             this.picbxProfile.Name = "picbxProfile";
             this.picbxProfile.Size = new System.Drawing.Size(121, 102);
-            this.picbxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picbxProfile.TabIndex = 15;
             this.picbxProfile.TabStop = false;
             this.picbxProfile.Click += new System.EventHandler(this.picbxProfile_Click);
             // 
             // txtContactNum
             // 
-            this.txtContactNum.Location = new System.Drawing.Point(168, 490);
+            this.txtContactNum.Location = new System.Drawing.Point(157, 397);
             this.txtContactNum.Name = "txtContactNum";
             this.txtContactNum.Size = new System.Drawing.Size(238, 20);
             this.txtContactNum.TabIndex = 17;
@@ -208,7 +207,7 @@
             // 
             this.lbContactNum.AutoSize = true;
             this.lbContactNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbContactNum.Location = new System.Drawing.Point(36, 491);
+            this.lbContactNum.Location = new System.Drawing.Point(25, 398);
             this.lbContactNum.Name = "lbContactNum";
             this.lbContactNum.Size = new System.Drawing.Size(109, 16);
             this.lbContactNum.TabIndex = 16;
@@ -217,7 +216,7 @@
             // btnSignUp
             // 
             this.btnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignUp.Location = new System.Drawing.Point(168, 549);
+            this.btnSignUp.Location = new System.Drawing.Point(157, 456);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(94, 39);
             this.btnSignUp.TabIndex = 18;
@@ -228,7 +227,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(528, 542);
+            this.btnCancel.Location = new System.Drawing.Point(517, 449);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 46);
             this.btnCancel.TabIndex = 19;
@@ -239,7 +238,7 @@
             // lbProfilePic
             // 
             this.lbProfilePic.AutoSize = true;
-            this.lbProfilePic.Location = new System.Drawing.Point(39, 193);
+            this.lbProfilePic.Location = new System.Drawing.Point(36, 121);
             this.lbProfilePic.Name = "lbProfilePic";
             this.lbProfilePic.Size = new System.Drawing.Size(94, 13);
             this.lbProfilePic.TabIndex = 20;
@@ -249,7 +248,7 @@
             // 
             this.lbPasswordError.AutoSize = true;
             this.lbPasswordError.ForeColor = System.Drawing.Color.Red;
-            this.lbPasswordError.Location = new System.Drawing.Point(168, 369);
+            this.lbPasswordError.Location = new System.Drawing.Point(157, 276);
             this.lbPasswordError.Name = "lbPasswordError";
             this.lbPasswordError.Size = new System.Drawing.Size(0, 13);
             this.lbPasswordError.TabIndex = 21;
@@ -258,7 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.ClientSize = new System.Drawing.Size(783, 514);
             this.Controls.Add(this.lbPasswordError);
             this.Controls.Add(this.lbProfilePic);
             this.Controls.Add(this.btnCancel);
@@ -280,7 +279,7 @@
             this.Controls.Add(this.lbCrePassword);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.lbUserName);
-            this.Controls.Add(this.lbPageLable);
+            this.Controls.Add(this.label1);
             this.Name = "RegisterAccount";
             this.Text = "Registration Form";
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).EndInit();
@@ -291,7 +290,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbPageLable;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbUserName;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtCrePassword;

@@ -220,13 +220,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 681);
-            this.Controls.Add(this.groupBoxReports);
-            this.Controls.Add(this.groupBoxUserManagement);
-            this.Controls.Add(this.groupBoxRetreatManament);
-            this.Controls.Add(this.lbWelcomeMessage);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.ClientSize = new System.Drawing.Size(764, 450);
             this.Name = "AdminDash";
             this.Text = "Admin Dash";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminDash_FormClosing);
@@ -239,28 +233,9 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbWelcomeMessage;
-        private System.Windows.Forms.GroupBox groupBoxRetreatManament;
-        private System.Windows.Forms.Button btnEditRetreat;
-        private System.Windows.Forms.Button btnAddRetreat;
-        private System.Windows.Forms.Label lbEditRetreat;
-        private System.Windows.Forms.Label lbAddRetreat;
-        private System.Windows.Forms.GroupBox groupBoxUserManagement;
-        private System.Windows.Forms.Label lbManageUsers;
-        private System.Windows.Forms.Button btnManageUsers;
-        private System.Windows.Forms.GroupBox groupBoxReports;
-        private System.Windows.Forms.Label lbGenerateReports;
-        private System.Windows.Forms.Button btnGenerateReports;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
     }
 }

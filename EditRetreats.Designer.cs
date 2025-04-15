@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // EditRetreats
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 681);
-            this.Name = "EditRetreats";
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "EditRetreats";
-            this.ResumeLayout(false);
-
         }
 
         #endregion

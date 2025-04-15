@@ -1,22 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
     public partial class AdminDash: Form
     {
-      
         public AdminDash()
         {
             InitializeComponent();
             this.FormClosing += AdminDash_FormClosing;
         }
-        
         public void SetWelcomeMessage(string username)
         {
-            // Display Welcome  message
-            lbWelcomeMessage.Text =$"Welcome, {username}!"; 
-        }        
+            // Welcome  message
+            lbWelcomeMessage.Text =$"Welcome, {username}!"; } 
+
+       
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
@@ -41,6 +47,9 @@ namespace Retreat_Management_System
             // Open the AddRetreat form
             AddRetreat addRetreatForm = new AddRetreat(); // Create an instance of AddRetreat
             addRetreatForm.Show(); // Show the form
+
+
+
         }
 
         private void btnEditRetreat_Click(object sender, EventArgs e)
@@ -67,19 +76,6 @@ namespace Retreat_Management_System
             UserManagementForm userManagementForm = new UserManagementForm(); // Create an instance of UserManagementForm
             userManagementForm.Show(); // Show the form
             this.Hide(); // Hide the current form
-        }
-
-        private void AdminDash_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // close login page when Admin dash closes
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is LoginPage)
-                {
-                    form.Close();
-                    break;
-                }
-            }
 
         }
     }

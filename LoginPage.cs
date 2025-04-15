@@ -14,13 +14,19 @@ namespace Retreat_Management_System
 {
     public partial class LoginPage: Form
     {
-        private UserService userService; // Service to handle user-related operations       
+        private UserService userService; // Service to handle user-related operations
+        // Constructor
     
         public LoginPage()
         {
             InitializeComponent();
             userService = new UserService(); // Initialize user service
-        }       
+        }
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // Initialization logic if necessary
+        }
+
         private void btnSubmitLogin_Click(object sender, EventArgs e)
 {
     string userName = txtUserName.Text.Trim(); // Get the username input
@@ -85,10 +91,11 @@ namespace Retreat_Management_System
     }
 }
 
+
         private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ForgotPassword forgotPasswordForm = new ForgotPassword();
-            forgotPasswordForm.ShowDialog(); 
+            forgotPasswordForm.ShowDialog(); // Show as a dialog to focus on this form until it's closed
         }
 
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -111,6 +118,5 @@ namespace Retreat_Management_System
             //  reset the error message label
             lbErrorMessage.Text = string.Empty; 
         }
-
     }
 }
