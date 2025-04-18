@@ -42,13 +42,13 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCardNumber = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtExpiryDate = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtCVV = new System.Windows.Forms.TextBox();
             this.btnConfirmBooking = new System.Windows.Forms.Button();
             this.btnCancelBooking = new System.Windows.Forms.Button();
+            this.mtbCardNumber = new System.Windows.Forms.MaskedTextBox();
+            this.mtbExpiryDate = new System.Windows.Forms.MaskedTextBox();
+            this.mtbCVV = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -132,13 +132,6 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Card Number";
             // 
-            // txtCardNumber
-            // 
-            this.txtCardNumber.Location = new System.Drawing.Point(599, 141);
-            this.txtCardNumber.Name = "txtCardNumber";
-            this.txtCardNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtCardNumber.TabIndex = 9;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -149,13 +142,6 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Expiry Date";
             // 
-            // txtExpiryDate
-            // 
-            this.txtExpiryDate.Location = new System.Drawing.Point(600, 189);
-            this.txtExpiryDate.Name = "txtExpiryDate";
-            this.txtExpiryDate.Size = new System.Drawing.Size(100, 20);
-            this.txtExpiryDate.TabIndex = 11;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -165,13 +151,6 @@
             this.label8.Size = new System.Drawing.Size(42, 20);
             this.label8.TabIndex = 12;
             this.label8.Text = "CVV";
-            // 
-            // txtCVV
-            // 
-            this.txtCVV.Location = new System.Drawing.Point(599, 235);
-            this.txtCVV.Name = "txtCVV";
-            this.txtCVV.Size = new System.Drawing.Size(100, 20);
-            this.txtCVV.TabIndex = 13;
             // 
             // btnConfirmBooking
             // 
@@ -192,18 +171,44 @@
             this.btnCancelBooking.UseVisualStyleBackColor = true;
             this.btnCancelBooking.Click += new System.EventHandler(this.btnCancelBooking_Click);
             // 
+            // mtbCardNumber
+            // 
+            this.mtbCardNumber.Location = new System.Drawing.Point(599, 141);
+            this.mtbCardNumber.Mask = "0000-0000-0000-0000";
+            this.mtbCardNumber.Name = "mtbCardNumber";
+            this.mtbCardNumber.PromptChar = ' ';
+            this.mtbCardNumber.Size = new System.Drawing.Size(100, 20);
+            this.mtbCardNumber.TabIndex = 16;
+            // 
+            // mtbExpiryDate
+            // 
+            this.mtbExpiryDate.Location = new System.Drawing.Point(599, 187);
+            this.mtbExpiryDate.Mask = "00/0000";
+            this.mtbExpiryDate.Name = "mtbExpiryDate";
+            this.mtbExpiryDate.Size = new System.Drawing.Size(100, 20);
+            this.mtbExpiryDate.TabIndex = 17;
+            // 
+            // mtbCVV
+            // 
+            this.mtbCVV.Location = new System.Drawing.Point(599, 235);
+            this.mtbCVV.Mask = "000";
+            this.mtbCVV.Name = "mtbCVV";
+            this.mtbCVV.PromptChar = ' ';
+            this.mtbCVV.Size = new System.Drawing.Size(100, 20);
+            this.mtbCVV.TabIndex = 18;
+            // 
             // BookingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.mtbCVV);
+            this.Controls.Add(this.mtbExpiryDate);
+            this.Controls.Add(this.mtbCardNumber);
             this.Controls.Add(this.btnCancelBooking);
             this.Controls.Add(this.btnConfirmBooking);
-            this.Controls.Add(this.txtCVV);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtExpiryDate);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtCardNumber);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
@@ -231,12 +236,12 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCardNumber;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtExpiryDate;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtCVV;
         private System.Windows.Forms.Button btnConfirmBooking;
         private System.Windows.Forms.Button btnCancelBooking;
+        private System.Windows.Forms.MaskedTextBox mtbCardNumber;
+        private System.Windows.Forms.MaskedTextBox mtbExpiryDate;
+        private System.Windows.Forms.MaskedTextBox mtbCVV;
     }
 }

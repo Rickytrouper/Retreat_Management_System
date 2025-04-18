@@ -3,7 +3,7 @@
     partial class RetreatDetails
     {
 
-        
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -15,7 +15,7 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -46,8 +46,8 @@
             this.txtRetreatPrice = new System.Windows.Forms.TextBox();
             this.txtRetreatDates = new System.Windows.Forms.TextBox();
             this.cbRetreatName = new System.Windows.Forms.ComboBox();
-            this.picRetreat = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picRetreat)).BeginInit();
+            this.pbRetreat = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRetreat)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,9 +62,9 @@
             // 
             // btnBookNow
             // 
-            this.btnBookNow.Location = new System.Drawing.Point(675, 394);
+            this.btnBookNow.Location = new System.Drawing.Point(746, 600);
             this.btnBookNow.Name = "btnBookNow";
-            this.btnBookNow.Size = new System.Drawing.Size(75, 23);
+            this.btnBookNow.Size = new System.Drawing.Size(92, 40);
             this.btnBookNow.TabIndex = 1;
             this.btnBookNow.Text = "Book Now";
             this.btnBookNow.UseVisualStyleBackColor = true;
@@ -72,18 +72,19 @@
             // 
             // btnBackToDashboard
             // 
-            this.btnBackToDashboard.Location = new System.Drawing.Point(12, 394);
+            this.btnBackToDashboard.Location = new System.Drawing.Point(60, 600);
             this.btnBackToDashboard.Name = "btnBackToDashboard";
-            this.btnBackToDashboard.Size = new System.Drawing.Size(75, 23);
+            this.btnBackToDashboard.Size = new System.Drawing.Size(92, 40);
             this.btnBackToDashboard.TabIndex = 2;
             this.btnBackToDashboard.Text = "Back";
             this.btnBackToDashboard.UseVisualStyleBackColor = true;
+            this.btnBackToDashboard.Click += new System.EventHandler(this.btnBackToDashboard_Click);
             // 
             // lblRetreatName
             // 
             this.lblRetreatName.AutoSize = true;
             this.lblRetreatName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetreatName.Location = new System.Drawing.Point(302, 91);
+            this.lblRetreatName.Location = new System.Drawing.Point(385, 91);
             this.lblRetreatName.Name = "lblRetreatName";
             this.lblRetreatName.Size = new System.Drawing.Size(63, 20);
             this.lblRetreatName.TabIndex = 3;
@@ -93,7 +94,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(593, 91);
+            this.label2.Location = new System.Drawing.Point(742, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 6;
@@ -103,7 +104,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(302, 264);
+            this.label3.Location = new System.Drawing.Point(385, 264);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 20);
             this.label3.TabIndex = 8;
@@ -111,7 +112,7 @@
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(306, 287);
+            this.txtLocation.Location = new System.Drawing.Point(389, 287);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.ReadOnly = true;
             this.txtLocation.Size = new System.Drawing.Size(210, 20);
@@ -121,7 +122,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(302, 151);
+            this.label4.Location = new System.Drawing.Point(385, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 20);
             this.label4.TabIndex = 10;
@@ -129,7 +130,7 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(306, 174);
+            this.txtDescription.Location = new System.Drawing.Point(389, 174);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
@@ -140,7 +141,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(593, 264);
+            this.label5.Location = new System.Drawing.Point(742, 264);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 20);
             this.label5.TabIndex = 12;
@@ -148,7 +149,7 @@
             // 
             // txtRetreatPrice
             // 
-            this.txtRetreatPrice.Location = new System.Drawing.Point(597, 287);
+            this.txtRetreatPrice.Location = new System.Drawing.Point(746, 287);
             this.txtRetreatPrice.Name = "txtRetreatPrice";
             this.txtRetreatPrice.ReadOnly = true;
             this.txtRetreatPrice.Size = new System.Drawing.Size(153, 20);
@@ -156,7 +157,7 @@
             // 
             // txtRetreatDates
             // 
-            this.txtRetreatDates.Location = new System.Drawing.Point(597, 114);
+            this.txtRetreatDates.Location = new System.Drawing.Point(746, 114);
             this.txtRetreatDates.Multiline = true;
             this.txtRetreatDates.Name = "txtRetreatDates";
             this.txtRetreatDates.ReadOnly = true;
@@ -166,25 +167,25 @@
             // cbRetreatName
             // 
             this.cbRetreatName.FormattingEnabled = true;
-            this.cbRetreatName.Location = new System.Drawing.Point(306, 114);
+            this.cbRetreatName.Location = new System.Drawing.Point(389, 114);
             this.cbRetreatName.Name = "cbRetreatName";
             this.cbRetreatName.Size = new System.Drawing.Size(210, 21);
             this.cbRetreatName.TabIndex = 16;
             // 
-            // picRetreat
+            // pbRetreat
             // 
-            this.picRetreat.Location = new System.Drawing.Point(27, 81);
-            this.picRetreat.Name = "picRetreat";
-            this.picRetreat.Size = new System.Drawing.Size(216, 240);
-            this.picRetreat.TabIndex = 17;
-            this.picRetreat.TabStop = false;
+            this.pbRetreat.Location = new System.Drawing.Point(27, 81);
+            this.pbRetreat.Name = "pbRetreat";
+            this.pbRetreat.Size = new System.Drawing.Size(339, 389);
+            this.pbRetreat.TabIndex = 17;
+            this.pbRetreat.TabStop = false;
             // 
             // RetreatDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.picRetreat);
+            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.pbRetreat);
             this.Controls.Add(this.cbRetreatName);
             this.Controls.Add(this.txtRetreatDates);
             this.Controls.Add(this.txtRetreatPrice);
@@ -200,7 +201,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RetreatDetails";
             this.Text = "RetreatDetails";
-            ((System.ComponentModel.ISupportInitialize)(this.picRetreat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRetreat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,6 +222,6 @@
         private System.Windows.Forms.TextBox txtRetreatPrice;
         private System.Windows.Forms.TextBox txtRetreatDates;
         private System.Windows.Forms.ComboBox cbRetreatName;
-        private System.Windows.Forms.PictureBox picRetreat;
+        private System.Windows.Forms.PictureBox pbRetreat;
     }
 }

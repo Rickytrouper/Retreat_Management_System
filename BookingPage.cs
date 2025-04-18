@@ -7,38 +7,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Retreat_Management_System;
 
 namespace Retreat_Management_System
 {
     public partial class BookingPage : Form
     {
+        private Label RetreatDetails;
+
+        private readonly Retreat_Management_DBEntities db;
         public BookingPage()
         {
             InitializeComponent();
+            btnConfirmBooking.Click += btnConfirmBooking_Click;
+            this.Load += BookingPage_Load;
+            //db = new Retreat_Management_DBEntities();
+
         }
         // Define the SetRetreatName method
         public void SetRetreatName(string retreatName)
         {
-            lblRetreatName.Text = retreatName;  // Set the text of the label to the retreat name
+            txtRetreatName.Text =  retreatName;  // Set the text of the label to the retreat name
         }
 
+        private void SetupMaskedInput(MaskedTextBox mtb)
+        {
+            // Always move caret to the beginning on focus
+            mtb.Enter += (s, args) =>
+            {
+                mtb.Select(0, 0);
+            };
+
+            // Optional: if you want to auto-clear the field when clicked
+            mtb.Click += (s, args) =>
+            {
+                // Only reset if the input is partially filled
+                if (!mtb.MaskFull)
+                {
+                    mtb.Select(0, 0);
+                }
+            };
+        }
+
+        private void BookingPage_Load(object sender, EventArgs e)
+        {
+            /*mtbCardNumber.Enter += (s, args) => mtbCardNumber.Select(0, 0);
+            mtbCVV.Enter += (s, args) => mtbCVV.Select(0, 0);
+            mtbExpiryDate.Enter += (s, args) => mtbExpiryDate.Select(0, 0);*/
+
+            SetupMaskedInput(mtbCardNumber);
+            SetupMaskedInput(mtbCVV);
+            SetupMaskedInput(mtbExpiryDate);
+
+            mtbCardNumber.PromptChar = ' ';
+            mtbCVV.PromptChar = ' ';
+            mtbExpiryDate.PromptChar = ' ';
+        }
 
         private void btnConfirmBooking_Click(object sender, EventArgs e)
         {
             string username = txtUserName.Text;
             string email = txtEmail.Text;
-            string cardNumber = txtCardNumber.Text;
-            string expiry = txtExpiryDate.Text;
-            string cvv = txtCVV.Text;
+            string cardNumber = mtbCardNumber.Text;
+            string expiry = mtbExpiryDate.Text;
+            string cvv = mtbCVV.Text;
             string retreatName = txtRetreatName.Text;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(cardNumber) || string.IsNullOrWhiteSpace(expiry) ||
-                string.IsNullOrWhiteSpace(cvv))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email))
             {
-                MessageBox.Show("Please fill in all required fields.");
+                MessageBox.Show("Please fill in your name and email.");
                 return;
             }
+
+            if (!mtbCardNumber.MaskFull || !mtbCVV.MaskFull || !mtbExpiryDate.MaskFull)
+            {
+                MessageBox.Show("Please complete all payment fields correctly.");
+                return;
+            }
+
 
             bool paymentSuccess = ProcessPayment(cardNumber, expiry, cvv);
 
@@ -54,32 +100,61 @@ namespace Retreat_Management_System
 
         private bool ProcessPayment(string cardNumber, string expiry, string cvv)
         {
-            return cardNumber.Length == 16 && cvv.Length == 3;
+            // Check card format: 16 digits with dashes (e.g., 1234-5678-9012-3456)
+            bool validCard = System.Text.RegularExpressions.Regex.IsMatch(cardNumber, @"^\d{4}-\d{4}-\d{4}-\d{4}$");
+
+            // Check CVV: exactly 3 digits
+            bool validCVV = System.Text.RegularExpressions.Regex.IsMatch(cvv, @"^\d{3}$");
+
+            // Check Expiry: MM/yyyy format and valid date
+            bool validExpiry = DateTime.TryParseExact(
+                expiry,
+                "MM/yyyy",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None,
+                out DateTime expDate
+            );
+
+            // Optionally, reject expired cards:
+            bool notExpired = validExpiry && expDate >= DateTime.Now;
+
+            return validCard && validCVV && validExpiry && notExpired;
         }
+
+
+        /*private bool ProcessPayment(string cardNumber, string expiry, string cvv)
+        {
+            return cardNumber.Length == 16 && cvv.Length == 3;
+        }*/
+
+        /*private void btnCancelBooking_Click(object sender, EventArgs e)
+        {
+            Close();
+            *//*var retreatDetails = new RetreatDetails();
+            retreatDetails.Show();*//*
+        }*/
 
         private void btnCancelBooking_Click(object sender, EventArgs e)
         {
-            Close();
-            /*var retreatDetails = new RetreatDetails();
-            retreatDetails.Show();*/
-        }
 
-        /*private void btnCancel_Click(object sender, EventArgs e)
-        {
-            
             var confirm = MessageBox.Show("Cancel this booking?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
                 txtUserName.Clear();
                 txtEmail.Clear();
-                txtCardNumber.Clear();
-                txtExpiryDate.Clear();
-                txtCVV.Clear();
+                mtbCardNumber.Clear();
+                mtbExpiryDate.Clear();
+                mtbCVV.Clear();
                 txtRetreatName.Clear();
                 MessageBox.Show("Booking canceled.");
+                this.Hide();
+                RetreatDetails retreatDetails = new RetreatDetails();
+                retreatDetails.Show();
             }
-        }*/
+        }
 
     }
 
 }
+
+
