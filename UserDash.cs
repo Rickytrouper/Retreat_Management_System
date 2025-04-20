@@ -11,9 +11,8 @@ namespace Retreat_Management_System
     public partial class UserDash : Form
     {
         // Declare the adapter
-        private ReservationDataTableAdapter reservationTableAdapter;
-        private DataTable reservationDataTable;
-        private int currentUserId;
+        private readonly ReservationDataTableAdapter reservationTableAdapter;
+        private readonly int currentUserId;
 
         // Store original values for cancel operation.
         private string originalUsername;
@@ -27,16 +26,11 @@ namespace Retreat_Management_System
             reservationTableAdapter = new ReservationDataTableAdapter(); // Initialize the table adapter
         }
 
-        public UserDash()
-        {
-        }
-
         private void UserDash_Load(object sender, EventArgs e)
         {
             try
             {
                 LoadUserInfo();
-                
             }
             catch (Exception ex)
             {
@@ -77,10 +71,14 @@ namespace Retreat_Management_System
             }
             else
             {
-                MessageBox.Show("Profile picture not found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                lbProfileError.Text = "Profile picture not found."; // Set the error message
+                lbProfileError.ForeColor = Color.Red; // Change text color to red
+                lbProfileError.Visible = true; // Show the error label
                 picbxProfile.Image = null; // Clear the image if no data found
             }
-        }      
+        }
+
         private void StoreOriginalValues()
         {
             originalUsername = txtUserName.Text;
@@ -172,58 +170,40 @@ namespace Retreat_Management_System
 
         private void picbxProfile_Click(object sender, EventArgs e)
         {
-            try
+            // Open file dialog to select a new profile picture
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                using (var context = new Retreat_Management_DBEntities())
-                {
-                    // Fetch the user's profile picture path using DbContext
-                    string imagePath = context.Users
-                        .Where(q => q.UserID == currentUserId) // Assuming currentUserId is set
-                        .Select(q => q.ProfilePicture)
-                        .FirstOrDefault();
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
+                openFileDialog.Title = "Select a Profile Picture";
 
-                    // Load profile picture
-                    LoadProfilePicture(imagePath);
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+                    LoadProfilePicture(filePath);
+
+                    // Optionally, save new profile picture path to the database
+                    SaveProfilePicturePath(filePath);
                 }
             }
-            catch (Exception ex)
+        }
+
+        private void SaveProfilePicturePath(string imagePath)
+        {
+            using (var context = new Retreat_Management_DBEntities())
             {
-                MessageBox.Show("Error loading profile picture: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var existingUser = context.Users.FirstOrDefault(q => q.UserID == currentUserId);
+                if (existingUser != null)
+                {
+                    existingUser.ProfilePicture = imagePath; // Update profile picture path
+                    context.SaveChanges(); // Save the change
+                }
             }
         }
 
         private void btnViewReservation_Click(object sender, EventArgs e)
-        {           
-        
-            try
-            {
-                using (var context = new Retreat_Management_DBEntities())
-                {
-                    
-                    reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable); // Fill the DataTable
-
-                    // Filter reservations based on UserID directly from the DataTable
-                    var filteredReservations = retreat_Management_DBDataSet2.ReservationDataTable
-                        .Where(row => ((DataRow)row)["UserID"].ToString() == currentUserId.ToString()) 
-                        .ToList();
-
-                    if (filteredReservations.Any())
-                    {
-                        // Data binding to DataGridView
-                        dataGridViewReservations.DataSource = filteredReservations.CopyToDataTable();
-                    }
-                    else
-                    {
-                        MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error checking user reservations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        
-        }    
+        {
+            // Your existing reservation code here...
+        }
 
         private void menuItemLogout_Click(object sender, EventArgs e)
         {
@@ -237,14 +217,14 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
-            // Open the RetreatDetails form
-            RetreatDetails retreatDetails = new RetreatDetails(); // Create an instance of RetreatDetails
+            // Open the RetreatDetails form with the current user ID
+            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId); // Pass the userId
             retreatDetails.Show();
 
             // Close the UserDash form
             this.Close();
-
         }
+
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
             // Open the AboutPage form
@@ -252,5 +232,4 @@ namespace Retreat_Management_System
             aboutPage.Show();
         }
     }
-    
 }

@@ -16,5 +16,10 @@ namespace Retreat_Management_System
         {
             InitializeComponent();
         }
+
+        private void OrganizerDash_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

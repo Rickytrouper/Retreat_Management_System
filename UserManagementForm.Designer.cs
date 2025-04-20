@@ -43,12 +43,6 @@
             this.lbStatus = new System.Windows.Forms.Label();
             this.lbUserRole = new System.Windows.Forms.Label();
             this.gridViewUserData = new System.Windows.Forms.DataGridView();
-            this.btnEnable_Disable = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.retreat_Management_DB_UserInfo = new Retreat_Management_System.Retreat_Management_DB_UserInfo();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userTableAdapter = new Retreat_Management_System.Retreat_Management_DB_UserInfoTableAdapters.UserTableAdapter();
             this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,11 +50,17 @@
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastLoginDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.retreat_Management_DB_UserInfo = new Retreat_Management_System.Retreat_Management_DB_UserInfo();
+            this.btnEnable_Disable = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.userTableAdapter = new Retreat_Management_System.Retreat_Management_DB_UserInfoTableAdapters.UserTableAdapter();
             this.groupBoxUserInfo.SuspendLayout();
             this.groupBoxUserInfoTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUserData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreat_Management_DB_UserInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreat_Management_DB_UserInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // lbUserManagement
@@ -84,7 +84,7 @@
             this.groupBoxUserInfo.Controls.Add(this.txtUserName);
             this.groupBoxUserInfo.Controls.Add(this.lbUserName);
             this.groupBoxUserInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxUserInfo.Location = new System.Drawing.Point(50, 80);
+            this.groupBoxUserInfo.Location = new System.Drawing.Point(30, 80);
             this.groupBoxUserInfo.Name = "groupBoxUserInfo";
             this.groupBoxUserInfo.Size = new System.Drawing.Size(386, 180);
             this.groupBoxUserInfo.TabIndex = 1;
@@ -93,6 +93,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(210, 134);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -103,6 +104,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(82, 134);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
@@ -170,7 +172,7 @@
             this.groupBoxUserInfoTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxUserInfoTable.Location = new System.Drawing.Point(30, 266);
             this.groupBoxUserInfoTable.Name = "groupBoxUserInfoTable";
-            this.groupBoxUserInfoTable.Size = new System.Drawing.Size(773, 253);
+            this.groupBoxUserInfoTable.Size = new System.Drawing.Size(773, 342);
             this.groupBoxUserInfoTable.TabIndex = 2;
             this.groupBoxUserInfoTable.TabStop = false;
             this.groupBoxUserInfoTable.Text = "User Info";
@@ -179,7 +181,7 @@
             // 
             this.lbStatus.AutoSize = true;
             this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(466, 200);
+            this.lbStatus.Location = new System.Drawing.Point(462, 276);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Size = new System.Drawing.Size(70, 16);
             this.lbStatus.TabIndex = 11;
@@ -189,7 +191,7 @@
             // 
             this.lbUserRole.AutoSize = true;
             this.lbUserRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserRole.Location = new System.Drawing.Point(270, 199);
+            this.lbUserRole.Location = new System.Drawing.Point(266, 275);
             this.lbUserRole.Name = "lbUserRole";
             this.lbUserRole.Size = new System.Drawing.Size(62, 16);
             this.lbUserRole.TabIndex = 10;
@@ -212,53 +214,9 @@
             this.gridViewUserData.Name = "gridViewUserData";
             this.gridViewUserData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.gridViewUserData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridViewUserData.Size = new System.Drawing.Size(748, 150);
+            this.gridViewUserData.Size = new System.Drawing.Size(748, 240);
             this.gridViewUserData.TabIndex = 9;
             this.gridViewUserData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewUserData_CellContentClick);
-            // 
-            // btnEnable_Disable
-            // 
-            this.btnEnable_Disable.Location = new System.Drawing.Point(439, 215);
-            this.btnEnable_Disable.Name = "btnEnable_Disable";
-            this.btnEnable_Disable.Size = new System.Drawing.Size(129, 32);
-            this.btnEnable_Disable.TabIndex = 8;
-            this.btnEnable_Disable.Text = "Enable/Disable";
-            this.btnEnable_Disable.UseVisualStyleBackColor = true;
-            this.btnEnable_Disable.Click += new System.EventHandler(this.btnEnable_Disable_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(258, 215);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(93, 32);
-            this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(30, 525);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 7;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // retreat_Management_DB_UserInfo
-            // 
-            this.retreat_Management_DB_UserInfo.DataSetName = "Retreat_Management_DB_UserInfo";
-            this.retreat_Management_DB_UserInfo.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataMember = "User";
-            this.userBindingSource.DataSource = this.retreat_Management_DB_UserInfo;
-            // 
-            // userTableAdapter
-            // 
-            this.userTableAdapter.ClearBeforeFill = true;
             // 
             // userIDDataGridViewTextBoxColumn
             // 
@@ -303,11 +261,57 @@
             this.accountStatusDataGridViewTextBoxColumn.HeaderText = "AccountStatus";
             this.accountStatusDataGridViewTextBoxColumn.Name = "accountStatusDataGridViewTextBoxColumn";
             // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataMember = "User";
+            this.userBindingSource.DataSource = this.retreat_Management_DB_UserInfo;
+            // 
+            // retreat_Management_DB_UserInfo
+            // 
+            this.retreat_Management_DB_UserInfo.DataSetName = "Retreat_Management_DB_UserInfo";
+            this.retreat_Management_DB_UserInfo.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // btnEnable_Disable
+            // 
+            this.btnEnable_Disable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnable_Disable.Location = new System.Drawing.Point(435, 291);
+            this.btnEnable_Disable.Name = "btnEnable_Disable";
+            this.btnEnable_Disable.Size = new System.Drawing.Size(129, 32);
+            this.btnEnable_Disable.TabIndex = 8;
+            this.btnEnable_Disable.Text = "Enable/Disable";
+            this.btnEnable_Disable.UseVisualStyleBackColor = true;
+            this.btnEnable_Disable.Click += new System.EventHandler(this.btnEnable_Disable_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(254, 291);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(93, 32);
+            this.btnEdit.TabIndex = 7;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(30, 614);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 7;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // userTableAdapter
+            // 
+            this.userTableAdapter.ClearBeforeFill = true;
+            // 
             // UserManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 560);
+            this.ClientSize = new System.Drawing.Size(944, 681);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.groupBoxUserInfoTable);
             this.Controls.Add(this.groupBoxUserInfo);
@@ -320,8 +324,8 @@
             this.groupBoxUserInfoTable.ResumeLayout(false);
             this.groupBoxUserInfoTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUserData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreat_Management_DB_UserInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreat_Management_DB_UserInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -68,6 +68,7 @@
             this.retreat_Management_DBDataSet2 = new Retreat_Management_System.Retreat_Management_DBDataSet2();
             this.reservationDataTableAdapter = new Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters.ReservationDataTableAdapter();
             this.lbReservationDetails = new System.Windows.Forms.Label();
+            this.lbProfileError = new System.Windows.Forms.Label();
             this.menuStripUserDash.SuspendLayout();
             this.groupUserInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
@@ -85,7 +86,7 @@
             this.menuItemHelp});
             this.menuStripUserDash.Location = new System.Drawing.Point(0, 0);
             this.menuStripUserDash.Name = "menuStripUserDash";
-            this.menuStripUserDash.Size = new System.Drawing.Size(937, 24);
+            this.menuStripUserDash.Size = new System.Drawing.Size(944, 24);
             this.menuStripUserDash.TabIndex = 0;
             this.menuStripUserDash.Text = "Menu";
             // 
@@ -143,13 +144,14 @@
             this.groupUserInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupUserInformation.Location = new System.Drawing.Point(15, 126);
             this.groupUserInformation.Name = "groupUserInformation";
-            this.groupUserInformation.Size = new System.Drawing.Size(428, 247);
+            this.groupUserInformation.Size = new System.Drawing.Size(428, 274);
             this.groupUserInformation.TabIndex = 2;
             this.groupUserInformation.TabStop = false;
             this.groupUserInformation.Text = "User Information / Edit Profile";
             // 
             // btnCancel
             // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(304, 166);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 23);
@@ -160,6 +162,7 @@
             // 
             // btnSaveProfile
             // 
+            this.btnSaveProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveProfile.Location = new System.Drawing.Point(304, 110);
             this.btnSaveProfile.Name = "btnSaveProfile";
             this.btnSaveProfile.Size = new System.Drawing.Size(86, 23);
@@ -170,6 +173,7 @@
             // 
             // btnEditProfile
             // 
+            this.btnEditProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditProfile.Location = new System.Drawing.Point(304, 45);
             this.btnEditProfile.Name = "btnEditProfile";
             this.btnEditProfile.Size = new System.Drawing.Size(83, 23);
@@ -232,7 +236,7 @@
             // picbxProfile
             // 
             this.picbxProfile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picbxProfile.Location = new System.Drawing.Point(598, 126);
+            this.picbxProfile.Location = new System.Drawing.Point(557, 126);
             this.picbxProfile.Name = "picbxProfile";
             this.picbxProfile.Size = new System.Drawing.Size(100, 100);
             this.picbxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -247,7 +251,7 @@
             this.groupBoxUserAction.Controls.Add(this.btnViewRetreats);
             this.groupBoxUserAction.Controls.Add(this.lbViewRetreats);
             this.groupBoxUserAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxUserAction.Location = new System.Drawing.Point(591, 239);
+            this.groupBoxUserAction.Location = new System.Drawing.Point(557, 266);
             this.groupBoxUserAction.Name = "groupBoxUserAction";
             this.groupBoxUserAction.Size = new System.Drawing.Size(330, 134);
             this.groupBoxUserAction.TabIndex = 4;
@@ -256,6 +260,7 @@
             // 
             // btnViewReservation
             // 
+            this.btnViewReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewReservation.Location = new System.Drawing.Point(198, 56);
             this.btnViewReservation.Name = "btnViewReservation";
             this.btnViewReservation.Size = new System.Drawing.Size(106, 36);
@@ -275,6 +280,7 @@
             // 
             // btnViewRetreats
             // 
+            this.btnViewRetreats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewRetreats.Location = new System.Drawing.Point(17, 56);
             this.btnViewRetreats.Name = "btnViewRetreats";
             this.btnViewRetreats.Size = new System.Drawing.Size(125, 36);
@@ -411,11 +417,20 @@
             this.lbReservationDetails.TabIndex = 6;
             this.lbReservationDetails.Text = "Reservation Details";
             // 
+            // lbProfileError
+            // 
+            this.lbProfileError.AutoSize = true;
+            this.lbProfileError.Location = new System.Drawing.Point(554, 229);
+            this.lbProfileError.Name = "lbProfileError";
+            this.lbProfileError.Size = new System.Drawing.Size(0, 13);
+            this.lbProfileError.TabIndex = 7;
+            // 
             // UserDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(937, 683);
+            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.lbProfileError);
             this.Controls.Add(this.lbReservationDetails);
             this.Controls.Add(this.dataGridViewReservations);
             this.Controls.Add(this.groupBoxUserAction);
@@ -484,5 +499,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactInfoDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lbReservationDetails;
+        private System.Windows.Forms.Label lbProfileError;
     }
 }

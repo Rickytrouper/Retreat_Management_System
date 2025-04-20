@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(944, 681);
             this.Name = "OrganizerDash";
             this.Text = "Organizer Dash";
+            this.Load += new System.EventHandler(this.OrganizerDash_Load);
             this.ResumeLayout(false);
 
         }

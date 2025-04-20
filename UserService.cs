@@ -23,5 +23,11 @@ namespace Retreat_Management_System
 
             return user; // Returns the user if found, otherwise null
         }
+
+        // Method to get user details by user ID
+        public User GetUserDetails(int userId)
+        {
+            return retreat_Management_DBEntities.Users.Find(userId); // Fetch user by ID
+        }
     }
 }

@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Retreat_Management_System;
 
 namespace Retreat_Management_System
 {
     public partial class BookingPage : Form
     {
-        private Label RetreatDetails;
+       // private readonly Retreat_Management_DBEntities db;
+        private int currentUserId; // Add this line to store the user ID
 
-        private readonly Retreat_Management_DBEntities db;
-        public BookingPage()
+        public BookingPage(int userId) // Constructor accepting userId
         {
             InitializeComponent();
+            currentUserId = userId; // Store the user ID
             btnConfirmBooking.Click += btnConfirmBooking_Click;
             this.Load += BookingPage_Load;
-            //db = new Retreat_Management_DBEntities();
-
         }
         // Define the SetRetreatName method
         public void SetRetreatName(string retreatName)
         {
             txtRetreatName.Text =  retreatName;  // Set the text of the label to the retreat name
+        }
+        public void SetUserName(string userName)
+        {
+            txtUserName.Text = userName; // Set the username in the textbox
+        }
+
+        public void SetEmail(string email)
+        {
+            txtEmail.Text = email; // Set the email in the textbox
         }
 
         private void SetupMaskedInput(MaskedTextBox mtb)
@@ -120,26 +120,14 @@ namespace Retreat_Management_System
 
             return validCard && validCVV && validExpiry && notExpired;
         }
-
-
-        /*private bool ProcessPayment(string cardNumber, string expiry, string cvv)
-        {
-            return cardNumber.Length == 16 && cvv.Length == 3;
-        }*/
-
-        /*private void btnCancelBooking_Click(object sender, EventArgs e)
-        {
-            Close();
-            *//*var retreatDetails = new RetreatDetails();
-            retreatDetails.Show();*//*
-        }*/
+              
 
         private void btnCancelBooking_Click(object sender, EventArgs e)
         {
-
             var confirm = MessageBox.Show("Cancel this booking?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
+                // Clear fields
                 txtUserName.Clear();
                 txtEmail.Clear();
                 mtbCardNumber.Clear();
@@ -148,7 +136,9 @@ namespace Retreat_Management_System
                 txtRetreatName.Clear();
                 MessageBox.Show("Booking canceled.");
                 this.Hide();
-                RetreatDetails retreatDetails = new RetreatDetails();
+
+                // Pass the userId to RetreatDetails
+                lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId);
                 retreatDetails.Show();
             }
         }

@@ -1,48 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
 
 namespace Retreat_Management_System
 {
 
-
-
-    public partial class RetreatDetails : Form
+    public partial class lblRetreatDetails : Form
     {
 
+        private readonly Retreat_Management_DBEntities retreat_Management_DBEntities;
+        private int currentUserId; // Store the user ID
+       
 
 
-        private readonly Retreat_Management_DBEntities retreatManagementEntities;
-
-
-
-
-
-        public RetreatDetails()
+        public lblRetreatDetails(int userId)
         {
             InitializeComponent();
             this.Load += RetreatDetails_Load;
             cbRetreatName.SelectedIndexChanged += cbRetreatName_SelectedIndexChanged;
-            retreatManagementEntities = new Retreat_Management_DBEntities();
-            //this.btnBackToDashboard.Click += new System.EventHandler(this.btnBackToDashboard_Click);
+            retreat_Management_DBEntities = new Retreat_Management_DBEntities();
+            currentUserId = userId; // Store the user ID     
+            
+
+
         }
 
         private void RetreatDetails_Load(object sender, EventArgs e)
         {
-            var Retreat = retreatManagementEntities.Retreats.ToList();
+            var Retreat = retreat_Management_DBEntities.Retreats.ToList();
             cbRetreatName.DisplayMember = "RetreatName";
             cbRetreatName.ValueMember = "ID";
             cbRetreatName.DataSource = Retreat;
+
         }
         private void cbRetreatName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -59,6 +50,8 @@ namespace Retreat_Management_System
                     txtLocation.Text = selectedRetreat.Location ?? "N/A";
                     txtRetreatDates.Text = $"{selectedRetreat.StartDate:MM/dd/yyyy} to {selectedRetreat.EndDate:MM/dd/yyyy}";
                     txtRetreatPrice.Text = selectedRetreat.Price.ToString("C");
+
+                    lblDiscriptionName.Text = selectedRetreat.RetreatName; // Set the label text
 
                     if (!string.IsNullOrEmpty(selectedRetreat.ImageURL))
                     {
@@ -102,10 +95,20 @@ namespace Retreat_Management_System
 
         private void btnBookNow_Click(object sender, EventArgs e)
         {
-            if (cbRetreatName.SelectedItem is Retreat selectedRetreat)
+            if (cbRetreatName.SelectedItem is Retreat selectedRetreat) // Only declare it once
             {
-                var bookingPage = new BookingPage();
+                var bookingPage = new BookingPage(currentUserId); // Pass the userId
                 bookingPage.SetRetreatName(selectedRetreat.RetreatName); // Send the retreat name
+                                                                         // Create an instance of UserService to get user details
+                UserService userService = new UserService();
+                var user = userService.GetUserDetails(currentUserId); // Fetch user details
+                                                                      // Check if the user is found and set the username and email
+                if (user != null)
+                {
+                    bookingPage.SetUserName(user.Username); // Pass the username
+                    bookingPage.SetEmail(user.Email); // Pass the email
+                }
+
                 this.Hide();  // Hide the RetreatDetails form
                 bookingPage.FormClosed += (s, args) => this.Show();  // Show it again when booking closes
                 bookingPage.Show();
@@ -114,22 +117,17 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show("Please select a retreat first.");
             }
-            //var bookingPage = new BookingPage();
-            //bookingPage.Show();
+        
         }
 
         private void btnBackToDashboard_Click(object sender, EventArgs e)
         {
-            var confirm = MessageBox.Show("Are you sure you want to return to the dashboard", "Confirm", MessageBoxButtons.YesNo);
+            var confirm = MessageBox.Show("Are you sure you want to return to the dashboard?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                
-                //Close();
-                
                 this.Hide();
-                var dashboard = new UserDash();
+                var dashboard = new UserDash(currentUserId); // Pass the userId here
                 dashboard.Show();
-
             }
         }
     }
