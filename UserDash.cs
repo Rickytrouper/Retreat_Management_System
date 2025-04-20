@@ -202,7 +202,26 @@ namespace Retreat_Management_System
 
         private void btnViewReservation_Click(object sender, EventArgs e)
         {
-            // Your existing reservation code here...
+            using (var context = new Retreat_Management_DBEntities())
+            {
+
+                reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable); // Fill the DataTable
+
+                // Filter reservations based on UserID directly from the DataTable
+                var filteredReservations = retreat_Management_DBDataSet2.ReservationDataTable
+                    .Where(row => ((DataRow)row)["UserID"].ToString() == currentUserId.ToString())
+                    .ToList();
+
+                if (filteredReservations.Any())
+                {
+                    // Data binding to DataGridView
+                    dataGridViewReservations.DataSource = filteredReservations.CopyToDataTable();
+                }
+                else
+                {
+                    MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void menuItemLogout_Click(object sender, EventArgs e)
