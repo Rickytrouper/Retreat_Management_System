@@ -23,8 +23,8 @@ public partial class User
     public string LastName { get; set; }
     public string ProfilePicture { get; set; }
     public string ContactInfo { get; set; }
-    public Nullable<System.DateTime> DateCreated { get; set; }
-    public Nullable<System.DateTime> LastLogin { get; set; }
+    public DateTime DateCreated { get; set; }
+    public DateTime? LastLogin { get; set; } // Nullable to allow for users who haven't logged in yet
     public string AccountStatus { get; set; }
 
     public virtual ICollection<AdminAction> AdminActions { get; set; }

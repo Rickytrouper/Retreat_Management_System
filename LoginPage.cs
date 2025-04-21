@@ -20,20 +20,21 @@ namespace Retreat_Management_System
         {
             InitializeComponent();
             userService = new UserService(); // Initialize user service
-        }       
+        }
         private void btnSubmitLogin_Click(object sender, EventArgs e)
         {
             string userName = txtUserName.Text.Trim(); // Get the username input
             string password = txtPassword.Text.Trim(); // Get the password input
 
-            // Validate the inputs (simple check, you can enhance it)
+            // Validate the inputs 
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return; // Exit the method if validation fails
             }
 
-             User validatedUser = userService.ValidateUser(userName, password); // Validate user
+            // Validate user
+            User validatedUser = userService.ValidateUser(userName, password);
 
             if (validatedUser != null) // Check if the user is validated
             {
@@ -43,8 +44,7 @@ namespace Retreat_Management_System
                                 MessageBoxIcon.Information);
 
                 // Opening the appropriate dashboard based on user role
-
-                this.Hide(); // Hide the login form,
+                this.Hide(); // Hide the login form
                 Form mainForm;
 
                 switch (validatedUser.Role)
@@ -69,10 +69,10 @@ namespace Retreat_Management_System
             else
             {
                 // Display error message
-                lbErrorMessage.Text = "Invalid username or password."; 
-               
+                lbErrorMessage.Text = "Invalid username or password.";
             }
         }
+
         private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ForgotPassword forgotPasswordForm = new ForgotPassword();
@@ -99,6 +99,7 @@ namespace Retreat_Management_System
             //  reset the error message label
             lbErrorMessage.Text = string.Empty; 
         }
+
 
     }
 }
