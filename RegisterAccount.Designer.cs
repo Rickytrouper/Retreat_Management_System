@@ -50,6 +50,9 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lbProfilePic = new System.Windows.Forms.Label();
             this.lbPasswordError = new System.Windows.Forms.Label();
+            this.txtVerifyEmail = new System.Windows.Forms.TextBox();
+            this.lbVerifyEmail = new System.Windows.Forms.Label();
+            this.lbEmailMatching = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,7 +119,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(528, 249);
+            this.txtEmail.Location = new System.Drawing.Point(581, 248);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(238, 20);
             this.txtEmail.TabIndex = 8;
@@ -125,7 +128,7 @@
             // 
             this.lbEmail.AutoSize = true;
             this.lbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmail.Location = new System.Drawing.Point(421, 250);
+            this.lbEmail.Location = new System.Drawing.Point(474, 249);
             this.lbEmail.Name = "lbEmail";
             this.lbEmail.Size = new System.Drawing.Size(101, 16);
             this.lbEmail.TabIndex = 7;
@@ -134,10 +137,6 @@
             // cbRole
             // 
             this.cbRole.FormattingEnabled = true;
-            this.cbRole.Items.AddRange(new object[] {
-            "User",
-            "Admin",
-            "Organizer"});
             this.cbRole.Location = new System.Drawing.Point(168, 397);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(238, 21);
@@ -172,7 +171,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(528, 443);
+            this.txtLastName.Location = new System.Drawing.Point(581, 442);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(238, 20);
             this.txtLastName.TabIndex = 14;
@@ -181,7 +180,7 @@
             // 
             this.lbLastName.AutoSize = true;
             this.lbLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLastName.Location = new System.Drawing.Point(433, 447);
+            this.lbLastName.Location = new System.Drawing.Point(486, 446);
             this.lbLastName.Name = "lbLastName";
             this.lbLastName.Size = new System.Drawing.Size(78, 16);
             this.lbLastName.TabIndex = 13;
@@ -229,7 +228,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(528, 542);
+            this.btnCancel.Location = new System.Drawing.Point(581, 541);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 46);
             this.btnCancel.TabIndex = 19;
@@ -255,11 +254,39 @@
             this.lbPasswordError.Size = new System.Drawing.Size(0, 13);
             this.lbPasswordError.TabIndex = 21;
             // 
+            // txtVerifyEmail
+            // 
+            this.txtVerifyEmail.Location = new System.Drawing.Point(581, 295);
+            this.txtVerifyEmail.Name = "txtVerifyEmail";
+            this.txtVerifyEmail.Size = new System.Drawing.Size(238, 20);
+            this.txtVerifyEmail.TabIndex = 23;
+            // 
+            // lbVerifyEmail
+            // 
+            this.lbVerifyEmail.AutoSize = true;
+            this.lbVerifyEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVerifyEmail.Location = new System.Drawing.Point(474, 296);
+            this.lbVerifyEmail.Name = "lbVerifyEmail";
+            this.lbVerifyEmail.Size = new System.Drawing.Size(84, 16);
+            this.lbVerifyEmail.TabIndex = 22;
+            this.lbVerifyEmail.Text = "Verify Email :";
+            // 
+            // lbEmailMatching
+            // 
+            this.lbEmailMatching.AutoSize = true;
+            this.lbEmailMatching.Location = new System.Drawing.Point(587, 318);
+            this.lbEmailMatching.Name = "lbEmailMatching";
+            this.lbEmailMatching.Size = new System.Drawing.Size(0, 13);
+            this.lbEmailMatching.TabIndex = 24;
+            // 
             // RegisterAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.lbEmailMatching);
+            this.Controls.Add(this.txtVerifyEmail);
+            this.Controls.Add(this.lbVerifyEmail);
             this.Controls.Add(this.lbPasswordError);
             this.Controls.Add(this.lbProfilePic);
             this.Controls.Add(this.btnCancel);
@@ -314,5 +341,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lbProfilePic;
         private System.Windows.Forms.Label lbPasswordError;
+        private System.Windows.Forms.TextBox txtVerifyEmail;
+        private System.Windows.Forms.Label lbVerifyEmail;
+        private System.Windows.Forms.Label lbEmailMatching;
     }
 }

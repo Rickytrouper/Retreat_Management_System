@@ -1,24 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
 using System.Windows.Forms;
-using System.Runtime.Remoting.Contexts;
 
 namespace Retreat_Management_System
 {
     public partial class RegisterAccount: Form
     {
-        private UserService userService; // Service to handle user-related operations
+        private readonly UserService userService; // Service to handle user-related operations
         public RegisterAccount()
         {
             InitializeComponent();
             userService = new UserService(); // Initialize user service
+            LoadRoles(); // Load roles into the ComboBox
+        }
+        private void LoadRoles()
+        {
+            // Clear existing items
+            cbRole.Items.Clear();
+
+            // Define roles excluding Admin
+            List<string> roles = new List<string>
+    {
+        "User",
+        "Organizer"
+       
+    };
+            // Populate the ComboBox with roles
+            foreach (var role in roles)
+            {
+                cbRole.Items.Add(role);
+            }
+
+            // Optionally, set default selection
+            cbRole.SelectedIndex = 0; // Default to the first role
         }
 
         private void picbxProfile_Click(object sender, EventArgs e)
@@ -44,6 +61,7 @@ namespace Retreat_Management_System
             string password = txtCrePassword.Text.Trim(); // will implement later hash this before saving
             string confirmPassword = txtConPassword.Text.Trim(); // Retrieve confirm password
             string email = txtEmail.Text.Trim();
+            string verifyEmail = txtVerifyEmail.Text.Trim(); // Get the verification email
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
             string role = cbRole.SelectedItem.ToString(); // Using a ComboBox for roles
@@ -59,6 +77,17 @@ namespace Retreat_Management_System
             else
             {
                 lbPasswordError.Text = ""; // Clear any previous error message
+            }
+
+            // Validate that the emails match
+            if (email != verifyEmail)
+            {
+                lbEmailMatching.Text = "Email addresses do not match. Please try again."; // Show message in lbEmailMatching
+                return; // Exit the method
+            }
+            else
+            {
+                lbEmailMatching.Text = ""; // Clear any previous error message
             }
 
             // Save the profile picture path or image
@@ -149,5 +178,7 @@ namespace Retreat_Management_System
         {
             this.Close(); // Close the registration form
         }
+
+        
     }
 }
