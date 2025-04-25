@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-    public partial class AdminDash: Form
+    public partial class AdminDash : Form
     {
         private int currentAdminID; // Store the current admin's ID
         private readonly AdminActionService adminActionService;
@@ -19,9 +19,10 @@ namespace Retreat_Management_System
         public void SetWelcomeMessage(string username)
         {
             // Welcome  message
-            lbWelcomeMessage.Text =$"Welcome, {username}!"; } 
+            lbWelcomeMessage.Text = $"Welcome, {username}!";
+        }
 
-       
+
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
@@ -64,7 +65,7 @@ namespace Retreat_Management_System
             // Open the GenerateReports form
             Reports generateReportsForm = new Reports(currentAdminID); // Create an instance of GenerateReports
             generateReportsForm.Show(); // Show the form
-           
+
             this.Hide(); // Hide the current form
 
         }
