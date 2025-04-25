@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
 using Retreat_Management_System;
-using Retreat_Management_System.Retreat_Management_DBreportsDataSetTableAdapters;
 using System.Data.Entity.Validation;
 
 namespace Retreat_Management_System
@@ -12,11 +11,16 @@ namespace Retreat_Management_System
     public partial class Reports : Form
     {
         private Retreat_Management_DBEntities dbContext;
-        
-        public Reports()
+        private int currentAdminID; 
+        private AdminActionService adminActionService;
+
+        // Constructor that accepts adminID
+        public Reports(int adminID)
         {
             InitializeComponent();
             dbContext = new Retreat_Management_DBEntities();
+            currentAdminID = adminID; // Set the admin ID
+            adminActionService = new AdminActionService(); // Initialize the service
             LoadReportTypes();
         }
 
@@ -37,16 +41,23 @@ namespace Retreat_Management_System
         }
 
         private void btnGenerateReport_Click_1(object sender, EventArgs e)
-        {
-            if (cbReportType.SelectedItem != null)
+        { // Check if a report type is selected
+            if (cbReportType.SelectedItem == null)
             {
-                string selectedReportType = cbReportType.SelectedItem.ToString();
-                GenerateReport(selectedReportType);
+                MessageBox.Show("Please select a report type.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            // Check if the start date is later than the end date
+            if (dateTimePickerStartDate.Value > dateTimePickerEndDate.Value)
             {
-                MessageBox.Show("Please select a report type.");
+                MessageBox.Show("Start date cannot be later than end date.", "Date Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            // Proceed to generate the report
+            string selectedReportType = cbReportType.SelectedItem.ToString();
+            GenerateReport(selectedReportType);
         }
 
         private void GenerateReport(string reportType)
@@ -57,88 +68,72 @@ namespace Retreat_Management_System
                 {
                     case "Booking Report":
                         GenerateBookingReport();
+                        
                         break;
                     case "Feedback Report":
                         GenerateFeedbackReport();
+                        
                         break;
                     case "Financial Report":
                         GenerateFinancialReport();
+                        
                         break;
                     case "User Report":
                         GenerateUserReport();
+                        
                         break;
                     case "Retreat Report":
                         GenerateRetreatReport();
+                        
                         break;
                     default:
                         MessageBox.Show("Invalid report type selected.");
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ArgumentException argEx)
             {
-                MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Argument error: {argEx.Message}", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void GenerateBookingReport()
         {
             try
             {
+                if (dateTimePickerStartDate.Value > dateTimePickerEndDate.Value)
+                {
+                    throw new ArgumentException("Start date cannot be later than end date.");
+                }
+
                 var bookings = dbContext.Bookings
                     .Include(b => b.User)
                     .Include(b => b.Retreat)
                     .Where(b => b.BookingDate >= dateTimePickerStartDate.Value && b.BookingDate <= dateTimePickerEndDate.Value)
                     .ToList();
 
-                DataTable bookingTable = new DataTable();
-                bookingTable.Columns.Add("Booking ID");
-                bookingTable.Columns.Add("User Name");
-                bookingTable.Columns.Add("Retreat Name");
-                bookingTable.Columns.Add("Booking Date");
-
-                foreach (var booking in bookings)
-                {
-                    bookingTable.Rows.Add(booking.BookingID, booking.User.Username, booking.Retreat.RetreatName, booking.BookingDate);
-                }
-
-                if (bookings.Any())
-                {
-                    bookingBindingSource.DataSource = bookingTable;
-
-                    dgvReport.DataSource = bookingBindingSource;
-                    dgvReport.Columns["Booking ID"].HeaderText = "Booking ID";
-                    dgvReport.Columns["User Name"].HeaderText = "User Name";
-                    dgvReport.Columns["Retreat Name"].HeaderText = "Retreat Name";
-                    dgvReport.Columns["Booking Date"].HeaderText = "Booking Date";
-                    dgvReport.Columns["Booking Date"].DefaultCellStyle.Format = "dd/MM/yyyy"; // Format the date column
-                    dgvReport.Columns["Booking Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Center align the date column
-                    dgvReport.Columns["User Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Auto size the User Name column
-                    dgvReport.Columns["Retreat Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Auto size the Retreat Name column
-                    dgvReport.Columns["Booking ID"].Width = 100; // Set width for Booking ID column
-                    dgvReport.Columns["Booking Date"].Width = 120; // Set width for Booking Date column
-                    dgvReport.Columns["User Name"].Width = 150; // Set width for User Name column
-                    dgvReport.Columns["Retreat Name"].Width = 150; // Set width for Retreat Name column
-                    dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto size all columns
-                    dgvReport.AllowUserToResizeColumns = true; // Allow user to resize columns
-
-
-
-                }
-                else
+                if (!bookings.Any())
                 {
                     MessageBox.Show("No bookings found for the selected date range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+
+                
             }
             catch (DbEntityValidationException ex)
             {
                 MessageBox.Show($"Validation error: {ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show($"Argument error: {argEx.Message}", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error generating booking report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
+
         }
 
         private void GenerateFeedbackReport()
@@ -256,8 +251,12 @@ namespace Retreat_Management_System
 
             try
             {
+                // Retrieve users based on the selected date range
                 var users = dbContext.Users
-                .Where(u => u.DateCreated >= dateTimePickerStartDate.Value && u.DateCreated <= dateTimePickerEndDate.Value).ToList();
+                    .Where(u => u.DateCreated >= dateTimePickerStartDate.Value && u.DateCreated <= dateTimePickerEndDate.Value)
+                    .ToList();
+
+                // Create a DataTable to hold user data
                 DataTable userTable = new DataTable();
                 userTable.Columns.Add("User ID");
                 userTable.Columns.Add("Username");
@@ -265,43 +264,60 @@ namespace Retreat_Management_System
                 userTable.Columns.Add("Date Created");
                 userTable.Columns.Add("Role");
 
+                // Populate the DataTable with user information
                 foreach (var user in users)
                 {
                     userTable.Rows.Add(user.UserID, user.Username, user.Email, user.DateCreated, user.Role);
                 }
 
+                // Check if any users were found
                 if (users.Any())
                 {
                     userBindingSource.DataSource = userTable;
                     dgvReport.DataSource = userBindingSource;
+
+                    // Set column headers and formatting
                     dgvReport.Columns["User ID"].HeaderText = "User ID";
                     dgvReport.Columns["Username"].HeaderText = "Username";
                     dgvReport.Columns["Email"].HeaderText = "Email";
                     dgvReport.Columns["Date Created"].HeaderText = "Date Created";
                     dgvReport.Columns["Role"].HeaderText = "Role";
-                    dgvReport.Columns["Date Created"].DefaultCellStyle.Format = "dd/MM/yyyy"; // Format the date column
-                    dgvReport.Columns["Date Created"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Center align the date column
-                    dgvReport.Columns["Username"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Auto size the Username column
-                    dgvReport.Columns["Email"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Auto size the Email column
-                    dgvReport.Columns["User ID"].Width = 100; // Set width for User ID column
-                    dgvReport.Columns["Date Created"].Width = 120; // Set width for Date Created column
-                    dgvReport.Columns["Username"].Width = 150; // Set width for Username column
-                    dgvReport.Columns["Email"].Width = 150; // Set width for Email column
-                    dgvReport.Columns["Role"].Width = 100; // Set width for Role column
-                    dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto size all columns
-                    dgvReport.AllowUserToResizeColumns = true; // Allow user to resize columns
+
+                    // Format the Date Created column
+                    dgvReport.Columns["Date Created"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    dgvReport.Columns["Date Created"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                    // Set auto-sizing and widths for columns
+                    dgvReport.Columns["Username"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvReport.Columns["Email"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvReport.Columns["User ID"].Width = 100;
+                    dgvReport.Columns["Date Created"].Width = 120;
+                    dgvReport.Columns["Username"].Width = 150;
+                    dgvReport.Columns["Email"].Width = 150;
+                    dgvReport.Columns["Role"].Width = 100;
+
+                    // Enable column resizing
+                    dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvReport.AllowUserToResizeColumns = true;
                 }
                 else
                 {
-                    MessageBox.Show("No users found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No users found for the selected date range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (DbEntityValidationException ex)
             {
-                MessageBox.Show($"Validation error: {ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Handle validation errors specifically
+                var errorMessage = ex.EntityValidationErrors
+                    .SelectMany(e => e.ValidationErrors)
+                    .Select(v => v.ErrorMessage)
+                    .FirstOrDefault() ?? "Validation error occurred.";
+
+                MessageBox.Show($"Validation error: {errorMessage}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
+                // Handle general exceptions
                 MessageBox.Show($"Error generating user report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -364,7 +380,7 @@ namespace Retreat_Management_System
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            AdminDash adminDash = new AdminDash();
+            AdminDash adminDash = new AdminDash(currentAdminID);
             adminDash.Show();
             this.Hide();
         }

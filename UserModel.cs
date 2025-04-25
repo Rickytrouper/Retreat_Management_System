@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*  using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Retreat_Management_System;
@@ -33,3 +33,4 @@ public partial class User
     public virtual ICollection<Notification> Notifications { get; set; }
     public virtual ICollection<Retreat> Retreats { get; set; }
 }
+*/

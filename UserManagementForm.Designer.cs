@@ -216,7 +216,7 @@
             this.gridViewUserData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridViewUserData.Size = new System.Drawing.Size(748, 240);
             this.gridViewUserData.TabIndex = 9;
-            this.gridViewUserData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewUserData_CellContentClick);
+   // this.gridViewUserData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewUserData_CellContentClick);
             // 
             // userIDDataGridViewTextBoxColumn
             // 

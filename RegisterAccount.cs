@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-    public partial class RegisterAccount: Form
+    public partial class RegisterAccount : Form
     {
         private readonly UserService userService; // Service to handle user-related operations
+
         public RegisterAccount()
         {
             InitializeComponent();
             userService = new UserService(); // Initialize user service
             LoadRoles(); // Load roles into the ComboBox
         }
+
         private void LoadRoles()
         {
             // Clear existing items
@@ -23,11 +27,11 @@ namespace Retreat_Management_System
 
             // Define roles excluding Admin
             List<string> roles = new List<string>
-    {
-        "User",
-        "Organizer"
-       
-    };
+            {
+                "User",
+                "Organizer"
+            };
+
             // Populate the ComboBox with roles
             foreach (var role in roles)
             {
@@ -58,13 +62,13 @@ namespace Retreat_Management_System
         {
             // Retrieve user input
             string username = txtUserName.Text.Trim();
-            string password = txtCrePassword.Text.Trim(); // will implement later hash this before saving
-            string confirmPassword = txtConPassword.Text.Trim(); // Retrieve confirm password
+            string password = txtCrePassword.Text.Trim();
+            string confirmPassword = txtConPassword.Text.Trim();
             string email = txtEmail.Text.Trim();
-            string verifyEmail = txtVerifyEmail.Text.Trim(); // Get the verification email
+            string verifyEmail = txtVerifyEmail.Text.Trim();
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
-            string role = cbRole.SelectedItem.ToString(); // Using a ComboBox for roles
+            string role = cbRole.SelectedItem.ToString();
             string contactInfo = txtContactNum.Text.Trim();
             string profilePicture = ""; // Path for the profile picture
 
@@ -82,7 +86,7 @@ namespace Retreat_Management_System
             // Validate that the emails match
             if (email != verifyEmail)
             {
-                lbEmailMatching.Text = "Email addresses do not match. Please try again."; // Show message in lbEmailMatching
+                lbEmailMatching.Text = "Email addresses do not match. Please try again.";
                 return; // Exit the method
             }
             else
@@ -93,28 +97,30 @@ namespace Retreat_Management_System
             // Save the profile picture path or image
             if (picbxProfile.Image != null)
             {
-                profilePicture = SaveProfilePicture(); // save the image path
+                profilePicture = SaveProfilePicture();
             }
+
+            // Hash the password before saving
+            string hashedPassword = HashPassword(password);
 
             // Create a new User object
             var newUser = new User
             {
                 Username = username,
-                Password = password, 
+                Password = hashedPassword, // Use the hashed password
                 Email = email,
                 Role = role,
                 FirstName = firstName,
                 LastName = lastName,
                 ProfilePicture = profilePicture,
                 ContactInfo = contactInfo,
-                DateCreated = DateTime.Now, // Use  to track creation time of account
+                DateCreated = DateTime.Now,
                 LastLogin = null // User has not logged in yet
             };
 
-            // Add the new user to the context
+            // Check if the username already exists
             using (var dbContext = new Retreat_Management_DBEntities())
             {
-                // Check if the username already exists
                 var existingUser = dbContext.Users.FirstOrDefault(q => q.Username == username);
                 if (existingUser != null)
                 {
@@ -135,9 +141,6 @@ namespace Retreat_Management_System
                 MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close(); // Close the form 
             }
-
-            // catch block for  data base error
-
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
                 var errorMessages = dbEx.EntityValidationErrors.SelectMany(validationResult => validationResult.ValidationErrors)
@@ -146,23 +149,31 @@ namespace Retreat_Management_System
                 var fullErrorMessage = string.Join("; ", errorMessages);
                 MessageBox.Show($"Validation errors: {fullErrorMessage}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Method to hash passwords
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+
         // Method to save the profile picture and return the file path
         private string SaveProfilePicture()
         {
-            //logic to save the profile picture to a server or local storage
+            // Logic to save the profile picture to a server or local storage
             string folderPath = @"C:\ProfilePictures\"; // Specify storage path
             string fileName = $"{Guid.NewGuid()}.jpg"; // Generate a file name
             string fullPath = System.IO.Path.Combine(folderPath, fileName);
 
-            //  directory
+            // Create directory if it does not exist
             if (!System.IO.Directory.Exists(folderPath))
             {
                 System.IO.Directory.CreateDirectory(folderPath);
@@ -170,7 +181,6 @@ namespace Retreat_Management_System
 
             // Save the image to the directory
             picbxProfile.Image.Save(fullPath); // Save the image
-
             return fullPath; // Return the path to the saved image
         }
 
@@ -178,7 +188,5 @@ namespace Retreat_Management_System
         {
             this.Close(); // Close the registration form
         }
-
-        
     }
 }

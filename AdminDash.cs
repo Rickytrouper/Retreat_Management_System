@@ -5,11 +5,17 @@ namespace Retreat_Management_System
 {
     public partial class AdminDash: Form
     {
-      
-        public AdminDash()
+        private int currentAdminID; // Store the current admin's ID
+        private readonly AdminActionService adminActionService;
+
+             
+        public AdminDash(int adminID)
         {
             InitializeComponent();
+            currentAdminID = adminID; // Initialize currentAdminID
+            adminActionService = new AdminActionService(); // Initialize the logging service
         }
+
         public void SetWelcomeMessage(string username)
         {
             // Welcome  message
@@ -56,7 +62,7 @@ namespace Retreat_Management_System
         private void btnGenerateReports_Click(object sender, EventArgs e)
         {
             // Open the GenerateReports form
-            Reports generateReportsForm = new Reports(); // Create an instance of GenerateReports
+            Reports generateReportsForm = new Reports(currentAdminID); // Create an instance of GenerateReports
             generateReportsForm.Show(); // Show the form
            
             this.Hide(); // Hide the current form
@@ -65,11 +71,30 @@ namespace Retreat_Management_System
 
         private void btnManageUsers_Click(object sender, EventArgs e)
         {
-            // open user managementform
-            UserManagementForm userManagementForm = new UserManagementForm(); // Create an instance of UserManagementForm
-            userManagementForm.Show(); // Show the form
-            this.Hide(); // Hide the current form
+            var adminActionService = new AdminActionService(); // Create an instance of the service
+            string actionType = "Open User Management"; // Action type for opening user management
+            string targetEntity = "User"; // Set the target entity to "User"
+           
+            try
+            {
+                // Log the action of opening the user management form
+                adminActionService.LogAdminAction(currentAdminID, actionType, targetEntity, "Admin opened the user management form.");
+               // MessageBox.Show("Action logged successfully.");
 
+                // Open UserManagementForm with the currentAdminID
+                UserManagementForm userManagementForm = new UserManagementForm(currentAdminID);
+                userManagementForm.Show(); // Show the form
+                this.Hide(); // Hide the current form
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message); // Handle invalid action type
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message); // Handle other errors
+            }
         }
     }
+
 }

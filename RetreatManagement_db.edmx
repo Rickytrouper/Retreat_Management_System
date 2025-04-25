@@ -112,7 +112,7 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Role" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -123,18 +123,6 @@
           <Property Name="LastLogin" Type="datetime" />
           <Property Name="AccountStatus" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK__AdminActi__Admin__2A164134">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="AdminAction" Type="Self.AdminAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="AdminAction">
-              <PropertyRef Name="AdminID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Booking__Retreat__1332DBDC">
           <End Role="Retreat" Type="Self.Retreat" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
@@ -241,10 +229,6 @@
           <EntitySet Name="Retreat" EntityType="Self.Retreat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AdminActi__Admin__2A164134" Association="Self.FK__AdminActi__Admin__2A164134">
-            <End Role="User" EntitySet="User" />
-            <End Role="AdminAction" EntitySet="AdminAction" />
-          </AssociationSet>
           <AssociationSet Name="FK__Booking__Retreat__1332DBDC" Association="Self.FK__Booking__Retreat__1332DBDC">
             <End Role="Retreat" EntitySet="Retreat" />
             <End Role="Booking" EntitySet="Booking" />
@@ -402,7 +386,7 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />

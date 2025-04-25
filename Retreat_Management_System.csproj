@@ -176,9 +176,11 @@
     <Compile Include="AddRetreat.Designer.cs">
       <DependentUpon>AddRetreat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin.cs" />
     <Compile Include="AdminAction.cs">
       <DependentUpon>RetreatManagement_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdminActionService.cs" />
     <Compile Include="Booking.cs">
       <DependentUpon>RetreatManagement_db.tt</DependentUpon>
     </Compile>
@@ -233,6 +235,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Retreat_Management_DBreportsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Retreat_Management_DB_UserInfo.cs">
+      <DependentUpon>Retreat_Management_DB_UserInfo.xsd</DependentUpon>
     </Compile>
     <Compile Include="Retreat_Management_DB_UserInfo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -332,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notification.resx">
+      <DependentUpon>Notification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrganizerDash.resx">
       <DependentUpon>OrganizerDash.cs</DependentUpon>
