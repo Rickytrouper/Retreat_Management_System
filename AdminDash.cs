@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-    public partial class AdminDash: Form
+    public partial class AdminDash : Form
     {
-      
+
         public AdminDash()
         {
             InitializeComponent();
@@ -13,9 +13,10 @@ namespace Retreat_Management_System
         public void SetWelcomeMessage(string username)
         {
             // Welcome  message
-            lbWelcomeMessage.Text =$"Welcome, {username}!"; } 
+            lbWelcomeMessage.Text = $"Welcome, {username}!";
+        }
 
-       
+
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
@@ -58,7 +59,7 @@ namespace Retreat_Management_System
             // Open the GenerateReports form
             Reports generateReportsForm = new Reports(); // Create an instance of GenerateReports
             generateReportsForm.Show(); // Show the form
-           
+
             this.Hide(); // Hide the current form
 
         }
@@ -70,6 +71,13 @@ namespace Retreat_Management_System
             userManagementForm.Show(); // Show the form
             this.Hide(); // Hide the current form
 
+        }
+
+        private void btnManageRetreats_Click(object sender, EventArgs e)
+        {
+            EditRetreats editForm = new EditRetreats(this); // Pass 'this' (the dashboard form)
+            this.Hide(); // Hide the dashboard
+            editForm.ShowDialog(); // Show the retreats form
         }
     }
 }
