@@ -31,26 +31,26 @@
             this.txtRetreatName = new System.Windows.Forms.TextBox();
             this.lbRetreatName = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLocation = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericPrice = new System.Windows.Forms.NumericUpDown();
+            this.numericCapacity = new System.Windows.Forms.NumericUpDown();
             this.numPrice = new System.Windows.Forms.Label();
             this.numCapacity = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtContactInfo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSaveRetreat = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnImageUpload = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCapacity)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRetreatName
@@ -84,13 +84,13 @@
             this.Label1.Text = "Add a Retreat";
             this.Label1.Click += new System.EventHandler(this.Label1_Click);
             // 
-            // textBox1
+            // txtLocation
             // 
-            this.textBox1.Location = new System.Drawing.Point(829, 247);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(319, 22);
-            this.textBox1.TabIndex = 4;
+            this.txtLocation.Location = new System.Drawing.Point(829, 247);
+            this.txtLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(319, 22);
+            this.txtLocation.TabIndex = 4;
             // 
             // label2
             // 
@@ -152,28 +152,27 @@
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // numericUpDown1
+            // numericPrice
             // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Enabled = false;
-            this.numericUpDown1.Location = new System.Drawing.Point(829, 453);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericPrice.DecimalPlaces = 2;
+            this.numericPrice.Location = new System.Drawing.Point(829, 453);
+            this.numericPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericPrice.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(139, 22);
-            this.numericUpDown1.TabIndex = 11;
+            this.numericPrice.Name = "numericPrice";
+            this.numericPrice.Size = new System.Drawing.Size(139, 22);
+            this.numericPrice.TabIndex = 11;
             // 
-            // numericUpDown2
+            // numericCapacity
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(829, 507);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(139, 22);
-            this.numericUpDown2.TabIndex = 12;
+            this.numericCapacity.Location = new System.Drawing.Point(829, 507);
+            this.numericCapacity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericCapacity.Name = "numericCapacity";
+            this.numericCapacity.Size = new System.Drawing.Size(139, 22);
+            this.numericCapacity.TabIndex = 12;
             // 
             // numPrice
             // 
@@ -195,24 +194,14 @@
             this.numCapacity.TabIndex = 14;
             this.numCapacity.Text = "Capacity:";
             // 
-            // label6
+            // txtContactInfo
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(87, 576);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(125, 22);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Image Upload:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(829, 578);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(245, 22);
-            this.textBox2.TabIndex = 17;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtContactInfo.Location = new System.Drawing.Point(829, 578);
+            this.txtContactInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtContactInfo.Name = "txtContactInfo";
+            this.txtContactInfo.Size = new System.Drawing.Size(245, 22);
+            this.txtContactInfo.TabIndex = 17;
+            this.txtContactInfo.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label7
             // 
@@ -227,76 +216,88 @@
             // btnSaveRetreat
             // 
             this.btnSaveRetreat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveRetreat.Location = new System.Drawing.Point(301, 719);
+            this.btnSaveRetreat.Location = new System.Drawing.Point(447, 717);
             this.btnSaveRetreat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveRetreat.Name = "btnSaveRetreat";
             this.btnSaveRetreat.Size = new System.Drawing.Size(115, 30);
             this.btnSaveRetreat.TabIndex = 19;
             this.btnSaveRetreat.Text = "Submit";
             this.btnSaveRetreat.UseVisualStyleBackColor = true;
+            this.btnSaveRetreat.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(745, 719);
+            this.btnCancel.Location = new System.Drawing.Point(829, 717);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(168, 30);
             this.btnCancel.TabIndex = 20;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnImageUpload
             // 
             this.btnImageUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImageUpload.Location = new System.Drawing.Point(243, 570);
+            this.btnImageUpload.Location = new System.Drawing.Point(243, 578);
             this.btnImageUpload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnImageUpload.Name = "btnImageUpload";
-            this.btnImageUpload.Size = new System.Drawing.Size(213, 30);
+            this.btnImageUpload.Size = new System.Drawing.Size(253, 30);
             this.btnImageUpload.TabIndex = 21;
             this.btnImageUpload.Text = "Upload";
             this.btnImageUpload.UseVisualStyleBackColor = true;
             this.btnImageUpload.Click += new System.EventHandler(this.btnImageUpload_Click);
             // 
-            // richTextBox1
+            // txtDescription
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(243, 334);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(319, 177);
-            this.richTextBox1.TabIndex = 22;
-            this.richTextBox1.Text = "";
+            this.txtDescription.Location = new System.Drawing.Point(243, 334);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(319, 177);
+            this.txtDescription.TabIndex = 22;
+            this.txtDescription.Text = "";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(87, 586);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(125, 22);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Upload Image:";
             // 
             // AddRetreat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1369, 838);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnImageUpload);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSaveRetreat);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtContactInfo);
             this.Controls.Add(this.numCapacity);
             this.Controls.Add(this.numPrice);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericCapacity);
+            this.Controls.Add(this.numericPrice);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.lbRetreatName);
             this.Controls.Add(this.txtRetreatName);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddRetreat";
             this.Text = "AddRetreat";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCapacity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,23 +309,23 @@
         private System.Windows.Forms.TextBox txtRetreatName;
         private System.Windows.Forms.Label lbRetreatName;
         private System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericPrice;
+        private System.Windows.Forms.NumericUpDown numericCapacity;
         private System.Windows.Forms.Label numPrice;
         private System.Windows.Forms.Label numCapacity;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtContactInfo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnSaveRetreat;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnImageUpload;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtDescription;
+        private System.Windows.Forms.Label label6;
     }
 }

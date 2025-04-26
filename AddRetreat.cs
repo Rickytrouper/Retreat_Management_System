@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-    public partial class AddRetreat: Form
+    public partial class AddRetreat : Form
     {
         private EditRetreats.Retreat selectedRetreat;
+        private EditRetreats editRetreatsForm;
+        private AdminDash adminDashboard;
 
-        public AddRetreat()
+        public AddRetreat(AdminDash dashboard, EditRetreats editForm)
         {
             InitializeComponent();
+            this.adminDashboard = dashboard;
+            this.editRetreatsForm = editForm;
         }
 
         public AddRetreat(EditRetreats.Retreat selectedRetreat)
@@ -24,31 +28,124 @@ namespace Retreat_Management_System
             this.selectedRetreat = selectedRetreat;
         }
 
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            // Create and populate the retreat object
+            EditRetreats.Retreat newRetreat = new EditRetreats.Retreat
+            {
+                Name = txtRetreatName.Text,
+                Location = txtLocation.Text,
+                StartDate = dtpStartDate.Value,
+                EndDate = dtpEndDate.Value,
+                //Description = txtDescription.Text,
+                //ContactInfo = txtContactInfo.Text
+                //Price = numPrice.ToString(),
+                //Capacity = numCapacity.ToString(),
+            };
+
+            newRetreat.Name = txtRetreatName.Text;
+
+            // Validate required fields
+            if (string.IsNullOrWhiteSpace(txtRetreatName.Text))
+            {
+                MessageBox.Show("Please enter a retreat name");
+                return;
+            }
+
+            if (editRetreatsForm != null)
+            {
+                //editRetreatsForm.RetreatsList.Add(newRetreat);
+
+                // Call the refresh method
+                editRetreatsForm.RefreshDataGridView();
+
+                MessageBox.Show("Retreat added successfully!");
+            }
+            this.Close();
+
+            // Handle numeric conversions
+            if (!int.TryParse(numericCapacity.Text, out int capacity))
+            {
+                MessageBox.Show("Please enter valid capacity");
+                return;
+            }
+            newRetreat.Capacity = capacity;
+
+            if (!decimal.TryParse(numericPrice.Text, out decimal price))
+            {
+                MessageBox.Show("Please enter valid price");
+                return;
+            }
+            newRetreat.Price = price;
+
+            // Add to DataGridView in EditRetreats form
+            if (editRetreatsForm != null)
+            {
+                // Add to the data source
+                editRetreatsForm.RetreatsList.Add(newRetreat);
+
+                // Refresh the DataGridView
+                editRetreatsForm.RefreshDataGridView();
+
+                // Optional: Show success message
+                MessageBox.Show("Retreat added successfully!");
+            }
+
+            // Return to admin dashboard
+            this.Close();
+            adminDashboard?.Show();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Return to admin dashboard without saving
+            this.Close();
+            adminDashboard?.Show();
+        }
+
+        private void ClearForm()
+        {
+            // Clear all inputs
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                    ((TextBox)control).Text = string.Empty;
+                else if (control is NumericUpDown)
+                    ((NumericUpDown)control).Value = 0;
+                else if (control is DateTimePicker)
+                    ((DateTimePicker)control).Value = DateTime.Now;
+            }
+        }
+
+        // TextBox event handlers
+        private void txtRetreatName_TextChanged(object sender, EventArgs e)
+        {
+            // Handle text change if needed
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            // Handle text change if needed
+            // Consider renaming textBox2 to something meaningful
+        }
+
+        // Label click handlers (usually not needed, can be empty)
         private void lbRetreatName_Click(object sender, EventArgs e)
         {
-
+            // Typically labels don't need click handlers
         }
 
         private void Label1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void txtRetreatName_TextChanged(object sender, EventArgs e)
-        {
-
+            // Typically labels don't need click handlers
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-
+            // Typically labels don't need click handlers
         }
 
-        private void btnUploadImage_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
+        // Button click handler
         private void btnImageUpload_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -57,15 +154,9 @@ namespace Retreat_Management_System
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Handle the selected file here
                 string selectedFile = openFileDialog.FileName;
-                // You might want to display the selected file name or preview the image
+                // Handle the selected image file
             }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

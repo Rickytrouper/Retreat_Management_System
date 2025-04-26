@@ -37,13 +37,12 @@ namespace Retreat_Management_System
         }
 
         private void btnAddRetreat_Click(object sender, EventArgs e)
+        
         {
-            // Open the AddRetreat form
-            AddRetreat addRetreatForm = new AddRetreat(); // Create an instance of AddRetreat
-            addRetreatForm.Show(); // Show the form
-
-
-
+            var editForm = new EditRetreats(this); // Assuming EditRetreats takes AdminDashboard
+            var addForm = new AddRetreat(this, editForm);
+            this.Hide();
+            addForm.Show();
         }
 
         private void btnEditRetreat_Click(object sender, EventArgs e)

@@ -30,15 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtOrganiserName = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtEmailAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textContact = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textCompanyName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRetreats = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,12 +59,12 @@
             this.txtOrganiserName.Size = new System.Drawing.Size(241, 27);
             this.txtOrganiserName.TabIndex = 1;
             // 
-            // txtAddress
+            // txtEmailAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(194, 161);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(241, 27);
-            this.txtAddress.TabIndex = 2;
+            this.txtEmailAddress.Location = new System.Drawing.Point(194, 161);
+            this.txtEmailAddress.Name = "txtEmailAddress";
+            this.txtEmailAddress.Size = new System.Drawing.Size(241, 27);
+            this.txtEmailAddress.TabIndex = 2;
             // 
             // label2
             // 
@@ -86,13 +86,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Email Address:";
             // 
-            // textBox1
+            // textContact
             // 
-            this.textBox1.Location = new System.Drawing.Point(194, 217);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 27);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textContact.Location = new System.Drawing.Point(194, 217);
+            this.textContact.Name = "textContact";
+            this.textContact.Size = new System.Drawing.Size(205, 27);
+            this.textContact.TabIndex = 5;
+            this.textContact.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label4
             // 
@@ -104,12 +104,12 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Contact Number:";
             // 
-            // textBox2
+            // textCompanyName
             // 
-            this.textBox2.Location = new System.Drawing.Point(194, 277);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(278, 27);
-            this.textBox2.TabIndex = 7;
+            this.textCompanyName.Location = new System.Drawing.Point(194, 277);
+            this.textCompanyName.Name = "textCompanyName";
+            this.textCompanyName.Size = new System.Drawing.Size(278, 27);
+            this.textCompanyName.TabIndex = 7;
             // 
             // label5
             // 
@@ -125,13 +125,13 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textCompanyName);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtOrganiserName);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textContact);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtAddress);
+            this.groupBox1.Controls.Add(this.txtEmailAddress);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(291, 185);
             this.groupBox1.Name = "groupBox1";
@@ -140,25 +140,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Organiser\'s Information";
             // 
-            // button1
+            // btnRetreats
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(291, 555);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 27);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Retreats";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRetreats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetreats.Location = new System.Drawing.Point(291, 555);
+            this.btnRetreats.Name = "btnRetreats";
+            this.btnRetreats.Size = new System.Drawing.Size(159, 27);
+            this.btnRetreats.TabIndex = 10;
+            this.btnRetreats.Text = "Retreats";
+            this.btnRetreats.UseVisualStyleBackColor = true;
             // 
             // OrganizerDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 838);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRetreats);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "OrganizerDash";
             this.Text = "Organizer Dash";
             this.Load += new System.EventHandler(this.OrganizerDash_Load);
@@ -173,14 +173,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtOrganiserName;
-        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtEmailAddress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textContact;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textCompanyName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRetreats;
     }
 }
