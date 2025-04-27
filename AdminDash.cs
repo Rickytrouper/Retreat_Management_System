@@ -43,6 +43,7 @@ namespace Retreat_Management_System
         }
 
         private void btnAddRetreat_Click(object sender, EventArgs e)
+        
         {
             // Open the AddRetreat form
             AddRetreat addRetreatForm = new AddRetreat(null); // Create an instance of AddRetreat

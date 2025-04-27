@@ -91,6 +91,7 @@
             this.btnDeleteSelectedRetreat.TabIndex = 3;
             this.btnDeleteSelectedRetreat.Text = "Delete Selection";
             this.btnDeleteSelectedRetreat.UseVisualStyleBackColor = true;
+            this.btnDeleteSelectedRetreat.Click += new System.EventHandler(this.BtnDeleteSelectedRetreat_Click);
             // 
             // btnBackToAdminDashboard
             // 
