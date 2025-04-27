@@ -222,6 +222,11 @@
     <Compile Include="Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
+    <Compile Include="RetreatDetails1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetreatDetails.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Retreat_Management_DBDataSet2.cs">
       <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
     </Compile>
@@ -252,7 +257,6 @@
     <Compile Include="UserManagementForm.Designer.cs">
       <DependentUpon>UserManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserModel.cs" />
     <Compile Include="EditRetreats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +391,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RetreatManagement_db.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="RetreatDetails.xsc">
+      <DependentUpon>RetreatDetails.xsd</DependentUpon>
+    </None>
+    <None Include="RetreatDetails.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RetreatDetails1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RetreatDetails.xss">
+      <DependentUpon>RetreatDetails.xsd</DependentUpon>
+    </None>
     <None Include="RetreatManagement_db.edmx.diagram">
       <DependentUpon>RetreatManagement_db.edmx</DependentUpon>
     </None>

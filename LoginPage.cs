@@ -55,7 +55,7 @@ namespace Retreat_Management_System
                         ((AdminDash)mainForm).SetWelcomeMessage(validatedUser.Username);
                         break;
                     case "Organizer":
-                        mainForm = new OrganizerDash();
+                        mainForm = new OrganizerDash(validatedUser.UserID);
                         break;
                     case "User":
                         mainForm = new UserDash(validatedUser.UserID);

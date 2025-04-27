@@ -26,13 +26,12 @@ namespace Retreat_Management_System
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-            // Close the current form
-            this.Close();
-
-            // Open the LoginPage form
+             // Open the LoginPage form
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
 
+            // Close the current form
+            this.Close();
         }
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
@@ -40,23 +39,25 @@ namespace Retreat_Management_System
             // Open the AboutPage form
             AboutPage aboutPage = new AboutPage(); // Create an instance of AboutPage
             aboutPage.Show();
+            this.Hide();
         }
 
         private void btnAddRetreat_Click(object sender, EventArgs e)
         {
             // Open the AddRetreat form
-            AddRetreat addRetreatForm = new AddRetreat(); // Create an instance of AddRetreat
+            AddRetreat addRetreatForm = new AddRetreat(null); // Create an instance of AddRetreat
             addRetreatForm.Show(); // Show the form
 
-
+            this.Hide();
 
         }
 
         private void btnEditRetreat_Click(object sender, EventArgs e)
         {
             // Open the EditRetreat form
-            EditRetreats editRetreatForm = new EditRetreats(); // Create an instance of EditRetreat
-            editRetreatForm.Show(); // Show the form
+            EditRetreats editRetreatsForm = new EditRetreats(currentAdminID); // Pass adminID only
+            editRetreatsForm.Show();
+            this.Hide ();
 
         }
 

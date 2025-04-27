@@ -37,7 +37,7 @@ namespace Retreat_Management_System
     
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
-        public virtual Organizer Organizer { get; set; }
         public virtual User User { get; set; }
+        public virtual Organizer Organizer { get; set; }
     }
 }

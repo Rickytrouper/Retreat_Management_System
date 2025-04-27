@@ -28,65 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewRetreats = new System.Windows.Forms.DataGridView();
             this.btnEditSelectedRetreat = new System.Windows.Forms.Button();
             this.btnDeleteSelectedRetreat = new System.Windows.Forms.Button();
             this.btnBackToAdminDashboard = new System.Windows.Forms.Button();
-            this.RetreatName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Locations = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRetreats)).BeginInit();
+            this.retreatDetails = new Retreat_Management_System.RetreatDetails();
+            this.retreatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.retreatTableAdapter = new Retreat_Management_System.RetreatDetailsTableAdapters.RetreatTableAdapter();
+            this.dataGVRetreats = new System.Windows.Forms.DataGridView();
+            this.retreatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.retreatIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.retreatNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.capacityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageURLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.organizerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastUpdatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVRetreats)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Britannic Bold", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(561, 87);
+            this.label1.Location = new System.Drawing.Point(419, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 48);
+            this.label1.Size = new System.Drawing.Size(198, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "Edit Retreat";
-            // 
-            // dataGridViewRetreats
-            // 
-            this.dataGridViewRetreats.AllowUserToOrderColumns = true;
-            this.dataGridViewRetreats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRetreats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RetreatName,
-            this.Locations,
-            this.StartDate,
-            this.EndDate,
-            this.Price,
-            this.Capacity});
-            this.dataGridViewRetreats.Location = new System.Drawing.Point(284, 174);
-            this.dataGridViewRetreats.Name = "dataGridViewRetreats";
-            this.dataGridViewRetreats.RowHeadersWidth = 51;
-            this.dataGridViewRetreats.RowTemplate.Height = 24;
-            this.dataGridViewRetreats.Size = new System.Drawing.Size(802, 439);
-            this.dataGridViewRetreats.TabIndex = 1;
-            this.dataGridViewRetreats.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnEditSelectedRetreat
             // 
             this.btnEditSelectedRetreat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditSelectedRetreat.Location = new System.Drawing.Point(324, 678);
+            this.btnEditSelectedRetreat.Location = new System.Drawing.Point(192, 548);
+            this.btnEditSelectedRetreat.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditSelectedRetreat.Name = "btnEditSelectedRetreat";
-            this.btnEditSelectedRetreat.Size = new System.Drawing.Size(147, 29);
+            this.btnEditSelectedRetreat.Size = new System.Drawing.Size(110, 24);
             this.btnEditSelectedRetreat.TabIndex = 2;
             this.btnEditSelectedRetreat.Text = "Edit Selection";
             this.btnEditSelectedRetreat.UseVisualStyleBackColor = true;
+            this.btnEditSelectedRetreat.Click += new System.EventHandler(this.btnEditSelectedRetreat_Click_1);
             // 
             // btnDeleteSelectedRetreat
             // 
             this.btnDeleteSelectedRetreat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteSelectedRetreat.Location = new System.Drawing.Point(581, 678);
+            this.btnDeleteSelectedRetreat.Location = new System.Drawing.Point(385, 548);
+            this.btnDeleteSelectedRetreat.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteSelectedRetreat.Name = "btnDeleteSelectedRetreat";
-            this.btnDeleteSelectedRetreat.Size = new System.Drawing.Size(147, 29);
+            this.btnDeleteSelectedRetreat.Size = new System.Drawing.Size(110, 24);
             this.btnDeleteSelectedRetreat.TabIndex = 3;
             this.btnDeleteSelectedRetreat.Text = "Delete Selection";
             this.btnDeleteSelectedRetreat.UseVisualStyleBackColor = true;
@@ -94,69 +95,161 @@
             // btnBackToAdminDashboard
             // 
             this.btnBackToAdminDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackToAdminDashboard.Location = new System.Drawing.Point(829, 678);
+            this.btnBackToAdminDashboard.Location = new System.Drawing.Point(571, 548);
+            this.btnBackToAdminDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.btnBackToAdminDashboard.Name = "btnBackToAdminDashboard";
-            this.btnBackToAdminDashboard.Size = new System.Drawing.Size(219, 29);
+            this.btnBackToAdminDashboard.Size = new System.Drawing.Size(164, 24);
             this.btnBackToAdminDashboard.TabIndex = 4;
             this.btnBackToAdminDashboard.Text = "Back to Admin Dashboard";
             this.btnBackToAdminDashboard.UseVisualStyleBackColor = true;
+            this.btnBackToAdminDashboard.Click += new System.EventHandler(this.btnBackToAdminDashboard_Click);
             // 
-            // RetreatName
+            // retreatDetails
             // 
-            this.RetreatName.HeaderText = "Retreat Name";
-            this.RetreatName.MinimumWidth = 6;
-            this.RetreatName.Name = "RetreatName";
-            this.RetreatName.Width = 125;
+            this.retreatDetails.DataSetName = "RetreatDetails";
+            this.retreatDetails.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // Locations
+            // retreatBindingSource
             // 
-            this.Locations.HeaderText = "Location";
-            this.Locations.MinimumWidth = 6;
-            this.Locations.Name = "Locations";
-            this.Locations.Width = 125;
+            this.retreatBindingSource.DataMember = "Retreat";
+            this.retreatBindingSource.DataSource = this.retreatDetails;
             // 
-            // StartDate
+            // retreatTableAdapter
             // 
-            this.StartDate.HeaderText = "Start Date";
-            this.StartDate.MinimumWidth = 6;
-            this.StartDate.Name = "StartDate";
-            this.StartDate.Width = 125;
+            this.retreatTableAdapter.ClearBeforeFill = true;
             // 
-            // EndDate
+            // dataGVRetreats
             // 
-            this.EndDate.HeaderText = "End Date";
-            this.EndDate.MinimumWidth = 6;
-            this.EndDate.Name = "EndDate";
-            this.EndDate.Width = 125;
+            this.dataGVRetreats.AutoGenerateColumns = false;
+            this.dataGVRetreats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGVRetreats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.retreatIDDataGridViewTextBoxColumn,
+            this.retreatNameDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.locationDataGridViewTextBoxColumn,
+            this.startDateDataGridViewTextBoxColumn,
+            this.endDateDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.capacityDataGridViewTextBoxColumn,
+            this.imageURLDataGridViewTextBoxColumn,
+            this.contactInfoDataGridViewTextBoxColumn,
+            this.createdByDataGridViewTextBoxColumn,
+            this.organizerIDDataGridViewTextBoxColumn,
+            this.dateCreatedDataGridViewTextBoxColumn,
+            this.lastUpdatedDataGridViewTextBoxColumn});
+            this.dataGVRetreats.DataSource = this.retreatBindingSource1;
+            this.dataGVRetreats.Location = new System.Drawing.Point(43, 120);
+            this.dataGVRetreats.Name = "dataGVRetreats";
+            this.dataGVRetreats.Size = new System.Drawing.Size(851, 394);
+            this.dataGVRetreats.TabIndex = 5;
             // 
-            // Price
+            // retreatBindingSource1
             // 
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.Width = 125;
+            this.retreatBindingSource1.DataMember = "Retreat";
+            this.retreatBindingSource1.DataSource = this.retreatDetails;
             // 
-            // Capacity
+            // retreatIDDataGridViewTextBoxColumn
             // 
-            this.Capacity.HeaderText = "Capacity";
-            this.Capacity.MinimumWidth = 6;
-            this.Capacity.Name = "Capacity";
-            this.Capacity.Width = 125;
+            this.retreatIDDataGridViewTextBoxColumn.DataPropertyName = "RetreatID";
+            this.retreatIDDataGridViewTextBoxColumn.HeaderText = "RetreatID";
+            this.retreatIDDataGridViewTextBoxColumn.Name = "retreatIDDataGridViewTextBoxColumn";
+            this.retreatIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // retreatNameDataGridViewTextBoxColumn
+            // 
+            this.retreatNameDataGridViewTextBoxColumn.DataPropertyName = "RetreatName";
+            this.retreatNameDataGridViewTextBoxColumn.HeaderText = "RetreatName";
+            this.retreatNameDataGridViewTextBoxColumn.Name = "retreatNameDataGridViewTextBoxColumn";
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // locationDataGridViewTextBoxColumn
+            // 
+            this.locationDataGridViewTextBoxColumn.DataPropertyName = "Location";
+            this.locationDataGridViewTextBoxColumn.HeaderText = "Location";
+            this.locationDataGridViewTextBoxColumn.Name = "locationDataGridViewTextBoxColumn";
+            // 
+            // startDateDataGridViewTextBoxColumn
+            // 
+            this.startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
+            this.startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
+            this.startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
+            // 
+            // endDateDataGridViewTextBoxColumn
+            // 
+            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            // 
+            // capacityDataGridViewTextBoxColumn
+            // 
+            this.capacityDataGridViewTextBoxColumn.DataPropertyName = "Capacity";
+            this.capacityDataGridViewTextBoxColumn.HeaderText = "Capacity";
+            this.capacityDataGridViewTextBoxColumn.Name = "capacityDataGridViewTextBoxColumn";
+            // 
+            // imageURLDataGridViewTextBoxColumn
+            // 
+            this.imageURLDataGridViewTextBoxColumn.DataPropertyName = "ImageURL";
+            this.imageURLDataGridViewTextBoxColumn.HeaderText = "ImageURL";
+            this.imageURLDataGridViewTextBoxColumn.Name = "imageURLDataGridViewTextBoxColumn";
+            // 
+            // contactInfoDataGridViewTextBoxColumn
+            // 
+            this.contactInfoDataGridViewTextBoxColumn.DataPropertyName = "ContactInfo";
+            this.contactInfoDataGridViewTextBoxColumn.HeaderText = "ContactInfo";
+            this.contactInfoDataGridViewTextBoxColumn.Name = "contactInfoDataGridViewTextBoxColumn";
+            // 
+            // createdByDataGridViewTextBoxColumn
+            // 
+            this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
+            this.createdByDataGridViewTextBoxColumn.HeaderText = "CreatedBy";
+            this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
+            // 
+            // organizerIDDataGridViewTextBoxColumn
+            // 
+            this.organizerIDDataGridViewTextBoxColumn.DataPropertyName = "OrganizerID";
+            this.organizerIDDataGridViewTextBoxColumn.HeaderText = "OrganizerID";
+            this.organizerIDDataGridViewTextBoxColumn.Name = "organizerIDDataGridViewTextBoxColumn";
+            // 
+            // dateCreatedDataGridViewTextBoxColumn
+            // 
+            this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
+            // 
+            // lastUpdatedDataGridViewTextBoxColumn
+            // 
+            this.lastUpdatedDataGridViewTextBoxColumn.DataPropertyName = "LastUpdated";
+            this.lastUpdatedDataGridViewTextBoxColumn.HeaderText = "LastUpdated";
+            this.lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
             // 
             // EditRetreats
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1259, 838);
+            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.dataGVRetreats);
             this.Controls.Add(this.btnBackToAdminDashboard);
             this.Controls.Add(this.btnDeleteSelectedRetreat);
             this.Controls.Add(this.btnEditSelectedRetreat);
-            this.Controls.Add(this.dataGridViewRetreats);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditRetreats";
             this.Text = "EditRetreats";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRetreats)).EndInit();
+            this.Load += new System.EventHandler(this.EditRetreats_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVRetreats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,15 +258,27 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridViewRetreats;
         private System.Windows.Forms.Button btnEditSelectedRetreat;
         private System.Windows.Forms.Button btnDeleteSelectedRetreat;
         private System.Windows.Forms.Button btnBackToAdminDashboard;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RetreatName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Locations;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Capacity;
+        private RetreatDetails retreatDetails;
+        private System.Windows.Forms.BindingSource retreatBindingSource;
+        private RetreatDetailsTableAdapters.RetreatTableAdapter retreatTableAdapter;
+        private System.Windows.Forms.DataGridView dataGVRetreats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn retreatIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn retreatNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn locationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn capacityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imageURLDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactInfoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn organizerIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource retreatBindingSource1;
     }
 }

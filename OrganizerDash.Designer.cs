@@ -28,142 +28,226 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbWelcome = new System.Windows.Forms.Label();
             this.txtOrganiserName = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.txtEmailAddress = new System.Windows.Forms.TextBox();
+            this.lbOrganiserName = new System.Windows.Forms.Label();
+            this.lbEmail = new System.Windows.Forms.Label();
+            this.txtContactNumber = new System.Windows.Forms.TextBox();
+            this.lbContactNumber = new System.Windows.Forms.Label();
+            this.txtCompanyName = new System.Windows.Forms.TextBox();
+            this.lbCompanyName = new System.Windows.Forms.Label();
+            this.gbOrganiserInfo = new System.Windows.Forms.GroupBox();
+            this.btnAddRetreats = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtContactInfo = new System.Windows.Forms.TextBox();
+            this.lbContactInfo = new System.Windows.Forms.Label();
+            this.gbOrganiserInfo.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lbWelcome
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Britannic Bold", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(451, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(371, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Organiser Dashboard";
+            this.lbWelcome.AutoSize = true;
+            this.lbWelcome.Font = new System.Drawing.Font("Britannic Bold", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWelcome.Location = new System.Drawing.Point(285, 58);
+            this.lbWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbWelcome.Name = "lbWelcome";
+            this.lbWelcome.Size = new System.Drawing.Size(299, 33);
+            this.lbWelcome.TabIndex = 0;
+            this.lbWelcome.Text = "Organiser Dashboard";
             // 
             // txtOrganiserName
             // 
-            this.txtOrganiserName.Location = new System.Drawing.Point(194, 103);
+            this.txtOrganiserName.Location = new System.Drawing.Point(146, 84);
+            this.txtOrganiserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtOrganiserName.Name = "txtOrganiserName";
-            this.txtOrganiserName.Size = new System.Drawing.Size(241, 27);
+            this.txtOrganiserName.Size = new System.Drawing.Size(210, 23);
             this.txtOrganiserName.TabIndex = 1;
             // 
-            // txtAddress
+            // txtEmailAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(194, 161);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(241, 27);
-            this.txtAddress.TabIndex = 2;
+            this.txtEmailAddress.Location = new System.Drawing.Point(146, 131);
+            this.txtEmailAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEmailAddress.Name = "txtEmailAddress";
+            this.txtEmailAddress.Size = new System.Drawing.Size(210, 23);
+            this.txtEmailAddress.TabIndex = 2;
             // 
-            // label2
+            // lbOrganiserName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Organiser\'s Name:";
+            this.lbOrganiserName.AutoSize = true;
+            this.lbOrganiserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOrganiserName.Location = new System.Drawing.Point(4, 91);
+            this.lbOrganiserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbOrganiserName.Name = "lbOrganiserName";
+            this.lbOrganiserName.Size = new System.Drawing.Size(110, 15);
+            this.lbOrganiserName.TabIndex = 3;
+            this.lbOrganiserName.Text = "Organiser\'s Name:";
             // 
-            // label3
+            // lbEmail
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 170);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Email Address:";
+            this.lbEmail.AutoSize = true;
+            this.lbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmail.Location = new System.Drawing.Point(4, 138);
+            this.lbEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbEmail.Name = "lbEmail";
+            this.lbEmail.Size = new System.Drawing.Size(89, 15);
+            this.lbEmail.TabIndex = 4;
+            this.lbEmail.Text = "Email Address:";
             // 
-            // textBox1
+            // txtContactNumber
             // 
-            this.textBox1.Location = new System.Drawing.Point(194, 217);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 27);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtContactNumber.Location = new System.Drawing.Point(146, 176);
+            this.txtContactNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContactNumber.Name = "txtContactNumber";
+            this.txtContactNumber.Size = new System.Drawing.Size(210, 23);
+            this.txtContactNumber.TabIndex = 5;
             // 
-            // label4
+            // lbContactNumber
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 226);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 18);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Contact Number:";
+            this.lbContactNumber.AutoSize = true;
+            this.lbContactNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbContactNumber.Location = new System.Drawing.Point(4, 184);
+            this.lbContactNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbContactNumber.Name = "lbContactNumber";
+            this.lbContactNumber.Size = new System.Drawing.Size(91, 15);
+            this.lbContactNumber.TabIndex = 6;
+            this.lbContactNumber.Text = "PhoneNumber:";
             // 
-            // textBox2
+            // txtCompanyName
             // 
-            this.textBox2.Location = new System.Drawing.Point(194, 277);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(278, 27);
-            this.textBox2.TabIndex = 7;
+            this.txtCompanyName.Location = new System.Drawing.Point(146, 225);
+            this.txtCompanyName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCompanyName.Name = "txtCompanyName";
+            this.txtCompanyName.Size = new System.Drawing.Size(210, 23);
+            this.txtCompanyName.TabIndex = 7;
             // 
-            // label5
+            // lbCompanyName
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 286);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 18);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Name of Company:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.lbCompanyName.AutoSize = true;
+            this.lbCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCompanyName.Location = new System.Drawing.Point(4, 232);
+            this.lbCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbCompanyName.Name = "lbCompanyName";
+            this.lbCompanyName.Size = new System.Drawing.Size(112, 15);
+            this.lbCompanyName.TabIndex = 8;
+            this.lbCompanyName.Text = "Name of Company:";
             // 
-            // groupBox1
+            // gbOrganiserInfo
             // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtOrganiserName);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtAddress);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(291, 185);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(624, 318);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Organiser\'s Information";
+            this.gbOrganiserInfo.Controls.Add(this.txtContactInfo);
+            this.gbOrganiserInfo.Controls.Add(this.lbContactInfo);
+            this.gbOrganiserInfo.Controls.Add(this.lbOrganiserName);
+            this.gbOrganiserInfo.Controls.Add(this.txtCompanyName);
+            this.gbOrganiserInfo.Controls.Add(this.lbCompanyName);
+            this.gbOrganiserInfo.Controls.Add(this.txtOrganiserName);
+            this.gbOrganiserInfo.Controls.Add(this.lbEmail);
+            this.gbOrganiserInfo.Controls.Add(this.txtContactNumber);
+            this.gbOrganiserInfo.Controls.Add(this.lbContactNumber);
+            this.gbOrganiserInfo.Controls.Add(this.txtEmailAddress);
+            this.gbOrganiserInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbOrganiserInfo.Location = new System.Drawing.Point(218, 150);
+            this.gbOrganiserInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.gbOrganiserInfo.Name = "gbOrganiserInfo";
+            this.gbOrganiserInfo.Padding = new System.Windows.Forms.Padding(2);
+            this.gbOrganiserInfo.Size = new System.Drawing.Size(468, 324);
+            this.gbOrganiserInfo.TabIndex = 9;
+            this.gbOrganiserInfo.TabStop = false;
+            this.gbOrganiserInfo.Text = "Organiser\'s Information";
             // 
-            // button1
+            // btnAddRetreats
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(291, 555);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 27);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Retreats";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddRetreats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRetreats.Location = new System.Drawing.Point(218, 478);
+            this.btnAddRetreats.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddRetreats.Name = "btnAddRetreats";
+            this.btnAddRetreats.Size = new System.Drawing.Size(119, 35);
+            this.btnAddRetreats.TabIndex = 10;
+            this.btnAddRetreats.Text = "Add Retreats";
+            this.btnAddRetreats.UseVisualStyleBackColor = true;
+            this.btnAddRetreats.Click += new System.EventHandler(this.btnAddRetreats_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemFile,
+            this.MenuItemHelp});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(944, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // MenuItemFile
+            // 
+            this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemLogout});
+            this.MenuItemFile.Name = "MenuItemFile";
+            this.MenuItemFile.Size = new System.Drawing.Size(37, 20);
+            this.MenuItemFile.Text = "File";
+            // 
+            // MenuItemLogout
+            // 
+            this.MenuItemLogout.Name = "MenuItemLogout";
+            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
+            this.MenuItemLogout.Text = "Logout";
+            this.MenuItemLogout.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
+            // MenuItemHelp
+            // 
+            this.MenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemAbout});
+            this.MenuItemHelp.Name = "MenuItemHelp";
+            this.MenuItemHelp.Size = new System.Drawing.Size(44, 20);
+            this.MenuItemHelp.Text = "Help";
+            // 
+            // MenuItemAbout
+            // 
+            this.MenuItemAbout.Name = "MenuItemAbout";
+            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
+            this.MenuItemAbout.Text = "About";
+            this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
+            // 
+            // txtContactInfo
+            // 
+            this.txtContactInfo.Location = new System.Drawing.Point(146, 273);
+            this.txtContactInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContactInfo.Name = "txtContactInfo";
+            this.txtContactInfo.Size = new System.Drawing.Size(210, 23);
+            this.txtContactInfo.TabIndex = 9;
+            // 
+            // lbContactInfo
+            // 
+            this.lbContactInfo.AutoSize = true;
+            this.lbContactInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbContactInfo.Location = new System.Drawing.Point(4, 280);
+            this.lbContactInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbContactInfo.Name = "lbContactInfo";
+            this.lbContactInfo.Size = new System.Drawing.Size(122, 15);
+            this.lbContactInfo.TabIndex = 10;
+            this.lbContactInfo.Text = "Social Media Handle";
             // 
             // OrganizerDash
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1259, 838);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.btnAddRetreats);
+            this.Controls.Add(this.gbOrganiserInfo);
+            this.Controls.Add(this.lbWelcome);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "OrganizerDash";
             this.Text = "Organizer Dash";
             this.Load += new System.EventHandler(this.OrganizerDash_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbOrganiserInfo.ResumeLayout(false);
+            this.gbOrganiserInfo.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,16 +255,23 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbWelcome;
         private System.Windows.Forms.TextBox txtOrganiserName;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtEmailAddress;
+        private System.Windows.Forms.Label lbOrganiserName;
+        private System.Windows.Forms.Label lbEmail;
+        private System.Windows.Forms.TextBox txtContactNumber;
+        private System.Windows.Forms.Label lbContactNumber;
+        private System.Windows.Forms.TextBox txtCompanyName;
+        private System.Windows.Forms.Label lbCompanyName;
+        private System.Windows.Forms.GroupBox gbOrganiserInfo;
+        private System.Windows.Forms.Button btnAddRetreats;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
+        private System.Windows.Forms.TextBox txtContactInfo;
+        private System.Windows.Forms.Label lbContactInfo;
     }
 }

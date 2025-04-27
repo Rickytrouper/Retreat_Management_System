@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="Retreat_Management_DB.Booking" Width="1.5" PointX="3.125" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Retreat_Management_DB.Feedback" Width="1.5" PointX="7.875" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Retreat_Management_DB.Notification" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Retreat_Management_DB.Organizer" Width="1.5" PointX="12.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="Retreat_Management_DB.Payment" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Retreat_Management_DB.Retreat" Width="1.5" PointX="10.125" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="Retreat_Management_DB.sysdiagram" Width="1.5" PointX="19.875" PointY="0.5" IsExpanded="true" />
@@ -22,9 +21,10 @@
         <AssociationConnector Association="Retreat_Management_DB.FK__Feedback__Retrea__1F98B2C1" ManuallyRouted="false" />
         <AssociationConnector Association="Retreat_Management_DB.FK__Feedback__UserID__1EA48E88" ManuallyRouted="false" />
         <AssociationConnector Association="Retreat_Management_DB.FK__Notificat__UserI__245D67DE" ManuallyRouted="false" />
-        <AssociationConnector Association="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D" ManuallyRouted="false" />
         <AssociationConnector Association="Retreat_Management_DB.FK__Retreat__Created__0B91BA14" ManuallyRouted="false" >
         </AssociationConnector>
+        <EntityTypeShape EntityType="Retreat_Management_DB.Organizer" Width="1.5" PointX="12.875" PointY="4" />
+        <AssociationConnector Association="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

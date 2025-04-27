@@ -63,7 +63,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
-          <Property Name="ContactInfo" Type="nvarchar(max)" />
+          <Property Name="ContactInfo" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -321,19 +321,6 @@
           <Property Name="IsRead" Type="Boolean" />
           <NavigationProperty Name="User" Relationship="Self.FK__Notificat__UserI__245D67DE" FromRole="Notification" ToRole="User" />
         </EntityType>
-        <EntityType Name="Organizer">
-          <Key>
-            <PropertyRef Name="OrganizerID" />
-          </Key>
-          <Property Name="OrganizerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ContactInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Retreats" Relationship="Self.FK__Retreat__Organiz__0C85DE4D" FromRole="Organizer" ToRole="Retreat" />
-        </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentID" />
@@ -367,8 +354,8 @@
           <Property Name="LastUpdated" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__Retreat__1332DBDC" FromRole="Retreat" ToRole="Booking" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.FK__Feedback__Retrea__1F98B2C1" FromRole="Retreat" ToRole="Feedback" />
-          <NavigationProperty Name="Organizer" Relationship="Self.FK__Retreat__Organiz__0C85DE4D" FromRole="Retreat" ToRole="Organizer" />
           <NavigationProperty Name="User" Relationship="Self.FK__Retreat__Created__0B91BA14" FromRole="Retreat" ToRole="User" />
+          <NavigationProperty Name="Organizer" Relationship="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D" FromRole="Retreat" ToRole="Organizer" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -486,18 +473,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Retreat__Organiz__0C85DE4D">
-          <End Role="Organizer" Type="Self.Organizer" Multiplicity="0..1" />
-          <End Role="Retreat" Type="Self.Retreat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organizer">
-              <PropertyRef Name="OrganizerID" />
-            </Principal>
-            <Dependent Role="Retreat">
-              <PropertyRef Name="OrganizerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Retreat__Created__0B91BA14">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Retreat" Type="Self.Retreat" Multiplicity="*" />
@@ -515,7 +490,6 @@
           <EntitySet Name="Bookings" EntityType="Self.Booking" />
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Notifications" EntityType="Self.Notification" />
-          <EntitySet Name="Organizers" EntityType="Self.Organizer" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="Retreats" EntityType="Self.Retreat" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -548,15 +522,41 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Notification" EntitySet="Notifications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Retreat__Organiz__0C85DE4D" Association="Self.FK__Retreat__Organiz__0C85DE4D">
-            <End Role="Organizer" EntitySet="Organizers" />
-            <End Role="Retreat" EntitySet="Retreats" />
-          </AssociationSet>
           <AssociationSet Name="FK__Retreat__Created__0B91BA14" Association="Self.FK__Retreat__Created__0B91BA14">
             <End Role="User" EntitySet="Users" />
             <End Role="Retreat" EntitySet="Retreats" />
           </AssociationSet>
+          <EntitySet Name="Organizers" EntityType="Retreat_Management_DB.Organizer" />
+          <AssociationSet Name="FK__Retreat__Organiz__0C85DE4D" Association="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D">
+            <End Role="Organizer" EntitySet="Organizers" />
+            <End Role="Retreat" EntitySet="Retreats" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Organizer">
+          <Key>
+            <PropertyRef Name="OrganizerID" />
+          </Key>
+          <Property Name="OrganizerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Retreats" Relationship="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D" FromRole="Organizer" ToRole="Retreat" />
+        </EntityType>
+        <Association Name="FK__Retreat__Organiz__0C85DE4D">
+          <End Type="Retreat_Management_DB.Organizer" Role="Organizer" Multiplicity="0..1" />
+          <End Type="Retreat_Management_DB.Retreat" Role="Retreat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizer">
+              <PropertyRef Name="OrganizerID" />
+            </Principal>
+            <Dependent Role="Retreat">
+              <PropertyRef Name="OrganizerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -612,19 +612,6 @@
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="DateSent" ColumnName="DateSent" />
                 <ScalarProperty Name="IsRead" ColumnName="IsRead" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Organizers">
-            <EntityTypeMapping TypeName="Retreat_Management_DB.Organizer">
-              <MappingFragment StoreEntitySet="Organizer">
-                <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -687,6 +674,19 @@
                 <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizers">
+            <EntityTypeMapping TypeName="Retreat_Management_DB.Organizer">
+              <MappingFragment StoreEntitySet="Organizer">
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

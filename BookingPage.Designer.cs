@@ -175,7 +175,7 @@
             // mtbCardNumber
             // 
             this.mtbCardNumber.Location = new System.Drawing.Point(568, 198);
-            this.mtbCardNumber.Mask = "0000-0000-0000-0000";
+            this.mtbCardNumber.Mask = "####-####-####-####";
             this.mtbCardNumber.Name = "mtbCardNumber";
             this.mtbCardNumber.PromptChar = ' ';
             this.mtbCardNumber.Size = new System.Drawing.Size(165, 20);
@@ -190,6 +190,7 @@
             this.mtbExpiryDate.Size = new System.Drawing.Size(165, 20);
             this.mtbExpiryDate.TabIndex = 17;
             this.mtbExpiryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtbExpiryDate.ValidatingType = typeof(System.DateTime);
             // 
             // mtbCVV
             // 
@@ -199,6 +200,7 @@
             this.mtbCVV.PromptChar = ' ';
             this.mtbCVV.Size = new System.Drawing.Size(165, 20);
             this.mtbCVV.TabIndex = 18;
+            this.mtbCVV.ValidatingType = typeof(int);
             // 
             // BookingPage
             // 

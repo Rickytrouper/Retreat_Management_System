@@ -77,8 +77,8 @@ namespace Retreat_Management_System
                     }
                     else
                     {
-                        // If no image, display a placeholder or a default image
-                        pbRetreat.Image = null;  // Or set a default image
+                        // If no image, display 
+                        pbRetreat.Image = null;  //set a default image
                     }
                 }
                 else
@@ -95,19 +95,30 @@ namespace Retreat_Management_System
 
         private void btnBookNow_Click(object sender, EventArgs e)
         {
-            if (cbRetreatName.SelectedItem is Retreat selectedRetreat) // Only declare it once
+            if (cbRetreatName.SelectedItem is Retreat selectedRetreat) 
             {
-                var bookingPage = new BookingPage(currentUserId); // Pass the userId
-                bookingPage.SetRetreatName(selectedRetreat.RetreatName); // Send the retreat name
-                                                                         // Create an instance of UserService to get user details
+                int retreatId = selectedRetreat.RetreatID; 
+                decimal price = selectedRetreat.Price;
+
+                // Create an instance of BookingPage with both userId and retreatId
+                var bookingPage = new BookingPage(currentUserId, retreatId, price); // Pass the userId and retreatId
+
+                // Set the retreat name
+                bookingPage.SetRetreatName(selectedRetreat.RetreatName);
+
+                // Create an instance of UserService to get user details
                 UserService userService = new UserService();
                 var user = userService.GetUserDetails(currentUserId); // Fetch user details
-                                                                      // Check if the user is found and set the username and email
+
+                // Check if the user is found and set the username and email
                 if (user != null)
                 {
                     bookingPage.SetUserName(user.Username); // Pass the username
                     bookingPage.SetEmail(user.Email); // Pass the email
+
                 }
+
+
 
                 this.Hide();  // Hide the RetreatDetails form
                 bookingPage.FormClosed += (s, args) => this.Show();  // Show it again when booking closes
@@ -117,7 +128,6 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show("Please select a retreat first.");
             }
-        
         }
 
         private void btnBackToDashboard_Click(object sender, EventArgs e)

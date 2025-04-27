@@ -111,5 +111,6 @@ namespace Retreat_Management_System
             adminDash.Show();
             this.Close(); // Close the current form
         }
+
     }
 }
