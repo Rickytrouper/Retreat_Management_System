@@ -167,9 +167,10 @@ namespace Retreat_Management_System
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
-            // Open the AboutPage form
-            var aboutPage = new AboutPage(); // Create an instance of AboutPage
-            aboutPage.Show();
+            var aboutPage = new AboutPage(organizerID); // Pass the organizer ID
+            aboutPage.Owner = this; // Set the owner to the current dashboard
+            aboutPage.Show(); // Show normally
+            this.Hide(); // Hide the current form
         }
     }
 }

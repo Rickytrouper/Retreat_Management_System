@@ -10,8 +10,6 @@
 
 #pragma warning disable 1591
 
-using System;
-
 namespace Retreat_Management_System {
     
     
@@ -1217,11 +1215,6 @@ SELECT UserID, Username, Email, Role, DateCreated, LastLogin, AccountStatus FROM
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string Username, string Email, string Role, global::System.Nullable<global::System.DateTime> DateCreated, global::System.Nullable<global::System.DateTime> LastLogin, string AccountStatus, int Original_UserID, string Original_Username, string Original_Email, string Original_Role, global::System.Nullable<global::System.DateTime> Original_DateCreated, global::System.Nullable<global::System.DateTime> Original_LastLogin, string Original_AccountStatus) {
             return this.Update(Username, Email, Role, DateCreated, LastLogin, AccountStatus, Original_UserID, Original_Username, Original_Email, Original_Role, Original_DateCreated, Original_LastLogin, Original_AccountStatus, Original_UserID);
-        }
-
-        internal void UpdateUserRole(string newRole, int userId)
-        {
-            throw new NotImplementedException();
         }
     }
     

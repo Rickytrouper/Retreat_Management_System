@@ -1,37 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-    public partial class AboutPage: Form
+    public partial class AboutPage : Form
     {
-        public AboutPage()
+        private int userId; // Store the user ID
+
+        // Constructor that accepts user ID
+        public AboutPage(int userId)
         {
             InitializeComponent();
+            this.userId = userId; // Set the user ID
         }
 
         private void AboutPage_Load(object sender, EventArgs e)
+        {            
+                this.StartPosition = FormStartPosition.CenterParent;
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                this.MaximizeBox = false;
+                this.MinimizeBox = false;
+                this.ControlBox = false;
+                this.ShowInTaskbar = false;
+                this.BackColor = Color.LightBlue;
+                this.Text = "About Us";
+           
+        }       
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-            // open in parent form
-            this.Owner = this.Owner;
-            this.StartPosition = FormStartPosition.CenterParent; // Center the form
-            this.FormBorderStyle = FormBorderStyle.FixedDialog; // Make the form non-resizable
-            this.MaximizeBox = false; // Disable maximize button
-            this.MinimizeBox = false; // Disable minimize button
-            this.ControlBox = false; // Disable close button
-            this.ShowInTaskbar = false; // Hide from taskbar
-            this.BackColor = Color.LightBlue; // Set background color
-            this.Text = "About Us"; // Set form title
-            //this.label1.Text = "Retreat Management System"; // Set label text
-           // this.label2.Text = "Version 1.0"; // Set version text
-           // this.label3.Text = "Developed by: Your Name"; // Set developer name
+            // Open the LoginPage form
+            var loginPage = new LoginPage();
+            loginPage.Show();
+            this.Close(); // Close the AboutPage
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            // Check the owner type and show the appropriate dashboard
+            if (this.Owner is UserDash userDash)
+            {
+                userDash.Show(); // Return to User Dashboard
+            }
+            else if (this.Owner is AdminDash adminDash)
+            {
+                adminDash.Show(); // Return to Admin Dashboard
+            }
+            else if (this.Owner is OrganizerDash organizerDash)
+            {
+                organizerDash.Show(); // Return to Organizer Dashboard
+            }
+
+            this.Close(); // Close AboutPage
 
         }
     }

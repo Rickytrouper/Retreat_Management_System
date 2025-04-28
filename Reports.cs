@@ -102,24 +102,95 @@ namespace Retreat_Management_System
         {
             try
             {
+                // Validate the date range
                 if (dateTimePickerStartDate.Value > dateTimePickerEndDate.Value)
                 {
                     throw new ArgumentException("Start date cannot be later than end date.");
                 }
 
+                // Fetch bookings within the specified date range
                 var bookings = dbContext.Bookings
                     .Include(b => b.User)
                     .Include(b => b.Retreat)
                     .Where(b => b.BookingDate >= dateTimePickerStartDate.Value && b.BookingDate <= dateTimePickerEndDate.Value)
+                    .Select(b => new
+                    {
+                        b.BookingDate,
+                        b.Status,
+                        UserName = b.User.Username,
+                        Email = b.User.Email,
+                        b.CardNumber,
+                        b.ExpiryDate,
+                        b.CVV,
+                        b.PaymentStatus
+                    })
                     .ToList();
 
+                // Check if any bookings were found
                 if (!bookings.Any())
                 {
                     MessageBox.Show("No bookings found for the selected date range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                
+                // Create a DataTable to hold booking data
+                DataTable bookingTable = new DataTable();
+                bookingTable.Columns.Add("Booking Date", typeof(DateTime));
+                bookingTable.Columns.Add("Status", typeof(string));
+                bookingTable.Columns.Add("User Name", typeof(string));
+                bookingTable.Columns.Add("Email", typeof(string));
+                bookingTable.Columns.Add("Card Number", typeof(string));
+                bookingTable.Columns.Add("Expiry Date", typeof(DateTime));
+                bookingTable.Columns.Add("CVV", typeof(string));
+                bookingTable.Columns.Add("Payment Status", typeof(string));
+
+                // Populate the DataTable with booking information
+                foreach (var booking in bookings)
+                {
+                    bookingTable.Rows.Add(
+                        booking.BookingDate,
+                        booking.Status,
+                        booking.UserName,
+                        booking.Email,
+                        booking.CardNumber,
+                        booking.ExpiryDate,
+                        booking.CVV,
+                        booking.PaymentStatus
+                    );
+                }
+
+                // Bind the DataTable to the BindingSource
+                var bookingBindingSource = new BindingSource();
+                bookingBindingSource.DataSource = bookingTable;
+
+                // Set the DataSource of the DataGridView to the BindingSource
+                dgvReport.DataSource = bookingBindingSource;
+
+                // Set column headers and formatting
+                dgvReport.Columns["Booking Date"].HeaderText = "Booking Date";
+                dgvReport.Columns["Status"].HeaderText = "Status";
+                dgvReport.Columns["User Name"].HeaderText = "User Name";
+                dgvReport.Columns["Email"].HeaderText = "Email";
+                dgvReport.Columns["Card Number"].HeaderText = "Card Number";
+                dgvReport.Columns["Expiry Date"].HeaderText = "Expiry Date";
+                dgvReport.Columns["CVV"].HeaderText = "CVV";
+                dgvReport.Columns["Payment Status"].HeaderText = "Payment Status";
+
+                // Format the columns as necessary
+                dgvReport.Columns["Booking Date"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dgvReport.Columns["Expiry Date"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dgvReport.Columns["Booking Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvReport.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Set auto-sizing and widths for columns
+                dgvReport.Columns["User Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvReport.Columns["Email"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvReport.Columns["Card Number"].Width = 120;
+                dgvReport.Columns["Payment Status"].Width = 120;
+
+                // Enable column resizing
+                dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvReport.AllowUserToResizeColumns = true;
             }
             catch (DbEntityValidationException ex)
             {
@@ -133,7 +204,6 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show($"Error generating booking report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void GenerateFeedbackReport()

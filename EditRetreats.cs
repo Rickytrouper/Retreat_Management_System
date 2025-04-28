@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -7,11 +8,13 @@ namespace Retreat_Management_System
     public partial class EditRetreats : Form
     {
         private int adminID; // Store admin ID
+        private readonly Retreat_Management_DBEntities db;
 
         public EditRetreats(int adminID) // Constructor accepting only adminID
         {
             InitializeComponent();
             this.adminID = adminID; // Store the admin ID
+            db = new Retreat_Management_DBEntities(); // Initialize the database context
             InitializeDataGridView(); // Initialize DataGridView settings
         }
 
@@ -92,6 +95,51 @@ namespace Retreat_Management_System
             AdminDash adminDashForm = new AdminDash(adminID); // Pass adminID
             adminDashForm.Show();
             this.Close(); // Close this form
+        }
+
+        private void btnDeleteSelectedRetreat_Click(object sender, EventArgs e)
+        {
+            if (dataGVRetreats.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGVRetreats.SelectedRows[0];
+                int retreatID = (int)selectedRow.Cells["retreatIDDataGridViewTextBoxColumn"].Value;
+
+                var confirmResult = MessageBox.Show("Are you sure you want to delete this retreat?",
+                                                     "Confirm Delete",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Warning);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        var retreatToDelete = db.Retreats.Find(retreatID);
+                        if (retreatToDelete != null)
+                        {
+                            db.Retreats.Remove(retreatToDelete);
+                            db.SaveChanges();
+                            MessageBox.Show("Retreat deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadRetreatsData(); // Refresh the grid after deletion
+                        }
+                        else
+                        {
+                            MessageBox.Show("Retreat not found. Please refresh the list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (DbUpdateException dbEx)
+                    {
+                        var innerException = dbEx.InnerException?.InnerException;
+                        MessageBox.Show($"An error occurred while deleting the retreat: {innerException?.Message ?? dbEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a retreat to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

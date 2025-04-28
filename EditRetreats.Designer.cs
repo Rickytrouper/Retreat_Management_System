@@ -37,7 +37,6 @@
             this.retreatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.retreatTableAdapter = new Retreat_Management_System.RetreatDetailsTableAdapters.RetreatTableAdapter();
             this.dataGVRetreats = new System.Windows.Forms.DataGridView();
-            this.retreatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.retreatIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.retreatNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +51,7 @@
             this.organizerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastUpdatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.retreatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVRetreats)).BeginInit();
@@ -91,7 +91,7 @@
             this.btnDeleteSelectedRetreat.TabIndex = 3;
             this.btnDeleteSelectedRetreat.Text = "Delete Selection";
             this.btnDeleteSelectedRetreat.UseVisualStyleBackColor = true;
-            this.btnDeleteSelectedRetreat.Click += new System.EventHandler(this.BtnDeleteSelectedRetreat_Click);
+            this.btnDeleteSelectedRetreat.Click += new System.EventHandler(this.btnDeleteSelectedRetreat_Click);
             // 
             // btnBackToAdminDashboard
             // 
@@ -143,11 +143,6 @@
             this.dataGVRetreats.Name = "dataGVRetreats";
             this.dataGVRetreats.Size = new System.Drawing.Size(851, 394);
             this.dataGVRetreats.TabIndex = 5;
-            // 
-            // retreatBindingSource1
-            // 
-            this.retreatBindingSource1.DataMember = "Retreat";
-            this.retreatBindingSource1.DataSource = this.retreatDetails;
             // 
             // retreatIDDataGridViewTextBoxColumn
             // 
@@ -233,6 +228,11 @@
             this.lastUpdatedDataGridViewTextBoxColumn.DataPropertyName = "LastUpdated";
             this.lastUpdatedDataGridViewTextBoxColumn.HeaderText = "LastUpdated";
             this.lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
+            // 
+            // retreatBindingSource1
+            // 
+            this.retreatBindingSource1.DataMember = "Retreat";
+            this.retreatBindingSource1.DataSource = this.retreatDetails;
             // 
             // EditRetreats
             // 

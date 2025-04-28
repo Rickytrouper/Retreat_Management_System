@@ -202,25 +202,37 @@ namespace Retreat_Management_System
 
         private void btnViewReservation_Click(object sender, EventArgs e)
         {
-            using (var context = new Retreat_Management_DBEntities())
+            try
             {
+                // Fill the DataTable using the adapter
+                reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable);
 
-                reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable); // Fill the DataTable
-
-                // Filter reservations based on UserID directly from the DataTable
-                var filteredReservations = retreat_Management_DBDataSet2.ReservationDataTable
-                    .Where(row => ((DataRow)row)["UserID"].ToString() == currentUserId.ToString())
-                    .ToList();
-
-                if (filteredReservations.Any())
+                // Check if the DataTable is not empty
+                if (retreat_Management_DBDataSet2.ReservationDataTable.Rows.Count == 0)
                 {
-                    // Data binding to DataGridView
-                    dataGridViewReservations.DataSource = filteredReservations.CopyToDataTable();
+                    MessageBox.Show("No reservations found in the database.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Create a DataView for filtering
+                DataView dataView = new DataView(retreat_Management_DBDataSet2.ReservationDataTable);
+                dataView.RowFilter = $"UserID = {currentUserId}"; // Filter by UserID
+
+                // Check if there are any filtered results
+                if (dataView.Count > 0)
+                {
+                    // Set the filtered data as the data source for the DataGridView
+                    dataGridViewReservations.DataSource = dataView;
                 }
                 else
                 {
                     MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridViewReservations.DataSource = null; // Clear the DataGridView if no reservations
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving reservations: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -246,9 +258,10 @@ namespace Retreat_Management_System
 
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
-            // Open the AboutPage form
-            AboutPage aboutPage = new AboutPage(); // Create an instance of AboutPage
-            aboutPage.Show();
+            var aboutPage = new AboutPage(currentUserId); // Pass the user ID
+            aboutPage.Owner = this; // Set the owner to the current dashboard
+            aboutPage.Show(); // Show normally
+            this.Hide(); // Hide the current form
         }
     }
 }

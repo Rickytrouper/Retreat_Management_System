@@ -117,4 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>About Form Information
+Application Name: Retreat Management System
+Version: 1.0.0
+
+Description:
+The Retreat Management System is a comprehensive tool designed to help organizations efficiently manage and organize retreats. From booking management to user feedback, this application streamlines the entire process, ensuring a smooth experience for both organizers and participants. Key features include:
+
+User-Friendly Interface: Intuitive design for easy navigation.
+Booking Management: Efficiently manage bookings and participant details.
+Feedback Collection: Gather and analyze feedback from attendees to improve future retreats.
+Reporting Tools: Generate detailed reports to track bookings, payments, and user engagement.
+Developer Information:
+
+Developed by: Dev Opps Web Builders
+Email: DevOppCreator@gmail.com
+Website: www.devoppswebbuilders.com
+License Information:
+Licensed under the MIT License, allowing for free use and modification of the software.
+
+Credits:
+This application utilizes various open-source libraries and frameworks to enhance functionality and user experience.</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>
