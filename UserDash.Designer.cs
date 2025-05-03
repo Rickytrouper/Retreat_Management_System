@@ -70,6 +70,7 @@
             this.reservationDataTableAdapter = new Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters.ReservationDataTableAdapter();
             this.lbReservationDetails = new System.Windows.Forms.Label();
             this.lbProfileError = new System.Windows.Forms.Label();
+            this.btnReview = new System.Windows.Forms.Button();
             this.menuStripUserDash.SuspendLayout();
             this.groupUserInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
@@ -457,11 +458,22 @@
             this.lbProfileError.Size = new System.Drawing.Size(0, 13);
             this.lbProfileError.TabIndex = 7;
             // 
+            // btnReview
+            // 
+            this.btnReview.Location = new System.Drawing.Point(795, 406);
+            this.btnReview.Name = "btnReview";
+            this.btnReview.Size = new System.Drawing.Size(107, 29);
+            this.btnReview.TabIndex = 8;
+            this.btnReview.Text = "Review";
+            this.btnReview.UseVisualStyleBackColor = true;
+            this.btnReview.Click += new System.EventHandler(this.btnReview_Click);
+            // 
             // UserDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.btnReview);
             this.Controls.Add(this.lbProfileError);
             this.Controls.Add(this.lbReservationDetails);
             this.Controls.Add(this.dataGridViewReservations);
@@ -534,5 +546,6 @@
         private System.Windows.Forms.Label lbReservationDetails;
         private System.Windows.Forms.Label lbProfileError;
         private System.Windows.Forms.BindingSource reservationDataTableBindingSource1;
+        private System.Windows.Forms.Button btnReview;
     }
 }

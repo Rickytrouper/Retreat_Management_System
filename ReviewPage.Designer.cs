@@ -84,7 +84,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(231, 20);
             this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Select  ratings 1 been lowest , been highest";
+            this.textBox1.Text = "Select  ratings 1 been lowest , been highest";         
             // 
             // lbcomment
             // 

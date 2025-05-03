@@ -305,5 +305,14 @@ namespace Retreat_Management_System
             // Show the UserDash form again
             this.Show();
         }
+
+        private void btnReview_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the ReviewPage form, passing the currentUserId
+            ReviewPage reviewPage = new ReviewPage(currentUserId);
+
+            // Show the ReviewPage form
+            reviewPage.ShowDialog(); // Show as a dialog, blocking UserDash until closed
+        }
     }
 }
