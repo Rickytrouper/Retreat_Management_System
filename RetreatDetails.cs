@@ -12,7 +12,7 @@ namespace Retreat_Management_System
 
         private readonly Retreat_Management_DBEntities retreat_Management_DBEntities;
         private int currentUserId; // Store the user ID
-       
+
 
 
         public lblRetreatDetails(int userId)
@@ -21,8 +21,8 @@ namespace Retreat_Management_System
             this.Load += RetreatDetails_Load;
             cbRetreatName.SelectedIndexChanged += cbRetreatName_SelectedIndexChanged;
             retreat_Management_DBEntities = new Retreat_Management_DBEntities();
-            currentUserId = userId; // Store the user ID     
-            
+            currentUserId = userId; // Store the user ID
+
 
 
         }
@@ -95,9 +95,9 @@ namespace Retreat_Management_System
 
         private void btnBookNow_Click(object sender, EventArgs e)
         {
-            if (cbRetreatName.SelectedItem is Retreat selectedRetreat) 
+            if (cbRetreatName.SelectedItem is Retreat selectedRetreat)
             {
-                int retreatId = selectedRetreat.RetreatID; 
+                int retreatId = selectedRetreat.RetreatID;
                 decimal price = selectedRetreat.Price;
 
                 // Create an instance of BookingPage with both userId and retreatId
@@ -115,14 +115,10 @@ namespace Retreat_Management_System
                 {
                     bookingPage.SetUserName(user.Username); // Pass the username
                     bookingPage.SetEmail(user.Email); // Pass the email
-
                 }
 
-
-
-                this.Hide();  // Hide the RetreatDetails form
-                bookingPage.FormClosed += (s, args) => this.Show();  // Show it again when booking closes
-                bookingPage.Show();
+                // Make BookingPage a modal dialog
+                bookingPage.ShowDialog();
             }
             else
             {
@@ -135,13 +131,8 @@ namespace Retreat_Management_System
             var confirm = MessageBox.Show("Are you sure you want to return to the dashboard?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                this.Hide();
-                var dashboard = new UserDash(currentUserId); // Pass the userId here
-                dashboard.Show();
+                this.Close(); // Close the current form, returning to UserDash
             }
         }
     }
-
-
-
 }

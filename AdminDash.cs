@@ -5,15 +5,16 @@ namespace Retreat_Management_System
 {
     public partial class AdminDash : Form
     {
-        private int currentAdminID; // Store the current admin's ID
+        private readonly int currentAdminID; // Store the current admin's ID
         private readonly AdminActionService adminActionService;
 
-             
         public AdminDash(int adminID)
         {
             InitializeComponent();
             currentAdminID = adminID; // Initialize currentAdminID
             adminActionService = new AdminActionService(); // Initialize the logging service
+                                                           // Subscribe to the FormClosed event
+            this.FormClosed += AdminDash_FormClosed;
         }
 
         public void SetWelcomeMessage(string username)
@@ -22,55 +23,50 @@ namespace Retreat_Management_System
             lbWelcomeMessage.Text = $"Welcome, {username}!";
         }
 
-
-
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-             // Open the LoginPage form
+            // Open the LoginPage form
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
 
-            // Close the current form
-            this.Close();
+            // Close the MDI parent form (which will close all child forms)
+            this.MdiParent.Close();
         }
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
-            var aboutPage = new AboutPage(currentAdminID); // Pass the admin ID
-            aboutPage.Owner = this; // Set the owner to the current dashboard
-            aboutPage.Show(); // Show normally
+            // Create a new AboutPage form
+            AboutPage aboutPage = new AboutPage(currentAdminID);
 
-           this.Hide(); // Hide the current form
+            // Set the MdiParent of the AboutPage to the same as the AdminDash
+            aboutPage.MdiParent = this.MdiParent;
+
+            // Show the AboutPage
+            aboutPage.Show();
         }
 
         private void btnAddRetreat_Click(object sender, EventArgs e)
-        
         {
             // Open the AddRetreat form
-            AddRetreat addRetreatForm = new AddRetreat(null); // Create an instance of AddRetreat
+            AddRetreat addRetreatForm = new AddRetreat(null, currentAdminID); // Create an instance of AddRetreat
+            addRetreatForm.MdiParent = this.MdiParent;
             addRetreatForm.Show(); // Show the form
-
-            this.Hide();
-
         }
 
         private void btnEditRetreat_Click(object sender, EventArgs e)
         {
             // Open the EditRetreat form
             EditRetreats editRetreatsForm = new EditRetreats(currentAdminID); // Pass adminID only
+            editRetreatsForm.MdiParent = this.MdiParent;
             editRetreatsForm.Show();
-            this.Hide ();
-
         }
 
         private void btnGenerateReports_Click(object sender, EventArgs e)
         {
             // Open the GenerateReports form
             Reports generateReportsForm = new Reports(currentAdminID); // Create an instance of GenerateReports
+            generateReportsForm.MdiParent = this.MdiParent;
             generateReportsForm.Show(); // Show the form
-
-            this.Hide(); // Hide the current form
-
         }
 
         private void btnManageUsers_Click(object sender, EventArgs e)
@@ -78,17 +74,17 @@ namespace Retreat_Management_System
             var adminActionService = new AdminActionService(); // Create an instance of the service
             string actionType = "Open User Management"; // Action type for opening user management
             string targetEntity = "User"; // Set the target entity to "User"
-           
+
             try
             {
                 // Log the action of opening the user management form
                 adminActionService.LogAdminAction(currentAdminID, actionType, targetEntity, "Admin opened the user management form.");
-               // MessageBox.Show("Action logged successfully.");
+                // MessageBox.Show("Action logged successfully.");
 
                 // Open UserManagementForm with the currentAdminID
                 UserManagementForm userManagementForm = new UserManagementForm(currentAdminID);
+                userManagementForm.MdiParent = this.MdiParent;
                 userManagementForm.Show(); // Show the form
-                this.Hide(); // Hide the current form
             }
             catch (ArgumentException ex)
             {
@@ -99,6 +95,13 @@ namespace Retreat_Management_System
                 MessageBox.Show("Error: " + ex.Message); // Handle other errors
             }
         }
-    }
+        private void AdminDash_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Show the LoginPage when this form is closed
+            LoginPage loginPage = new LoginPage();
+            loginPage.Show();
+        }
 
+
+    }
 }

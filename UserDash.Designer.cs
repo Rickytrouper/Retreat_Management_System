@@ -63,22 +63,22 @@
             this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reservationDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reservationDataTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.retreatManagementDBDataSet2BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.retreat_Management_DBDataSet2 = new Retreat_Management_System.Retreat_Management_DBDataSet2();
+            this.reservationDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reservationDataTableAdapter = new Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters.ReservationDataTableAdapter();
             this.lbReservationDetails = new System.Windows.Forms.Label();
             this.lbProfileError = new System.Windows.Forms.Label();
-            this.reservationDataTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStripUserDash.SuspendLayout();
             this.groupUserInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
             this.groupBoxUserAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatManagementDBDataSet2BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreat_Management_DBDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStripUserDash
@@ -127,10 +127,10 @@
             // lbWelcomeMessage
             // 
             this.lbWelcomeMessage.AutoSize = true;
-            this.lbWelcomeMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWelcomeMessage.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWelcomeMessage.Location = new System.Drawing.Point(350, 50);
             this.lbWelcomeMessage.Name = "lbWelcomeMessage";
-            this.lbWelcomeMessage.Size = new System.Drawing.Size(266, 31);
+            this.lbWelcomeMessage.Size = new System.Drawing.Size(253, 32);
             this.lbWelcomeMessage.TabIndex = 1;
             this.lbWelcomeMessage.Text = "Welcome  Message";
             // 
@@ -415,10 +415,10 @@
             this.contactInfoDataGridViewTextBoxColumn.Name = "contactInfoDataGridViewTextBoxColumn";
             this.contactInfoDataGridViewTextBoxColumn.Width = 125;
             // 
-            // reservationDataTableBindingSource
+            // reservationDataTableBindingSource1
             // 
-            this.reservationDataTableBindingSource.DataMember = "ReservationDataTable";
-            this.reservationDataTableBindingSource.DataSource = this.retreatManagementDBDataSet2BindingSource;
+            this.reservationDataTableBindingSource1.DataMember = "ReservationDataTable";
+            this.reservationDataTableBindingSource1.DataSource = this.retreatManagementDBDataSet2BindingSource;
             // 
             // retreatManagementDBDataSet2BindingSource
             // 
@@ -429,6 +429,11 @@
             // 
             this.retreat_Management_DBDataSet2.DataSetName = "Retreat_Management_DBDataSet2";
             this.retreat_Management_DBDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // reservationDataTableBindingSource
+            // 
+            this.reservationDataTableBindingSource.DataMember = "ReservationDataTable";
+            this.reservationDataTableBindingSource.DataSource = this.retreatManagementDBDataSet2BindingSource;
             // 
             // reservationDataTableAdapter
             // 
@@ -451,11 +456,6 @@
             this.lbProfileError.Name = "lbProfileError";
             this.lbProfileError.Size = new System.Drawing.Size(0, 13);
             this.lbProfileError.TabIndex = 7;
-            // 
-            // reservationDataTableBindingSource1
-            // 
-            this.reservationDataTableBindingSource1.DataMember = "ReservationDataTable";
-            this.reservationDataTableBindingSource1.DataSource = this.retreatManagementDBDataSet2BindingSource;
             // 
             // UserDash
             // 
@@ -482,10 +482,10 @@
             this.groupBoxUserAction.ResumeLayout(false);
             this.groupBoxUserAction.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatManagementDBDataSet2BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreat_Management_DBDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationDataTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

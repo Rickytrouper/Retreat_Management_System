@@ -38,14 +38,14 @@
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.lbCompanyName = new System.Windows.Forms.Label();
             this.gbOrganiserInfo = new System.Windows.Forms.GroupBox();
+            this.txtContactInfo = new System.Windows.Forms.TextBox();
+            this.lbContactInfo = new System.Windows.Forms.Label();
             this.btnAddRetreats = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtContactInfo = new System.Windows.Forms.TextBox();
-            this.lbContactInfo = new System.Windows.Forms.Label();
             this.gbOrganiserInfo.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             // lbWelcome
             // 
             this.lbWelcome.AutoSize = true;
-            this.lbWelcome.Font = new System.Drawing.Font("Britannic Bold", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWelcome.Font = new System.Drawing.Font("Britannic Bold", 22F);
             this.lbWelcome.Location = new System.Drawing.Point(285, 58);
             this.lbWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbWelcome.Name = "lbWelcome";
@@ -159,6 +159,25 @@
             this.gbOrganiserInfo.TabStop = false;
             this.gbOrganiserInfo.Text = "Organiser\'s Information";
             // 
+            // txtContactInfo
+            // 
+            this.txtContactInfo.Location = new System.Drawing.Point(146, 273);
+            this.txtContactInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContactInfo.Name = "txtContactInfo";
+            this.txtContactInfo.Size = new System.Drawing.Size(210, 23);
+            this.txtContactInfo.TabIndex = 9;
+            // 
+            // lbContactInfo
+            // 
+            this.lbContactInfo.AutoSize = true;
+            this.lbContactInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbContactInfo.Location = new System.Drawing.Point(4, 280);
+            this.lbContactInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbContactInfo.Name = "lbContactInfo";
+            this.lbContactInfo.Size = new System.Drawing.Size(122, 15);
+            this.lbContactInfo.TabIndex = 10;
+            this.lbContactInfo.Text = "Social Media Handle";
+            // 
             // btnAddRetreats
             // 
             this.btnAddRetreats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -211,25 +230,6 @@
             this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
             this.MenuItemAbout.Text = "About";
             this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
-            // 
-            // txtContactInfo
-            // 
-            this.txtContactInfo.Location = new System.Drawing.Point(146, 273);
-            this.txtContactInfo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtContactInfo.Name = "txtContactInfo";
-            this.txtContactInfo.Size = new System.Drawing.Size(210, 23);
-            this.txtContactInfo.TabIndex = 9;
-            // 
-            // lbContactInfo
-            // 
-            this.lbContactInfo.AutoSize = true;
-            this.lbContactInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbContactInfo.Location = new System.Drawing.Point(4, 280);
-            this.lbContactInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbContactInfo.Name = "lbContactInfo";
-            this.lbContactInfo.Size = new System.Drawing.Size(122, 15);
-            this.lbContactInfo.TabIndex = 10;
-            this.lbContactInfo.Text = "Social Media Handle";
             // 
             // OrganizerDash
             // 

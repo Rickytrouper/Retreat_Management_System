@@ -59,10 +59,10 @@
             // lbPageLable
             // 
             this.lbPageLable.AutoSize = true;
-            this.lbPageLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPageLable.Location = new System.Drawing.Point(358, 59);
+            this.lbPageLable.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPageLable.Location = new System.Drawing.Point(414, 57);
             this.lbPageLable.Name = "lbPageLable";
-            this.lbPageLable.Size = new System.Drawing.Size(117, 31);
+            this.lbPageLable.Size = new System.Drawing.Size(104, 30);
             this.lbPageLable.TabIndex = 0;
             this.lbPageLable.Text = "Sign Up";
             // 

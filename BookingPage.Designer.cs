@@ -54,7 +54,7 @@
             // 
             this.lblRetraetName.AutoSize = true;
             this.lblRetraetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetraetName.Location = new System.Drawing.Point(56, 164);
+            this.lblRetraetName.Location = new System.Drawing.Point(105, 166);
             this.lblRetraetName.Name = "lblRetraetName";
             this.lblRetraetName.Size = new System.Drawing.Size(127, 20);
             this.lblRetraetName.TabIndex = 0;
@@ -64,7 +64,7 @@
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(56, 236);
+            this.lblUserName.Location = new System.Drawing.Point(105, 238);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(100, 20);
             this.lblUserName.TabIndex = 1;
@@ -73,23 +73,23 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(314, 21);
+            this.label3.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(396, 60);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 39);
+            this.label3.Size = new System.Drawing.Size(119, 32);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Book Now";
+            this.label3.Text = "Booking";
             // 
             // txtRetreatName
             // 
-            this.txtRetreatName.Location = new System.Drawing.Point(60, 198);
+            this.txtRetreatName.Location = new System.Drawing.Point(109, 200);
             this.txtRetreatName.Name = "txtRetreatName";
             this.txtRetreatName.Size = new System.Drawing.Size(157, 20);
             this.txtRetreatName.TabIndex = 3;
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(60, 269);
+            this.txtUserName.Location = new System.Drawing.Point(109, 271);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(157, 20);
             this.txtUserName.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(56, 318);
+            this.lblEmail.Location = new System.Drawing.Point(105, 320);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(48, 20);
             this.lblEmail.TabIndex = 5;
@@ -106,7 +106,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(60, 341);
+            this.txtEmail.Location = new System.Drawing.Point(109, 343);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 20);
             this.txtEmail.TabIndex = 6;
@@ -115,7 +115,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(551, 129);
+            this.label5.Location = new System.Drawing.Point(621, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(143, 24);
             this.label5.TabIndex = 7;
@@ -125,7 +125,7 @@
             // 
             this.lblCardNumber.AutoSize = true;
             this.lblCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCardNumber.Location = new System.Drawing.Point(591, 164);
+            this.lblCardNumber.Location = new System.Drawing.Point(634, 168);
             this.lblCardNumber.Name = "lblCardNumber";
             this.lblCardNumber.Size = new System.Drawing.Size(103, 20);
             this.lblCardNumber.TabIndex = 8;
@@ -135,7 +135,7 @@
             // 
             this.lblExpiryDate.AutoSize = true;
             this.lblExpiryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpiryDate.Location = new System.Drawing.Point(604, 236);
+            this.lblExpiryDate.Location = new System.Drawing.Point(647, 240);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(90, 20);
             this.lblExpiryDate.TabIndex = 10;
@@ -145,7 +145,7 @@
             // 
             this.lblCvvNumber.AutoSize = true;
             this.lblCvvNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCvvNumber.Location = new System.Drawing.Point(628, 318);
+            this.lblCvvNumber.Location = new System.Drawing.Point(671, 322);
             this.lblCvvNumber.Name = "lblCvvNumber";
             this.lblCvvNumber.Size = new System.Drawing.Size(42, 20);
             this.lblCvvNumber.TabIndex = 12;
@@ -154,7 +154,7 @@
             // btnConfirmBooking
             // 
             this.btnConfirmBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmBooking.Location = new System.Drawing.Point(473, 502);
+            this.btnConfirmBooking.Location = new System.Drawing.Point(522, 504);
             this.btnConfirmBooking.Name = "btnConfirmBooking";
             this.btnConfirmBooking.Size = new System.Drawing.Size(115, 42);
             this.btnConfirmBooking.TabIndex = 14;
@@ -164,7 +164,7 @@
             // btnCancelBooking
             // 
             this.btnCancelBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelBooking.Location = new System.Drawing.Point(239, 502);
+            this.btnCancelBooking.Location = new System.Drawing.Point(288, 504);
             this.btnCancelBooking.Name = "btnCancelBooking";
             this.btnCancelBooking.Size = new System.Drawing.Size(115, 42);
             this.btnCancelBooking.TabIndex = 15;
@@ -174,7 +174,7 @@
             // 
             // mtbCardNumber
             // 
-            this.mtbCardNumber.Location = new System.Drawing.Point(568, 198);
+            this.mtbCardNumber.Location = new System.Drawing.Point(611, 200);
             this.mtbCardNumber.Mask = "####-####-####-####";
             this.mtbCardNumber.Name = "mtbCardNumber";
             this.mtbCardNumber.PromptChar = ' ';
@@ -184,7 +184,7 @@
             // 
             // mtbExpiryDate
             // 
-            this.mtbExpiryDate.Location = new System.Drawing.Point(568, 269);
+            this.mtbExpiryDate.Location = new System.Drawing.Point(611, 273);
             this.mtbExpiryDate.Mask = "00/0000";
             this.mtbExpiryDate.Name = "mtbExpiryDate";
             this.mtbExpiryDate.Size = new System.Drawing.Size(165, 20);
@@ -194,7 +194,7 @@
             // 
             // mtbCVV
             // 
-            this.mtbCVV.Location = new System.Drawing.Point(568, 341);
+            this.mtbCVV.Location = new System.Drawing.Point(611, 345);
             this.mtbCVV.Mask = "000";
             this.mtbCVV.Name = "mtbCVV";
             this.mtbCVV.PromptChar = ' ';

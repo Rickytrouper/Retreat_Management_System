@@ -3,15 +3,17 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
-using Retreat_Management_System;
 using System.Data.Entity.Validation;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace Retreat_Management_System
 {
     public partial class Reports : Form
     {
         private Retreat_Management_DBEntities dbContext;
-        private int currentAdminID; 
+        private int currentAdminID;
         private AdminActionService adminActionService;
 
         // Constructor that accepts adminID
@@ -33,11 +35,6 @@ namespace Retreat_Management_System
             cbReportType.Items.Add("User Report");
             cbReportType.Items.Add("Retreat Report");
             cbReportType.SelectedIndex = 0; // Default to the first type
-        }
-
-        private void Reports_Load_1(object sender, EventArgs e)
-        {
-            LoadReportTypes();
         }
 
         private void btnGenerateReport_Click_1(object sender, EventArgs e)
@@ -68,23 +65,18 @@ namespace Retreat_Management_System
                 {
                     case "Booking Report":
                         GenerateBookingReport();
-                        
                         break;
                     case "Feedback Report":
                         GenerateFeedbackReport();
-                        
                         break;
                     case "Financial Report":
                         GenerateFinancialReport();
-                        
                         break;
                     case "User Report":
                         GenerateUserReport();
-                        
                         break;
                     case "Retreat Report":
                         GenerateRetreatReport();
-                        
                         break;
                     default:
                         MessageBox.Show("Invalid report type selected.");
@@ -95,7 +87,6 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show($"Argument error: {argEx.Message}", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void GenerateBookingReport()
@@ -245,7 +236,6 @@ namespace Retreat_Management_System
                     dgvReport.Columns["Retreat Name"].Width = 150; // Set width for Retreat Name column
                     dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto size all columns
                     dgvReport.AllowUserToResizeColumns = true; // Allow user to resize columns
-
                 }
                 else
                 {
@@ -299,7 +289,6 @@ namespace Retreat_Management_System
                     dgvReport.Columns["Amount"].Width = 150; // Set width for Amount column
                     dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto size all columns
                     dgvReport.AllowUserToResizeColumns = true; // Allow user to resize columns
-
                 }
                 else
                 {
@@ -318,7 +307,6 @@ namespace Retreat_Management_System
 
         private void GenerateUserReport()
         {
-
             try
             {
                 // Retrieve users based on the selected date range
@@ -432,7 +420,6 @@ namespace Retreat_Management_System
                     dgvReport.Columns["End Date"].Width = 120; // Set width for End Date column
                     dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto size all columns
                     dgvReport.AllowUserToResizeColumns = true; // Allow user to resize columns
-
                 }
                 else
                 {
@@ -448,28 +435,86 @@ namespace Retreat_Management_System
                 MessageBox.Show($"Error generating retreat report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            AdminDash adminDash = new AdminDash(currentAdminID);
-            adminDash.Show();
-            this.Hide();
-        }
 
-             
         private void btnExport_Click(object sender, EventArgs e)
         {
             // Export the report to a file
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|Excel files (*.xlsx)|*.xlsx|Word files (*.docx)|*.docx";
+            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf"; // Limiting to PDF for simplicity
             saveFileDialog.Title = "Save Report";
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // similate exporting file 
                 string filePath = saveFileDialog.FileName;
-                string fileExtension = System.IO.Path.GetExtension(filePath);
+                string selectedReportType = cbReportType.SelectedItem.ToString();
 
-                MessageBox.Show("Report exported successfully!");
-                
+                try
+                {
+                    ExportToPdf(filePath, selectedReportType);
+                    MessageBox.Show("Report exported successfully!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error exporting report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ExportToPdf(string filePath, string reportType)
+        {
+            Document document = new Document();
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
+                document.Open();
+
+                // Add report title
+                Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
+                Paragraph title = new Paragraph($"{reportType} Report", titleFont);
+                title.Alignment = Element.ALIGN_CENTER;
+                document.Add(title);
+
+                // Add date range
+                Font dateRangeFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+                Paragraph dateRange = new Paragraph($"Date Range: {dateTimePickerStartDate.Value.ToShortDateString()} - {dateTimePickerEndDate.Value.ToShortDateString()}", dateRangeFont);
+                dateRange.Alignment = Element.ALIGN_CENTER;
+                document.Add(dateRange);
+
+                // Add a blank line
+                document.Add(new Paragraph(" "));
+
+                // Create a PdfPTable from the DataGridView
+                PdfPTable pdfTable = new PdfPTable(dgvReport.ColumnCount);
+                pdfTable.WidthPercentage = 100;
+
+                // Add headers
+                Font headerFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+                foreach (DataGridViewColumn column in dgvReport.Columns)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, headerFont));
+                    pdfTable.AddCell(cell);
+                }
+
+                // Add data
+                Font cellFont = FontFactory.GetFont(FontFactory.HELVETICA, 8);
+                foreach (DataGridViewRow row in dgvReport.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        object cellValue = cell.Value;
+                        string cellText = cellValue != null ? cellValue.ToString() : string.Empty; // Handle null values
+
+                        PdfPCell pdfCell = new PdfPCell(new Phrase(cellText, cellFont));
+                        pdfTable.AddCell(pdfCell);
+                    }
+                }
+
+                // Add the table to the document
+                document.Add(pdfTable);
+            }
+            finally
+            {
+                document.Close();
             }
         }
 
@@ -482,6 +527,10 @@ namespace Retreat_Management_System
             dgvReport.DataSource = null; // Clear the DataGridView
         }
 
-        
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            // Close the current form
+            this.Close();
+        }
     }
 }

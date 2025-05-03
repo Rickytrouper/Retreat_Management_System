@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Data.Entity.Validation;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
     public partial class AddRetreat : Form
     {
-        private Retreat selectedRetreat;
+        private readonly Retreat selectedRetreat;
+        private readonly int currentUserID; // Store the current user's ID
+        private string imageBase64String; // Store the image as a Base64 string
 
-        public AddRetreat(Retreat selectedRetreat)
+        public AddRetreat(Retreat selectedRetreat, int userID) // Pass the user ID
         {
             InitializeComponent();
             this.selectedRetreat = selectedRetreat;
+            this.currentUserID = userID; // Store the user ID
             LoadRetreatData(); // Load data if editing an existing retreat
         }
 
@@ -48,7 +53,34 @@ namespace Retreat_Management_System
                 }
 
                 // Load image if applicable
-                // pictureBox.Image = LoadImage(selectedRetreat.ImageURL); // Implement this method to load the image
+                if (!string.IsNullOrEmpty(selectedRetreat.ImageURL))
+                {
+                    try
+                    {
+                        // Set the decoded image into the PictureBox
+                        byte[] imageBytes = Convert.FromBase64String(selectedRetreat.ImageURL);
+
+                        // Convert the byte array into an Image object
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            Image retreatImage = Image.FromStream(ms);
+
+                            // Set the decoded image into the PictureBox
+                            pictureBox.Image = retreatImage;
+                            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                        }
+                    }
+                    catch (FormatException ex)
+                    {
+                        // Handle error if base64 string is invalid
+                        MessageBox.Show("Invalid image format: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    // If no image, display
+                    pictureBox.Image = null;  //set a default image
+                }
             }
         }
 
@@ -63,36 +95,34 @@ namespace Retreat_Management_System
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFile = openFileDialog.FileName;
-                // Display selected file name or preview the image
-                // pictureBox.Image = Image.FromFile(selectedFile); // Assuming you have a PictureBox to show the image
+
+                try
+                {
+                    // Load the image from the file
+                    Image image = Image.FromFile(selectedFile);
+
+                    // Convert the image to a Base64 string
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        image.Save(ms, image.RawFormat);
+                        byte[] imageBytes = ms.ToArray();
+                        imageBase64String = Convert.ToBase64String(imageBytes);
+                    }
+
+                    // Display the image in the PictureBox
+                    pictureBox.Image = image;
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading image: " + ex.Message);
+                }
             }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            var userService = new UserService();
-            int userId = userService.GetCurrentUserId(); // Get the current user ID
-            string userRole = CurrentUser.Role; // Get the current user's role
-
-            Form dashboardForm;
-
-            // Create the appropriate dashboard based on the user's role
-            if (userRole == "Admin")
-            {
-                dashboardForm = new AdminDash(userId); // Pass the user ID
-            }
-            else if (userRole == "Organizer")
-            {
-                dashboardForm = new OrganizerDash(userId); // Pass the user ID
-            }
-            else
-            {
-                MessageBox.Show("User role not recognized.");
-                return;
-            }
-
-            // Show the appropriate dashboard and close the current form
-            dashboardForm.Show();
+            // Close the current form
             this.Close();
         }
 
@@ -119,9 +149,6 @@ namespace Retreat_Management_System
                 return;
             }
 
-            var userService = new UserService();
-            int organizerID = userService.GetCurrentUserId(); // Get current user ID
-
             using (var dbContext = new Retreat_Management_DBEntities())
             {
                 if (selectedRetreat != null)
@@ -138,8 +165,7 @@ namespace Retreat_Management_System
                         retreatToUpdate.Price = price;
                         retreatToUpdate.Capacity = capacity;
                         retreatToUpdate.LastUpdated = DateTime.Now; // Update last modified date
-                                                                    // If you have an image URL, update it as well
-                                                                    // retreatToUpdate.ImageURL = "your_image_path"; // Update this if applicable
+                        retreatToUpdate.ImageURL = imageBase64String; // Update the image
                     }
                     else
                     {
@@ -159,9 +185,10 @@ namespace Retreat_Management_System
                         EndDate = endDate,
                         Price = price,
                         Capacity = capacity,
-                        ImageURL = "your_image_path", // Set the image URL if applicable
+                        ImageURL = imageBase64String, // Set the image
                         ContactInfo = "Contact Information", // Set as needed
-                        OrganizerID = organizerID, // Use the current user's ID (either organizer or admin)
+                        CreatedBy = currentUserID, // Set the CreatedBy user ID
+                        OrganizerID = currentUserID, // Assuming the current user is the organizer
                         DateCreated = DateTime.Now,
                         LastUpdated = DateTime.Now
                     };
@@ -174,6 +201,7 @@ namespace Retreat_Management_System
                 {
                     dbContext.SaveChanges(); // Save changes to the database
                     MessageBox.Show(selectedRetreat != null ? "Retreat updated successfully." : "Retreat saved successfully.");
+                    this.Close(); // Close the AddRetreat form after saving
                 }
                 catch (DbEntityValidationException dbEx)
                 {
@@ -204,8 +232,7 @@ namespace Retreat_Management_System
             numCapacity.Value = 0; // Reset numeric input
             dtpStartDate.Value = DateTime.Now; // Reset to current date
             dtpEndDate.Value = DateTime.Now; // Reset to current date
-            // Reset image preview if applicable
-            // pictureBox.Image = null; // Assuming you have a PictureBox to show the image
+            pictureBox.Image = null; // Reset image preview
         }
     }
 }

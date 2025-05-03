@@ -4,26 +4,27 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters;
+
 
 namespace Retreat_Management_System
 {
     public partial class UserDash : Form
     {
-        // Declare the adapter
-        private readonly ReservationDataTableAdapter reservationTableAdapter;
+        
         private readonly int currentUserId;
+
 
         // Store original values for cancel operation.
         private string originalUsername;
         private string originalEmail;
         private string originalContactInfo;
 
-        public UserDash(int userId) // user ID is passed as a parameter
+        public UserDash(int userId) // user ID  passed as a parameter
         {
             InitializeComponent();
             currentUserId = userId; // Set the current user ID
-            reservationTableAdapter = new ReservationDataTableAdapter(); // Initialize the table adapter
+                                    //reservationTableAdapter 
+            this.FormClosed += UserDash_FormClosed;
         }
 
         private void UserDash_Load(object sender, EventArgs e)
@@ -71,7 +72,6 @@ namespace Retreat_Management_System
             }
             else
             {
-
                 lbProfileError.Text = "Profile picture not found."; // Set the error message
                 lbProfileError.ForeColor = Color.Red; // Change text color to red
                 lbProfileError.Visible = true; // Show the error label
@@ -204,30 +204,52 @@ namespace Retreat_Management_System
         {
             try
             {
-                // Fill the DataTable using the adapter
-                reservationTableAdapter.Fill(retreat_Management_DBDataSet2.ReservationDataTable);
-
-                // Check if the DataTable is not empty
-                if (retreat_Management_DBDataSet2.ReservationDataTable.Rows.Count == 0)
+                using (var context = new Retreat_Management_DBEntities())
                 {
-                    MessageBox.Show("No reservations found in the database.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+                    // Retrieve reservations for the current user using lambda expressions
+                    var reservations = context.Bookings
+                        .Join(context.Payments,
+                            booking => booking.BookingID,
+                            payment => payment.BookingID,
+                            (booking, payment) => new { booking, payment })
+                        .Join(context.Retreats,
+                            bp => bp.booking.RetreatID,
+                            retreat => retreat.RetreatID,
+                            (bp, retreat) => new { bp.booking, bp.payment, retreat })
+                        .Join(context.Users,
+                            bpr => bpr.booking.UserID,
+                            user => user.UserID,
+                            (bpr, user) => new
+                            {
+                                BookingID = bpr.booking.BookingID,
+                                BookingDate = bpr.booking.BookingDate,
+                                Status = bpr.booking.Status,
+                                PaymentStatus = bpr.booking.PaymentStatus,
+                                Amount = bpr.payment.Amount,
+                                PaymentDate = bpr.payment.PaymentDate,
+                                RetreatName = bpr.retreat.RetreatName,
+                                Location = bpr.retreat.Location,
+                                StartDate = bpr.retreat.StartDate,
+                                EndDate = bpr.retreat.EndDate,
+                                Price = bpr.retreat.Price,
+                                ContactInfo = bpr.retreat.ContactInfo,
+                                Username = user.Username,
+                                UserID = user.UserID // Use user.UserID here
+                            })
+                        .Where(result => result.UserID == currentUserId) // Filter by current user's ID
+                        .ToList();
 
-                // Create a DataView for filtering
-                DataView dataView = new DataView(retreat_Management_DBDataSet2.ReservationDataTable);
-                dataView.RowFilter = $"UserID = {currentUserId}"; // Filter by UserID
-
-                // Check if there are any filtered results
-                if (dataView.Count > 0)
-                {
-                    // Set the filtered data as the data source for the DataGridView
-                    dataGridViewReservations.DataSource = dataView;
-                }
-                else
-                {
-                    MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dataGridViewReservations.DataSource = null; // Clear the DataGridView if no reservations
+                    // Check if there are any reservations
+                    if (reservations.Count > 0)
+                    {
+                        // Bind the reservations to the DataGridView
+                        dataGridViewReservations.DataSource = reservations;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have no reservations.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridViewReservations.DataSource = null; // Clear the DataGridView
+                    }
                 }
             }
             catch (Exception ex)
@@ -238,8 +260,8 @@ namespace Retreat_Management_System
 
         private void menuItemLogout_Click(object sender, EventArgs e)
         {
-            // Close the current form
-            this.Close();
+            // Close the MDI parent form (which will close all child forms)
+            this.MdiParent.Close();
 
             // Open the LoginPage form
             LoginPage loginPage = new LoginPage();
@@ -248,20 +270,40 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
+            // Hide the UserDash form
+            this.Hide();
+
             // Open the RetreatDetails form with the current user ID
             lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId); // Pass the userId
+            retreatDetails.MdiParent = this.MdiParent;
+            // Hide the UserDash form
+            this.Hide();
             retreatDetails.Show();
-
-            // Close the UserDash form
-            this.Close();
         }
 
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
-            var aboutPage = new AboutPage(currentUserId); // Pass the user ID
-            aboutPage.Owner = this; // Set the owner to the current dashboard
-            aboutPage.Show(); // Show normally
-            this.Hide(); // Hide the current form
+            // Create a new AboutPage form
+            AboutPage aboutPage = new AboutPage(currentUserId);
+
+            // Set the MdiParent of the AboutPage to the same as the UserDash
+            aboutPage.MdiParent = this.MdiParent;
+
+            // Show the AboutPage
+            aboutPage.Show();
+        }
+
+        private void UserDash_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Show the LoginPage when this form is closed
+            LoginPage loginPage = new LoginPage();
+            loginPage.Show();
+        }
+
+        private void RetreatDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Show the UserDash form again
+            this.Show();
         }
     }
 }

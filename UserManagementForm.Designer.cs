@@ -66,10 +66,10 @@
             // lbUserManagement
             // 
             this.lbUserManagement.AutoSize = true;
-            this.lbUserManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserManagement.Location = new System.Drawing.Point(268, 32);
+            this.lbUserManagement.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserManagement.Location = new System.Drawing.Point(364, 46);
             this.lbUserManagement.Name = "lbUserManagement";
-            this.lbUserManagement.Size = new System.Drawing.Size(251, 31);
+            this.lbUserManagement.Size = new System.Drawing.Size(241, 32);
             this.lbUserManagement.TabIndex = 0;
             this.lbUserManagement.Text = "User Management";
             // 
@@ -263,7 +263,7 @@
             // userBindingSource
             // 
             this.userBindingSource.DataMember = "User";
-            this.userBindingSource.DataSource = this.retreat_Management_DB_UserInfo;           
+            this.userBindingSource.DataSource = this.retreat_Management_DB_UserInfo;
             // 
             // retreat_Management_DB_UserInfo
             // 

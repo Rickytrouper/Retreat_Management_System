@@ -107,10 +107,7 @@ namespace Retreat_Management_System
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            AdminDash adminDash = new AdminDash(currentAdminID); // Pass the currentAdminID
-            adminDash.Show();
-            this.Close(); // Close the current form
+            this.Close(); // Close the current form, returning to AdminDash
         }
-
     }
 }

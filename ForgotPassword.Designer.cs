@@ -83,10 +83,10 @@
             // ldRestPassword
             // 
             this.ldRestPassword.AutoSize = true;
-            this.ldRestPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ldRestPassword.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldRestPassword.Location = new System.Drawing.Point(311, 160);
             this.ldRestPassword.Name = "ldRestPassword";
-            this.ldRestPassword.Size = new System.Drawing.Size(159, 24);
+            this.ldRestPassword.Size = new System.Drawing.Size(215, 32);
             this.ldRestPassword.TabIndex = 5;
             this.ldRestPassword.Text = "Reset Password";
             // 

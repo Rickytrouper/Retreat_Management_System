@@ -54,10 +54,10 @@
             // lbWelcomeMessage
             // 
             this.lbWelcomeMessage.AutoSize = true;
-            this.lbWelcomeMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWelcomeMessage.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWelcomeMessage.Location = new System.Drawing.Point(355, 49);
             this.lbWelcomeMessage.Name = "lbWelcomeMessage";
-            this.lbWelcomeMessage.Size = new System.Drawing.Size(258, 31);
+            this.lbWelcomeMessage.Size = new System.Drawing.Size(244, 32);
             this.lbWelcomeMessage.TabIndex = 0;
             this.lbWelcomeMessage.Text = "Welcome Message";
             // 
@@ -68,7 +68,7 @@
             this.groupBoxRetreatManament.Controls.Add(this.btnEditRetreat);
             this.groupBoxRetreatManament.Controls.Add(this.btnAddRetreat);
             this.groupBoxRetreatManament.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxRetreatManament.Location = new System.Drawing.Point(57, 136);
+            this.groupBoxRetreatManament.Location = new System.Drawing.Point(86, 136);
             this.groupBoxRetreatManament.Name = "groupBoxRetreatManament";
             this.groupBoxRetreatManament.Size = new System.Drawing.Size(399, 162);
             this.groupBoxRetreatManament.TabIndex = 1;
@@ -118,7 +118,7 @@
             this.groupBoxUserManagement.Controls.Add(this.lbManageUsers);
             this.groupBoxUserManagement.Controls.Add(this.btnManageUsers);
             this.groupBoxUserManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxUserManagement.Location = new System.Drawing.Point(535, 136);
+            this.groupBoxUserManagement.Location = new System.Drawing.Point(564, 136);
             this.groupBoxUserManagement.Name = "groupBoxUserManagement";
             this.groupBoxUserManagement.Size = new System.Drawing.Size(308, 162);
             this.groupBoxUserManagement.TabIndex = 2;
@@ -149,7 +149,7 @@
             this.groupBoxReports.Controls.Add(this.lbGenerateReports);
             this.groupBoxReports.Controls.Add(this.btnGenerateReports);
             this.groupBoxReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxReports.Location = new System.Drawing.Point(68, 380);
+            this.groupBoxReports.Location = new System.Drawing.Point(97, 380);
             this.groupBoxReports.Name = "groupBoxReports";
             this.groupBoxReports.Size = new System.Drawing.Size(332, 117);
             this.groupBoxReports.TabIndex = 3;

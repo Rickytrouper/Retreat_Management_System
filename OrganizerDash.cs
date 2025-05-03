@@ -16,6 +16,8 @@ namespace Retreat_Management_System
             InitializeComponent();
             this.organizerID = id; // Store the organizer ID
             userService = new UserService(); // Initialize the UserService
+            // Subscribe to the FormClosed event
+            this.FormClosed += OrganizerDash_FormClosed;
         }
 
         private void OrganizerDash_Load(object sender, EventArgs e)
@@ -57,13 +59,10 @@ namespace Retreat_Management_System
             // Update the organizer data
             UpdateOrganizerData(email, firstName, lastName, phoneNumber, companyName, contact);
 
-
             // Open the AddRetreat form
-            AddRetreat addRetreatForm = new AddRetreat(null); // Create an instance of AddRetreat
+            AddRetreat addRetreatForm = new AddRetreat(null, organizerID); // Create an instance of AddRetreat
+            addRetreatForm.MdiParent = this.MdiParent;
             addRetreatForm.Show(); // Show the form
-
-            // Close the current form
-            this.Hide();
         }
 
         private void UpdateOrganizerData(string email, string firstName, string lastName, string phoneNumber, string companyName, string contact)
@@ -160,17 +159,31 @@ namespace Retreat_Management_System
         }
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var loginPage = new LoginPage();
+            // Close the MDI parent form (which will close all child forms)
+            this.MdiParent.Close();
+
+            // Open the LoginPage form
+            LoginPage loginPage = new LoginPage();
             loginPage.Show();
-            this.Close(); // Close the current form
         }
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
-            var aboutPage = new AboutPage(organizerID); // Pass the organizer ID
-            aboutPage.Owner = this; // Set the owner to the current dashboard
-            aboutPage.Show(); // Show normally
-            this.Hide(); // Hide the current form
+            // Create a new AboutPage form
+            AboutPage aboutPage = new AboutPage(organizerID);
+
+            // Set the MdiParent of the AboutPage to the same as the OrganizerDash
+            aboutPage.MdiParent = this.MdiParent;
+
+            // Show the AboutPage
+            aboutPage.Show();
+        }
+
+        private void OrganizerDash_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Show the LoginPage when this form is closed
+            LoginPage loginPage = new LoginPage();
+            loginPage.Show();
         }
     }
 }

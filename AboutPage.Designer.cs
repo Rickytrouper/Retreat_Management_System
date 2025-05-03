@@ -44,20 +44,20 @@
             // lbTitle
             // 
             this.lbTitle.AutoSize = true;
-            this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.Location = new System.Drawing.Point(291, 37);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(375, 31);
+            this.lbTitle.Size = new System.Drawing.Size(359, 32);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Retreat Managment System";
             // 
             // lbVersion
             // 
             this.lbVersion.AutoSize = true;
-            this.lbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVersion.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVersion.Location = new System.Drawing.Point(401, 77);
             this.lbVersion.Name = "lbVersion";
-            this.lbVersion.Size = new System.Drawing.Size(152, 25);
+            this.lbVersion.Size = new System.Drawing.Size(188, 32);
             this.lbVersion.TabIndex = 1;
             this.lbVersion.Text = "Version 1.0.0";
             // 
@@ -93,7 +93,7 @@
             // MenuItemLogout
             // 
             this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
+            this.MenuItemLogout.Size = new System.Drawing.Size(180, 22);
             this.MenuItemLogout.Text = "Logout";
             this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
             // 
@@ -108,7 +108,7 @@
             // MenuItemAbout
             // 
             this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
+            this.MenuItemAbout.Size = new System.Drawing.Size(180, 22);
             this.MenuItemAbout.Text = "About";
             // 
             // richTextBox1

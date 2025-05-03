@@ -8,9 +8,9 @@ namespace Retreat_Management_System
     public partial class BookingPage : Form
     {
         private readonly Retreat_Management_DBEntities db;
-        private int currentUserId; // store the user ID
-        private int? currentRetreatId; //  store the retreat ID
-        private decimal paymentAmount; // store the payment amount
+        private readonly int currentUserId; // store the user ID
+        private readonly int? currentRetreatId; //  store the retreat ID
+        private readonly decimal paymentAmount; // store the payment amount
 
 
         public BookingPage(int userId, int retreatId, decimal amount) // Constructor accepting userId and retreatId
@@ -50,10 +50,10 @@ namespace Retreat_Management_System
                 mtb.Select(0, 0);
             };
 
-            
+
             mtb.Click += (s, args) =>
             {
-               
+
                 if (!mtb.MaskFull)
                 {
                     mtb.Select(0, 0);
@@ -115,7 +115,7 @@ namespace Retreat_Management_System
                 CardNumber = cardNumber,
                 ExpiryDate = DateTime.ParseExact(expiry, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(1).AddMonths(-1),
                 CVV = cvv,
-                PaymentStatus = "Paid" 
+                PaymentStatus = "Paid"
             };
 
             // Start a transaction
@@ -136,31 +136,28 @@ namespace Retreat_Management_System
                         Status = "Successful",
                         TransactionID = GenerateTransactionID(),
                         BookingID = booking.BookingID // Set the BookingID after saving the booking
-                    };                 
+                    };
 
-                // Save the payment
-                db.Payments.Add(payment);
+                    // Save the payment
+                    db.Payments.Add(payment);
                     db.SaveChanges(); // Save the payment record
 
                     // Commit the transaction
                     transaction.Commit();
                     MessageBox.Show("Booking and payment completed successfully.");
 
-
-                    // Navigate back to UserDash
-                    var userDash = new UserDash(currentUserId); 
-                    this.Hide(); // Hide the current form
-                    userDash.Show(); // Show the UserDash form
-
-
+                    // Close the BookingPage
+                    this.Close();
                 }
                 catch (DbUpdateException dbEx)
                 {
                     MessageBox.Show($"An error occurred while saving your booking: {dbEx.InnerException?.Message}");
+                    transaction.Rollback(); // Rollback the transaction in case of error
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                    transaction.Rollback(); // Rollback the transaction in case of error
                 }
             }
         }
@@ -198,7 +195,7 @@ namespace Retreat_Management_System
         private string GenerateTransactionID()
         {
             // logic to generate a unique transaction ID
-            return Guid.NewGuid().ToString(); 
+            return Guid.NewGuid().ToString();
         }
 
         private void btnCancelBooking_Click(object sender, EventArgs e)
@@ -214,11 +211,9 @@ namespace Retreat_Management_System
                 mtbCVV.Clear();
                 txtRetreatName.Clear();
                 MessageBox.Show("Booking canceled.");
-                this.Hide();
 
-                // Pass the userId to RetreatDetails
-                lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId);
-                retreatDetails.Show();
+                // Close the BookingPage
+                this.Close();
             }
         }
     }
