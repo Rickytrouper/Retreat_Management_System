@@ -13,13 +13,13 @@ namespace Retreat_Management_System
             InitializeComponent();
             currentAdminID = adminID; // Initialize currentAdminID
             adminActionService = new AdminActionService(); // Initialize the logging service
-                                                           // Subscribe to the FormClosed event
+            // Subscribe to the FormClosed event
             this.FormClosed += AdminDash_FormClosed;
         }
 
         public void SetWelcomeMessage(string username)
         {
-            // Welcome  message
+            // Welcome message
             lbWelcomeMessage.Text = $"Welcome, {username}!";
         }
 
@@ -37,20 +37,8 @@ namespace Retreat_Management_System
         {
             // Create a new AboutPage form
             AboutPage aboutPage = new AboutPage(currentAdminID);
-
-            // Set the MdiParent of the AboutPage to the same as the AdminDash
-            aboutPage.MdiParent = this.MdiParent;
-
-            // Show the AboutPage
-            aboutPage.Show();
-        }
-
-        private void btnAddRetreat_Click(object sender, EventArgs e)
-        {
-            // Open the AddRetreat form
-            AddRetreat addRetreatForm = new AddRetreat(null, currentAdminID); // Create an instance of AddRetreat
-            addRetreatForm.MdiParent = this.MdiParent;
-            addRetreatForm.Show(); // Show the form
+            aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
+            aboutPage.Show(); // Show the AboutPage
         }
 
         private void btnEditRetreat_Click(object sender, EventArgs e)
@@ -58,7 +46,7 @@ namespace Retreat_Management_System
             // Open the EditRetreat form
             EditRetreats editRetreatsForm = new EditRetreats(currentAdminID); // Pass adminID only
             editRetreatsForm.MdiParent = this.MdiParent;
-            editRetreatsForm.Show();
+            editRetreatsForm.Show(); // Show the form
         }
 
         private void btnGenerateReports_Click(object sender, EventArgs e)
@@ -95,13 +83,12 @@ namespace Retreat_Management_System
                 MessageBox.Show("Error: " + ex.Message); // Handle other errors
             }
         }
+
         private void AdminDash_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Show the LoginPage when this form is closed
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
         }
-
-
     }
 }

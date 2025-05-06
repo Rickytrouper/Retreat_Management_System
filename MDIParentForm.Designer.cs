@@ -99,7 +99,7 @@
             this.tileHorizontalToolStripMenuItem.Name = "tileHorizontalToolStripMenuItem";
             this.tileHorizontalToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.tileHorizontalToolStripMenuItem.Text = "Tile Horizantal";
-            this.tileHorizontalToolStripMenuItem.Click += new System.EventHandler(this.tileHorizontalToolStripMenuItem_Click_1);
+ //           this.tileHorizontalToolStripMenuItem.Click += new System.EventHandler(this.tileHorizontalToolStripMenuItem_Click_1);
             // 
             // tileVerticalToolStripMenuItem
             // 

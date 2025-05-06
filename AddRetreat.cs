@@ -2,6 +2,7 @@
 using System.Data.Entity.Validation;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
@@ -9,14 +10,16 @@ namespace Retreat_Management_System
     public partial class AddRetreat : Form
     {
         private readonly Retreat selectedRetreat;
-        private readonly int currentUserID; // Store the current user's ID
+        private readonly int organizerID; // Store the organizer's ID
+        private readonly int createdByUserID; // Store the current user's ID
         private string imageBase64String; // Store the image as a Base64 string
 
-        public AddRetreat(Retreat selectedRetreat, int userID) // Pass the user ID
+        public AddRetreat(Retreat selectedRetreat, int organizerID, int createdByUserID) // Pass organizerID and createdByUserID
         {
             InitializeComponent();
             this.selectedRetreat = selectedRetreat;
-            this.currentUserID = userID; // Store the user ID
+            this.organizerID = organizerID; // Store the organizer ID
+            this.createdByUserID = createdByUserID; // Store the user ID
             LoadRetreatData(); // Load data if editing an existing retreat
         }
 
@@ -59,27 +62,21 @@ namespace Retreat_Management_System
                     {
                         // Set the decoded image into the PictureBox
                         byte[] imageBytes = Convert.FromBase64String(selectedRetreat.ImageURL);
-
-                        // Convert the byte array into an Image object
                         using (MemoryStream ms = new MemoryStream(imageBytes))
                         {
                             Image retreatImage = Image.FromStream(ms);
-
-                            // Set the decoded image into the PictureBox
                             pictureBox.Image = retreatImage;
                             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
                     }
                     catch (FormatException ex)
                     {
-                        // Handle error if base64 string is invalid
                         MessageBox.Show("Invalid image format: " + ex.Message);
                     }
                 }
                 else
                 {
-                    // If no image, display
-                    pictureBox.Image = null;  //set a default image
+                    pictureBox.Image = null;  // Set a default image
                 }
             }
         }
@@ -98,10 +95,7 @@ namespace Retreat_Management_System
 
                 try
                 {
-                    // Load the image from the file
                     Image image = Image.FromFile(selectedFile);
-
-                    // Convert the image to a Base64 string
                     using (MemoryStream ms = new MemoryStream())
                     {
                         image.Save(ms, image.RawFormat);
@@ -109,7 +103,6 @@ namespace Retreat_Management_System
                         imageBase64String = Convert.ToBase64String(imageBytes);
                     }
 
-                    // Display the image in the PictureBox
                     pictureBox.Image = image;
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
@@ -122,7 +115,6 @@ namespace Retreat_Management_System
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            // Close the current form
             this.Close();
         }
 
@@ -166,6 +158,8 @@ namespace Retreat_Management_System
                         retreatToUpdate.Capacity = capacity;
                         retreatToUpdate.LastUpdated = DateTime.Now; // Update last modified date
                         retreatToUpdate.ImageURL = imageBase64String; // Update the image
+                        retreatToUpdate.ContactInfo = "Contact Information"; // Update if needed
+                        retreatToUpdate.OrganizerID = organizerID; // Ensure this is set
                     }
                     else
                     {
@@ -187,8 +181,8 @@ namespace Retreat_Management_System
                         Capacity = capacity,
                         ImageURL = imageBase64String, // Set the image
                         ContactInfo = "Contact Information", // Set as needed
-                        CreatedBy = currentUserID, // Set the CreatedBy user ID
-                        OrganizerID = currentUserID, // Assuming the current user is the organizer
+                        CreatedBy = createdByUserID, // Use the current user's ID
+                        OrganizerID = organizerID, // Use the passed OrganizerID
                         DateCreated = DateTime.Now,
                         LastUpdated = DateTime.Now
                     };

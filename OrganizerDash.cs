@@ -10,11 +10,12 @@ namespace Retreat_Management_System
     {
         private int organizerID; // Store organizer ID
         private readonly UserService userService; // Service to handle user-related operations
+        private int currentUserID; // Store the current user's ID
 
-        public OrganizerDash(int id) // Constructor to accept the organizer ID
+        public OrganizerDash(int userID) // Constructor to accept the user ID
         {
             InitializeComponent();
-            this.organizerID = id; // Store the organizer ID
+            this.currentUserID = userID; // Store the user ID
             userService = new UserService(); // Initialize the UserService
             // Subscribe to the FormClosed event
             this.FormClosed += OrganizerDash_FormClosed;
@@ -22,45 +23,46 @@ namespace Retreat_Management_System
 
         private void OrganizerDash_Load(object sender, EventArgs e)
         {
-            var userDetails = userService.GetUserDetails(organizerID);
-
-            if (userDetails != null)
-            {
-                // Auto-fill organizer's full name using properties directly
-                txtOrganiserName.Text = $"{userDetails.FirstName} {userDetails.LastName}"; // Combine first and last names
-                txtEmailAddress.Text = userDetails.Email;
-            }
-            else
-            {
-                MessageBox.Show("User details not found.");
-            }
+            LoadOrganizerData();
         }
 
-        public void SetWelcome(string username)
+        private void LoadOrganizerData()
         {
-            // Welcome message
-            lbWelcome.Text = $"Welcome, {username}!";
+            using (var dbContext = new Retreat_Management_DBEntities())
+            {
+                // Get the current user's email
+                var user = dbContext.Users.FirstOrDefault(u => u.UserID == currentUserID);
+                if (user == null)
+                {
+                    MessageBox.Show("User not found.");
+                    return;
+                }
+
+                string currentEmail = user.Email; // Store the current user's email
+
+                // Check if the email exists in the Organizers table
+                var organizer = dbContext.Organizers.FirstOrDefault(o => o.Email == currentEmail);
+                if (organizer != null)
+                {
+                    // Organizer found, update the input fields
+                    txtOrganiserName.Text = $"{organizer.FirstName} {organizer.LastName}";
+                    txtEmailAddress.Text = organizer.Email;
+                    txtContactNumber.Text = organizer.PhoneNumber;
+                    txtCompanyName.Text = organizer.CompanyName;
+                    txtContactInfo.Text = organizer.ContactInfo;
+                    organizerID = organizer.OrganizerID; // Store the OrganizerID
+                }
+                else
+                {
+                    MessageBox.Show("The email address is not associated with an organizer profile.");
+                }
+            }
         }
 
         private void btnAddRetreats_Click(object sender, EventArgs e)
         {
-            // Capture the full name from the text fields
-            string fullName = txtOrganiserName.Text; // Assuming this is the full name
-            string email = txtEmailAddress.Text;
-            string phoneNumber = txtContactNumber.Text;
-            string companyName = txtCompanyName.Text;
-            string contact = txtContactInfo.Text; // Assuming there's a textbox for contact info
-
-            // Split the full name into first and last names
-            string[] nameParts = fullName.Split(new char[] { ' ' }, 2); // Split into first and last names
-            string firstName = nameParts.Length > 0 ? nameParts[0] : string.Empty; // First name
-            string lastName = nameParts.Length > 1 ? nameParts[1] : string.Empty; // Last name
-
-            // Update the organizer data
-            UpdateOrganizerData(email, firstName, lastName, phoneNumber, companyName, contact);
-
-            // Open the AddRetreat form
-            AddRetreat addRetreatForm = new AddRetreat(null, organizerID); // Create an instance of AddRetreat
+            // Open the AddRetreat form, passing organizerID and currentUserID
+            AddRetreat addRetreatForm = new AddRetreat(null, organizerID, currentUserID); // Pass organizerID and currentUserID
             addRetreatForm.MdiParent = this.MdiParent;
             addRetreatForm.Show(); // Show the form
         }
@@ -69,8 +71,8 @@ namespace Retreat_Management_System
         {
             using (var dbContext = new Retreat_Management_DBEntities())
             {
-                // Find the existing organizer by email
-                var organizer = dbContext.Organizers.FirstOrDefault(o => o.Email == email);
+                // Find the existing organizer by OrganizerID
+                var organizer = dbContext.Organizers.FirstOrDefault(o => o.OrganizerID == organizerID);
 
                 if (organizer != null)
                 {
@@ -80,6 +82,7 @@ namespace Retreat_Management_System
                     organizer.PhoneNumber = phoneNumber;
                     organizer.CompanyName = companyName;
                     organizer.ContactInfo = contact;
+                    organizer.UserID = currentUserID; // Update the UserID
 
                     // Save changes to the database
                     try
@@ -113,50 +116,11 @@ namespace Retreat_Management_System
                 }
                 else
                 {
-                    // Create new organizer entry if not found
-                    organizer = new Organizer
-                    {
-                        FirstName = firstName,
-                        LastName = lastName,
-                        Email = email,
-                        PhoneNumber = phoneNumber,
-                        CompanyName = companyName,
-                        ContactInfo = contact
-                    };
-                    dbContext.Organizers.Add(organizer);
-
-                    // Save changes to the database
-                    try
-                    {
-                        dbContext.SaveChanges();
-                        MessageBox.Show("New organizer created successfully.");
-                    }
-                    catch (DbEntityValidationException dbEx)
-                    {
-                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                MessageBox.Show($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                            }
-                        }
-                    }
-                    catch (DbUpdateException dbUpdateEx)
-                    {
-                        string errorMessage = "An error occurred while updating the database.";
-                        if (dbUpdateEx.InnerException != null && dbUpdateEx.InnerException.InnerException != null)
-                        {
-                            errorMessage += $"\nInner Exception: {dbUpdateEx.InnerException.InnerException.Message}";
-                        }
-                        MessageBox.Show(errorMessage);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"An unexpected error occurred: {ex.Message}");
-                    }
+                    MessageBox.Show("Organizer not found.");
                 }
             }
         }
+
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Close the MDI parent form (which will close all child forms)
@@ -171,12 +135,8 @@ namespace Retreat_Management_System
         {
             // Create a new AboutPage form
             AboutPage aboutPage = new AboutPage(organizerID);
-
-            // Set the MdiParent of the AboutPage to the same as the OrganizerDash
-            aboutPage.MdiParent = this.MdiParent;
-
-            // Show the AboutPage
-            aboutPage.Show();
+            aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
+            aboutPage.Show(); // Show the AboutPage
         }
 
         private void OrganizerDash_FormClosed(object sender, FormClosedEventArgs e)
@@ -184,6 +144,18 @@ namespace Retreat_Management_System
             // Show the LoginPage when this form is closed
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            // Show the LoginPage when this form is closed
+            LoginPage loginPage = new LoginPage();
+            loginPage.Show();
+
+            Hide();
+
+
+
         }
     }
 }

@@ -26,7 +26,9 @@ namespace Retreat_Management_System
         public string PhoneNumber { get; set; }
         public string CompanyName { get; set; }
         public string ContactInfo { get; set; }
+        public Nullable<int> UserID { get; set; }
     
         public virtual ICollection<Retreat> Retreats { get; set; }
+        public virtual User User { get; set; }
     }
 }

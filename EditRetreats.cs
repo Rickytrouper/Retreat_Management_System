@@ -61,7 +61,7 @@ namespace Retreat_Management_System
                 if (selectedRetreat != null)
                 {
                     // Open the AddRetreat form in edit mode, passing the selected retreat
-                    AddRetreat editForm = new AddRetreat(selectedRetreat, adminID);
+                    AddRetreat editForm = new AddRetreat(selectedRetreat, adminID, adminID);
                     editForm.MdiParent = this.MdiParent; // Set the MDI parent
                     editForm.FormClosed += (s, args) => LoadRetreatsData(); // Refresh data after closing
                     editForm.Show();

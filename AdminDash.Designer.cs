@@ -31,9 +31,7 @@
             this.lbWelcomeMessage = new System.Windows.Forms.Label();
             this.groupBoxRetreatManament = new System.Windows.Forms.GroupBox();
             this.lbEditRetreat = new System.Windows.Forms.Label();
-            this.lbAddRetreat = new System.Windows.Forms.Label();
             this.btnEditRetreat = new System.Windows.Forms.Button();
-            this.btnAddRetreat = new System.Windows.Forms.Button();
             this.groupBoxUserManagement = new System.Windows.Forms.GroupBox();
             this.lbManageUsers = new System.Windows.Forms.Label();
             this.btnManageUsers = new System.Windows.Forms.Button();
@@ -64,9 +62,7 @@
             // groupBoxRetreatManament
             // 
             this.groupBoxRetreatManament.Controls.Add(this.lbEditRetreat);
-            this.groupBoxRetreatManament.Controls.Add(this.lbAddRetreat);
             this.groupBoxRetreatManament.Controls.Add(this.btnEditRetreat);
-            this.groupBoxRetreatManament.Controls.Add(this.btnAddRetreat);
             this.groupBoxRetreatManament.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxRetreatManament.Location = new System.Drawing.Point(86, 136);
             this.groupBoxRetreatManament.Name = "groupBoxRetreatManament";
@@ -78,40 +74,21 @@
             // lbEditRetreat
             // 
             this.lbEditRetreat.AutoSize = true;
-            this.lbEditRetreat.Location = new System.Drawing.Point(226, 43);
+            this.lbEditRetreat.Location = new System.Drawing.Point(121, 57);
             this.lbEditRetreat.Name = "lbEditRetreat";
             this.lbEditRetreat.Size = new System.Drawing.Size(135, 16);
             this.lbEditRetreat.TabIndex = 3;
             this.lbEditRetreat.Text = "View / Edit Retreat";
             // 
-            // lbAddRetreat
-            // 
-            this.lbAddRetreat.AutoSize = true;
-            this.lbAddRetreat.Location = new System.Drawing.Point(29, 43);
-            this.lbAddRetreat.Name = "lbAddRetreat";
-            this.lbAddRetreat.Size = new System.Drawing.Size(90, 16);
-            this.lbAddRetreat.TabIndex = 2;
-            this.lbAddRetreat.Text = "Add Retreat";
-            // 
             // btnEditRetreat
             // 
-            this.btnEditRetreat.Location = new System.Drawing.Point(241, 71);
+            this.btnEditRetreat.Location = new System.Drawing.Point(136, 85);
             this.btnEditRetreat.Name = "btnEditRetreat";
             this.btnEditRetreat.Size = new System.Drawing.Size(102, 36);
             this.btnEditRetreat.TabIndex = 1;
             this.btnEditRetreat.Text = "Edit";
             this.btnEditRetreat.UseVisualStyleBackColor = true;
             this.btnEditRetreat.Click += new System.EventHandler(this.btnEditRetreat_Click);
-            // 
-            // btnAddRetreat
-            // 
-            this.btnAddRetreat.Location = new System.Drawing.Point(20, 71);
-            this.btnAddRetreat.Name = "btnAddRetreat";
-            this.btnAddRetreat.Size = new System.Drawing.Size(110, 36);
-            this.btnAddRetreat.TabIndex = 0;
-            this.btnAddRetreat.Text = "Add";
-            this.btnAddRetreat.UseVisualStyleBackColor = true;
-            this.btnAddRetreat.Click += new System.EventHandler(this.btnAddRetreat_Click);
             // 
             // groupBoxUserManagement
             // 
@@ -247,9 +224,7 @@
         private System.Windows.Forms.Label lbWelcomeMessage;
         private System.Windows.Forms.GroupBox groupBoxRetreatManament;
         private System.Windows.Forms.Button btnEditRetreat;
-        private System.Windows.Forms.Button btnAddRetreat;
         private System.Windows.Forms.Label lbEditRetreat;
-        private System.Windows.Forms.Label lbAddRetreat;
         private System.Windows.Forms.GroupBox groupBoxUserManagement;
         private System.Windows.Forms.Label lbManageUsers;
         private System.Windows.Forms.Button btnManageUsers;

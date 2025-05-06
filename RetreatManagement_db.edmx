@@ -64,6 +64,7 @@
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
           <Property Name="ContactInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -89,8 +90,8 @@
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Capacity" Type="int" Nullable="false" />
-          <Property Name="ImageURL" Type="nvarchar" MaxLength="255" />
-          <Property Name="ContactInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageURL" Type="nvarchar(max)" />
+          <Property Name="ContactInfo" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="OrganizerID" Type="int" />
           <Property Name="DateCreated" Type="datetime" />
@@ -207,15 +208,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Retreat__Organiz__0C85DE4D">
-          <End Role="Organizer" Type="Self.Organizer" Multiplicity="0..1" />
-          <End Role="Retreat" Type="Self.Retreat" Multiplicity="*" />
+        <Association Name="FK_Organizer_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Organizer" Type="Self.Organizer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Organizer">
-              <PropertyRef Name="OrganizerID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="Retreat">
-              <PropertyRef Name="OrganizerID" />
+            <Dependent Role="Organizer">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,9 +258,9 @@
             <End Role="User" EntitySet="User" />
             <End Role="Retreat" EntitySet="Retreat" />
           </AssociationSet>
-          <AssociationSet Name="FK__Retreat__Organiz__0C85DE4D" Association="Self.FK__Retreat__Organiz__0C85DE4D">
+          <AssociationSet Name="FK_Organizer_User" Association="Self.FK_Organizer_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Organizer" EntitySet="Organizer" />
-            <End Role="Retreat" EntitySet="Retreat" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -346,8 +347,8 @@
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Capacity" Type="Int32" Nullable="false" />
-          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="OrganizerID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
@@ -388,6 +389,7 @@
           <NavigationProperty Name="Notifications" Relationship="Self.FK__Notificat__UserI__245D67DE" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="Retreats" Relationship="Self.FK__Retreat__Created__0B91BA14" FromRole="User" ToRole="Retreat" />
           <Property Name="AccountStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Organizers" Relationship="Retreat_Management_DB.FK_Organizer_User" FromRole="User" ToRole="Organizer" />
         </EntityType>
         <Association Name="FK__AdminActi__Admin__2A164134">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -531,6 +533,10 @@
             <End Role="Organizer" EntitySet="Organizers" />
             <End Role="Retreat" EntitySet="Retreats" />
           </AssociationSet>
+          <AssociationSet Name="FK_Organizer_User" Association="Retreat_Management_DB.FK_Organizer_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Organizer" EntitySet="Organizers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Organizer">
           <Key>
@@ -544,6 +550,8 @@
           <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Retreats" Relationship="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D" FromRole="Organizer" ToRole="Retreat" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Retreat_Management_DB.FK_Organizer_User" FromRole="Organizer" ToRole="User" />
         </EntityType>
         <Association Name="FK__Retreat__Organiz__0C85DE4D">
           <End Type="Retreat_Management_DB.Organizer" Role="Organizer" Multiplicity="0..1" />
@@ -554,6 +562,18 @@
             </Principal>
             <Dependent Role="Retreat">
               <PropertyRef Name="OrganizerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organizer_User">
+          <End Type="Retreat_Management_DB.User" Role="User" Multiplicity="0..1" />
+          <End Type="Retreat_Management_DB.Organizer" Role="Organizer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Organizer">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -680,6 +700,7 @@
           <EntitySetMapping Name="Organizers">
             <EntityTypeMapping TypeName="Retreat_Management_DB.Organizer">
               <MappingFragment StoreEntitySet="Organizer">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />

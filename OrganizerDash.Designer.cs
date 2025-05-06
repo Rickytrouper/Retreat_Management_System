@@ -46,6 +46,7 @@
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.gbOrganiserInfo.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -231,11 +232,22 @@
             this.MenuItemAbout.Text = "About";
             this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Location = new System.Drawing.Point(218, 614);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(114, 34);
+            this.btnLogOut.TabIndex = 12;
+            this.btnLogOut.Text = "LogOut";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // OrganizerDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnAddRetreats);
             this.Controls.Add(this.gbOrganiserInfo);
             this.Controls.Add(this.lbWelcome);
@@ -273,5 +285,6 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
         private System.Windows.Forms.TextBox txtContactInfo;
         private System.Windows.Forms.Label lbContactInfo;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }

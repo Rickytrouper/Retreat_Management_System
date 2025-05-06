@@ -25,6 +25,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="Retreat_Management_DB.Organizer" Width="1.5" PointX="12.875" PointY="4" />
         <AssociationConnector Association="Retreat_Management_DB.FK__Retreat__Organiz__0C85DE4D" />
+        <AssociationConnector Association="Retreat_Management_DB.FK_Organizer_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
