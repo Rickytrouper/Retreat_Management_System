@@ -132,6 +132,9 @@ namespace Retreat_Management_System
             if (confirm == DialogResult.Yes)
             {
                 this.Close(); // Close the current form, returning to UserDash
+                UserDash userDash = new UserDash(currentUserId);              
+                userDash.Show();
+
             }
         }
     }
