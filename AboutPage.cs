@@ -38,7 +38,7 @@ namespace Retreat_Management_System
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            // Check the owner type and show the appropriate dashboard
+            // Check the owner of the dash and show the appropriate dashboard
             if (this.Owner is UserDash userDash)
             {
                 userDash.Show(); // Return to User Dashboard

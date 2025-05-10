@@ -7,7 +7,6 @@ namespace Retreat_Management_System
     {
         private readonly int currentUserID;
         private readonly string currentUserRole;
-        private readonly int currentAdminID;
 
         public MDIParentForm(int userID, string userRole)
         {
@@ -69,34 +68,10 @@ namespace Retreat_Management_System
             this.LayoutMdi(MdiLayout.TileHorizontal);
         }
 
-        private void userToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Open UserManagementForm
-            UserManagementForm userManagementForm = new UserManagementForm(currentAdminID); // Assuming currentAdminID is accessible in this scope
-            userManagementForm.MdiParent = this; // Set the MDI parent
-            userManagementForm.Show();
-        }
-
-        private void retreatsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Open EditRetreatsForm (assuming this is the name of your form)
-            EditRetreats editRetreatsForm = new EditRetreats(currentAdminID); // Instantiate the form
-            editRetreatsForm.MdiParent = this; // Set the MDI parent
-            editRetreatsForm.Show();
-        }
-
-        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Open ReportsForm (assuming this is the name of your form)
-            Reports reportsForm = new Reports(currentAdminID); // Instantiate the form
-            reportsForm.MdiParent = this; // Set the MDI parent
-            reportsForm.Show();
-        }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open AboutPage
-            AboutPage aboutPage = new AboutPage(currentAdminID); // Assuming currentAdminID is needed
+            AboutPage aboutPage = new AboutPage(currentUserID); // Use currentUserID
             aboutPage.MdiParent = this; // Set the MDI parent
             aboutPage.Show();
         }

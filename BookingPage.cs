@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
@@ -11,7 +12,6 @@ namespace Retreat_Management_System
         private readonly int currentUserId; // store the user ID
         private readonly int? currentRetreatId; //  store the retreat ID
         private readonly decimal paymentAmount; // store the payment amount
-
 
         public BookingPage(int userId, int retreatId, decimal amount) // Constructor accepting userId and retreatId
         {
@@ -42,18 +42,20 @@ namespace Retreat_Management_System
             txtEmail.Text = email; // Set the email in the textbox
         }
 
-        private void SetupMaskedInput(MaskedTextBox mtb)
+        private void SetupMaskedInput(MaskedTextBox mtb, string mask, string placeholder)
         {
+            mtb.Mask = mask;
+            mtb.Text = placeholder;
+            mtb.PromptChar = ' ';
+
             // move caret to the beginning on focus
             mtb.Enter += (s, args) =>
             {
                 mtb.Select(0, 0);
             };
 
-
             mtb.Click += (s, args) =>
             {
-
                 if (!mtb.MaskFull)
                 {
                     mtb.Select(0, 0);
@@ -63,13 +65,9 @@ namespace Retreat_Management_System
 
         private void BookingPage_Load(object sender, EventArgs e)
         {
-            SetupMaskedInput(mtbCardNumber);
-            SetupMaskedInput(mtbCVV);
-            SetupMaskedInput(mtbExpiryDate);
-
-            mtbCardNumber.PromptChar = ' ';
-            mtbCVV.PromptChar = ' ';
-            mtbExpiryDate.PromptChar = ' ';
+            SetupMaskedInput(mtbCardNumber, "####-####-####-####", "####-####-####-####");
+            SetupMaskedInput(mtbCVV, "###", "###");
+            SetupMaskedInput(mtbExpiryDate, "MM/yyyy", "MM/yyyy");
         }
 
         private void btnConfirmBooking_Click(object sender, EventArgs e)
@@ -102,8 +100,7 @@ namespace Retreat_Management_System
                 return;
             }
 
-
-            // Create the booking first
+            // Create the booking 
             var booking = new Booking
             {
                 UserID = currentUserId,
@@ -113,12 +110,12 @@ namespace Retreat_Management_System
                 UserName = username,
                 Email = email,
                 CardNumber = cardNumber,
-                ExpiryDate = DateTime.ParseExact(expiry, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(1).AddMonths(-1),
+                ExpiryDate = DateTime.ParseExact(expiry, "MM/yyyy", CultureInfo.InvariantCulture).AddDays(1).AddMonths(-1),
                 CVV = cvv,
                 PaymentStatus = "Paid"
             };
 
-            // Start a transaction
+            // Start  transaction
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
@@ -127,7 +124,7 @@ namespace Retreat_Management_System
                     db.Bookings.Add(booking);
                     db.SaveChanges(); // Save the booking
 
-                    // Create the payment record
+                    // Create payment record
                     var payment = new Payment
                     {
                         Amount = paymentAmount,
@@ -170,8 +167,8 @@ namespace Retreat_Management_System
             bool validExpiry = DateTime.TryParseExact(
                 expiry,
                 "MM/yyyy",
-                System.Globalization.CultureInfo.InvariantCulture,
-                System.Globalization.DateTimeStyles.None,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
                 out DateTime expDate
             );
 
@@ -187,7 +184,7 @@ namespace Retreat_Management_System
             }
             if (!validExpiry || !notExpired)
             {
-                MessageBox.Show("Invalid expiry date. Please ensure it is in MM/yyyy format and not expired.");
+                MessageBox.Show("Invalid expiry date. Please ensure it is in MM/YYYY format and not expired.");
             }
 
             return validCard && validCVV && validExpiry && notExpired; // Return the validation result

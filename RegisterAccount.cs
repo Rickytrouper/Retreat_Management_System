@@ -118,7 +118,7 @@ namespace Retreat_Management_System
                 LastLogin = null // User has not logged in yet
             };
 
-            // Check if the username already exists
+            // Checking  if the username already exists
             using (var dbContext = new Retreat_Management_DBEntities())
             {
                 var existingUser = dbContext.Users.FirstOrDefault(q => q.Username == username);

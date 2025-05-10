@@ -25,12 +25,7 @@ namespace Retreat_Management_System
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-            // Open the LoginPage form
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
-
-            // Close the MDI parent form (which will close all child forms)
-            this.MdiParent.Close();
+            LoginPage.PerformLogout(); // Call the static method 
         }
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
@@ -67,7 +62,7 @@ namespace Retreat_Management_System
             {
                 // Log the action of opening the user management form
                 adminActionService.LogAdminAction(currentAdminID, actionType, targetEntity, "Admin opened the user management form.");
-                // MessageBox.Show("Action logged successfully.");
+                
 
                 // Open UserManagementForm with the currentAdminID
                 UserManagementForm userManagementForm = new UserManagementForm(currentAdminID);
@@ -86,9 +81,7 @@ namespace Retreat_Management_System
 
         private void AdminDash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Show the LoginPage when this form is closed
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
+            // PerformLogout() use to reshow login page
         }
     }
 }

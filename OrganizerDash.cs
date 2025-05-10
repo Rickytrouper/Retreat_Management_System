@@ -30,7 +30,7 @@ namespace Retreat_Management_System
         {
             using (var dbContext = new Retreat_Management_DBEntities())
             {
-                // Get the current user's email
+                // Get the current user
                 var user = dbContext.Users.FirstOrDefault(u => u.UserID == currentUserID);
                 if (user == null)
                 {
@@ -38,13 +38,108 @@ namespace Retreat_Management_System
                     return;
                 }
 
-                string currentEmail = user.Email; // Store the current user's email
+                // Try to find an organizer by UserID first
+                var organizer = dbContext.Organizers.FirstOrDefault(o => o.UserID == currentUserID);
 
-                // Check if the email exists in the Organizers table
-                var organizer = dbContext.Organizers.FirstOrDefault(o => o.Email == currentEmail);
+                if (organizer == null)
+                {
+                    // If UserID is not found, try to find an organizer by Email
+                    organizer = dbContext.Organizers.FirstOrDefault(o => o.Email == user.Email);
+
+                    if (organizer != null)
+                    {
+                        // Organizer found by Email, update the UserID
+                        organizer.UserID = currentUserID;
+                        try
+                        {
+                            dbContext.SaveChanges();
+                            MessageBox.Show("Organizer found by email, UserID updated.");
+                        }
+                        catch (DbEntityValidationException dbEx)
+                        {
+                            foreach (var validationErrors in dbEx.EntityValidationErrors)
+                            {
+                                foreach (var validationError in validationErrors.ValidationErrors)
+                                {
+                                    MessageBox.Show($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                                }
+                            }
+                        }
+                        catch (DbUpdateException dbUpdateEx)
+                        {
+                            string errorMessage = "An error occurred while updating the database.";
+                            if (dbUpdateEx.InnerException != null && dbUpdateEx.InnerException.InnerException != null)
+                            {
+                                errorMessage += $"\nInner Exception: {dbUpdateEx.InnerException.InnerException.Message}";
+                            }
+                            MessageBox.Show(errorMessage);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                        }
+                    }
+                }
+
                 if (organizer != null)
                 {
-                    // Organizer found, update the input fields
+                    // Organizer found (either by UserID or Email), update missing data
+                    bool dataUpdated = false;
+
+                    if (string.IsNullOrEmpty(organizer.FirstName))
+                    {
+                        organizer.FirstName = user.FirstName;
+                        dataUpdated = true;
+                    }
+                    if (string.IsNullOrEmpty(organizer.LastName))
+                    {
+                        organizer.LastName = user.LastName;
+                        dataUpdated = true;
+                    }
+                    if (string.IsNullOrEmpty(organizer.Email))
+                    {
+                        organizer.Email = user.Email;
+                        dataUpdated = true;
+                    }
+                    if (string.IsNullOrEmpty(organizer.PhoneNumber))
+                    {
+                        organizer.PhoneNumber = user.ContactInfo;
+                        dataUpdated = true;
+                    }
+
+                    if (dataUpdated)
+                    {
+                        try
+                        {
+                            dbContext.SaveChanges();
+                            MessageBox.Show("Organizer information updated from user profile.");
+                        }
+                        catch (DbEntityValidationException dbEx)
+                        {
+                            foreach (var validationErrors in dbEx.EntityValidationErrors)
+                            {
+                                foreach (var validationError in validationErrors.ValidationErrors)
+                                {
+                                    MessageBox.Show($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                                }
+                            }
+                        }
+                        catch (DbUpdateException dbUpdateEx)
+                        {
+                            string errorMessage = "An error occurred while updating the database.";
+                            if (dbUpdateEx.InnerException != null && dbUpdateEx.InnerException.InnerException != null)
+                            {
+                                errorMessage += $"\nInner Exception: {dbUpdateEx.InnerException.InnerException.Message}";
+                            }
+                            MessageBox.Show(errorMessage);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                        }
+                    }
+
+                    // Load the data into the textboxes
                     txtOrganiserName.Text = $"{organizer.FirstName} {organizer.LastName}";
                     txtEmailAddress.Text = organizer.Email;
                     txtContactNumber.Text = organizer.PhoneNumber;
@@ -54,7 +149,56 @@ namespace Retreat_Management_System
                 }
                 else
                 {
-                    MessageBox.Show("The email address is not associated with an organizer profile.");
+                    // No organizer profile found (neither by UserID nor Email). Create a new one.
+                    Organizer newOrganizer = new Organizer
+                    {
+                        UserID = currentUserID,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        PhoneNumber = user.ContactInfo,
+                        CompanyName = "",
+                        ContactInfo = ""
+                    };
+
+                    dbContext.Organizers.Add(newOrganizer);
+
+                    try
+                    {
+                        dbContext.SaveChanges();
+                        organizerID = newOrganizer.OrganizerID;
+                        MessageBox.Show("New organizer profile created.");
+
+                        // Now load the data into the textboxes
+                        txtOrganiserName.Text = $"{newOrganizer.FirstName} {newOrganizer.LastName}";
+                        txtEmailAddress.Text = newOrganizer.Email;
+                        txtContactNumber.Text = newOrganizer.PhoneNumber;
+                        txtCompanyName.Text = newOrganizer.CompanyName;
+                        txtContactInfo.Text = newOrganizer.ContactInfo;
+                    }
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                MessageBox.Show($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                            }
+                        }
+                    }
+                    catch (DbUpdateException dbUpdateEx)
+                    {
+                        string errorMessage = "An error occurred while updating the database.";
+                        if (dbUpdateEx.InnerException != null && dbUpdateEx.InnerException.InnerException != null)
+                        {
+                            errorMessage += $"\nInner Exception: {dbUpdateEx.InnerException.InnerException.Message}";
+                        }
+                        MessageBox.Show(errorMessage);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                    }
                 }
             }
         }
@@ -123,12 +267,7 @@ namespace Retreat_Management_System
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Close the MDI parent form (which will close all child forms)
-            this.MdiParent.Close();
-
-            // Open the LoginPage form
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
+            LoginPage.PerformLogout(); // Call the static method directly
         }
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
@@ -141,21 +280,12 @@ namespace Retreat_Management_System
 
         private void OrganizerDash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Show the LoginPage when this form is closed
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
+            // Do nothing.  The PerformLogout() method handles showing the LoginPage.
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            // Show the LoginPage when this form is closed
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
-
-            Hide();
-
-
-
+            LoginPage.PerformLogout(); // Call the static method directly
         }
     }
 }

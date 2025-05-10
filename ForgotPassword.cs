@@ -11,7 +11,7 @@ namespace Retreat_Management_System
         public ForgotPassword()
         {
             InitializeComponent();
-            lbMessage.Visible = false; // Initially hide the message label
+            lbMessage.Visible = false; // Ihide the message label
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace Retreat_Management_System
                 return;
             }
 
-            // Validate email and simulate sending password reset
+            // Validate email and send password reset
             bool emailSentSuccess = ValidateAndSendPasswordReset(email);
             if (emailSentSuccess)
             {
@@ -87,7 +87,7 @@ namespace Retreat_Management_System
             }
         }        
 
-        // Event handler for the Cancel button
+        //  Cancel button
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close(); // Close the form

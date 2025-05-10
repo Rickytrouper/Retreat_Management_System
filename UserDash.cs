@@ -10,7 +10,7 @@ namespace Retreat_Management_System
 {
     public partial class UserDash : Form
     {
-        
+
         private readonly int currentUserId;
 
 
@@ -260,12 +260,7 @@ namespace Retreat_Management_System
 
         private void menuItemLogout_Click(object sender, EventArgs e)
         {
-            // Close the MDI parent form (which will close all child forms)
-            this.MdiParent.Close();
-
-            // Open the LoginPage form
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
+            LoginPage.PerformLogout(); // Call the static method directly
         }
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
@@ -295,9 +290,7 @@ namespace Retreat_Management_System
 
         private void UserDash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Show the LoginPage when this form is closed
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
+            // Do nothing.  The PerformLogout() method handles showing the LoginPage.
         }
 
         private void RetreatDetails_FormClosed(object sender, FormClosedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
@@ -46,8 +47,12 @@ namespace Retreat_Management_System
                 UserRole = validatedUser.Role;
                 UserName = validatedUser.Username;
 
-                DialogResult = DialogResult.OK;
-                Close();
+                // Create and show the MDIParentForm
+                MDIParentForm mdiParent = new MDIParentForm(UserID, UserRole);
+                mdiParent.Show();
+
+                // Hide the LoginPage instead of closing it
+                this.Hide();
             }
             else
             {
@@ -74,6 +79,36 @@ namespace Retreat_Management_System
             txtPassword.Text = string.Empty;
             lbErrorMessage.Text = string.Empty;
         }
-              
+
+        public static void PerformLogout()
+        {
+            // Find the active MDI parent (if it exists)
+            Form activeMdiParent = Application.OpenForms.OfType<Form>().FirstOrDefault(f => f.IsMdiContainer);
+
+            // Close all child forms
+            if (activeMdiParent != null)
+            {
+                foreach (Form childForm in activeMdiParent.MdiChildren)
+                {
+                    childForm.Close();
+                }
+
+                activeMdiParent.Close();
+            }
+
+            // Find the LoginPage (if it exists)
+            LoginPage loginPage = Application.OpenForms.OfType<LoginPage>().FirstOrDefault();
+
+            // Show the login page again
+            if (loginPage != null)
+            {
+                loginPage.Show();
+            }
+            else
+            {
+                LoginPage newLoginPage = new LoginPage();
+                newLoginPage.Show();
+            }
+        }
     }
 }

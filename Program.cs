@@ -14,22 +14,7 @@ namespace Retreat_Management_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            LoginPage loginForm = new LoginPage();
-            if (loginForm.ShowDialog() == DialogResult.OK)
-            {
-                // Get the user ID and role from the login form
-                int userID = loginForm.UserID;
-                string userRole = loginForm.UserRole;
-
-                // Launch the MDIParentForm, passing the UserID and Role
-                MDIParentForm mdiParent = new MDIParentForm(userID, userRole);
-                Application.Run(mdiParent);
-            }
-            else
-            {
-                // Login failed or was cancelled
-                Application.Exit();
-            }
+            Application.Run(new LoginPage()); // LoginPage is the main form
         }
     }
 }
