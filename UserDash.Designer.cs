@@ -473,6 +473,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.menuStripUserDash);
             this.Controls.Add(this.btnReview);
             this.Controls.Add(this.lbProfileError);
             this.Controls.Add(this.lbReservationDetails);
@@ -481,7 +482,6 @@
             this.Controls.Add(this.picbxProfile);
             this.Controls.Add(this.groupUserInformation);
             this.Controls.Add(this.lbWelcomeMessage);
-            this.Controls.Add(this.menuStripUserDash);
             this.MainMenuStrip = this.menuStripUserDash;
             this.Name = "UserDash";
             this.Text = "  User Dash";

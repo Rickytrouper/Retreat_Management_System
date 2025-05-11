@@ -115,7 +115,8 @@ namespace Retreat_Management_System
                 ProfilePicture = profilePicture,
                 ContactInfo = contactInfo,
                 DateCreated = DateTime.Now,
-                LastLogin = null // User has not logged in yet
+                LastLogin = null, // User has not logged in yet
+                AccountStatus = "Active" // Set the status to "Active"
             };
 
             // Checking  if the username already exists

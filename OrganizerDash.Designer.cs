@@ -41,14 +41,14 @@
             this.txtContactInfo = new System.Windows.Forms.TextBox();
             this.lbContactInfo = new System.Windows.Forms.Label();
             this.btnAddRetreats = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.gbOrganiserInfo.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbWelcome
@@ -191,16 +191,16 @@
             this.btnAddRetreats.UseVisualStyleBackColor = true;
             this.btnAddRetreats.Click += new System.EventHandler(this.btnAddRetreats_Click);
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemFile,
             this.MenuItemHelp});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(944, 24);
-            this.menuStrip1.TabIndex = 11;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(944, 24);
+            this.menuStrip.TabIndex = 11;
+            this.menuStrip.Text = "menuStrip";
             // 
             // MenuItemFile
             // 
@@ -213,7 +213,7 @@
             // MenuItemLogout
             // 
             this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
+            this.MenuItemLogout.Size = new System.Drawing.Size(180, 22);
             this.MenuItemLogout.Text = "Logout";
             this.MenuItemLogout.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -228,7 +228,7 @@
             // MenuItemAbout
             // 
             this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
+            this.MenuItemAbout.Size = new System.Drawing.Size(180, 22);
             this.MenuItemAbout.Text = "About";
             this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
@@ -247,19 +247,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnAddRetreats);
             this.Controls.Add(this.gbOrganiserInfo);
             this.Controls.Add(this.lbWelcome);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "OrganizerDash";
             this.Text = "Organizer Dash";
             this.Load += new System.EventHandler(this.OrganizerDash_Load);
             this.gbOrganiserInfo.ResumeLayout(false);
             this.gbOrganiserInfo.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +278,7 @@
         private System.Windows.Forms.Label lbCompanyName;
         private System.Windows.Forms.GroupBox gbOrganiserInfo;
         private System.Windows.Forms.Button btnAddRetreats;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
         private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
         private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;

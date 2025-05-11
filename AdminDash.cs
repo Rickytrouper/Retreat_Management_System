@@ -23,19 +23,6 @@ namespace Retreat_Management_System
             lbWelcomeMessage.Text = $"Welcome, {username}!";
         }
 
-        private void MenuItemLogout_Click(object sender, EventArgs e)
-        {
-            LoginPage.PerformLogout(); // Call the static method 
-        }
-
-        private void MenuItemAbout_Click(object sender, EventArgs e)
-        {
-            // Create a new AboutPage form
-            AboutPage aboutPage = new AboutPage(currentAdminID);
-            aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
-            aboutPage.Show(); // Show the AboutPage
-        }
-
         private void btnEditRetreat_Click(object sender, EventArgs e)
         {
             // Open the EditRetreat form
@@ -82,6 +69,19 @@ namespace Retreat_Management_System
         private void AdminDash_FormClosed(object sender, FormClosedEventArgs e)
         {
             // PerformLogout() use to reshow login page
+        }
+
+        private void MenuItemLogout_Click_1(object sender, EventArgs e)
+        {
+            LoginPage.PerformLogout(); // Call the static method 
+        }
+
+        private void MenuItemAbout_Click_1(object sender, EventArgs e)
+        {
+            // Create a new AboutPage form
+            AboutPage aboutPage = new AboutPage(currentAdminID);
+            aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
+            aboutPage.Show(); // Show the AboutPage
         }
     }
 }

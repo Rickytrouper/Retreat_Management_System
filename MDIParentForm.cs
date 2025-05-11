@@ -75,5 +75,7 @@ namespace Retreat_Management_System
             aboutPage.MdiParent = this; // Set the MDI parent
             aboutPage.Show();
         }
+
+        
     }
 }
