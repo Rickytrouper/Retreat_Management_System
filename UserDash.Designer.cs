@@ -484,6 +484,7 @@
             this.Controls.Add(this.lbWelcomeMessage);
             this.MainMenuStrip = this.menuStripUserDash;
             this.Name = "UserDash";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  User Dash";
             this.Load += new System.EventHandler(this.UserDash_Load);
             this.menuStripUserDash.ResumeLayout(false);

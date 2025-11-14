@@ -53,6 +53,14 @@
             this.txtVerifyEmail = new System.Windows.Forms.TextBox();
             this.lbVerifyEmail = new System.Windows.Forms.Label();
             this.lbEmailMatching = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +95,7 @@
             // 
             this.txtCrePassword.Location = new System.Drawing.Point(168, 296);
             this.txtCrePassword.Name = "txtCrePassword";
+            this.txtCrePassword.PasswordChar = '*';
             this.txtCrePassword.Size = new System.Drawing.Size(238, 20);
             this.txtCrePassword.TabIndex = 4;
             // 
@@ -104,6 +113,7 @@
             // 
             this.txtConPassword.Location = new System.Drawing.Point(168, 346);
             this.txtConPassword.Name = "txtConPassword";
+            this.txtConPassword.PasswordChar = '*';
             this.txtConPassword.Size = new System.Drawing.Size(238, 20);
             this.txtConPassword.TabIndex = 6;
             // 
@@ -279,6 +289,102 @@
             this.lbEmailMatching.Size = new System.Drawing.Size(0, 13);
             this.lbEmailMatching.TabIndex = 24;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.Red;
+            this.textBox1.Location = new System.Drawing.Point(31, 253);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(15, 15);
+            this.textBox1.TabIndex = 25;
+            this.textBox1.Text = "*";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.ForeColor = System.Drawing.Color.Red;
+            this.textBox2.Location = new System.Drawing.Point(31, 301);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(15, 15);
+            this.textBox2.TabIndex = 26;
+            this.textBox2.Text = "*";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.ForeColor = System.Drawing.Color.Red;
+            this.textBox3.Location = new System.Drawing.Point(31, 351);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(15, 15);
+            this.textBox3.TabIndex = 27;
+            this.textBox3.Text = "*";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.ForeColor = System.Drawing.Color.Red;
+            this.textBox4.Location = new System.Drawing.Point(31, 403);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(15, 15);
+            this.textBox4.TabIndex = 28;
+            this.textBox4.Text = "*";
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.ForeColor = System.Drawing.Color.Red;
+            this.textBox5.Location = new System.Drawing.Point(477, 447);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(15, 15);
+            this.textBox5.TabIndex = 29;
+            this.textBox5.Text = "*";
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.ForeColor = System.Drawing.Color.Red;
+            this.textBox6.Location = new System.Drawing.Point(464, 296);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(15, 15);
+            this.textBox6.TabIndex = 30;
+            this.textBox6.Text = "*";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.ForeColor = System.Drawing.Color.Red;
+            this.textBox7.Location = new System.Drawing.Point(464, 251);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(15, 15);
+            this.textBox7.TabIndex = 31;
+            this.textBox7.Text = "*";
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.ForeColor = System.Drawing.Color.Red;
+            this.textBox8.Location = new System.Drawing.Point(31, 448);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(15, 15);
+            this.textBox8.TabIndex = 32;
+            this.textBox8.Text = "*";
+            // 
             // RegisterAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,8 +415,18 @@
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.lbPageLable);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.textBox8);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "RegisterAccount";
-            this.Text = "Registration Form";
+            this.Text = "Sign Up";
+            this.Load += new System.EventHandler(this.RegisterAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picbxProfile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -344,5 +460,13 @@
         private System.Windows.Forms.TextBox txtVerifyEmail;
         private System.Windows.Forms.Label lbVerifyEmail;
         private System.Windows.Forms.Label lbEmailMatching;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox8;
     }
 }

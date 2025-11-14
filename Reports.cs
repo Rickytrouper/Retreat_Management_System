@@ -138,12 +138,15 @@ namespace Retreat_Management_System
                 // Populate the DataTable with booking information
                 foreach (var booking in bookings)
                 {
+                    // Format Card Number to show only the first 4 and last 4 digits
+                    string formattedCardNumber = FormatCardNumber(booking.CardNumber);
+
                     bookingTable.Rows.Add(
                         booking.BookingDate,
                         booking.Status,
                         booking.UserName,
                         booking.Email,
-                        booking.CardNumber,
+                        formattedCardNumber, // Use the formatted card number
                         booking.ExpiryDate,
                         booking.CVV,
                         booking.PaymentStatus
@@ -197,6 +200,16 @@ namespace Retreat_Management_System
             }
         }
 
+        // Helper method to format the card number
+        private string FormatCardNumber(string cardNumber)
+        {
+            if (string.IsNullOrEmpty(cardNumber) || cardNumber.Length < 8)
+            {
+                return cardNumber; // Return as is if not valid
+            }
+
+            return cardNumber.Substring(0, 4) + "-****-****-" + cardNumber.Substring(cardNumber.Length - 4, 4);
+        }
         private void GenerateFeedbackReport()
         {
             try

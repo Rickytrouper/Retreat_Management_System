@@ -64,9 +64,9 @@
             this.groupBoxRetreatManament.Controls.Add(this.lbEditRetreat);
             this.groupBoxRetreatManament.Controls.Add(this.btnEditRetreat);
             this.groupBoxRetreatManament.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxRetreatManament.Location = new System.Drawing.Point(86, 136);
+            this.groupBoxRetreatManament.Location = new System.Drawing.Point(97, 136);
             this.groupBoxRetreatManament.Name = "groupBoxRetreatManament";
-            this.groupBoxRetreatManament.Size = new System.Drawing.Size(399, 162);
+            this.groupBoxRetreatManament.Size = new System.Drawing.Size(332, 149);
             this.groupBoxRetreatManament.TabIndex = 1;
             this.groupBoxRetreatManament.TabStop = false;
             this.groupBoxRetreatManament.Text = "Retreat Management";
@@ -74,20 +74,22 @@
             // lbEditRetreat
             // 
             this.lbEditRetreat.AutoSize = true;
-            this.lbEditRetreat.Location = new System.Drawing.Point(121, 57);
+            this.lbEditRetreat.Location = new System.Drawing.Point(110, 57);
             this.lbEditRetreat.Name = "lbEditRetreat";
-            this.lbEditRetreat.Size = new System.Drawing.Size(135, 16);
+            this.lbEditRetreat.Size = new System.Drawing.Size(141, 16);
             this.lbEditRetreat.TabIndex = 3;
             this.lbEditRetreat.Text = "View / Edit Retreat";
             // 
             // btnEditRetreat
             // 
-            this.btnEditRetreat.Location = new System.Drawing.Point(136, 85);
+            this.btnEditRetreat.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnEditRetreat.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnEditRetreat.Location = new System.Drawing.Point(113, 89);
             this.btnEditRetreat.Name = "btnEditRetreat";
-            this.btnEditRetreat.Size = new System.Drawing.Size(102, 36);
+            this.btnEditRetreat.Size = new System.Drawing.Size(102, 32);
             this.btnEditRetreat.TabIndex = 1;
             this.btnEditRetreat.Text = "Edit";
-            this.btnEditRetreat.UseVisualStyleBackColor = true;
+            this.btnEditRetreat.UseVisualStyleBackColor = false;
             this.btnEditRetreat.Click += new System.EventHandler(this.btnEditRetreat_Click);
             // 
             // groupBoxUserManagement
@@ -95,7 +97,7 @@
             this.groupBoxUserManagement.Controls.Add(this.lbManageUsers);
             this.groupBoxUserManagement.Controls.Add(this.btnManageUsers);
             this.groupBoxUserManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxUserManagement.Location = new System.Drawing.Point(564, 136);
+            this.groupBoxUserManagement.Location = new System.Drawing.Point(562, 136);
             this.groupBoxUserManagement.Name = "groupBoxUserManagement";
             this.groupBoxUserManagement.Size = new System.Drawing.Size(308, 162);
             this.groupBoxUserManagement.TabIndex = 2;
@@ -105,20 +107,22 @@
             // lbManageUsers
             // 
             this.lbManageUsers.AutoSize = true;
-            this.lbManageUsers.Location = new System.Drawing.Point(105, 43);
+            this.lbManageUsers.Location = new System.Drawing.Point(102, 42);
             this.lbManageUsers.Name = "lbManageUsers";
-            this.lbManageUsers.Size = new System.Drawing.Size(108, 16);
+            this.lbManageUsers.Size = new System.Drawing.Size(111, 16);
             this.lbManageUsers.TabIndex = 2;
             this.lbManageUsers.Text = "Manage Users";
             // 
             // btnManageUsers
             // 
-            this.btnManageUsers.Location = new System.Drawing.Point(103, 71);
+            this.btnManageUsers.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnManageUsers.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnManageUsers.Location = new System.Drawing.Point(98, 89);
             this.btnManageUsers.Name = "btnManageUsers";
-            this.btnManageUsers.Size = new System.Drawing.Size(110, 36);
+            this.btnManageUsers.Size = new System.Drawing.Size(115, 32);
             this.btnManageUsers.TabIndex = 0;
             this.btnManageUsers.Text = "Manage";
-            this.btnManageUsers.UseVisualStyleBackColor = true;
+            this.btnManageUsers.UseVisualStyleBackColor = false;
             this.btnManageUsers.Click += new System.EventHandler(this.btnManageUsers_Click);
             // 
             // groupBoxReports
@@ -128,7 +132,7 @@
             this.groupBoxReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxReports.Location = new System.Drawing.Point(97, 380);
             this.groupBoxReports.Name = "groupBoxReports";
-            this.groupBoxReports.Size = new System.Drawing.Size(332, 117);
+            this.groupBoxReports.Size = new System.Drawing.Size(332, 149);
             this.groupBoxReports.TabIndex = 3;
             this.groupBoxReports.TabStop = false;
             this.groupBoxReports.Text = "Reports ";
@@ -136,20 +140,22 @@
             // lbGenerateReports
             // 
             this.lbGenerateReports.AutoSize = true;
-            this.lbGenerateReports.Location = new System.Drawing.Point(70, 60);
+            this.lbGenerateReports.Location = new System.Drawing.Point(130, 45);
             this.lbGenerateReports.Name = "lbGenerateReports";
-            this.lbGenerateReports.Size = new System.Drawing.Size(62, 16);
+            this.lbGenerateReports.Size = new System.Drawing.Size(63, 16);
             this.lbGenerateReports.TabIndex = 7;
             this.lbGenerateReports.Text = "Reports";
             // 
             // btnGenerateReports
             // 
-            this.btnGenerateReports.Location = new System.Drawing.Point(176, 50);
+            this.btnGenerateReports.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnGenerateReports.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerateReports.Location = new System.Drawing.Point(113, 73);
             this.btnGenerateReports.Name = "btnGenerateReports";
             this.btnGenerateReports.Size = new System.Drawing.Size(102, 36);
             this.btnGenerateReports.TabIndex = 6;
             this.btnGenerateReports.Text = "Generate";
-            this.btnGenerateReports.UseVisualStyleBackColor = true;
+            this.btnGenerateReports.UseVisualStyleBackColor = false;
             this.btnGenerateReports.Click += new System.EventHandler(this.btnGenerateReports_Click);
             // 
             // menuStrip
@@ -174,7 +180,7 @@
             // MenuItemLogout
             // 
             this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
             this.MenuItemLogout.Text = "Logout";
             this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click_1);
             // 
@@ -189,7 +195,7 @@
             // MenuItemAbout
             // 
             this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
             this.MenuItemAbout.Text = "About";
             this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click_1);
             // 

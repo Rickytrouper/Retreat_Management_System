@@ -138,7 +138,7 @@
             this.organizerIDDataGridViewTextBoxColumn,
             this.dateCreatedDataGridViewTextBoxColumn,
             this.lastUpdatedDataGridViewTextBoxColumn});
-            this.dataGVRetreats.DataSource = this.retreatBindingSource;
+            this.dataGVRetreats.DataSource = this.retreatBindingSource1;
             this.dataGVRetreats.Location = new System.Drawing.Point(43, 120);
             this.dataGVRetreats.Name = "dataGVRetreats";
             this.dataGVRetreats.Size = new System.Drawing.Size(851, 394);

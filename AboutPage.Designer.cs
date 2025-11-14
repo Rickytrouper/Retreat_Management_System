@@ -93,7 +93,7 @@
             // MenuItemLogout
             // 
             this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
             this.MenuItemLogout.Text = "Logout";
             this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
             // 
@@ -108,7 +108,7 @@
             // MenuItemAbout
             // 
             this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
             this.MenuItemAbout.Text = "About";
             // 
             // richTextBox1
@@ -129,6 +129,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lbVersion);
             this.Controls.Add(this.lbTitle);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "AboutPage";
             this.Text = "About";
             this.Load += new System.EventHandler(this.AboutPage_Load);

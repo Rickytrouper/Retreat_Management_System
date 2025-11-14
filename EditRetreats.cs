@@ -32,7 +32,13 @@ namespace Retreat_Management_System
 
         private void LoadRetreatsData()
         {
+            this.retreatDetails.EnforceConstraints = false; // Disable constraints temporarily
+                       
             this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
+            
+            Debug.WriteLine($"Rows Count: {dataGVRetreats.Rows.Count}"); // Debugging line
+
+            //this.retreatDetails.EnforceConstraints = true; // Re-enable constraints after loadin
 
             // Print out column names for debugging
             foreach (DataGridViewColumn column in dataGVRetreats.Columns)

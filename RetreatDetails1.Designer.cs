@@ -1175,7 +1175,7 @@ namespace Retreat_Management_System.RetreatDetailsTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Retreat] WHERE (([RetreatID] = @Original_RetreatID) AND ([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([EndDate] = @Original_EndDate) AND ([Price] = @Original_Price) AND ([Capacity] = @Original_Capacity) AND ((@IsNull_ImageURL = 1 AND [ImageURL] IS NULL) OR ([ImageURL] = @Original_ImageURL)) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_OrganizerID = 1 AND [OrganizerID] IS NULL) OR ([OrganizerID] = @Original_OrganizerID)) AND ((@IsNull_DateCreated = 1 AND [DateCreated] IS NULL) OR ([DateCreated] = @Original_DateCreated)) AND ((@IsNull_LastUpdated = 1 AND [LastUpdated] IS NULL) OR ([LastUpdated] = @Original_LastUpdated)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Retreat] WHERE (([RetreatID] = @Original_RetreatID) AND ([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([EndDate] = @Original_EndDate) AND ([Price] = @Original_Price) AND ([Capacity] = @Original_Capacity) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_OrganizerID = 1 AND [OrganizerID] IS NULL) OR ([OrganizerID] = @Original_OrganizerID)) AND ((@IsNull_DateCreated = 1 AND [DateCreated] IS NULL) OR ([DateCreated] = @Original_DateCreated)) AND ((@IsNull_LastUpdated = 1 AND [LastUpdated] IS NULL) OR ([LastUpdated] = @Original_LastUpdated)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1184,8 +1184,6 @@ namespace Retreat_Management_System.RetreatDetailsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Capacity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capacity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ImageURL", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageURL", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImageURL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageURL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactInfo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CreatedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -1198,7 +1196,7 @@ namespace Retreat_Management_System.RetreatDetailsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastUpdated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastUpdated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Retreat] ([RetreatName], [Description], [Location], [StartDate], [EndDate], [Price], [Capacity], [ImageURL], [ContactInfo], [CreatedBy], [OrganizerID], [DateCreated], [LastUpdated]) VALUES (@RetreatName, @Description, @Location, @StartDate, @EndDate, @Price, @Capacity, @ImageURL, @ContactInfo, @CreatedBy, @OrganizerID, @DateCreated, @LastUpdated);
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Retreat] ([RetreatName], [Description], [Location], [StartDate], [EndDate], [Price], [Capacity], [ImageURL], [ContactInfo], [CreatedBy], [OrganizerID], [DateCreated], [LastUpdated]) VALUES (@RetreatName, @Description, @Location, @StartDate, @EndDate, @Price, @Capacity, @ImageURL, @ContactInfo, @CreatedBy, @OrganizerID, @DateCreated, @LastUpdated);
 SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price, Capacity, ImageURL, ContactInfo, CreatedBy, OrganizerID, DateCreated, LastUpdated FROM Retreat WHERE (RetreatID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1216,7 +1214,7 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastUpdated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastUpdated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Retreat] SET [RetreatName] = @RetreatName, [Description] = @Description, [Location] = @Location, [StartDate] = @StartDate, [EndDate] = @EndDate, [Price] = @Price, [Capacity] = @Capacity, [ImageURL] = @ImageURL, [ContactInfo] = @ContactInfo, [CreatedBy] = @CreatedBy, [OrganizerID] = @OrganizerID, [DateCreated] = @DateCreated, [LastUpdated] = @LastUpdated WHERE (([RetreatID] = @Original_RetreatID) AND ([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([EndDate] = @Original_EndDate) AND ([Price] = @Original_Price) AND ([Capacity] = @Original_Capacity) AND ((@IsNull_ImageURL = 1 AND [ImageURL] IS NULL) OR ([ImageURL] = @Original_ImageURL)) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_OrganizerID = 1 AND [OrganizerID] IS NULL) OR ([OrganizerID] = @Original_OrganizerID)) AND ((@IsNull_DateCreated = 1 AND [DateCreated] IS NULL) OR ([DateCreated] = @Original_DateCreated)) AND ((@IsNull_LastUpdated = 1 AND [LastUpdated] IS NULL) OR ([LastUpdated] = @Original_LastUpdated)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Retreat] SET [RetreatName] = @RetreatName, [Description] = @Description, [Location] = @Location, [StartDate] = @StartDate, [EndDate] = @EndDate, [Price] = @Price, [Capacity] = @Capacity, [ImageURL] = @ImageURL, [ContactInfo] = @ContactInfo, [CreatedBy] = @CreatedBy, [OrganizerID] = @OrganizerID, [DateCreated] = @DateCreated, [LastUpdated] = @LastUpdated WHERE (([RetreatID] = @Original_RetreatID) AND ([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([EndDate] = @Original_EndDate) AND ([Price] = @Original_Price) AND ([Capacity] = @Original_Capacity) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_OrganizerID = 1 AND [OrganizerID] IS NULL) OR ([OrganizerID] = @Original_OrganizerID)) AND ((@IsNull_DateCreated = 1 AND [DateCreated] IS NULL) OR ([DateCreated] = @Original_DateCreated)) AND ((@IsNull_LastUpdated = 1 AND [LastUpdated] IS NULL) OR ([LastUpdated] = @Original_LastUpdated)));
 SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price, Capacity, ImageURL, ContactInfo, CreatedBy, OrganizerID, DateCreated, LastUpdated FROM Retreat WHERE (RetreatID = @RetreatID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1239,8 +1237,6 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Capacity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capacity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ImageURL", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageURL", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImageURL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageURL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactInfo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CreatedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -1267,9 +1263,9 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price, " +
-                "Capacity, ImageURL, ContactInfo, CreatedBy, OrganizerID, DateCreated, LastUpdate" +
-                "d FROM dbo.Retreat";
+            this._commandCollection[0].CommandText = "SELECT        RetreatID, RetreatName, Description, Location, StartDate, EndDate, " +
+                "Price, Capacity, ImageURL, ContactInfo, CreatedBy, OrganizerID, DateCreated, Las" +
+                "tUpdated\r\nFROM            Retreat";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1330,7 +1326,7 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_RetreatID, string Original_RetreatName, string Original_Location, System.DateTime Original_StartDate, System.DateTime Original_EndDate, decimal Original_Price, int Original_Capacity, string Original_ImageURL, string Original_ContactInfo, global::System.Nullable<int> Original_CreatedBy, global::System.Nullable<int> Original_OrganizerID, global::System.Nullable<global::System.DateTime> Original_DateCreated, global::System.Nullable<global::System.DateTime> Original_LastUpdated) {
+        public virtual int Delete(int Original_RetreatID, string Original_RetreatName, string Original_Location, System.DateTime Original_StartDate, System.DateTime Original_EndDate, decimal Original_Price, int Original_Capacity, string Original_ContactInfo, global::System.Nullable<int> Original_CreatedBy, global::System.Nullable<int> Original_OrganizerID, global::System.Nullable<global::System.DateTime> Original_DateCreated, global::System.Nullable<global::System.DateTime> Original_LastUpdated) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_RetreatID));
             if ((Original_RetreatName == null)) {
                 throw new global::System.ArgumentNullException("Original_RetreatName");
@@ -1348,53 +1344,45 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
             this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_EndDate));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_Price));
             this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Capacity));
-            if ((Original_ImageURL == null)) {
+            if ((Original_ContactInfo == null)) {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ImageURL));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ContactInfo));
             }
-            if ((Original_ContactInfo == null)) {
+            if ((Original_CreatedBy.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_CreatedBy.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_ContactInfo));
-            }
-            if ((Original_CreatedBy.HasValue == true)) {
+            if ((Original_OrganizerID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_CreatedBy.Value));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_OrganizerID.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((Original_OrganizerID.HasValue == true)) {
+            if ((Original_DateCreated.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_OrganizerID.Value));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_DateCreated.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Original_DateCreated.HasValue == true)) {
+            if ((Original_LastUpdated.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((System.DateTime)(Original_DateCreated.Value));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((System.DateTime)(Original_LastUpdated.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            if ((Original_LastUpdated.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((System.DateTime)(Original_LastUpdated.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1516,7 +1504,6 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
                     System.DateTime Original_EndDate, 
                     decimal Original_Price, 
                     int Original_Capacity, 
-                    string Original_ImageURL, 
                     string Original_ContactInfo, 
                     global::System.Nullable<int> Original_CreatedBy, 
                     global::System.Nullable<int> Original_OrganizerID, 
@@ -1598,55 +1585,47 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
             this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(Original_EndDate));
             this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(Original_Price));
             this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_Capacity));
-            if ((Original_ImageURL == null)) {
+            if ((Original_ContactInfo == null)) {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_ImageURL));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_ContactInfo));
             }
-            if ((Original_ContactInfo == null)) {
+            if ((Original_CreatedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_CreatedBy.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_ContactInfo));
-            }
-            if ((Original_CreatedBy.HasValue == true)) {
+            if ((Original_OrganizerID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_CreatedBy.Value));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_OrganizerID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
-            if ((Original_OrganizerID.HasValue == true)) {
+            if ((Original_DateCreated.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(Original_OrganizerID.Value));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((System.DateTime)(Original_DateCreated.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
-            if ((Original_DateCreated.HasValue == true)) {
+            if ((Original_LastUpdated.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((System.DateTime)(Original_DateCreated.Value));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((System.DateTime)(Original_LastUpdated.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            if ((Original_LastUpdated.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((System.DateTime)(Original_LastUpdated.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[32].Value = ((int)(RetreatID));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(RetreatID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1688,13 +1667,12 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
                     System.DateTime Original_EndDate, 
                     decimal Original_Price, 
                     int Original_Capacity, 
-                    string Original_ImageURL, 
                     string Original_ContactInfo, 
                     global::System.Nullable<int> Original_CreatedBy, 
                     global::System.Nullable<int> Original_OrganizerID, 
                     global::System.Nullable<global::System.DateTime> Original_DateCreated, 
                     global::System.Nullable<global::System.DateTime> Original_LastUpdated) {
-            return this.Update(RetreatName, Description, Location, StartDate, EndDate, Price, Capacity, ImageURL, ContactInfo, CreatedBy, OrganizerID, DateCreated, LastUpdated, Original_RetreatID, Original_RetreatName, Original_Location, Original_StartDate, Original_EndDate, Original_Price, Original_Capacity, Original_ImageURL, Original_ContactInfo, Original_CreatedBy, Original_OrganizerID, Original_DateCreated, Original_LastUpdated, Original_RetreatID);
+            return this.Update(RetreatName, Description, Location, StartDate, EndDate, Price, Capacity, ImageURL, ContactInfo, CreatedBy, OrganizerID, DateCreated, LastUpdated, Original_RetreatID, Original_RetreatName, Original_Location, Original_StartDate, Original_EndDate, Original_Price, Original_Capacity, Original_ContactInfo, Original_CreatedBy, Original_OrganizerID, Original_DateCreated, Original_LastUpdated, Original_RetreatID);
         }
     }
     

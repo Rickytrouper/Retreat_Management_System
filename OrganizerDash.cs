@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -273,9 +274,20 @@ namespace Retreat_Management_System
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
             // Create a new AboutPage form
-            AboutPage aboutPage = new AboutPage(organizerID);
-            aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
-            aboutPage.Show(); // Show the AboutPage
+            try
+            {
+                AboutPage aboutPage = new AboutPage(organizerID);
+                aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
+                aboutPage.Show(); // Show the AboutPage
+            }
+            catch (Win32Exception win32Ex)
+            {
+                MessageBox.Show($"Win32 Error: {win32Ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening About page: " + ex.Message);
+            }
         }
 
         private void OrganizerDash_FormClosed(object sender, FormClosedEventArgs e)

@@ -101,7 +101,7 @@
             this.lbEndDate.AutoSize = true;
             this.lbEndDate.Location = new System.Drawing.Point(14, 110);
             this.lbEndDate.Name = "lbEndDate";
-            this.lbEndDate.Size = new System.Drawing.Size(79, 16);
+            this.lbEndDate.Size = new System.Drawing.Size(84, 16);
             this.lbEndDate.TabIndex = 7;
             this.lbEndDate.Text = "End Date :";
             // 
@@ -110,7 +110,7 @@
             this.lbStartDate.AutoSize = true;
             this.lbStartDate.Location = new System.Drawing.Point(14, 68);
             this.lbStartDate.Name = "lbStartDate";
-            this.lbStartDate.Size = new System.Drawing.Size(84, 16);
+            this.lbStartDate.Size = new System.Drawing.Size(89, 16);
             this.lbStartDate.TabIndex = 6;
             this.lbStartDate.Text = "Start Date :";
             // 
@@ -166,7 +166,7 @@
             this.lbReportType.AutoSize = true;
             this.lbReportType.Location = new System.Drawing.Point(14, 31);
             this.lbReportType.Name = "lbReportType";
-            this.lbReportType.Size = new System.Drawing.Size(102, 16);
+            this.lbReportType.Size = new System.Drawing.Size(106, 16);
             this.lbReportType.TabIndex = 0;
             this.lbReportType.Text = "Report Type :";
             // 
@@ -219,7 +219,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(64, 338);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 16);
+            this.label2.Size = new System.Drawing.Size(101, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Report Table";
             // 

@@ -3,27 +3,28 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
 
 namespace Retreat_Management_System
 {
     public partial class UserDash : Form
     {
-
         private readonly int currentUserId;
 
-
-        // Store original values for cancel operation.
+        // Store original values for cancel operation
         private string originalUsername;
         private string originalEmail;
         private string originalContactInfo;
 
-        public UserDash(int userId) // user ID  passed as a parameter
+        private const string EmptyFieldMessage = "Username and Email cannot be empty.";
+        private const string UpdateSuccessMessage = "Profile updated successfully!";
+        private const string ProfilePictureNotFoundMessage = "Profile picture not found.";
+
+        public UserDash(int userId) // user ID passed as a parameter
         {
             InitializeComponent();
             currentUserId = userId; // Set the current user ID
-                                    //reservationTableAdapter 
             this.FormClosed += UserDash_FormClosed;
         }
 
@@ -72,7 +73,7 @@ namespace Retreat_Management_System
             }
             else
             {
-                lbProfileError.Text = "Profile picture not found."; // Set the error message
+                lbProfileError.Text = ProfilePictureNotFoundMessage; // Set the error message
                 lbProfileError.ForeColor = Color.Red; // Change text color to red
                 lbProfileError.Visible = true; // Show the error label
                 picbxProfile.Image = null; // Clear the image if no data found
@@ -97,6 +98,8 @@ namespace Retreat_Management_System
             btnEditProfile.Enabled = false; // Disable Edit button to prevent multiple clicks
             btnSaveProfile.Enabled = true;   // Enable Save button
             btnCancel.Enabled = true;        // Enable Cancel button
+
+            MessageBox.Show("You can now edit your profile.", "Edit Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSaveProfile_Click(object sender, EventArgs e)
@@ -111,7 +114,13 @@ namespace Retreat_Management_System
                 // Validation
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email))
                 {
-                    MessageBox.Show("Username and Email cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(EmptyFieldMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!IsEmailValid(email))
+                {
+                    MessageBox.Show("Please enter a valid email address.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -130,7 +139,7 @@ namespace Retreat_Management_System
                 }
 
                 // Confirmation message
-                MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(UpdateSuccessMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Reset original values after successful save
                 StoreOriginalValues();
@@ -142,6 +151,11 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show("Error updating profile: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool IsEmailValid(string email)
+        {
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
 
         private void ResetTextBoxes()
@@ -206,7 +220,7 @@ namespace Retreat_Management_System
             {
                 using (var context = new Retreat_Management_DBEntities())
                 {
-                    // Retrieve reservations for the current user using lambda expressions
+                    // Retrieve reservations for the current user
                     var reservations = context.Bookings
                         .Join(context.Payments,
                             booking => booking.BookingID,
@@ -265,38 +279,42 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
-            // Hide the UserDash form
             this.Hide();
-
-            // Open the RetreatDetails form with the current user ID
             lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId); // Pass the userId
             retreatDetails.MdiParent = this.MdiParent;
-            // Hide the UserDash form
-            this.Hide();
             retreatDetails.Show();
         }
 
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
-            // Create a new AboutPage form
-            AboutPage aboutPage = new AboutPage(currentUserId);
+            try
+            {                
+                // Check if the AboutPage is already open
+                AboutPage aboutPage = Application.OpenForms.OfType<AboutPage>().FirstOrDefault();
 
-            // Set the MdiParent of the AboutPage to the same as the UserDash
-            aboutPage.MdiParent = this.MdiParent;
-
-            // Show the AboutPage
-            aboutPage.Show();
+                if (aboutPage == null)
+                {
+                    // If not, open a new instance
+                    aboutPage = new AboutPage(currentUserId);
+                    aboutPage.MdiParent = this.MdiParent; // child of the current MDI parent
+                    
+                    aboutPage.Show();
+                }
+                else
+                {                   
+                    // If already open, bring it to the front
+                    aboutPage.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening About page: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void UserDash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Do nothing.  The PerformLogout() method handles showing the LoginPage.
-        }
-
-        private void RetreatDetails_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Show the UserDash form again
-            this.Show();
+            this.FormClosed -= UserDash_FormClosed; // Unsubscribe from event
         }
 
         private void btnReview_Click(object sender, EventArgs e)

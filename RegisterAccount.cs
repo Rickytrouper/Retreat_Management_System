@@ -6,12 +6,19 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Retreat_Management_System
 {
     public partial class RegisterAccount : Form
     {
         private readonly UserService userService; // Service to handle user-related operations
+
+        private const string PasswordMismatchMessage = "Passwords do not match. Please try again.";
+        private const string EmailMismatchMessage = "Email addresses do not match. Please try again.";
+        private const string PasswordValidationMessage = "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.";
+        private const string UsernameExistsMessage = "Username already exists. Please choose a different one.";
+        private const string RegistrationSuccessMessage = "Registration successful!";
 
         public RegisterAccount()
         {
@@ -38,7 +45,7 @@ namespace Retreat_Management_System
                 cbRole.Items.Add(role);
             }
 
-            // Optionally, set default selection
+            // Set default selection
             cbRole.SelectedIndex = 0; // Default to the first role
         }
 
@@ -58,6 +65,27 @@ namespace Retreat_Management_System
             }
         }
 
+        private bool IsPasswordValid(string password)
+        {
+            // Check for minimum length
+            if (password.Length < 8)
+                return false;
+
+            // Check for at least one uppercase letter
+            if (!password.Any(char.IsUpper))
+                return false;
+
+            // Check for at least one number
+            if (!password.Any(char.IsDigit))
+                return false;
+
+            // Check for at least one special character
+            if (!password.Any(ch => !char.IsLetterOrDigit(ch)))
+                return false;
+
+            return true; // If all checks pass, the password is valid
+        }
+
         private void btnRegisterAccount_Click(object sender, EventArgs e)
         {
             // Retrieve user input
@@ -72,27 +100,9 @@ namespace Retreat_Management_System
             string contactInfo = txtContactNum.Text.Trim();
             string profilePicture = ""; // Path for the profile picture
 
-            // Validate that the passwords match
-            if (password != confirmPassword)
-            {
-                lbPasswordError.Text = "Passwords do not match. Please try again.";
-                return; // Exit the method
-            }
-            else
-            {
-                lbPasswordError.Text = ""; // Clear any previous error message
-            }
-
-            // Validate that the emails match
-            if (email != verifyEmail)
-            {
-                lbEmailMatching.Text = "Email addresses do not match. Please try again.";
-                return; // Exit the method
-            }
-            else
-            {
-                lbEmailMatching.Text = ""; // Clear any previous error message
-            }
+            // Validate user inputs
+            if (!ValidateInputs(password, confirmPassword, email, verifyEmail))
+                return;
 
             // Save the profile picture path or image
             if (picbxProfile.Image != null)
@@ -119,13 +129,13 @@ namespace Retreat_Management_System
                 AccountStatus = "Active" // Set the status to "Active"
             };
 
-            // Checking  if the username already exists
+            // Checking if the username already exists
             using (var dbContext = new Retreat_Management_DBEntities())
             {
                 var existingUser = dbContext.Users.FirstOrDefault(q => q.Username == username);
                 if (existingUser != null)
                 {
-                    MessageBox.Show("Username already exists. Please choose a different one.", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowErrorMessage(UsernameExistsMessage, "Registration Error");
                     return;
                 }
             }
@@ -139,7 +149,7 @@ namespace Retreat_Management_System
                     dbContext.SaveChanges(); // Save changes to the database
                 }
 
-                MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(RegistrationSuccessMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close(); // Close the form 
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
@@ -156,6 +166,46 @@ namespace Retreat_Management_System
             }
         }
 
+        private bool ValidateInputs(string password, string confirmPassword, string email, string verifyEmail)
+        {
+            // Validate that the passwords match
+            if (password != confirmPassword)
+            {
+                lbPasswordError.Text = PasswordMismatchMessage;
+                return false;
+            }
+
+            // Validate that the emails match
+            if (email != verifyEmail)
+            {
+                lbEmailMatching.Text = EmailMismatchMessage;
+                lbEmailMatching.ForeColor = Color.Red; // Set text color to red
+                return false;
+            }
+
+            // Validate password requirements
+            if (!IsPasswordValid(password))
+            {
+                lbPasswordError.Text = PasswordValidationMessage;
+                return false;
+            }
+
+            // Clear any previous error messages
+            ClearErrorLabels();
+            return true; // Inputs are valid
+        }
+
+        private void ClearErrorLabels()
+        {
+            lbPasswordError.Text = "";
+            lbEmailMatching.Text = "";
+        }
+
+        private void ShowErrorMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         // Method to hash passwords
         private string HashPassword(string password)
         {
@@ -169,12 +219,12 @@ namespace Retreat_Management_System
         // Method to save the profile picture and return the file path
         private string SaveProfilePicture()
         {
-            // Logic to save the profile picture to a server or local storage
+            // Logic to save the profile picture to the server or local storage
             string folderPath = @"C:\ProfilePictures\"; // Specify storage path
             string fileName = $"{Guid.NewGuid()}.jpg"; // Generate a file name
             string fullPath = System.IO.Path.Combine(folderPath, fileName);
 
-            // Create directory if it does not exist
+            // Create the directory if it does not exist
             if (!System.IO.Directory.Exists(folderPath))
             {
                 System.IO.Directory.CreateDirectory(folderPath);
@@ -188,6 +238,11 @@ namespace Retreat_Management_System
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close(); // Close the registration form
+        }
+
+        private void RegisterAccount_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
