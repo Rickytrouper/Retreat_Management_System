@@ -28,7 +28,7 @@ namespace Retreat_Management_System
         public string ContactInfo { get; set; }
         public Nullable<int> UserID { get; set; }
     
-        public virtual ICollection<Retreat> Retreats { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<Retreat> Retreats { get; set; }
     }
 }

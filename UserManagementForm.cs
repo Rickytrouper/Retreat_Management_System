@@ -109,5 +109,15 @@ namespace Retreat_Management_System
         {
             this.Close(); // Close the current form, returning to AdminDash
         }
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
+        {
+            LoginPage.PerformLogout(); // Call the logout static method 
+        }
+
+        private void MenuItemAbout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

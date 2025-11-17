@@ -21,7 +21,7 @@ namespace Retreat_Management_System
         public string Comments { get; set; }
         public Nullable<System.DateTime> DateSubmitted { get; set; }
     
-        public virtual Retreat Retreat { get; set; }
         public virtual User User { get; set; }
+        public virtual Retreat Retreat { get; set; }
     }
 }

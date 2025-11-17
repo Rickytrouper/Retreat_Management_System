@@ -12,10 +12,10 @@ namespace Retreat_Management_System
 
         private readonly Retreat_Management_DBEntities retreat_Management_DBEntities;
         private int currentUserId; // Store the user ID
+        private string username; // Store the username
 
 
-
-        public lblRetreatDetails(int userId)
+        public lblRetreatDetails(int userId, string username)
         {
             InitializeComponent();
             this.Load += RetreatDetails_Load;
@@ -132,10 +132,29 @@ namespace Retreat_Management_System
             if (confirm == DialogResult.Yes)
             {
                 this.Close(); // Close the current form, returning to UserDash
-                UserDash userDash = new UserDash(currentUserId);              
+                UserDash userDash = new UserDash(currentUserId, username);              
                 userDash.Show();
 
             }
+        }
+
+        private void lblRetreatDetails_Load(object sender, EventArgs e)
+        {
+            
+            this.retreatTableAdapter1.Fill(this.retreat_Status.Retreat);
+            
+            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
+
+        }
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
+        {
+            LoginPage.PerformLogout(); // Call the logoout static method 
+        }
+
+        private void MenuItemAbout_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

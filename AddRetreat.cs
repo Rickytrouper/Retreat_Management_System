@@ -228,5 +228,15 @@ namespace Retreat_Management_System
             dtpEndDate.Value = DateTime.Now; // Reset to current date
             pictureBox.Image = null; // Reset image preview
         }
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
+        {
+            LoginPage.PerformLogout(); // Call the logout static method 
+        }
+
+        private void MenuItemAbout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

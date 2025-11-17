@@ -31,8 +31,8 @@ namespace Retreat_Management_System
         public string CVV { get; set; }
         public string PaymentStatus { get; set; }
     
-        public virtual Retreat Retreat { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
+        public virtual Retreat Retreat { get; set; }
     }
 }

@@ -20,8 +20,8 @@ namespace Retreat_Management_System
             this.Bookings = new HashSet<Booking>();
             this.Feedbacks = new HashSet<Feedback>();
             this.Notifications = new HashSet<Notification>();
-            this.Retreats = new HashSet<Retreat>();
             this.Organizers = new HashSet<Organizer>();
+            this.Retreats = new HashSet<Retreat>();
         }
     
         public int UserID { get; set; }
@@ -41,7 +41,7 @@ namespace Retreat_Management_System
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
-        public virtual ICollection<Retreat> Retreats { get; set; }
         public virtual ICollection<Organizer> Organizers { get; set; }
+        public virtual ICollection<Retreat> Retreats { get; set; }
     }
 }

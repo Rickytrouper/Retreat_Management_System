@@ -30,6 +30,7 @@ namespace Retreat_Management_System
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
             this.lbUserName = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.lbPassword = new System.Windows.Forms.Label();
@@ -47,7 +48,7 @@ namespace Retreat_Management_System
             // lbUserName
             // 
             this.lbUserName.AutoSize = true;
-            this.lbUserName.Location = new System.Drawing.Point(381, 244);
+            this.lbUserName.Location = new System.Drawing.Point(387, 337);
             this.lbUserName.Name = "lbUserName";
             this.lbUserName.Size = new System.Drawing.Size(63, 13);
             this.lbUserName.TabIndex = 0;
@@ -55,7 +56,7 @@ namespace Retreat_Management_System
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(384, 261);
+            this.txtUserName.Location = new System.Drawing.Point(390, 354);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(189, 20);
             this.txtUserName.TabIndex = 1;
@@ -63,7 +64,7 @@ namespace Retreat_Management_System
             // lbPassword
             // 
             this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(381, 317);
+            this.lbPassword.Location = new System.Drawing.Point(387, 410);
             this.lbPassword.Name = "lbPassword";
             this.lbPassword.Size = new System.Drawing.Size(53, 13);
             this.lbPassword.TabIndex = 2;
@@ -71,7 +72,7 @@ namespace Retreat_Management_System
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(384, 333);
+            this.txtPassword.Location = new System.Drawing.Point(390, 426);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(189, 20);
             this.txtPassword.TabIndex = 3;
@@ -79,7 +80,7 @@ namespace Retreat_Management_System
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(384, 390);
+            this.btnLogin.Location = new System.Drawing.Point(390, 483);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 4;
@@ -90,7 +91,7 @@ namespace Retreat_Management_System
             // linkForgotPassword
             // 
             this.linkForgotPassword.AutoSize = true;
-            this.linkForgotPassword.Location = new System.Drawing.Point(384, 438);
+            this.linkForgotPassword.Location = new System.Drawing.Point(390, 531);
             this.linkForgotPassword.Name = "linkForgotPassword";
             this.linkForgotPassword.Size = new System.Drawing.Size(86, 13);
             this.linkForgotPassword.TabIndex = 5;
@@ -101,7 +102,7 @@ namespace Retreat_Management_System
             // linkRegister
             // 
             this.linkRegister.AutoSize = true;
-            this.linkRegister.Location = new System.Drawing.Point(495, 438);
+            this.linkRegister.Location = new System.Drawing.Point(501, 531);
             this.linkRegister.Name = "linkRegister";
             this.linkRegister.Size = new System.Drawing.Size(104, 13);
             this.linkRegister.TabIndex = 6;
@@ -113,14 +114,14 @@ namespace Retreat_Management_System
             // 
             this.lbErrorMessage.AutoSize = true;
             this.lbErrorMessage.ForeColor = System.Drawing.Color.Red;
-            this.lbErrorMessage.Location = new System.Drawing.Point(384, 360);
+            this.lbErrorMessage.Location = new System.Drawing.Point(390, 453);
             this.lbErrorMessage.Name = "lbErrorMessage";
             this.lbErrorMessage.Size = new System.Drawing.Size(0, 13);
             this.lbErrorMessage.TabIndex = 7;
             // 
             // btnClearFields
             // 
-            this.btnClearFields.Location = new System.Drawing.Point(498, 390);
+            this.btnClearFields.Location = new System.Drawing.Point(504, 483);
             this.btnClearFields.Name = "btnClearFields";
             this.btnClearFields.Size = new System.Drawing.Size(75, 23);
             this.btnClearFields.TabIndex = 8;
@@ -132,7 +133,7 @@ namespace Retreat_Management_System
             // 
             this.lblogin.AutoSize = true;
             this.lblogin.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblogin.Location = new System.Drawing.Point(381, 189);
+            this.lblogin.Location = new System.Drawing.Point(387, 282);
             this.lblogin.Name = "lblogin";
             this.lblogin.Size = new System.Drawing.Size(85, 32);
             this.lblogin.TabIndex = 9;
@@ -140,10 +141,10 @@ namespace Retreat_Management_System
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Retreat_Management_System.Properties.Resources.ZRM1;
-            this.pictureBox1.Location = new System.Drawing.Point(387, 12);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(384, 73);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(176, 174);
+            this.pictureBox1.Size = new System.Drawing.Size(195, 174);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 

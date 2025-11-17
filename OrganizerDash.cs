@@ -12,12 +12,15 @@ namespace Retreat_Management_System
         private int organizerID; // Store organizer ID
         private readonly UserService userService; // Service to handle user-related operations
         private int currentUserID; // Store the current user's ID
+        private string username; // Store the username
 
-        public OrganizerDash(int userID) // Constructor to accept the user ID
+        // Constructor to accept the user ID and username
+        public OrganizerDash(int userID, string fullName)
         {
             InitializeComponent();
             this.currentUserID = userID; // Store the user ID
             userService = new UserService(); // Initialize the UserService
+            SetWelcomeMessage(fullName);
             // Subscribe to the FormClosed event
             this.FormClosed += OrganizerDash_FormClosed;
         }
@@ -25,6 +28,12 @@ namespace Retreat_Management_System
         private void OrganizerDash_Load(object sender, EventArgs e)
         {
             LoadOrganizerData();
+            
+        }
+
+        public void SetWelcomeMessage(string fullName)
+        {
+            lbWelcomeMessage.Text = $"Welcome, {fullName}!";
         }
 
         private void LoadOrganizerData()
@@ -292,7 +301,7 @@ namespace Retreat_Management_System
 
         private void OrganizerDash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Do nothing.  The PerformLogout() method handles showing the LoginPage.
+            // Do nothing. The PerformLogout() method handles showing the LoginPage.
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

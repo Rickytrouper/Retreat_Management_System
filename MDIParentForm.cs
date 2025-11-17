@@ -8,31 +8,34 @@ namespace Retreat_Management_System
         private readonly int currentUserID;
         private readonly string currentUserRole;
 
-        public MDIParentForm(int userID, string userRole)
+        // Constructor for MDIParentForm with userID, userRole, and full name
+        public MDIParentForm(int userID, string userRole, string fullName)
         {
-            InitializeComponent();
+            InitializeComponent(); // Initialize components
             currentUserID = userID;
             currentUserRole = userRole;
 
             // Based on the userRole, show the appropriate initial content
+            CreateDashboards(fullName);
+        }
+
+        private void CreateDashboards(string fullName)
+        {
             if (currentUserRole == "Admin")
             {
-                // Create and show the AdminDash as an MDI child
-                AdminDash adminDash = new AdminDash(currentUserID);
+                AdminDash adminDash = new AdminDash(currentUserID, fullName); // Pass full name
                 adminDash.MdiParent = this;
                 adminDash.Show();
             }
             else if (currentUserRole == "Organizer")
             {
-                // Create and show the OrganizerDash as an MDI child
-                OrganizerDash organizerDash = new OrganizerDash(currentUserID);
+                OrganizerDash organizerDash = new OrganizerDash(currentUserID, fullName); // Pass full name
                 organizerDash.MdiParent = this;
                 organizerDash.Show();
             }
             else if (currentUserRole == "User")
             {
-                // Create and show the UserDash as an MDI child
-                UserDash userDash = new UserDash(currentUserID);
+                UserDash userDash = new UserDash(currentUserID, fullName); // Pass full name
                 userDash.MdiParent = this;
                 userDash.Show();
             }
@@ -60,12 +63,11 @@ namespace Retreat_Management_System
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-
-        private void tileHorizontalToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            this.LayoutMdi(MdiLayout.TileHorizontal);
+            // Optional: add confirmation dialog before exit
+            if (MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,7 +77,5 @@ namespace Retreat_Management_System
             aboutPage.MdiParent = this; // Set the MDI parent
             aboutPage.Show();
         }
-
-        
     }
 }

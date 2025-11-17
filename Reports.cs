@@ -545,5 +545,15 @@ namespace Retreat_Management_System
             // Close the current form
             this.Close();
         }
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
+        {
+            LoginPage.PerformLogout(); // Call the logout static method 
+        }
+
+        private void MenuItemAbout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

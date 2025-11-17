@@ -30,9 +30,9 @@ namespace Retreat_Management_System
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<Retreat> Retreats { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Organizer> Organizers { get; set; }
+        public DbSet<Retreat> Retreats { get; set; }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbWelcome = new System.Windows.Forms.Label();
+            this.lbWelcomeMessage = new System.Windows.Forms.Label();
             this.txtOrganiserName = new System.Windows.Forms.TextBox();
             this.txtEmailAddress = new System.Windows.Forms.TextBox();
             this.lbOrganiserName = new System.Windows.Forms.Label();
@@ -51,16 +51,16 @@
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lbWelcome
+            // lbWelcomeMessage
             // 
-            this.lbWelcome.AutoSize = true;
-            this.lbWelcome.Font = new System.Drawing.Font("Britannic Bold", 22F);
-            this.lbWelcome.Location = new System.Drawing.Point(285, 58);
-            this.lbWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbWelcome.Name = "lbWelcome";
-            this.lbWelcome.Size = new System.Drawing.Size(299, 33);
-            this.lbWelcome.TabIndex = 0;
-            this.lbWelcome.Text = "Organiser Dashboard";
+            this.lbWelcomeMessage.AutoSize = true;
+            this.lbWelcomeMessage.Font = new System.Drawing.Font("Britannic Bold", 22F);
+            this.lbWelcomeMessage.Location = new System.Drawing.Point(325, 67);
+            this.lbWelcomeMessage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbWelcomeMessage.Name = "lbWelcomeMessage";
+            this.lbWelcomeMessage.Size = new System.Drawing.Size(299, 33);
+            this.lbWelcomeMessage.TabIndex = 0;
+            this.lbWelcomeMessage.Text = "Organiser Dashboard";
             // 
             // txtOrganiserName
             // 
@@ -213,7 +213,7 @@
             // MenuItemLogout
             // 
             this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
             this.MenuItemLogout.Text = "Logout";
             this.MenuItemLogout.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -228,7 +228,7 @@
             // MenuItemAbout
             // 
             this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
             this.MenuItemAbout.Text = "About";
             this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
@@ -251,7 +251,7 @@
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnAddRetreats);
             this.Controls.Add(this.gbOrganiserInfo);
-            this.Controls.Add(this.lbWelcome);
+            this.Controls.Add(this.lbWelcomeMessage);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "OrganizerDash";
             this.Text = "Organizer Dash";
@@ -267,7 +267,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbWelcome;
+        private System.Windows.Forms.Label lbWelcomeMessage;
         private System.Windows.Forms.TextBox txtOrganiserName;
         private System.Windows.Forms.TextBox txtEmailAddress;
         private System.Windows.Forms.Label lbOrganiserName;

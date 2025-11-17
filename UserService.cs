@@ -8,79 +8,76 @@ namespace Retreat_Management_System
     public static class CurrentUser
     {
         public static int UserId { get; set; }
-        public static string Role { get; set; } // Optional for role management
+        public static string Role { get; set; }
+        public static string FullName { get; set; } // Optional for full name management
     }
 
     public class UserService
     {
-        private readonly Retreat_Management_DBEntities retreat_Management_DBEntities;
+        private readonly Retreat_Management_DBEntities retreatManagementDbEntities;
 
         public UserService()
         {
-            retreat_Management_DBEntities = new Retreat_Management_DBEntities();
+            retreatManagementDbEntities = new Retreat_Management_DBEntities();
         }
 
         // Method to validate user credentials
         public User ValidateUser(string userName, string password)
         {
-            var user = retreat_Management_DBEntities.Users
+            var user = retreatManagementDbEntities.Users
                 .FirstOrDefault(u => u.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
 
-            if (user != null)
+            if (user != null && VerifyPassword(password, user.Password))
             {
-                if (user.Password == password) // Plain text check
-                {
-                    user.Password = HashPassword(password); // Hash and update
-                    retreat_Management_DBEntities.SaveChanges();
-                }
-                else if (user.Password != HashPassword(password)) // Hash check
-                {
-                    return null; // Invalid password
-                }
-
-                // Set current user information
+                // User authenticated; update the current user
                 CurrentUser.UserId = user.UserID;
-                CurrentUser.Role = user.Role; // Set the user's role
-                return user; // Return user if found and valid
+                CurrentUser.Role = user.Role;
+                CurrentUser.FullName = $"{user.FirstName} {user.LastName}"; // Optional full name
+                UpdateLastLogin(user.UserID); // Update last login on successful login
+                return user;
             }
 
-            return null; // User not found
+            return null; // Invalid username/password
+        }
+
+        // Method to verify hashed password
+        private bool VerifyPassword(string password, string hashedPassword)
+        {
+            string hashedInput = HashPassword(password);
+            return hashedInput == hashedPassword; // Compare hashed values
         }
 
         // Method to get user details by user ID
         public User GetUserDetails(int userId)
         {
-            return retreat_Management_DBEntities.Users.Find(userId); // Fetch user by ID
+            return retreatManagementDbEntities.Users.Find(userId);
         }
 
         // Method to update LastLogin for a user
         public void UpdateLastLogin(int userId)
         {
-            using (var context = new Retreat_Management_DBEntities())
+            var user = retreatManagementDbEntities.Users.Find(userId);
+            if (user != null)
             {
-                var user = context.Users.Find(userId);
-                if (user != null)
-                {
-                    user.LastLogin = DateTime.Now; // Update LastLogin time
-                    context.SaveChanges(); // Save changes
-                }
+                user.LastLogin = DateTime.Now;
+                retreatManagementDbEntities.SaveChanges();
             }
         }
 
         // Method to hash passwords
-        private string HashPassword(string password)
+        public string HashPassword(string password)
         {
             using (var sha256 = SHA256.Create())
             {
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(bytes); // Return hashed password
+                return Convert.ToBase64String(bytes);
             }
         }
 
         // Method to get the current user's ID
         public int GetCurrentUserId()
         {
-            return CurrentUser.UserId; // Return the current user's ID
+            return CurrentUser.UserId;
         }
     }
 }

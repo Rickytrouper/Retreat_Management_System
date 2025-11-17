@@ -11,6 +11,7 @@ namespace Retreat_Management_System
     public partial class UserDash : Form
     {
         private readonly int currentUserId;
+        private readonly string username;
 
         // Store original values for cancel operation
         private string originalUsername;
@@ -21,11 +22,17 @@ namespace Retreat_Management_System
         private const string UpdateSuccessMessage = "Profile updated successfully!";
         private const string ProfilePictureNotFoundMessage = "Profile picture not found.";
 
-        public UserDash(int userId) // user ID passed as a parameter
+        public UserDash(int userId, string fullName) // user ID / username passed as a parameter
         {
             InitializeComponent();
             currentUserId = userId; // Set the current user ID
             this.FormClosed += UserDash_FormClosed;
+            SetWelcomeMessage(fullName); // Call to show username
+        }
+
+        private void SetWelcomeMessage(string fullName)
+        {
+            lbWelcomeMessage.Text = $"Welcome, {fullName}!"; // Set welcome message with username
         }
 
         private void UserDash_Load(object sender, EventArgs e)
@@ -280,7 +287,7 @@ namespace Retreat_Management_System
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
             this.Hide();
-            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId); // Pass the userId
+            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId,username); // Pass the userId
             retreatDetails.MdiParent = this.MdiParent;
             retreatDetails.Show();
         }
@@ -319,11 +326,27 @@ namespace Retreat_Management_System
 
         private void btnReview_Click(object sender, EventArgs e)
         {
-            // Create a new instance of the ReviewPage form, passing the currentUserId
-            ReviewPage reviewPage = new ReviewPage(currentUserId);
+            this.Hide();
 
-            // Show the ReviewPage form
-            reviewPage.ShowDialog(); // Show as a dialog, blocking UserDash until closed
+            string retrievedUsername = ""; // Placeholder for the username
+
+            using (var context = new Retreat_Management_DBEntities())
+            {
+                var user = context.Users.FirstOrDefault(u => u.UserID == currentUserId);
+                if (user != null)
+                {
+                    retrievedUsername = user.Username; // Fetch the username
+                }
+                else
+                {
+                    MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Exit if user not found
+                }
+            }
+
+            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, retrievedUsername); // Pass both parameters
+            retreatDetails.MdiParent = this.MdiParent;
+            retreatDetails.Show();
         }
     }
 }

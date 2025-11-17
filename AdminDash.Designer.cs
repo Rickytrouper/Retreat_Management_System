@@ -53,7 +53,7 @@
             // 
             this.lbWelcomeMessage.AutoSize = true;
             this.lbWelcomeMessage.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbWelcomeMessage.Location = new System.Drawing.Point(355, 49);
+            this.lbWelcomeMessage.Location = new System.Drawing.Point(321, 61);
             this.lbWelcomeMessage.Name = "lbWelcomeMessage";
             this.lbWelcomeMessage.Size = new System.Drawing.Size(244, 32);
             this.lbWelcomeMessage.TabIndex = 0;
@@ -76,7 +76,7 @@
             this.lbEditRetreat.AutoSize = true;
             this.lbEditRetreat.Location = new System.Drawing.Point(110, 57);
             this.lbEditRetreat.Name = "lbEditRetreat";
-            this.lbEditRetreat.Size = new System.Drawing.Size(141, 16);
+            this.lbEditRetreat.Size = new System.Drawing.Size(135, 16);
             this.lbEditRetreat.TabIndex = 3;
             this.lbEditRetreat.Text = "View / Edit Retreat";
             // 
@@ -109,7 +109,7 @@
             this.lbManageUsers.AutoSize = true;
             this.lbManageUsers.Location = new System.Drawing.Point(102, 42);
             this.lbManageUsers.Name = "lbManageUsers";
-            this.lbManageUsers.Size = new System.Drawing.Size(111, 16);
+            this.lbManageUsers.Size = new System.Drawing.Size(108, 16);
             this.lbManageUsers.TabIndex = 2;
             this.lbManageUsers.Text = "Manage Users";
             // 
@@ -142,7 +142,7 @@
             this.lbGenerateReports.AutoSize = true;
             this.lbGenerateReports.Location = new System.Drawing.Point(130, 45);
             this.lbGenerateReports.Name = "lbGenerateReports";
-            this.lbGenerateReports.Size = new System.Drawing.Size(63, 16);
+            this.lbGenerateReports.Size = new System.Drawing.Size(62, 16);
             this.lbGenerateReports.TabIndex = 7;
             this.lbGenerateReports.Text = "Reports";
             // 

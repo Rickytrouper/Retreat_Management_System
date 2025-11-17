@@ -56,6 +56,11 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userTableAdapter = new Retreat_Management_System.Retreat_Management_DBreportsDataSetTableAdapters.UserTableAdapter();
             this.retreatTableAdapter = new Retreat_Management_System.Retreat_Management_DBreportsDataSetTableAdapters.RetreatTableAdapter();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
@@ -66,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbPageLable
@@ -101,7 +107,7 @@
             this.lbEndDate.AutoSize = true;
             this.lbEndDate.Location = new System.Drawing.Point(14, 110);
             this.lbEndDate.Name = "lbEndDate";
-            this.lbEndDate.Size = new System.Drawing.Size(84, 16);
+            this.lbEndDate.Size = new System.Drawing.Size(79, 16);
             this.lbEndDate.TabIndex = 7;
             this.lbEndDate.Text = "End Date :";
             // 
@@ -110,7 +116,7 @@
             this.lbStartDate.AutoSize = true;
             this.lbStartDate.Location = new System.Drawing.Point(14, 68);
             this.lbStartDate.Name = "lbStartDate";
-            this.lbStartDate.Size = new System.Drawing.Size(89, 16);
+            this.lbStartDate.Size = new System.Drawing.Size(84, 16);
             this.lbStartDate.TabIndex = 6;
             this.lbStartDate.Text = "Start Date :";
             // 
@@ -166,7 +172,7 @@
             this.lbReportType.AutoSize = true;
             this.lbReportType.Location = new System.Drawing.Point(14, 31);
             this.lbReportType.Name = "lbReportType";
-            this.lbReportType.Size = new System.Drawing.Size(106, 16);
+            this.lbReportType.Size = new System.Drawing.Size(102, 16);
             this.lbReportType.TabIndex = 0;
             this.lbReportType.Text = "Report Type :";
             // 
@@ -219,7 +225,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(64, 338);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 16);
+            this.label2.Size = new System.Drawing.Size(99, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Report Table";
             // 
@@ -268,11 +274,53 @@
             // 
             this.retreatTableAdapter.ClearBeforeFill = true;
             // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemFile,
+            this.MenuItemHelp});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(944, 24);
+            this.menuStrip.TabIndex = 11;
+            this.menuStrip.Text = "menuStrip";
+            // 
+            // MenuItemFile
+            // 
+            this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemLogout});
+            this.MenuItemFile.Name = "MenuItemFile";
+            this.MenuItemFile.Size = new System.Drawing.Size(37, 20);
+            this.MenuItemFile.Text = "File";
+            // 
+            // MenuItemLogout
+            // 
+            this.MenuItemLogout.Name = "MenuItemLogout";
+            this.MenuItemLogout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemLogout.Text = "Logout";
+            this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
+            // 
+            // MenuItemHelp
+            // 
+            this.MenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemAbout});
+            this.MenuItemHelp.Name = "MenuItemHelp";
+            this.MenuItemHelp.Size = new System.Drawing.Size(44, 20);
+            this.MenuItemHelp.Text = "Help";
+            // 
+            // MenuItemAbout
+            // 
+            this.MenuItemAbout.Name = "MenuItemAbout";
+            this.MenuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.MenuItemAbout.Text = "About";
+            this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
+            // 
             // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvReport);
             this.Controls.Add(this.btnExport);
@@ -292,6 +340,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,5 +376,10 @@
         private Retreat_Management_DBreportsDataSetTableAdapters.UserTableAdapter userTableAdapter;
         private System.Windows.Forms.BindingSource retreatBindingSource;
         private Retreat_Management_DBreportsDataSetTableAdapters.RetreatTableAdapter retreatTableAdapter;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
     }
 }

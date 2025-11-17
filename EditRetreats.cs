@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Retreat_Management_System
@@ -9,6 +11,7 @@ namespace Retreat_Management_System
     {
         private readonly int adminID; // Store admin ID
         private readonly Retreat_Management_DBEntities db;
+        private readonly int currentAdminID;
 
         public EditRetreats(int adminID) // Constructor accepting only adminID
         {
@@ -32,24 +35,9 @@ namespace Retreat_Management_System
 
         private void LoadRetreatsData()
         {
-            this.retreatDetails.EnforceConstraints = false; // Disable constraints temporarily
-                       
-            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
+                     
+            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);                        
             
-            Debug.WriteLine($"Rows Count: {dataGVRetreats.Rows.Count}"); // Debugging line
-
-            //this.retreatDetails.EnforceConstraints = true; // Re-enable constraints after loadin
-
-            // Print out column names for debugging
-            foreach (DataGridViewColumn column in dataGVRetreats.Columns)
-            {
-                Debug.WriteLine($"Column Name: {column.Name}");
-            }
-
-            if (dataGVRetreats.Rows.Count == 0)
-            {
-                MessageBox.Show("No retreats available.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void btnEditSelectedRetreat_Click_1(object sender, EventArgs e)
@@ -131,6 +119,34 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show("Please select a retreat to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
+        {
+            LoginPage.PerformLogout(); // Call the logout static method 
+        }
+
+        private void MenuItemAbout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AboutPage aboutPage = Application.OpenForms.OfType<AboutPage>().FirstOrDefault();
+                if (aboutPage == null)
+                {
+                    aboutPage = new AboutPage(currentAdminID);
+                    aboutPage.MdiParent = this.MdiParent;
+                    aboutPage.Show();
+                }
+                else
+                {
+                    aboutPage.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening About page: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

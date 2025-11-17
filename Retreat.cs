@@ -34,10 +34,11 @@ namespace Retreat_Management_System
         public Nullable<int> OrganizerID { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
+        public string Status { get; set; }
     
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
-        public virtual User User { get; set; }
         public virtual Organizer Organizer { get; set; }
+        public virtual User User { get; set; }
     }
 }

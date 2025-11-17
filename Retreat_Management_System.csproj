@@ -222,11 +222,6 @@
     <Compile Include="OrganizerDash.Designer.cs">
       <DependentUpon>OrganizerDash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="RegisterAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +262,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Retreat_Management_DB_UserInfo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Retreat_Status.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Retreat_Status.xsd</DependentUpon>
     </Compile>
     <Compile Include="ReviewPage.cs">
       <SubType>Form</SubType>
@@ -397,7 +397,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagementForm.resx">
       <DependentUpon>UserManagementForm.cs</DependentUpon>
@@ -462,6 +461,17 @@
     </None>
     <None Include="Retreat_Management_DB_UserInfo.xss">
       <DependentUpon>Retreat_Management_DB_UserInfo.xsd</DependentUpon>
+    </None>
+    <None Include="Retreat_Status.xsc">
+      <DependentUpon>Retreat_Status.xsd</DependentUpon>
+    </None>
+    <None Include="Retreat_Status.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Retreat_Status.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Retreat_Status.xss">
+      <DependentUpon>Retreat_Status.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

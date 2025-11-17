@@ -9,21 +9,26 @@ namespace Retreat_Management_System
         private readonly int currentAdminID; // Store the current admin's ID
         private readonly AdminActionService adminActionService;
 
-        public AdminDash(int adminID)
+        // Constructor to accept both adminID and username
+        public AdminDash(int adminID, string fullName)
         {
             InitializeComponent();
             currentAdminID = adminID; // Initialize currentAdminID
             adminActionService = new AdminActionService(); // Initialize the logging service
-            this.FormClosed += AdminDash_FormClosed;
 
-            // Subscribe to the FormClosing event
+
+            // Set the welcome message with the username
+            SetWelcomeMessage(fullName);
+
+            // Subscribe to form events
+            this.FormClosed += AdminDash_FormClosed;
             this.FormClosing += AdminDash_FormClosing;
         }
 
-        public void SetWelcomeMessage(string username)
+        public void SetWelcomeMessage(string fullName)
         {
-            // Welcome message
-            lbWelcomeMessage.Text = $"Welcome, {username}!";
+            lbWelcomeMessage.Text = $"Welcome, {fullName}!"; // Display the fullname
+
         }
 
         private void btnEditRetreat_Click(object sender, EventArgs e)
@@ -54,7 +59,6 @@ namespace Retreat_Management_System
 
         private void OpenGenerateReportsForm()
         {
-            // Open the GenerateReports form
             Reports generateReportsForm = Application.OpenForms.OfType<Reports>().FirstOrDefault();
             if (generateReportsForm == null)
             {
@@ -80,40 +84,38 @@ namespace Retreat_Management_System
 
             try
             {
-                // Log the action of opening the user management form
-                adminActionService.LogAdminAction(currentAdminID, actionType, targetEntity, "Admin opened the user management form.");
+                adminActionService.LogAdminAction(currentAdminID, actionType, targetEntity,
+                    "Admin opened the user management form.");
 
-                // Open UserManagementForm with the currentAdminID
                 UserManagementForm userManagementForm = Application.OpenForms.OfType<UserManagementForm>().FirstOrDefault();
                 if (userManagementForm == null)
                 {
                     userManagementForm = new UserManagementForm(currentAdminID);
                     userManagementForm.MdiParent = this.MdiParent;
-                    userManagementForm.Show(); // Show the form
+                    userManagementForm.Show();
                 }
                 else
                 {
-                    userManagementForm.BringToFront(); // Bring it to the front if it's already open
+                    userManagementForm.BringToFront();
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message); // Handle invalid action type
+                MessageBox.Show(ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message); // Handle other errors
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
         private void AdminDash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // PerformLogout() use to reshow login page
+            // Logic when the form closes
         }
 
         private void AdminDash_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Check for specific open forms
             bool isAnyFormOpen = Application.OpenForms.OfType<EditRetreats>().Any() ||
                                   Application.OpenForms.OfType<UserManagementForm>().Any() ||
                                   Application.OpenForms.OfType<Reports>().Any() ||
@@ -121,7 +123,6 @@ namespace Retreat_Management_System
 
             if (isAnyFormOpen)
             {
-                // Cancel the close operation
                 e.Cancel = true;
                 MessageBox.Show("Please close all open forms before exiting.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -129,7 +130,7 @@ namespace Retreat_Management_System
 
         private void MenuItemLogout_Click_1(object sender, EventArgs e)
         {
-            LoginPage.PerformLogout(); // Call the static method 
+            LoginPage.PerformLogout();
         }
 
         private void MenuItemAbout_Click_1(object sender, EventArgs e)
@@ -145,12 +146,12 @@ namespace Retreat_Management_System
                 if (aboutPage == null)
                 {
                     aboutPage = new AboutPage(currentAdminID);
-                    aboutPage.MdiParent = this.MdiParent; // Set the MDI parent
-                    aboutPage.Show(); // Show the AboutPage
+                    aboutPage.MdiParent = this.MdiParent;
+                    aboutPage.Show();
                 }
                 else
                 {
-                    aboutPage.BringToFront(); // Bring it to the front if it's already open
+                    aboutPage.BringToFront();
                 }
             }
             catch (Exception ex)
