@@ -14,9 +14,14 @@ namespace Retreat_Management_System
         private readonly int createdByUserID; // Store the current user's ID
         private string imageBase64String; // Store the image as a Base64 string
 
-        public AddRetreat(Retreat selectedRetreat, int organizerID, int createdByUserID) // Pass organizerID and createdByUserID
+        public AddRetreat(Retreat selectedRetreat, int organizerID, int createdByUserID)
         {
             InitializeComponent();
+
+            // Populate the ComboBox with status options
+            cbRetreatStatus.Items.Add("Available");
+            cbRetreatStatus.Items.Add("Unavailable");
+
             this.selectedRetreat = selectedRetreat;
             this.organizerID = organizerID; // Store the organizer ID
             this.createdByUserID = createdByUserID; // Store the user ID
@@ -33,34 +38,24 @@ namespace Retreat_Management_System
                 numPrice.Value = selectedRetreat.Price;
                 numCapacity.Value = selectedRetreat.Capacity;
 
+                // Set the combo box status
+                cbRetreatStatus.SelectedItem = selectedRetreat.Status ?? "Available"; // Default to Available if null
+
                 // Validate and set start date
-                if (selectedRetreat.StartDate >= dtpStartDate.MinDate && selectedRetreat.StartDate <= dtpStartDate.MaxDate)
-                {
-                    dtpStartDate.Value = selectedRetreat.StartDate;
-                }
-                else
-                {
-                    MessageBox.Show("Start date is out of valid range.");
-                    dtpStartDate.Value = dtpStartDate.MinDate; // Set to a default valid date
-                }
+                dtpStartDate.Value = selectedRetreat.StartDate >= dtpStartDate.MinDate
+                    ? selectedRetreat.StartDate
+                    : dtpStartDate.MinDate; // Default valid date
 
                 // Validate and set end date
-                if (selectedRetreat.EndDate >= dtpEndDate.MinDate && selectedRetreat.EndDate <= dtpEndDate.MaxDate)
-                {
-                    dtpEndDate.Value = selectedRetreat.EndDate;
-                }
-                else
-                {
-                    MessageBox.Show("End date is out of valid range.");
-                    dtpEndDate.Value = dtpEndDate.MinDate; // Set to a default valid date
-                }
+                dtpEndDate.Value = selectedRetreat.EndDate >= dtpEndDate.MinDate
+                    ? selectedRetreat.EndDate
+                    : dtpEndDate.MinDate; // Default valid date
 
-                // Load image if applicable
+                // Load the image if applicable
                 if (!string.IsNullOrEmpty(selectedRetreat.ImageURL))
                 {
                     try
                     {
-                        // Set the decoded image into the PictureBox
                         byte[] imageBytes = Convert.FromBase64String(selectedRetreat.ImageURL);
                         using (MemoryStream ms = new MemoryStream(imageBytes))
                         {
@@ -76,7 +71,7 @@ namespace Retreat_Management_System
                 }
                 else
                 {
-                    pictureBox.Image = null;  // Set a default image
+                    pictureBox.Image = null; // Set a default image
                 }
             }
         }
@@ -120,21 +115,22 @@ namespace Retreat_Management_System
 
         private void btnSaveRetreat_Click(object sender, EventArgs e)
         {
+            // Get the selected status
+            string selectedStatus = cbRetreatStatus.SelectedItem?.ToString() ?? "Available"; // Default to "Available"
+
             // Capture input field values
             string retreatName = txtRetreatName.Text;
             string description = rbRetreatDiscription.Text;
             string location = txtRetreatLocation.Text;
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
-            decimal price;
-            int capacity;
+            decimal price = numPrice.Value;
+            int capacity = (int)numCapacity.Value; // Cast to int directly
 
             // Validate inputs
             if (string.IsNullOrWhiteSpace(retreatName) ||
                 string.IsNullOrWhiteSpace(description) ||
                 string.IsNullOrWhiteSpace(location) ||
-                !decimal.TryParse(numPrice.Text, out price) ||
-                !int.TryParse(numCapacity.Text, out capacity) ||
                 startDate >= endDate)
             {
                 MessageBox.Show("Please enter valid details for the retreat.");
@@ -156,9 +152,10 @@ namespace Retreat_Management_System
                         retreatToUpdate.EndDate = endDate;
                         retreatToUpdate.Price = price;
                         retreatToUpdate.Capacity = capacity;
+                        retreatToUpdate.Status = selectedStatus; // Update status
                         retreatToUpdate.LastUpdated = DateTime.Now; // Update last modified date
                         retreatToUpdate.ImageURL = imageBase64String; // Update the image
-                        retreatToUpdate.ContactInfo = "Contact Information"; // Update if needed
+                        retreatToUpdate.ContactInfo = "Contact Information"; // Set appropriate contact information
                         retreatToUpdate.OrganizerID = organizerID; // Ensure this is set
                     }
                     else
@@ -179,6 +176,7 @@ namespace Retreat_Management_System
                         EndDate = endDate,
                         Price = price,
                         Capacity = capacity,
+                        Status = selectedStatus, // Set the status for new retreat
                         ImageURL = imageBase64String, // Set the image
                         ContactInfo = "Contact Information", // Set as needed
                         CreatedBy = createdByUserID, // Use the current user's ID
@@ -220,10 +218,11 @@ namespace Retreat_Management_System
         {
             // Clear all input fields
             txtRetreatName.Clear();
-            rbRetreatDiscription.Clear(); // Assuming this is a RichTextBox or similar
+            rbRetreatDiscription.Clear(); // Clear the description
             txtRetreatLocation.Clear();
             numPrice.Value = 0; // Reset numeric input
             numCapacity.Value = 0; // Reset numeric input
+            cbRetreatStatus.SelectedIndex = 0; // Default to "Available"
             dtpStartDate.Value = DateTime.Now; // Reset to current date
             dtpEndDate.Value = DateTime.Now; // Reset to current date
             pictureBox.Image = null; // Reset image preview
@@ -236,7 +235,7 @@ namespace Retreat_Management_System
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
-
+            // About dialog logic here
         }
     }
 }

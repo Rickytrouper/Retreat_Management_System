@@ -1007,6 +1007,8 @@ namespace Retreat_Management_System {
             
             private global::System.Data.DataColumn columnContactInfo;
             
+            private global::System.Data.DataColumn columnRetreatID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RetreatDataTable() {
@@ -1082,6 +1084,14 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RetreatIDColumn {
+                get {
+                    return this.columnRetreatID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1124,10 +1134,18 @@ namespace Retreat_Management_System {
                         Location,
                         StartDate,
                         Price,
-                        ContactInfo};
+                        ContactInfo,
+                        null};
                 rowRetreatRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRetreatRow);
                 return rowRetreatRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RetreatRow FindByRetreatID(int RetreatID) {
+                return ((RetreatRow)(this.Rows.Find(new object[] {
+                            RetreatID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1152,6 +1170,7 @@ namespace Retreat_Management_System {
                 this.columnStartDate = base.Columns["StartDate"];
                 this.columnPrice = base.Columns["Price"];
                 this.columnContactInfo = base.Columns["ContactInfo"];
+                this.columnRetreatID = base.Columns["RetreatID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1167,6 +1186,10 @@ namespace Retreat_Management_System {
                 base.Columns.Add(this.columnPrice);
                 this.columnContactInfo = new global::System.Data.DataColumn("ContactInfo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnContactInfo);
+                this.columnRetreatID = new global::System.Data.DataColumn("RetreatID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRetreatID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnRetreatID}, true));
                 this.columnRetreatName.AllowDBNull = false;
                 this.columnRetreatName.MaxLength = 255;
                 this.columnLocation.AllowDBNull = false;
@@ -1174,6 +1197,12 @@ namespace Retreat_Management_System {
                 this.columnStartDate.AllowDBNull = false;
                 this.columnPrice.AllowDBNull = false;
                 this.columnContactInfo.MaxLength = 255;
+                this.columnRetreatID.AutoIncrement = true;
+                this.columnRetreatID.AutoIncrementSeed = -1;
+                this.columnRetreatID.AutoIncrementStep = -1;
+                this.columnRetreatID.AllowDBNull = false;
+                this.columnRetreatID.ReadOnly = true;
+                this.columnRetreatID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2004,6 +2033,17 @@ namespace Retreat_Management_System {
                 }
                 set {
                     this[this.tableRetreat.ContactInfoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int RetreatID {
+                get {
+                    return ((int)(this[this.tableRetreat.RetreatIDColumn]));
+                }
+                set {
+                    this[this.tableRetreat.RetreatIDColumn] = value;
                 }
             }
             
@@ -3165,7 +3205,37 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
             tableMapping.ColumnMappings.Add("StartDate", "StartDate");
             tableMapping.ColumnMappings.Add("Price", "Price");
             tableMapping.ColumnMappings.Add("ContactInfo", "ContactInfo");
+            tableMapping.ColumnMappings.Add("RetreatID", "RetreatID");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Retreat] WHERE (([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([Price] = @Original_Price) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ([RetreatID] = @Original_RetreatID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StartDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactInfo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Retreat] SET [RetreatName] = @RetreatName, [Location] = @Location, [StartDate] = @StartDate, [Price] = @Price, [ContactInfo] = @ContactInfo WHERE (([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([Price] = @Original_Price) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ([RetreatID] = @Original_RetreatID));
+SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID FROM Retreat WHERE (RetreatID = @RetreatID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StartDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StartDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactInfo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3181,7 +3251,8 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RetreatName, Location, StartDate, Price, ContactInfo FROM dbo.Retreat";
+            this._commandCollection[0].CommandText = "SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID FROM Retre" +
+                "at";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3207,6 +3278,35 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
             Retreat_Management_DBDataSet2.RetreatDataTable dataTable = new Retreat_Management_DBDataSet2.RetreatDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(Retreat_Management_DBDataSet2.RetreatDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(Retreat_Management_DBDataSet2 dataSet) {
+            return this.Adapter.Update(dataSet, "Retreat");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -3411,6 +3511,8 @@ FROM            Booking INNER JOIN
         
         private PaymentTableAdapter _paymentTableAdapter;
         
+        private RetreatTableAdapter _retreatTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -3456,6 +3558,20 @@ FROM            Booking INNER JOIN
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public RetreatTableAdapter RetreatTableAdapter {
+            get {
+                return this._retreatTableAdapter;
+            }
+            set {
+                this._retreatTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -3481,6 +3597,10 @@ FROM            Booking INNER JOIN
                             && (this._paymentTableAdapter.Connection != null))) {
                     return this._paymentTableAdapter.Connection;
                 }
+                if (((this._retreatTableAdapter != null) 
+                            && (this._retreatTableAdapter.Connection != null))) {
+                    return this._retreatTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -3498,6 +3618,9 @@ FROM            Booking INNER JOIN
                     count = (count + 1);
                 }
                 if ((this._paymentTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._retreatTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -3529,6 +3652,15 @@ FROM            Booking INNER JOIN
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._retreatTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Retreat.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._retreatTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -3555,6 +3687,14 @@ FROM            Booking INNER JOIN
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._retreatTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Retreat.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._retreatTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -3565,6 +3705,14 @@ FROM            Booking INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(Retreat_Management_DBDataSet2 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._retreatTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Retreat.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._retreatTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._paymentTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Payment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -3630,6 +3778,11 @@ FROM            Booking INNER JOIN
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._retreatTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._retreatTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -3678,6 +3831,15 @@ FROM            Booking INNER JOIN
                     if (this._paymentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._paymentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._paymentTableAdapter.Adapter);
+                    }
+                }
+                if ((this._retreatTableAdapter != null)) {
+                    revertConnections.Add(this._retreatTableAdapter, this._retreatTableAdapter.Connection);
+                    this._retreatTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._retreatTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._retreatTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._retreatTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._retreatTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -3745,6 +3907,10 @@ FROM            Booking INNER JOIN
                 if ((this._paymentTableAdapter != null)) {
                     this._paymentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._paymentTableAdapter]));
                     this._paymentTableAdapter.Transaction = null;
+                }
+                if ((this._retreatTableAdapter != null)) {
+                    this._retreatTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._retreatTableAdapter]));
+                    this._retreatTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

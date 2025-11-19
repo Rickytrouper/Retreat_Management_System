@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,11 +11,9 @@ namespace Retreat_Management_System
 {
     public partial class UserDash : Form
     {
-        private readonly int currentUserId;
-        private readonly string username;
-
-        // Store original values for cancel operation
-        private string originalUsername;
+        private readonly int currentUserId; // Store the current user ID
+        private readonly string username;     // Store the username
+        private string originalUsername;      // Store original values for cancel operation
         private string originalEmail;
         private string originalContactInfo;
 
@@ -22,12 +21,12 @@ namespace Retreat_Management_System
         private const string UpdateSuccessMessage = "Profile updated successfully!";
         private const string ProfilePictureNotFoundMessage = "Profile picture not found.";
 
-        public UserDash(int userId, string fullName) // user ID / username passed as a parameter
+        public UserDash(int userId, string fullName) // Constructor accepting user ID and full name
         {
             InitializeComponent();
             currentUserId = userId; // Set the current user ID
             this.FormClosed += UserDash_FormClosed;
-            SetWelcomeMessage(fullName); // Call to show username
+            SetWelcomeMessage(fullName); // Show welcome message
         }
 
         private void SetWelcomeMessage(string fullName)
@@ -39,7 +38,7 @@ namespace Retreat_Management_System
         {
             try
             {
-                LoadUserInfo();
+                LoadUserInfo(); // Load user information when the form loads
             }
             catch (Exception ex)
             {
@@ -68,6 +67,10 @@ namespace Retreat_Management_System
                     // Store original values
                     StoreOriginalValues();
                 }
+                else
+                {
+                    MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -89,7 +92,7 @@ namespace Retreat_Management_System
 
         private void StoreOriginalValues()
         {
-            originalUsername = txtUserName.Text;
+            originalUsername = txtUserName.Text; // Store original values for cancel operation
             originalEmail = txtEmail.Text;
             originalContactInfo = txtContactNum.Text;
         }
@@ -142,17 +145,25 @@ namespace Retreat_Management_System
                         existingUser.ContactInfo = contactInfo;
 
                         context.SaveChanges(); // Save changes to the database
+
+                        // Confirmation message
+                        MessageBox.Show(UpdateSuccessMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Reset original values after successful save
+                        StoreOriginalValues();
+
+                        // Make text boxes read-only again
+                        ResetTextBoxes();
+                    }
+                    else
+                    {
+                        MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-                // Confirmation message
-                MessageBox.Show(UpdateSuccessMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Reset original values after successful save
-                StoreOriginalValues();
-
-                // Make text boxes read-only again
-                ResetTextBoxes();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show("Database error: " + dbEx.InnerException?.Message ?? dbEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -162,7 +173,7 @@ namespace Retreat_Management_System
 
         private bool IsEmailValid(string email)
         {
-            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"); // Validate email format
         }
 
         private void ResetTextBoxes()
@@ -255,7 +266,7 @@ namespace Retreat_Management_System
                                 Price = bpr.retreat.Price,
                                 ContactInfo = bpr.retreat.ContactInfo,
                                 Username = user.Username,
-                                UserID = user.UserID // Use user.UserID here
+                                UserID = user.UserID // Store user ID
                             })
                         .Where(result => result.UserID == currentUserId) // Filter by current user's ID
                         .ToList();
@@ -286,8 +297,10 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("Loading data...");
+
             this.Hide();
-            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId,username); // Pass the userId
+            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, username); // Pass the userId and username
             retreatDetails.MdiParent = this.MdiParent;
             retreatDetails.Show();
         }
@@ -295,7 +308,7 @@ namespace Retreat_Management_System
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 // Check if the AboutPage is already open
                 AboutPage aboutPage = Application.OpenForms.OfType<AboutPage>().FirstOrDefault();
 
@@ -303,12 +316,11 @@ namespace Retreat_Management_System
                 {
                     // If not, open a new instance
                     aboutPage = new AboutPage(currentUserId);
-                    aboutPage.MdiParent = this.MdiParent; // child of the current MDI parent
-                    
+                    aboutPage.MdiParent = this.MdiParent; // Child of the current MDI parent
                     aboutPage.Show();
                 }
                 else
-                {                   
+                {
                     // If already open, bring it to the front
                     aboutPage.BringToFront();
                 }
@@ -327,7 +339,6 @@ namespace Retreat_Management_System
         private void btnReview_Click(object sender, EventArgs e)
         {
             this.Hide();
-
             string retrievedUsername = ""; // Placeholder for the username
 
             using (var context = new Retreat_Management_DBEntities())
