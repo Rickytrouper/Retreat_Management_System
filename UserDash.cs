@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic; // Required for List<T>
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
@@ -21,10 +22,13 @@ namespace Retreat_Management_System
         private const string UpdateSuccessMessage = "Profile updated successfully!";
         private const string ProfilePictureNotFoundMessage = "Profile picture not found.";
 
+        private List<Form> openedForms; // List to track opened forms
+
         public UserDash(int userId, string fullName) // Constructor accepting user ID and full name
         {
             InitializeComponent();
             currentUserId = userId; // Set the current user ID
+            openedForms = new List<Form>(); // Initialize the list of opened forms
             this.FormClosed += UserDash_FormClosed;
             SetWelcomeMessage(fullName); // Show welcome message
         }
@@ -297,12 +301,19 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Loading data...");
-
-            this.Hide();
-            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, username); // Pass the userId and username
-            retreatDetails.MdiParent = this.MdiParent;
+            // Create and open the retreat details form
+            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, username);
+            retreatDetails.FormClosed += ChildForm_FormClosed; // Track when this form closes
             retreatDetails.Show();
+
+            // Track opened forms
+            openedForms.Add(retreatDetails);
+        }
+
+        private void ChildForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Remove the closed form from the list of opened forms
+            openedForms.Remove(sender as Form);
         }
 
         private void menuItemAbout_Click(object sender, EventArgs e)
@@ -311,13 +322,15 @@ namespace Retreat_Management_System
             {
                 // Check if the AboutPage is already open
                 AboutPage aboutPage = Application.OpenForms.OfType<AboutPage>().FirstOrDefault();
-
                 if (aboutPage == null)
                 {
                     // If not, open a new instance
                     aboutPage = new AboutPage(currentUserId);
-                    aboutPage.MdiParent = this.MdiParent; // Child of the current MDI parent
+                    aboutPage.FormClosed += ChildForm_FormClosed; // Track when this form closes
                     aboutPage.Show();
+
+                    // Track opened forms
+                    openedForms.Add(aboutPage);
                 }
                 else
                 {
@@ -329,6 +342,18 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show($"Error opening About page: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // Check if any forms are still open
+            if (openedForms.Count > 0)
+            {
+                // Show a warning message but do not close the form
+                MessageBox.Show("Please close all open forms before exiting.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true; // Prevent the form from closing
+            }
+            base.OnFormClosing(e); // Call the base class method
         }
 
         private void UserDash_FormClosed(object sender, FormClosedEventArgs e)
@@ -356,8 +381,11 @@ namespace Retreat_Management_System
             }
 
             lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, retrievedUsername); // Pass both parameters
-            retreatDetails.MdiParent = this.MdiParent;
+            retreatDetails.FormClosed += ChildForm_FormClosed; // Track when this form closes
             retreatDetails.Show();
+
+            // Track opened forms
+            openedForms.Add(retreatDetails);
         }
     }
 }
