@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.txtRetreatName = new System.Windows.Forms.TextBox();
             this.lbRetreatName = new System.Windows.Forms.Label();
-            this.Label1 = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.txtRetreatLocation = new System.Windows.Forms.TextBox();
             this.lbRetreatLocation = new System.Windows.Forms.Label();
             this.lbRetreatDiscription = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.lbnumPrice = new System.Windows.Forms.Label();
             this.lbCapacity = new System.Windows.Forms.Label();
             this.lbUploadImage = new System.Windows.Forms.Label();
-            this.txtContatctDetails = new System.Windows.Forms.TextBox();
+            this.txtContactDetails = new System.Windows.Forms.TextBox();
             this.lbContactDetails = new System.Windows.Forms.Label();
             this.btnSaveRetreat = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -57,10 +57,6 @@
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbRetreatStatus = new System.Windows.Forms.ComboBox();
-            this.lbRetreatStatus = new System.Windows.Forms.Label();
-            this.retreat_Status = new Retreat_Management_System.Retreat_Status();
-            this.retreatStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -68,14 +64,18 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.retreatDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.retreatDetails = new Retreat_Management_System.RetreatDetails();
+            this.retreatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.retreatTableAdapter = new Retreat_Management_System.RetreatDetailsTableAdapters.RetreatTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.retreat_Status)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatStatusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRetreatName
@@ -97,16 +97,16 @@
             this.lbRetreatName.TabIndex = 1;
             this.lbRetreatName.Text = "Retreat Name:";
             // 
-            // Label1
+            // lblWelcome
             // 
-            this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Britannic Bold", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(340, 41);
-            this.Label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(225, 38);
-            this.Label1.TabIndex = 2;
-            this.Label1.Text = "Add a Retreat";
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Britannic Bold", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(340, 41);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(225, 38);
+            this.lblWelcome.TabIndex = 2;
+            this.lblWelcome.Text = "Add a Retreat";
             // 
             // txtRetreatLocation
             // 
@@ -234,13 +234,13 @@
             this.lbUploadImage.TabIndex = 16;
             this.lbUploadImage.Text = "Image Upload:";
             // 
-            // txtContatctDetails
+            // txtContactDetails
             // 
-            this.txtContatctDetails.Location = new System.Drawing.Point(617, 408);
-            this.txtContatctDetails.Margin = new System.Windows.Forms.Padding(2);
-            this.txtContatctDetails.Name = "txtContatctDetails";
-            this.txtContatctDetails.Size = new System.Drawing.Size(185, 20);
-            this.txtContatctDetails.TabIndex = 17;
+            this.txtContactDetails.Location = new System.Drawing.Point(617, 408);
+            this.txtContactDetails.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContactDetails.Name = "txtContactDetails";
+            this.txtContactDetails.Size = new System.Drawing.Size(185, 20);
+            this.txtContactDetails.TabIndex = 17;
             // 
             // lbContactDetails
             // 
@@ -359,34 +359,6 @@
             this.MenuItemAbout.Text = "About";
             this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
-            // cbRetreatStatus
-            // 
-            this.cbRetreatStatus.FormattingEnabled = true;
-            this.cbRetreatStatus.Location = new System.Drawing.Point(617, 472);
-            this.cbRetreatStatus.Name = "cbRetreatStatus";
-            this.cbRetreatStatus.Size = new System.Drawing.Size(121, 21);
-            this.cbRetreatStatus.TabIndex = 27;
-            // 
-            // lbRetreatStatus
-            // 
-            this.lbRetreatStatus.AutoSize = true;
-            this.lbRetreatStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRetreatStatus.Location = new System.Drawing.Point(541, 473);
-            this.lbRetreatStatus.Name = "lbRetreatStatus";
-            this.lbRetreatStatus.Size = new System.Drawing.Size(60, 20);
-            this.lbRetreatStatus.TabIndex = 26;
-            this.lbRetreatStatus.Text = "Status:";
-            // 
-            // retreat_Status
-            // 
-            this.retreat_Status.DataSetName = "Retreat_Status";
-            this.retreat_Status.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // retreatStatusBindingSource
-            // 
-            this.retreatStatusBindingSource.DataSource = this.retreat_Status;
-            this.retreatStatusBindingSource.Position = 0;
-            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Menu;
@@ -471,18 +443,6 @@
             this.textBox7.TabIndex = 34;
             this.textBox7.Text = "*";
             // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.ForeColor = System.Drawing.Color.Red;
-            this.textBox8.Location = new System.Drawing.Point(533, 476);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(15, 15);
-            this.textBox8.TabIndex = 35;
-            this.textBox8.Text = "*";
-            // 
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.SystemColors.Menu;
@@ -495,14 +455,31 @@
             this.textBox9.TabIndex = 36;
             this.textBox9.Text = "*";
             // 
+            // retreatDetailsBindingSource
+            // 
+            this.retreatDetailsBindingSource.DataSource = this.retreatDetails;
+            this.retreatDetailsBindingSource.Position = 0;
+            // 
+            // retreatDetails
+            // 
+            this.retreatDetails.DataSetName = "RetreatDetails";
+            this.retreatDetails.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // retreatBindingSource
+            // 
+            this.retreatBindingSource.DataMember = "Retreat";
+            this.retreatBindingSource.DataSource = this.retreatDetailsBindingSource;
+            // 
+            // retreatTableAdapter
+            // 
+            this.retreatTableAdapter.ClearBeforeFill = true;
+            // 
             // AddRetreat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.cbRetreatStatus);
-            this.Controls.Add(this.lbRetreatStatus);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.btnBack);
@@ -511,7 +488,7 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSaveRetreat);
             this.Controls.Add(this.lbContactDetails);
-            this.Controls.Add(this.txtContatctDetails);
+            this.Controls.Add(this.txtContactDetails);
             this.Controls.Add(this.lbUploadImage);
             this.Controls.Add(this.lbCapacity);
             this.Controls.Add(this.lbnumPrice);
@@ -524,12 +501,11 @@
             this.Controls.Add(this.lbRetreatDiscription);
             this.Controls.Add(this.lbRetreatLocation);
             this.Controls.Add(this.txtRetreatLocation);
-            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.lbRetreatName);
             this.Controls.Add(this.txtRetreatName);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox2);
@@ -537,13 +513,15 @@
             this.Controls.Add(this.textBox9);
             this.Name = "AddRetreat";
             this.Text = "AddRetreat";
+            this.Load += new System.EventHandler(this.AddRetreat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.retreat_Status)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatStatusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -554,7 +532,7 @@
 
         private System.Windows.Forms.TextBox txtRetreatName;
         private System.Windows.Forms.Label lbRetreatName;
-        private System.Windows.Forms.Label Label1;
+        private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.TextBox txtRetreatLocation;
         private System.Windows.Forms.Label lbRetreatLocation;
         private System.Windows.Forms.Label lbRetreatDiscription;
@@ -567,7 +545,7 @@
         private System.Windows.Forms.Label lbnumPrice;
         private System.Windows.Forms.Label lbCapacity;
         private System.Windows.Forms.Label lbUploadImage;
-        private System.Windows.Forms.TextBox txtContatctDetails;
+        private System.Windows.Forms.TextBox txtContactDetails;
         private System.Windows.Forms.Label lbContactDetails;
         private System.Windows.Forms.Button btnSaveRetreat;
         private System.Windows.Forms.Button btnClear;
@@ -580,10 +558,6 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
         private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
-        private System.Windows.Forms.ComboBox cbRetreatStatus;
-        private System.Windows.Forms.Label lbRetreatStatus;
-        private Retreat_Status retreat_Status;
-        private System.Windows.Forms.BindingSource retreatStatusBindingSource;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
@@ -591,7 +565,10 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.BindingSource retreatDetailsBindingSource;
+        private RetreatDetails retreatDetails;
+        private System.Windows.Forms.BindingSource retreatBindingSource;
+        private RetreatDetailsTableAdapters.RetreatTableAdapter retreatTableAdapter;
     }
 }

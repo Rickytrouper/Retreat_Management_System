@@ -37,6 +37,12 @@
             this.retreatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.retreatTableAdapter = new Retreat_Management_System.RetreatDetailsTableAdapters.RetreatTableAdapter();
             this.dataGVRetreats = new System.Windows.Forms.DataGridView();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.retreatBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.retreatIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.retreatNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,18 +57,11 @@
             this.organizerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastUpdatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.retreatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVRetreats)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource1)).BeginInit();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -121,6 +120,7 @@
             // 
             this.retreatBindingSource.DataMember = "Retreat";
             this.retreatBindingSource.DataSource = this.retreatDetails;
+            this.retreatBindingSource.CurrentChanged += new System.EventHandler(this.retreatBindingSource_CurrentChanged);
             // 
             // retreatTableAdapter
             // 
@@ -128,6 +128,7 @@
             // 
             // dataGVRetreats
             // 
+            this.dataGVRetreats.AllowUserToOrderColumns = true;
             this.dataGVRetreats.AutoGenerateColumns = false;
             this.dataGVRetreats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGVRetreats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -144,13 +145,53 @@
             this.createdByDataGridViewTextBoxColumn,
             this.organizerIDDataGridViewTextBoxColumn,
             this.dateCreatedDataGridViewTextBoxColumn,
-            this.lastUpdatedDataGridViewTextBoxColumn,
-            this.Status});
-            this.dataGVRetreats.DataSource = this.retreatBindingSource1;
-            this.dataGVRetreats.Location = new System.Drawing.Point(43, 120);
+            this.lastUpdatedDataGridViewTextBoxColumn});
+            this.dataGVRetreats.DataSource = this.retreatBindingSource;
+            this.dataGVRetreats.Location = new System.Drawing.Point(12, 120);
             this.dataGVRetreats.Name = "dataGVRetreats";
-            this.dataGVRetreats.Size = new System.Drawing.Size(851, 394);
+            this.dataGVRetreats.Size = new System.Drawing.Size(920, 394);
             this.dataGVRetreats.TabIndex = 5;
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemFile,
+            this.MenuItemHelp});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(952, 24);
+            this.menuStrip.TabIndex = 12;
+            this.menuStrip.Text = "menuStrip";
+            // 
+            // MenuItemFile
+            // 
+            this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemLogout});
+            this.MenuItemFile.Name = "MenuItemFile";
+            this.MenuItemFile.Size = new System.Drawing.Size(37, 20);
+            this.MenuItemFile.Text = "File";
+            // 
+            // MenuItemLogout
+            // 
+            this.MenuItemLogout.Name = "MenuItemLogout";
+            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
+            this.MenuItemLogout.Text = "Logout";
+            this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
+            // 
+            // MenuItemHelp
+            // 
+            this.MenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemAbout});
+            this.MenuItemHelp.Name = "MenuItemHelp";
+            this.MenuItemHelp.Size = new System.Drawing.Size(44, 20);
+            this.MenuItemHelp.Text = "Help";
+            // 
+            // MenuItemAbout
+            // 
+            this.MenuItemAbout.Name = "MenuItemAbout";
+            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
+            this.MenuItemAbout.Text = "About";
+            this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
             // retreatIDDataGridViewTextBoxColumn
             // 
@@ -237,63 +278,11 @@
             this.lastUpdatedDataGridViewTextBoxColumn.HeaderText = "LastUpdated";
             this.lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
             // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            // 
-            // retreatBindingSource1
-            // 
-            this.retreatBindingSource1.DataMember = "Retreat";
-            this.retreatBindingSource1.DataSource = this.retreatDetails;
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemFile,
-            this.MenuItemHelp});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(944, 24);
-            this.menuStrip.TabIndex = 12;
-            this.menuStrip.Text = "menuStrip";
-            // 
-            // MenuItemFile
-            // 
-            this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemLogout});
-            this.MenuItemFile.Name = "MenuItemFile";
-            this.MenuItemFile.Size = new System.Drawing.Size(37, 20);
-            this.MenuItemFile.Text = "File";
-            // 
-            // MenuItemLogout
-            // 
-            this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
-            this.MenuItemLogout.Text = "Logout";
-            this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
-            // 
-            // MenuItemHelp
-            // 
-            this.MenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemAbout});
-            this.MenuItemHelp.Name = "MenuItemHelp";
-            this.MenuItemHelp.Size = new System.Drawing.Size(44, 20);
-            this.MenuItemHelp.Text = "Help";
-            // 
-            // MenuItemAbout
-            // 
-            this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
-            this.MenuItemAbout.Text = "About";
-            this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
-            // 
             // EditRetreats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.ClientSize = new System.Drawing.Size(952, 681);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.dataGVRetreats);
             this.Controls.Add(this.btnBackToAdminDashboard);
@@ -306,9 +295,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVRetreats)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource1)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,12 +313,13 @@
         private System.Windows.Forms.BindingSource retreatBindingSource;
         private RetreatDetailsTableAdapters.RetreatTableAdapter retreatTableAdapter;
         private System.Windows.Forms.DataGridView dataGVRetreats;
-        private System.Windows.Forms.BindingSource retreatBindingSource1;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
         private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
         private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource retreatBindingSource2;
         private System.Windows.Forms.DataGridViewTextBoxColumn retreatIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn retreatNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
@@ -344,6 +334,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn organizerIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

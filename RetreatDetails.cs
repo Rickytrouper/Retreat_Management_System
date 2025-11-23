@@ -139,11 +139,8 @@ namespace Retreat_Management_System
         }
 
         private void lblRetreatDetails_Load(object sender, EventArgs e)
-        {
+        {            
             
-            this.retreatTableAdapter1.Fill(this.retreat_Status.Retreat);
-            
-            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
 
         }
 

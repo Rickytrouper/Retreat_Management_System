@@ -739,7 +739,7 @@ namespace Retreat_Management_System.Retreat_StatusTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Status FROM dbo.Retreat";
+            this._commandCollection[0].CommandText = "SELECT        Status\r\nFROM            Retreat";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -747,19 +747,7 @@ namespace Retreat_Management_System.Retreat_StatusTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Retreat_Status.RetreatDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+       
         public virtual Retreat_Status.RetreatDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             Retreat_Status.RetreatDataTable dataTable = new Retreat_Status.RetreatDataTable();

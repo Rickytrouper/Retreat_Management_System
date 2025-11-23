@@ -553,6 +553,24 @@ namespace Retreat_Management_System
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
+            try
+            {
+                AboutPage aboutPage = Application.OpenForms.OfType<AboutPage>().FirstOrDefault();
+                if (aboutPage == null)
+                {
+                    aboutPage = new AboutPage(currentAdminID);
+                    aboutPage.MdiParent = this.MdiParent;
+                    aboutPage.Show();
+                }
+                else
+                {
+                    aboutPage.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening About page: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

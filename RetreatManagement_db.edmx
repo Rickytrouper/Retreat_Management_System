@@ -96,7 +96,6 @@
           <Property Name="OrganizerID" Type="int" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="LastUpdated" Type="datetime" />
-          <Property Name="Status" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -557,7 +556,6 @@
           <Property Name="OrganizerID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Bookings" Relationship="Retreat_Management_DB.FK__Booking__Retreat__1332DBDC" FromRole="Retreat" ToRole="Booking" />
           <NavigationProperty Name="Feedbacks" Relationship="Retreat_Management_DB.FK__Feedback__Retrea__1F98B2C1" FromRole="Retreat" ToRole="Feedback" />
           <NavigationProperty Name="Organizer" Relationship="Retreat_Management_DB.FK_Retreat_Organizer" FromRole="Retreat" ToRole="Organizer" />
@@ -728,7 +726,6 @@
           <EntitySetMapping Name="Retreats">
             <EntityTypeMapping TypeName="Retreat_Management_DB.Retreat">
               <MappingFragment StoreEntitySet="Retreat">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />

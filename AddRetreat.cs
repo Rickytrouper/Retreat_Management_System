@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Drawing;
 using System.IO;
@@ -10,22 +11,21 @@ namespace Retreat_Management_System
     public partial class AddRetreat : Form
     {
         private readonly Retreat selectedRetreat;
-        private readonly int organizerID; // Store the organizer's ID
-        private readonly int createdByUserID; // Store the current user's ID
-        private string imageBase64String; // Store the image as a Base64 string
+        private readonly int organizerID;
+        private readonly int createdByUserID;
+        private readonly string mode;
+        private string imagePath; // Store the image path
 
-        public AddRetreat(Retreat selectedRetreat, int organizerID, int createdByUserID)
+        public AddRetreat(Retreat selectedRetreat, int organizerID, int createdByUserID, string mode = "Add")
         {
             InitializeComponent();
-
-            // Populate the ComboBox with status options
-            cbRetreatStatus.Items.Add("Available");
-            cbRetreatStatus.Items.Add("Unavailable");
+            this.mode = mode;
+            lblWelcome.Text = mode == "Edit" ? "Edit Retreat" : "Add Retreat";
 
             this.selectedRetreat = selectedRetreat;
-            this.organizerID = organizerID; // Store the organizer ID
-            this.createdByUserID = createdByUserID; // Store the user ID
-            LoadRetreatData(); // Load data if editing an existing retreat
+            this.organizerID = organizerID;
+            this.createdByUserID = createdByUserID;
+            LoadRetreatData();
         }
 
         private void LoadRetreatData()
@@ -37,41 +37,31 @@ namespace Retreat_Management_System
                 txtRetreatLocation.Text = selectedRetreat.Location;
                 numPrice.Value = selectedRetreat.Price;
                 numCapacity.Value = selectedRetreat.Capacity;
+                txtContactDetails.Text = selectedRetreat.ContactInfo;
 
-                // Set the combo box status
-                cbRetreatStatus.SelectedItem = selectedRetreat.Status ?? "Available"; // Default to Available if null
+               
+                dtpStartDate.Value = selectedRetreat.StartDate >= dtpStartDate.MinDate ? selectedRetreat.StartDate : dtpStartDate.MinDate;
+                dtpEndDate.Value = selectedRetreat.EndDate >= dtpEndDate.MinDate ? selectedRetreat.EndDate : dtpEndDate.MinDate;
 
-                // Validate and set start date
-                dtpStartDate.Value = selectedRetreat.StartDate >= dtpStartDate.MinDate
-                    ? selectedRetreat.StartDate
-                    : dtpStartDate.MinDate; // Default valid date
-
-                // Validate and set end date
-                dtpEndDate.Value = selectedRetreat.EndDate >= dtpEndDate.MinDate
-                    ? selectedRetreat.EndDate
-                    : dtpEndDate.MinDate; // Default valid date
-
-                // Load the image if applicable
+                // Load the image from the file path
                 if (!string.IsNullOrEmpty(selectedRetreat.ImageURL))
                 {
                     try
                     {
-                        byte[] imageBytes = Convert.FromBase64String(selectedRetreat.ImageURL);
-                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        if (File.Exists(selectedRetreat.ImageURL))
                         {
-                            Image retreatImage = Image.FromStream(ms);
-                            pictureBox.Image = retreatImage;
+                            pictureBox.Image = Image.FromFile(selectedRetreat.ImageURL);
                             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
                     }
-                    catch (FormatException ex)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Invalid image format: " + ex.Message);
+                        MessageBox.Show("Error loading image: " + ex.Message);
                     }
                 }
                 else
                 {
-                    pictureBox.Image = null; // Set a default image
+                    pictureBox.Image = null;
                 }
             }
         }
@@ -90,15 +80,22 @@ namespace Retreat_Management_System
 
                 try
                 {
-                    Image image = Image.FromFile(selectedFile);
-                    using (MemoryStream ms = new MemoryStream())
+                    // Define the directory to save images
+                    string directoryPath = @"C:\RetreatImages"; // Adjust to your path
+                    if (!Directory.Exists(directoryPath))
                     {
-                        image.Save(ms, image.RawFormat);
-                        byte[] imageBytes = ms.ToArray();
-                        imageBase64String = Convert.ToBase64String(imageBytes);
+                        Directory.CreateDirectory(directoryPath); // Create directory if it doesn't exist
                     }
 
-                    pictureBox.Image = image;
+                    // Generate a unique file name to avoid conflicts
+                    string fileName = Path.GetFileNameWithoutExtension(selectedFile) + "_" + Guid.NewGuid() + Path.GetExtension(selectedFile);
+                    string filePath = Path.Combine(directoryPath, fileName);
+                    imagePath = filePath;
+
+                    // Save the image file
+                    File.Copy(selectedFile, filePath, true); // Overwrite if file exists
+
+                    pictureBox.Image = Image.FromFile(filePath);
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 catch (Exception ex)
@@ -115,127 +112,165 @@ namespace Retreat_Management_System
 
         private void btnSaveRetreat_Click(object sender, EventArgs e)
         {
-            // Get the selected status
-            string selectedStatus = cbRetreatStatus.SelectedItem?.ToString() ?? "Available"; // Default to "Available"
-
-            // Capture input field values
-            string retreatName = txtRetreatName.Text;
-            string description = rbRetreatDiscription.Text;
-            string location = txtRetreatLocation.Text;
+            // Extract input values
+            string retreatName = txtRetreatName.Text.Trim();
+            string description = rbRetreatDiscription.Text.Trim();
+            string location = txtRetreatLocation.Text.Trim();
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
+            string contactInfo = txtContactDetails.Text.Trim();
             decimal price = numPrice.Value;
-            int capacity = (int)numCapacity.Value; // Cast to int directly
+            int capacity = (int)numCapacity.Value;
+            string selectedStatus = cbRetreatStatus.SelectedItem?.ToString();
 
             // Validate inputs
             if (string.IsNullOrWhiteSpace(retreatName) ||
                 string.IsNullOrWhiteSpace(description) ||
                 string.IsNullOrWhiteSpace(location) ||
-                startDate >= endDate)
+                startDate >= endDate ||
+                price <= 0 ||
+                capacity <= 0 ||
+                string.IsNullOrWhiteSpace(selectedStatus) ||
+                (selectedStatus != "Available" && selectedStatus != "Unavailable"))
             {
-                MessageBox.Show("Please enter valid details for the retreat.");
+                MessageBox.Show("Please provide valid details for all required fields, including a valid status.");
                 return;
             }
 
             using (var dbContext = new Retreat_Management_DBEntities())
             {
-                if (selectedRetreat != null)
+                try
                 {
-                    // Update existing retreat
-                    var retreatToUpdate = dbContext.Retreats.Find(selectedRetreat.RetreatID);
-                    if (retreatToUpdate != null)
+                    if (selectedRetreat != null)
                     {
+                        var retreatToUpdate = dbContext.Retreats.Find(selectedRetreat.RetreatID);
+                        if (retreatToUpdate == null)
+                        {
+                            MessageBox.Show("Retreat not found in the database.");
+                            return;
+                        }
+
+                        // Check for existing retreat name for uniqueness
+                        var existingRetreat = dbContext.Retreats
+                            .FirstOrDefault(r => r.RetreatName == retreatName && r.RetreatID != selectedRetreat.RetreatID);
+
+                        if (existingRetreat != null)
+                        {
+                            MessageBox.Show("A retreat with this name already exists.");
+                            return;
+                        }
+
+                        // Update retreat details
                         retreatToUpdate.RetreatName = retreatName;
                         retreatToUpdate.Description = description;
                         retreatToUpdate.Location = location;
                         retreatToUpdate.StartDate = startDate;
                         retreatToUpdate.EndDate = endDate;
                         retreatToUpdate.Price = price;
-                        retreatToUpdate.Capacity = capacity;
-                        retreatToUpdate.Status = selectedStatus; // Update status
-                        retreatToUpdate.LastUpdated = DateTime.Now; // Update last modified date
-                        retreatToUpdate.ImageURL = imageBase64String; // Update the image
-                        retreatToUpdate.ContactInfo = "Contact Information"; // Set appropriate contact information
-                        retreatToUpdate.OrganizerID = organizerID; // Ensure this is set
+                        retreatToUpdate.Capacity = capacity;                      
+                        retreatToUpdate.LastUpdated = DateTime.Now;
+
+                        // Update the image path if a new image is uploaded
+                        if (!string.IsNullOrEmpty(imagePath))
+                        {
+                            retreatToUpdate.ImageURL = imagePath;
+                        }
+
+                        retreatToUpdate.ContactInfo = contactInfo;
+
+                        // Save changes
+                        dbContext.SaveChanges();
+                        MessageBox.Show("Retreat updated successfully.");
+                        this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Retreat not found in the database.");
-                        return;
+                        // Create new retreat logic
+                        var newRetreat = new Retreat
+                        {
+                            RetreatName = retreatName,
+                            Description = description,
+                            Location = location,
+                            StartDate = startDate,
+                            EndDate = endDate,
+                            Price = price,
+                            Capacity = capacity,
+                            ImageURL = imagePath,
+                            ContactInfo = contactInfo,
+                            CreatedBy = createdByUserID,
+                            OrganizerID = organizerID, // Set OrganizerID on creation
+                            DateCreated = DateTime.Now,
+                            LastUpdated = DateTime.Now
+                        };
+
+                        dbContext.Retreats.Add(newRetreat);
+                        dbContext.SaveChanges();
+                        MessageBox.Show("Retreat saved successfully.");
+                        this.Close();
                     }
                 }
-                else
+                catch (DbUpdateException dbUpdateEx)
                 {
-                    // Create a new retreat object
-                    var retreat = new Retreat
+                    var errorMessage = $"Update error: {dbUpdateEx.Message}";
+                    if (dbUpdateEx.InnerException != null)
                     {
-                        RetreatName = retreatName,
-                        Description = description,
-                        Location = location,
-                        StartDate = startDate,
-                        EndDate = endDate,
-                        Price = price,
-                        Capacity = capacity,
-                        Status = selectedStatus, // Set the status for new retreat
-                        ImageURL = imageBase64String, // Set the image
-                        ContactInfo = "Contact Information", // Set as needed
-                        CreatedBy = createdByUserID, // Use the current user's ID
-                        OrganizerID = organizerID, // Use the passed OrganizerID
-                        DateCreated = DateTime.Now,
-                        LastUpdated = DateTime.Now
-                    };
-
-                    // Add the retreat to the context
-                    dbContext.Retreats.Add(retreat);
-                }
-
-                try
-                {
-                    dbContext.SaveChanges(); // Save changes to the database
-                    MessageBox.Show(selectedRetreat != null ? "Retreat updated successfully." : "Retreat saved successfully.");
-                    this.Close(); // Close the AddRetreat form after saving
+                        errorMessage += $"\nInner Exception: {dbUpdateEx.InnerException.Message}";
+                        if (dbUpdateEx.InnerException.InnerException != null)
+                        {
+                            errorMessage += $"\nInner Inner Exception: {dbUpdateEx.InnerException.InnerException.Message}";
+                        }
+                    }
+                    MessageBox.Show(errorMessage);
                 }
                 catch (DbEntityValidationException dbEx)
                 {
-                    // Handle validation errors
+                    var errorDetails = "Validation errors:\n";
                     foreach (var validationErrors in dbEx.EntityValidationErrors)
                     {
                         foreach (var validationError in validationErrors.ValidationErrors)
                         {
-                            MessageBox.Show($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                            errorDetails += $"Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}\n";
                         }
                     }
+                    MessageBox.Show(errorDetails);
                 }
                 catch (Exception ex)
                 {
-                    // Handle other exceptions
-                    MessageBox.Show($"An error occurred: {ex.Message}");
+                    MessageBox.Show($"An unexpected error occurred: {ex.Message}");
                 }
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            // Clear all input fields
             txtRetreatName.Clear();
-            rbRetreatDiscription.Clear(); // Clear the description
+            rbRetreatDiscription.Clear();
             txtRetreatLocation.Clear();
-            numPrice.Value = 0; // Reset numeric input
-            numCapacity.Value = 0; // Reset numeric input
-            cbRetreatStatus.SelectedIndex = 0; // Default to "Available"
-            dtpStartDate.Value = DateTime.Now; // Reset to current date
-            dtpEndDate.Value = DateTime.Now; // Reset to current date
-            pictureBox.Image = null; // Reset image preview
+            numPrice.Value = 0;
+            numCapacity.Value = 0;
+            cbRetreatStatus.SelectedIndex = 0;
+            txtContactDetails.Clear();
+            dtpStartDate.Value = DateTime.Now;
+            dtpEndDate.Value = DateTime.Now;
+            pictureBox.Image = null;
+            imagePath = null; // Reset the image path
         }
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-            LoginPage.PerformLogout(); // Call the logout static method 
+            LoginPage.PerformLogout();
         }
 
         private void MenuItemAbout_Click(object sender, EventArgs e)
         {
             // About dialog logic here
+        }
+
+        private void AddRetreat_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'retreatDetails.Retreat' table. You can move, or remove it, as needed.
+            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
+
         }
     }
 }

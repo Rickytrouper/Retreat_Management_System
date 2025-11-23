@@ -11,8 +11,9 @@
             <MainSource>
               <DbSource ConnectionRef="Retreat_Management_DBConnectionString (Settings)" DbObjectName="Retreat_Management_DB.dbo.Retreat" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT Status FROM dbo.Retreat</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Status
+FROM            Retreat</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -28,13 +29,13 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Retreat_Status" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="Retreat_Status" msprop:Generator_DataSetName="Retreat_Status">
+  <xs:element name="Retreat_Status" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Retreat_Status" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Retreat_Status">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Retreat" msprop:Generator_RowEvHandlerName="RetreatRowChangeEventHandler" msprop:Generator_RowDeletedName="RetreatRowDeleted" msprop:Generator_RowDeletingName="RetreatRowDeleting" msprop:Generator_RowEvArgName="RetreatRowChangeEvent" msprop:Generator_TablePropName="Retreat" msprop:Generator_RowChangedName="RetreatRowChanged" msprop:Generator_RowChangingName="RetreatRowChanging" msprop:Generator_TableClassName="RetreatDataTable" msprop:Generator_RowClassName="RetreatRow" msprop:Generator_TableVarName="tableRetreat" msprop:Generator_UserTableName="Retreat">
+        <xs:element name="Retreat" msprop:Generator_RowClassName="RetreatRow" msprop:Generator_RowEvHandlerName="RetreatRowChangeEventHandler" msprop:Generator_RowDeletedName="RetreatRowDeleted" msprop:Generator_RowDeletingName="RetreatRowDeleting" msprop:Generator_RowEvArgName="RetreatRowChangeEvent" msprop:Generator_TablePropName="Retreat" msprop:Generator_RowChangedName="RetreatRowChanged" msprop:Generator_UserTableName="Retreat" msprop:Generator_RowChangingName="RetreatRowChanging" msprop:Generator_TableClassName="RetreatDataTable" msprop:Generator_TableVarName="tableRetreat">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status" minOccurs="0">
+              <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />

@@ -301,12 +301,10 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
-            // Create and open the retreat details form
+            this.Close();
             lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, username);
-            retreatDetails.FormClosed += ChildForm_FormClosed; // Track when this form closes
+            retreatDetails.FormClosed += ChildForm_FormClosed;
             retreatDetails.Show();
-
-            // Track opened forms
             openedForms.Add(retreatDetails);
         }
 

@@ -30,14 +30,49 @@ namespace Retreat_Management_System
 
         private void EditRetreats_Load(object sender, EventArgs e)
         {
-            LoadRetreatsData(); // Load retreat data on form load
+            try
+            {
+                // Temporarily disable constraints
+                retreatDetails.EnforceConstraints = false;
+
+                // Logging before data fetch
+                Console.WriteLine("Attempting to load retreat data...");
+
+                // Fill the data table with retreat data
+                this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
+
+                // Logging after successful data fetch
+                Console.WriteLine("Retreat data has been loaded successfully.");
+
+                // Re-enable constraints after loading data
+                retreatDetails.EnforceConstraints = true;
+            }
+            catch (System.Data.ConstraintException ex)
+            {
+                MessageBox.Show("Data constraints error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Constraint Exception: {ex.Message} | Stack Trace: {ex.StackTrace}");
+
+                // Optionally log inner exception details
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show("Database update error: " + dbEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"DbUpdateException: {dbEx.Message} | Stack Trace: {dbEx.StackTrace}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred while loading retreat data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Exception: {ex.Message} | Stack Trace: {ex.StackTrace}");
+            }
         }
 
         private void LoadRetreatsData()
         {
-                     
-            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);                        
-            
+            this.retreatTableAdapter.Fill(this.retreatDetails.Retreat);
         }
 
         private void btnEditSelectedRetreat_Click_1(object sender, EventArgs e)
@@ -55,7 +90,7 @@ namespace Retreat_Management_System
                 if (selectedRetreat != null)
                 {
                     // Open the AddRetreat form in edit mode, passing the selected retreat
-                    AddRetreat editForm = new AddRetreat(selectedRetreat, adminID, adminID);
+                    AddRetreat editForm = new AddRetreat(selectedRetreat, adminID, adminID, "Edit");
                     editForm.MdiParent = this.MdiParent; // Set the MDI parent
                     editForm.FormClosed += (s, args) => LoadRetreatsData(); // Refresh data after closing
                     editForm.Show();
@@ -146,6 +181,10 @@ namespace Retreat_Management_System
             {
                 MessageBox.Show("Error opening About page: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void retreatBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
 
         }
     }

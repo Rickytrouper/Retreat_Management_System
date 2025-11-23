@@ -16,6 +16,9 @@ namespace Retreat_Management_System
         {
             InitializeComponent();
             userService = new UserService();
+
+            // Set the AcceptButton to the login button
+            this.AcceptButton = btnLogin;
         }
 
         private void btnSubmitLogin_Click(object sender, EventArgs e)
@@ -99,6 +102,29 @@ namespace Retreat_Management_System
             {
                 new LoginPage().Show();
             }
+        }
+
+        private void txtUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // If Enter key is pressed
+            {
+                btnLogin.PerformClick(); // Simulate button click
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // If Enter key is pressed
+            {
+                btnLogin.PerformClick(); // Simulate button click
+            }
+        }
+
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
+            // Attach the KeyDown event handlers
+            txtUserName.KeyDown += txtUserName_KeyDown;
+            txtPassword.KeyDown += txtPassword_KeyDown;
         }
     }
 }
