@@ -121,7 +121,7 @@ namespace Retreat_Management_System
             string contactInfo = txtContactDetails.Text.Trim();
             decimal price = numPrice.Value;
             int capacity = (int)numCapacity.Value;
-            string selectedStatus = cbRetreatStatus.SelectedItem?.ToString();
+           
 
             // Validate inputs
             if (string.IsNullOrWhiteSpace(retreatName) ||
@@ -129,9 +129,9 @@ namespace Retreat_Management_System
                 string.IsNullOrWhiteSpace(location) ||
                 startDate >= endDate ||
                 price <= 0 ||
-                capacity <= 0 ||
-                string.IsNullOrWhiteSpace(selectedStatus) ||
-                (selectedStatus != "Available" && selectedStatus != "Unavailable"))
+                capacity <= 0 
+                
+                )
             {
                 MessageBox.Show("Please provide valid details for all required fields, including a valid status.");
                 return;
@@ -247,8 +247,7 @@ namespace Retreat_Management_System
             rbRetreatDiscription.Clear();
             txtRetreatLocation.Clear();
             numPrice.Value = 0;
-            numCapacity.Value = 0;
-            cbRetreatStatus.SelectedIndex = 0;
+            numCapacity.Value = 0;            
             txtContactDetails.Clear();
             dtpStartDate.Value = DateTime.Now;
             dtpEndDate.Value = DateTime.Now;

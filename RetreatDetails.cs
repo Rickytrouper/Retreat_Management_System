@@ -6,14 +6,11 @@ using System.Windows.Forms;
 
 namespace Retreat_Management_System
 {
-
     public partial class lblRetreatDetails : Form
     {
-
         private readonly Retreat_Management_DBEntities retreat_Management_DBEntities;
         private int currentUserId; // Store the user ID
         private string username; // Store the username
-
 
         public lblRetreatDetails(int userId, string username)
         {
@@ -22,64 +19,26 @@ namespace Retreat_Management_System
             cbRetreatName.SelectedIndexChanged += cbRetreatName_SelectedIndexChanged;
             retreat_Management_DBEntities = new Retreat_Management_DBEntities();
             currentUserId = userId; // Store the user ID
-
-
-
+            this.username = username; // Store the username
         }
 
         private void RetreatDetails_Load(object sender, EventArgs e)
         {
-            var Retreat = retreat_Management_DBEntities.Retreats.ToList();
+            var retreats = retreat_Management_DBEntities.Retreats.ToList();
             cbRetreatName.DisplayMember = "RetreatName";
             cbRetreatName.ValueMember = "ID";
-            cbRetreatName.DataSource = Retreat;
-
+            cbRetreatName.DataSource = retreats;
         }
+
         private void cbRetreatName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Check if an item is selected
             if (cbRetreatName.SelectedItem != null)
             {
-                // Get the selected retreat object from the ComboBox
                 var selectedRetreat = cbRetreatName.SelectedItem as Retreat;
 
                 if (selectedRetreat != null)
                 {
-                    // Populate the text fields with the retreat details
-                    txtDescription.Text = selectedRetreat.Description ?? "N/A";
-                    txtLocation.Text = selectedRetreat.Location ?? "N/A";
-                    txtRetreatDates.Text = $"{selectedRetreat.StartDate:MM/dd/yyyy} to {selectedRetreat.EndDate:MM/dd/yyyy}";
-                    txtRetreatPrice.Text = selectedRetreat.Price.ToString("C");
-
-                    lblDiscriptionName.Text = selectedRetreat.RetreatName; // Set the label text
-
-                    if (!string.IsNullOrEmpty(selectedRetreat.ImageURL))
-                    {
-                        try
-                        {
-                            // Decode the base64 string into a byte array
-                            byte[] imageBytes = Convert.FromBase64String(selectedRetreat.ImageURL);
-
-                            // Convert the byte array into an Image object
-                            using (MemoryStream ms = new MemoryStream(imageBytes))
-                            {
-                                Image retreatImage = Image.FromStream(ms);
-
-                                // Set the decoded image into the PictureBox
-                                pbRetreat.Image = retreatImage;
-                            }
-                        }
-                        catch (FormatException ex)
-                        {
-                            // Handle error if base64 string is invalid
-                            MessageBox.Show("Invalid image format: " + ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        // If no image, display 
-                        pbRetreat.Image = null;  //set a default image
-                    }
+                    PopulateRetreatDetails(selectedRetreat);
                 }
                 else
                 {
@@ -88,8 +47,46 @@ namespace Retreat_Management_System
             }
             else
             {
-                // Handle the case when nothing is selected
                 MessageBox.Show("Please select a retreat.");
+            }
+        }
+
+        private void PopulateRetreatDetails(Retreat selectedRetreat)
+        {
+            txtDescription.Text = selectedRetreat.Description ?? "N/A";
+            txtLocation.Text = selectedRetreat.Location ?? "N/A";
+            txtRetreatDates.Text = $"{selectedRetreat.StartDate:MM/dd/yyyy} to {selectedRetreat.EndDate:MM/dd/yyyy}";
+            txtRetreatPrice.Text = selectedRetreat.Price.ToString("C");
+            lblDiscriptionName.Text = selectedRetreat.RetreatName;
+
+            if (!string.IsNullOrEmpty(selectedRetreat.ImageURL))
+            {
+                try
+                {
+                    if (IsValidBase64String(selectedRetreat.ImageURL))
+                    {
+                        byte[] imageBytes = Convert.FromBase64String(selectedRetreat.ImageURL);
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            Image retreatImage = Image.FromStream(ms);
+                            pbRetreat.Image = retreatImage;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Image format is invalid.");
+                        pbRetreat.Image = null; // Clear the image if invalid
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Error loading image: " + ex.Message);
+                    pbRetreat.Image = null; // Clear the image in case of error
+                }
+            }
+            else
+            {
+                pbRetreat.Image = null; // Clear the image if no URL is provided
             }
         }
 
@@ -99,26 +96,7 @@ namespace Retreat_Management_System
             {
                 int retreatId = selectedRetreat.RetreatID;
                 decimal price = selectedRetreat.Price;
-
-                // Create an instance of BookingPage with both userId and retreatId
-                var bookingPage = new BookingPage(currentUserId, retreatId, price); // Pass the userId and retreatId
-
-                // Set the retreat name
-                bookingPage.SetRetreatName(selectedRetreat.RetreatName);
-
-                // Create an instance of UserService to get user details
-                UserService userService = new UserService();
-                var user = userService.GetUserDetails(currentUserId); // Fetch user details
-
-                // Check if the user is found and set the username and email
-                if (user != null)
-                {
-                    bookingPage.SetUserName(user.Username); // Pass the username
-                    bookingPage.SetEmail(user.Email); // Pass the email
-                }
-
-                // Make BookingPage a modal dialog
-                bookingPage.ShowDialog();
+                OpenBookingPage(selectedRetreat, retreatId, price);
             }
             else
             {
@@ -126,32 +104,48 @@ namespace Retreat_Management_System
             }
         }
 
+        private void OpenBookingPage(Retreat selectedRetreat, int retreatId, decimal price)
+        {
+            var bookingPage = new BookingPage(currentUserId, retreatId, price);
+            bookingPage.SetRetreatName(selectedRetreat.RetreatName);
+
+            UserService userService = new UserService();
+            var user = userService.GetUserDetails(currentUserId);
+            if (user != null)
+            {
+                bookingPage.SetUserName(user.Username);
+                bookingPage.SetEmail(user.Email);
+            }
+
+            bookingPage.ShowDialog();
+        }
+
         private void btnBackToDashboard_Click(object sender, EventArgs e)
         {
             var confirm = MessageBox.Show("Are you sure you want to return to the dashboard?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                this.Close(); // Close the current form, returning to UserDash
-                UserDash userDash = new UserDash(currentUserId, username);              
+                this.Close();
+                UserDash userDash = new UserDash(currentUserId, username);
                 userDash.Show();
-
             }
         }
 
-        private void lblRetreatDetails_Load(object sender, EventArgs e)
-        {            
-            
-
-        }
+        private void lblRetreatDetails_Load(object sender, EventArgs e) { }
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-            LoginPage.PerformLogout(); // Call the logoout static method 
+            LoginPage.PerformLogout();
         }
 
-        private void MenuItemAbout_Click(object sender, EventArgs e)
-        {
+        private void MenuItemAbout_Click(object sender, EventArgs e) { }
 
+        private bool IsValidBase64String(string base64)
+        {
+            // Validate Base64 string
+            return !string.IsNullOrWhiteSpace(base64) &&
+                   (base64.Length % 4 == 0) &&
+                   base64.All(c => char.IsLetterOrDigit(c) || c == '+' || c == '/' || c == '=');
         }
     }
 }
