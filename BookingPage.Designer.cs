@@ -54,13 +54,20 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtNumOfSpaces = new System.Windows.Forms.TextBox();
+            this.txtNumberOfSpaces = new System.Windows.Forms.Label();
+            this.txtSubtotal = new System.Windows.Forms.TextBox();
+            this.lblSubtotal = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRetraetName
             // 
             this.lblRetraetName.AutoSize = true;
             this.lblRetraetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetraetName.Location = new System.Drawing.Point(105, 166);
+            this.lblRetraetName.Location = new System.Drawing.Point(107, 168);
             this.lblRetraetName.Name = "lblRetraetName";
             this.lblRetraetName.Size = new System.Drawing.Size(127, 20);
             this.lblRetraetName.TabIndex = 0;
@@ -70,7 +77,7 @@
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(105, 238);
+            this.lblUserName.Location = new System.Drawing.Point(107, 240);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(100, 20);
             this.lblUserName.TabIndex = 1;
@@ -88,14 +95,14 @@
             // 
             // txtRetreatName
             // 
-            this.txtRetreatName.Location = new System.Drawing.Point(109, 200);
+            this.txtRetreatName.Location = new System.Drawing.Point(111, 202);
             this.txtRetreatName.Name = "txtRetreatName";
             this.txtRetreatName.Size = new System.Drawing.Size(157, 20);
             this.txtRetreatName.TabIndex = 3;
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(109, 271);
+            this.txtUserName.Location = new System.Drawing.Point(111, 273);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(157, 20);
             this.txtUserName.TabIndex = 4;
@@ -104,7 +111,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(105, 320);
+            this.lblEmail.Location = new System.Drawing.Point(107, 322);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(48, 20);
             this.lblEmail.TabIndex = 5;
@@ -112,7 +119,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(109, 343);
+            this.txtEmail.Location = new System.Drawing.Point(111, 345);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 20);
             this.txtEmail.TabIndex = 6;
@@ -160,7 +167,7 @@
             // btnConfirmBooking
             // 
             this.btnConfirmBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmBooking.Location = new System.Drawing.Point(522, 504);
+            this.btnConfirmBooking.Location = new System.Drawing.Point(517, 560);
             this.btnConfirmBooking.Name = "btnConfirmBooking";
             this.btnConfirmBooking.Size = new System.Drawing.Size(115, 42);
             this.btnConfirmBooking.TabIndex = 14;
@@ -170,7 +177,7 @@
             // btnCancelBooking
             // 
             this.btnCancelBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelBooking.Location = new System.Drawing.Point(288, 504);
+            this.btnCancelBooking.Location = new System.Drawing.Point(268, 560);
             this.btnCancelBooking.Name = "btnCancelBooking";
             this.btnCancelBooking.Size = new System.Drawing.Size(115, 42);
             this.btnCancelBooking.TabIndex = 15;
@@ -214,7 +221,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(88, 205);
+            this.textBox1.Location = new System.Drawing.Point(90, 207);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(15, 15);
             this.textBox1.TabIndex = 26;
@@ -226,7 +233,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.Red;
-            this.textBox2.Location = new System.Drawing.Point(88, 274);
+            this.textBox2.Location = new System.Drawing.Point(90, 276);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(15, 15);
             this.textBox2.TabIndex = 27;
@@ -238,7 +245,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.Red;
-            this.textBox3.Location = new System.Drawing.Point(88, 348);
+            this.textBox3.Location = new System.Drawing.Point(90, 350);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(15, 15);
             this.textBox3.TabIndex = 28;
@@ -280,11 +287,81 @@
             this.textBox6.TabIndex = 31;
             this.textBox6.Text = "*";
             // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.ForeColor = System.Drawing.Color.Red;
+            this.textBox7.Location = new System.Drawing.Point(90, 417);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(15, 15);
+            this.textBox7.TabIndex = 34;
+            this.textBox7.Text = "*";
+            // 
+            // txtNumOfSpaces
+            // 
+            this.txtNumOfSpaces.Location = new System.Drawing.Point(111, 412);
+            this.txtNumOfSpaces.Name = "txtNumOfSpaces";
+            this.txtNumOfSpaces.Size = new System.Drawing.Size(160, 20);
+            this.txtNumOfSpaces.TabIndex = 33;
+            // 
+            // txtNumberOfSpaces
+            // 
+            this.txtNumberOfSpaces.AutoSize = true;
+            this.txtNumberOfSpaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumberOfSpaces.Location = new System.Drawing.Point(107, 389);
+            this.txtNumberOfSpaces.Name = "txtNumberOfSpaces";
+            this.txtNumberOfSpaces.Size = new System.Drawing.Size(122, 20);
+            this.txtNumberOfSpaces.TabIndex = 32;
+            this.txtNumberOfSpaces.Text = "No spot needed";
+            // 
+            // txtSubtotal
+            // 
+            this.txtSubtotal.Location = new System.Drawing.Point(268, 485);
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.Size = new System.Drawing.Size(160, 20);
+            this.txtSubtotal.TabIndex = 36;
+            // 
+            // lblSubtotal
+            // 
+            this.lblSubtotal.AutoSize = true;
+            this.lblSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtotal.Location = new System.Drawing.Point(264, 462);
+            this.lblSubtotal.Name = "lblSubtotal";
+            this.lblSubtotal.Size = new System.Drawing.Size(69, 20);
+            this.lblSubtotal.TabIndex = 35;
+            this.lblSubtotal.Text = "Subtotal";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Location = new System.Drawing.Point(472, 485);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(160, 20);
+            this.txtTotal.TabIndex = 38;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(468, 462);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(100, 20);
+            this.lblTotal.TabIndex = 37;
+            this.lblTotal.Text = "Total Charge";
+            // 
             // BookingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.txtSubtotal);
+            this.Controls.Add(this.lblSubtotal);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtNumOfSpaces);
+            this.Controls.Add(this.txtNumberOfSpaces);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
@@ -309,6 +386,7 @@
             this.Controls.Add(this.lblRetraetName);
             this.Name = "BookingPage";
             this.Text = "BookingPage";
+            this.Load += new System.EventHandler(this.BookingPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,5 +416,12 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtNumOfSpaces;
+        private System.Windows.Forms.Label txtNumberOfSpaces;
+        private System.Windows.Forms.TextBox txtSubtotal;
+        private System.Windows.Forms.Label lblSubtotal;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

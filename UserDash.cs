@@ -33,6 +33,11 @@ namespace Retreat_Management_System
             SetWelcomeMessage(fullName); // Show welcome message
         }
 
+        public UserDash(int currentUserId)
+        {
+            this.currentUserId = currentUserId;
+        }
+
         private void SetWelcomeMessage(string fullName)
         {
             lbWelcomeMessage.Text = $"Welcome, {fullName}!"; // Set welcome message with username
@@ -301,11 +306,9 @@ namespace Retreat_Management_System
 
         private void btnViewRetreats_Click(object sender, EventArgs e)
         {
-            this.Close();
-            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, username);
-            retreatDetails.FormClosed += ChildForm_FormClosed;
-            retreatDetails.Show();
-            openedForms.Add(retreatDetails);
+            this.Hide(); // Hide the UserDash form
+            var retreatDetails = new lblRetreatDetails(currentUserId, username, this); // Pass the existing UserDash instance
+            retreatDetails.Show(); // Show the retreat details form
         }
 
         private void ChildForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -377,13 +380,7 @@ namespace Retreat_Management_System
                     return; // Exit if user not found
                 }
             }
-
-            lblRetreatDetails retreatDetails = new lblRetreatDetails(currentUserId, retrievedUsername); // Pass both parameters
-            retreatDetails.FormClosed += ChildForm_FormClosed; // Track when this form closes
-            retreatDetails.Show();
-
-            // Track opened forms
-            openedForms.Add(retreatDetails);
+            
         }
     }
 }

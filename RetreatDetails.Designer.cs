@@ -49,27 +49,16 @@
             this.cbRetreatName = new System.Windows.Forms.ComboBox();
             this.pbRetreat = new System.Windows.Forms.PictureBox();
             this.lblDiscriptionName = new System.Windows.Forms.Label();
-            this.retreatBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.txtCapacity = new System.Windows.Forms.TextBox();
+            this.lbcapacity = new System.Windows.Forms.Label();
+            this.txtVacancy = new System.Windows.Forms.TextBox();
+            this.lbVacancy = new System.Windows.Forms.Label();
             this.retreatDetails = new Retreat_Management_System.RetreatDetails();
             this.retreatBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.retreatTableAdapter1 = new Retreat_Management_System.Retreat_StatusTableAdapters.RetreatTableAdapter();
-            this.retreatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.retreatTableAdapter = new Retreat_Management_System.RetreatDetailsTableAdapters.RetreatTableAdapter();
-            this.retreatDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.retreat_Status = new Retreat_Management_System.Retreat_Status();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbRetreat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreat_Status)).BeginInit();
-            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -137,7 +126,7 @@
             this.txtLocation.Location = new System.Drawing.Point(389, 340);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.ReadOnly = true;
-            this.txtLocation.Size = new System.Drawing.Size(210, 20);
+            this.txtLocation.Size = new System.Drawing.Size(242, 20);
             this.txtLocation.TabIndex = 9;
             // 
             // label4
@@ -156,7 +145,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(210, 47);
+            this.txtDescription.Size = new System.Drawing.Size(242, 76);
             this.txtDescription.TabIndex = 11;
             // 
             // label5
@@ -183,7 +172,7 @@
             this.txtRetreatDates.Multiline = true;
             this.txtRetreatDates.Name = "txtRetreatDates";
             this.txtRetreatDates.ReadOnly = true;
-            this.txtRetreatDates.Size = new System.Drawing.Size(153, 45);
+            this.txtRetreatDates.Size = new System.Drawing.Size(153, 35);
             this.txtRetreatDates.TabIndex = 15;
             // 
             // cbRetreatName
@@ -191,7 +180,7 @@
             this.cbRetreatName.FormattingEnabled = true;
             this.cbRetreatName.Location = new System.Drawing.Point(389, 167);
             this.cbRetreatName.Name = "cbRetreatName";
-            this.cbRetreatName.Size = new System.Drawing.Size(210, 21);
+            this.cbRetreatName.Size = new System.Drawing.Size(242, 21);
             this.cbRetreatName.TabIndex = 16;
             // 
             // pbRetreat
@@ -212,9 +201,41 @@
             this.lblDiscriptionName.TabIndex = 18;
             this.lblDiscriptionName.Text = "\"  \"";
             // 
-            // retreatBindingSource2
+            // txtCapacity
             // 
-            this.retreatBindingSource2.DataMember = "Retreat";
+            this.txtCapacity.Location = new System.Drawing.Point(389, 410);
+            this.txtCapacity.Name = "txtCapacity";
+            this.txtCapacity.ReadOnly = true;
+            this.txtCapacity.Size = new System.Drawing.Size(85, 20);
+            this.txtCapacity.TabIndex = 20;
+            // 
+            // lbcapacity
+            // 
+            this.lbcapacity.AutoSize = true;
+            this.lbcapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcapacity.Location = new System.Drawing.Point(385, 387);
+            this.lbcapacity.Name = "lbcapacity";
+            this.lbcapacity.Size = new System.Drawing.Size(70, 20);
+            this.lbcapacity.TabIndex = 19;
+            this.lbcapacity.Text = "Capacity";
+            // 
+            // txtVacancy
+            // 
+            this.txtVacancy.Location = new System.Drawing.Point(389, 476);
+            this.txtVacancy.Name = "txtVacancy";
+            this.txtVacancy.ReadOnly = true;
+            this.txtVacancy.Size = new System.Drawing.Size(85, 20);
+            this.txtVacancy.TabIndex = 22;
+            // 
+            // lbVacancy
+            // 
+            this.lbVacancy.AutoSize = true;
+            this.lbVacancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVacancy.Location = new System.Drawing.Point(385, 453);
+            this.lbVacancy.Name = "lbVacancy";
+            this.lbVacancy.Size = new System.Drawing.Size(70, 20);
+            this.lbVacancy.TabIndex = 21;
+            this.lbVacancy.Text = "Vacancy";
             // 
             // retreatDetails
             // 
@@ -224,76 +245,21 @@
             // retreatBindingSource
             // 
             this.retreatBindingSource.DataMember = "Retreat";
-            // 
-            // retreatTableAdapter1
-            // 
-            this.retreatTableAdapter1.ClearBeforeFill = true;
-            // 
-            // retreatBindingSource1
-            // 
-            this.retreatBindingSource1.DataMember = "Retreat";
+            this.retreatBindingSource.DataSource = this.retreatDetails;
             // 
             // retreatTableAdapter
             // 
             this.retreatTableAdapter.ClearBeforeFill = true;
-            // 
-            // retreatDetailsBindingSource
-            // 
-            this.retreatDetailsBindingSource.DataSource = this.retreatDetails;
-            this.retreatDetailsBindingSource.Position = 0;
-            // 
-            // retreat_Status
-            // 
-            this.retreat_Status.DataSetName = "Retreat_Status";
-            this.retreat_Status.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemFile,
-            this.MenuItemHelp});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(944, 24);
-            this.menuStrip.TabIndex = 22;
-            this.menuStrip.Text = "menuStrip";
-            // 
-            // MenuItemFile
-            // 
-            this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemLogout});
-            this.MenuItemFile.Name = "MenuItemFile";
-            this.MenuItemFile.Size = new System.Drawing.Size(37, 20);
-            this.MenuItemFile.Text = "File";
-            // 
-            // MenuItemLogout
-            // 
-            this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(112, 22);
-            this.MenuItemLogout.Text = "Logout";
-            this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
-            // 
-            // MenuItemHelp
-            // 
-            this.MenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemAbout});
-            this.MenuItemHelp.Name = "MenuItemHelp";
-            this.MenuItemHelp.Size = new System.Drawing.Size(44, 20);
-            this.MenuItemHelp.Text = "Help";
-            // 
-            // MenuItemAbout
-            // 
-            this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(107, 22);
-            this.MenuItemAbout.Text = "About";
-            this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
             // lblRetreatDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 681);
-            this.Controls.Add(this.menuStrip);
+            this.Controls.Add(this.txtVacancy);
+            this.Controls.Add(this.lbVacancy);
+            this.Controls.Add(this.txtCapacity);
+            this.Controls.Add(this.lbcapacity);
             this.Controls.Add(this.lblDiscriptionName);
             this.Controls.Add(this.pbRetreat);
             this.Controls.Add(this.cbRetreatName);
@@ -313,14 +279,8 @@
             this.Text = "RetreatDetails";
             this.Load += new System.EventHandler(this.lblRetreatDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbRetreat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreatDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.retreat_Status)).EndInit();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,18 +303,12 @@
         private System.Windows.Forms.ComboBox cbRetreatName;
         private System.Windows.Forms.PictureBox pbRetreat;
         private System.Windows.Forms.Label lblDiscriptionName;
+        private System.Windows.Forms.TextBox txtCapacity;
+        private System.Windows.Forms.Label lbcapacity;
+        private System.Windows.Forms.TextBox txtVacancy;
+        private System.Windows.Forms.Label lbVacancy;
         private RetreatDetails retreatDetails;
         private System.Windows.Forms.BindingSource retreatBindingSource;
-        private Retreat_StatusTableAdapters.RetreatTableAdapter retreatTableAdapter1;
-        private System.Windows.Forms.BindingSource retreatBindingSource2;
-        private System.Windows.Forms.BindingSource retreatBindingSource1;
         private RetreatDetailsTableAdapters.RetreatTableAdapter retreatTableAdapter;
-        private System.Windows.Forms.BindingSource retreatDetailsBindingSource;
-        private Retreat_Status retreat_Status;
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemAbout;
     }
 }

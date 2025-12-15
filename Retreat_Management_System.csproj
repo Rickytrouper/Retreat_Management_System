@@ -244,6 +244,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetreatDetails.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Retreat_Management_DBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Retreat_Management_DBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Retreat_Management_DBDataSet2.cs">
       <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
     </Compile>
@@ -267,11 +272,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Retreat_Management_DB_UserInfo.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Retreat_Status.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Retreat_Status.xsd</DependentUpon>
     </Compile>
     <Compile Include="ReviewPage.cs">
       <SubType>Form</SubType>
@@ -435,6 +435,17 @@
     <None Include="RetreatManagement_db.edmx.diagram">
       <DependentUpon>RetreatManagement_db.edmx</DependentUpon>
     </None>
+    <None Include="Retreat_Management_DBDataSet.xsc">
+      <DependentUpon>Retreat_Management_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Retreat_Management_DBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Retreat_Management_DBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Retreat_Management_DBDataSet.xss">
+      <DependentUpon>Retreat_Management_DBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Retreat_Management_DBDataSet2.xsc">
       <DependentUpon>Retreat_Management_DBDataSet2.xsd</DependentUpon>
     </None>
@@ -467,17 +478,6 @@
     </None>
     <None Include="Retreat_Management_DB_UserInfo.xss">
       <DependentUpon>Retreat_Management_DB_UserInfo.xsd</DependentUpon>
-    </None>
-    <None Include="Retreat_Status.xsc">
-      <DependentUpon>Retreat_Status.xsd</DependentUpon>
-    </None>
-    <None Include="Retreat_Status.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Retreat_Status.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Retreat_Status.xss">
-      <DependentUpon>Retreat_Status.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1009,6 +1009,16 @@ namespace Retreat_Management_System {
             
             private global::System.Data.DataColumn columnRetreatID;
             
+            private global::System.Data.DataColumn columnDescription;
+            
+            private global::System.Data.DataColumn columnImageURL;
+            
+            private global::System.Data.DataColumn columnCapacity;
+            
+            private global::System.Data.DataColumn columncurrentBookings;
+            
+            private global::System.Data.DataColumn columnEndDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RetreatDataTable() {
@@ -1092,6 +1102,46 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DescriptionColumn {
+                get {
+                    return this.columnDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ImageURLColumn {
+                get {
+                    return this.columnImageURL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CapacityColumn {
+                get {
+                    return this.columnCapacity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn currentBookingsColumn {
+                get {
+                    return this.columncurrentBookings;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn EndDateColumn {
+                get {
+                    return this.columnEndDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1127,7 +1177,7 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RetreatRow AddRetreatRow(string RetreatName, string Location, System.DateTime StartDate, decimal Price, string ContactInfo) {
+            public RetreatRow AddRetreatRow(string RetreatName, string Location, System.DateTime StartDate, decimal Price, string ContactInfo, string Description, string ImageURL, int Capacity, int currentBookings, System.DateTime EndDate) {
                 RetreatRow rowRetreatRow = ((RetreatRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RetreatName,
@@ -1135,7 +1185,12 @@ namespace Retreat_Management_System {
                         StartDate,
                         Price,
                         ContactInfo,
-                        null};
+                        null,
+                        Description,
+                        ImageURL,
+                        Capacity,
+                        currentBookings,
+                        EndDate};
                 rowRetreatRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRetreatRow);
                 return rowRetreatRow;
@@ -1171,6 +1226,11 @@ namespace Retreat_Management_System {
                 this.columnPrice = base.Columns["Price"];
                 this.columnContactInfo = base.Columns["ContactInfo"];
                 this.columnRetreatID = base.Columns["RetreatID"];
+                this.columnDescription = base.Columns["Description"];
+                this.columnImageURL = base.Columns["ImageURL"];
+                this.columnCapacity = base.Columns["Capacity"];
+                this.columncurrentBookings = base.Columns["currentBookings"];
+                this.columnEndDate = base.Columns["EndDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1188,6 +1248,16 @@ namespace Retreat_Management_System {
                 base.Columns.Add(this.columnContactInfo);
                 this.columnRetreatID = new global::System.Data.DataColumn("RetreatID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRetreatID);
+                this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescription);
+                this.columnImageURL = new global::System.Data.DataColumn("ImageURL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImageURL);
+                this.columnCapacity = new global::System.Data.DataColumn("Capacity", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCapacity);
+                this.columncurrentBookings = new global::System.Data.DataColumn("currentBookings", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncurrentBookings);
+                this.columnEndDate = new global::System.Data.DataColumn("EndDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEndDate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnRetreatID}, true));
                 this.columnRetreatName.AllowDBNull = false;
@@ -1203,6 +1273,11 @@ namespace Retreat_Management_System {
                 this.columnRetreatID.AllowDBNull = false;
                 this.columnRetreatID.ReadOnly = true;
                 this.columnRetreatID.Unique = true;
+                this.columnDescription.AllowDBNull = false;
+                this.columnDescription.MaxLength = 2147483647;
+                this.columnImageURL.MaxLength = 2147483647;
+                this.columnCapacity.AllowDBNull = false;
+                this.columnEndDate.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2049,6 +2124,71 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Description {
+                get {
+                    return ((string)(this[this.tableRetreat.DescriptionColumn]));
+                }
+                set {
+                    this[this.tableRetreat.DescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ImageURL {
+                get {
+                    try {
+                        return ((string)(this[this.tableRetreat.ImageURLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ImageURL\' in table \'Retreat\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRetreat.ImageURLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Capacity {
+                get {
+                    return ((int)(this[this.tableRetreat.CapacityColumn]));
+                }
+                set {
+                    this[this.tableRetreat.CapacityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int currentBookings {
+                get {
+                    try {
+                        return ((int)(this[this.tableRetreat.currentBookingsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'currentBookings\' in table \'Retreat\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRetreat.currentBookingsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime EndDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tableRetreat.EndDateColumn]));
+                }
+                set {
+                    this[this.tableRetreat.EndDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsContactInfoNull() {
                 return this.IsNull(this.tableRetreat.ContactInfoColumn);
             }
@@ -2057,6 +2197,30 @@ namespace Retreat_Management_System {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetContactInfoNull() {
                 this[this.tableRetreat.ContactInfoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsImageURLNull() {
+                return this.IsNull(this.tableRetreat.ImageURLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetImageURLNull() {
+                this[this.tableRetreat.ImageURLColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IscurrentBookingsNull() {
+                return this.IsNull(this.tableRetreat.currentBookingsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetcurrentBookingsNull() {
+                this[this.tableRetreat.currentBookingsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3206,10 +3370,15 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
             tableMapping.ColumnMappings.Add("Price", "Price");
             tableMapping.ColumnMappings.Add("ContactInfo", "ContactInfo");
             tableMapping.ColumnMappings.Add("RetreatID", "RetreatID");
+            tableMapping.ColumnMappings.Add("Description", "Description");
+            tableMapping.ColumnMappings.Add("ImageURL", "ImageURL");
+            tableMapping.ColumnMappings.Add("Capacity", "Capacity");
+            tableMapping.ColumnMappings.Add("currentBookings", "currentBookings");
+            tableMapping.ColumnMappings.Add("EndDate", "EndDate");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Retreat] WHERE (([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([Price] = @Original_Price) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ([RetreatID] = @Original_RetreatID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Retreat] WHERE (([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([Price] = @Original_Price) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ([RetreatID] = @Original_RetreatID) AND ([Capacity] = @Original_Capacity) AND ((@IsNull_currentBookings = 1 AND [currentBookings] IS NULL) OR ([currentBookings] = @Original_currentBookings)) AND ([EndDate] = @Original_EndDate))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3218,16 +3387,40 @@ SELECT PaymentID, Amount, PaymentDate FROM Payment WHERE (PaymentID = @PaymentID
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactInfo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Capacity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capacity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_currentBookings", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "currentBookings", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_currentBookings", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "currentBookings", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Retreat] ([RetreatName], [Location], [StartDate], [Price], [ContactInfo], [Description], [ImageURL], [Capacity], [currentBookings], [EndDate]) VALUES (@RetreatName, @Location, @StartDate, @Price, @ContactInfo, @Description, @ImageURL, @Capacity, @currentBookings, @EndDate);
+SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID, Description, ImageURL, Capacity, currentBookings, EndDate FROM Retreat WHERE (RetreatID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StartDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ImageURL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageURL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Capacity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capacity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@currentBookings", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "currentBookings", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Retreat] SET [RetreatName] = @RetreatName, [Location] = @Location, [StartDate] = @StartDate, [Price] = @Price, [ContactInfo] = @ContactInfo WHERE (([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([Price] = @Original_Price) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ([RetreatID] = @Original_RetreatID));
-SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID FROM Retreat WHERE (RetreatID = @RetreatID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Retreat] SET [RetreatName] = @RetreatName, [Location] = @Location, [StartDate] = @StartDate, [Price] = @Price, [ContactInfo] = @ContactInfo, [Description] = @Description, [ImageURL] = @ImageURL, [Capacity] = @Capacity, [currentBookings] = @currentBookings, [EndDate] = @EndDate WHERE (([RetreatName] = @Original_RetreatName) AND ([Location] = @Original_Location) AND ([StartDate] = @Original_StartDate) AND ([Price] = @Original_Price) AND ((@IsNull_ContactInfo = 1 AND [ContactInfo] IS NULL) OR ([ContactInfo] = @Original_ContactInfo)) AND ([RetreatID] = @Original_RetreatID) AND ([Capacity] = @Original_Capacity) AND ((@IsNull_currentBookings = 1 AND [currentBookings] IS NULL) OR ([currentBookings] = @Original_currentBookings)) AND ([EndDate] = @Original_EndDate));
+SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID, Description, ImageURL, Capacity, currentBookings, EndDate FROM Retreat WHERE (RetreatID = @RetreatID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StartDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ImageURL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageURL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Capacity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capacity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@currentBookings", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "currentBookings", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Location", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StartDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3235,6 +3428,10 @@ SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID FROM Retr
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactInfo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactInfo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RetreatID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Capacity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capacity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_currentBookings", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "currentBookings", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_currentBookings", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "currentBookings", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RetreatID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "RetreatID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3251,8 +3448,9 @@ SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID FROM Retr
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID FROM Retre" +
-                "at";
+            this._commandCollection[0].CommandText = "SELECT        RetreatName, Location, StartDate, Price, ContactInfo, RetreatID, De" +
+                "scription, ImageURL, Capacity, currentBookings, EndDate\r\nFROM            Retreat" +
+                "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

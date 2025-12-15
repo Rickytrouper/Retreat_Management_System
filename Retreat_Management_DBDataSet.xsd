@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="RetreatDetails" targetNamespace="http://tempuri.org/RetreatDetails.xsd" xmlns:mstns="http://tempuri.org/RetreatDetails.xsd" xmlns="http://tempuri.org/RetreatDetails.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="Retreat_Management_DBDataSet" targetNamespace="http://tempuri.org/Retreat_Management_DBDataSet.xsd" xmlns:mstns="http://tempuri.org/Retreat_Management_DBDataSet.xsd" xmlns="http://tempuri.org/Retreat_Management_DBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -133,7 +133,7 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="RetreatDetails" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="RetreatDetails" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="RetreatDetails">
+  <xs:element name="Retreat_Management_DBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Retreat_Management_DBDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Retreat_Management_DBDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="Retreat" msprop:Generator_RowClassName="RetreatRow" msprop:Generator_RowEvHandlerName="RetreatRowChangeEventHandler" msprop:Generator_RowDeletedName="RetreatRowDeleted" msprop:Generator_RowDeletingName="RetreatRowDeleting" msprop:Generator_RowEvArgName="RetreatRowChangeEvent" msprop:Generator_TablePropName="Retreat" msprop:Generator_RowChangedName="RetreatRowChanged" msprop:Generator_UserTableName="Retreat" msprop:Generator_RowChangingName="RetreatRowChanging" msprop:Generator_TableClassName="RetreatDataTable" msprop:Generator_TableVarName="tableRetreat">
@@ -168,14 +168,14 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
               <xs:element name="ImageURL" msprop:Generator_UserColumnName="ImageURL" msprop:Generator_ColumnPropNameInTable="ImageURLColumn" msprop:Generator_ColumnPropNameInRow="ImageURL" msprop:Generator_ColumnVarNameInTable="columnImageURL" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
+                    <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ContactInfo" msprop:Generator_UserColumnName="ContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_ColumnVarNameInTable="columnContactInfo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
+                    <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -183,7 +183,7 @@ SELECT RetreatID, RetreatName, Description, Location, StartDate, EndDate, Price,
               <xs:element name="OrganizerID" msprop:Generator_UserColumnName="OrganizerID" msprop:Generator_ColumnPropNameInTable="OrganizerIDColumn" msprop:Generator_ColumnPropNameInRow="OrganizerID" msprop:Generator_ColumnVarNameInTable="columnOrganizerID" type="xs:int" minOccurs="0" />
               <xs:element name="DateCreated" msprop:Generator_UserColumnName="DateCreated" msprop:Generator_ColumnPropNameInTable="DateCreatedColumn" msprop:Generator_ColumnPropNameInRow="DateCreated" msprop:Generator_ColumnVarNameInTable="columnDateCreated" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LastUpdated" msprop:Generator_UserColumnName="LastUpdated" msprop:Generator_ColumnPropNameInTable="LastUpdatedColumn" msprop:Generator_ColumnPropNameInRow="LastUpdated" msprop:Generator_ColumnVarNameInTable="columnLastUpdated" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="currentBookings" msprop:Generator_ColumnPropNameInRow="currentBookings" msprop:Generator_ColumnPropNameInTable="currentBookingsColumn" msprop:Generator_ColumnVarNameInTable="columncurrentBookings" msprop:Generator_UserColumnName="currentBookings" type="xs:int" minOccurs="0" />
+              <xs:element name="currentBookings" msprop:Generator_UserColumnName="currentBookings" msprop:Generator_ColumnPropNameInTable="currentBookingsColumn" msprop:Generator_ColumnPropNameInRow="currentBookings" msprop:Generator_ColumnVarNameInTable="columncurrentBookings" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

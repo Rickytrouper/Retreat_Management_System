@@ -31,6 +31,7 @@
           <Property Name="ExpiryDate" Type="date" Nullable="false" />
           <Property Name="CVV" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="PaymentStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NumberOfSpaces" Type="int" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -96,6 +97,7 @@
           <Property Name="OrganizerID" Type="int" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="currentBookings" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -220,6 +222,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Booking_Retreat">
+          <End Role="Retreat" Type="Self.Retreat" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retreat">
+              <PropertyRef Name="RetreatID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="RetreatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Organizer_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Organizer" Type="Self.Organizer" Multiplicity="*" />
@@ -286,6 +300,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="AdminAction" EntitySet="AdminAction" />
           </AssociationSet>
+          <AssociationSet Name="FK_Booking_Retreat" Association="Self.FK_Booking_Retreat">
+            <End Role="Retreat" EntitySet="Retreat" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
           <AssociationSet Name="FK_Organizer_User" Association="Self.FK_Organizer_User">
             <End Role="User" EntitySet="User" />
             <End Role="Organizer" EntitySet="Organizer" />
@@ -329,6 +347,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK__Booking__UserID__123EB7A3" FromRole="Booking" ToRole="User" />
           <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Booking__19DFD96B" FromRole="Booking" ToRole="Payment" />
           <NavigationProperty Name="Retreat" Relationship="Retreat_Management_DB.FK__Booking__Retreat__1332DBDC" FromRole="Booking" ToRole="Retreat" />
+          <Property Name="NumberOfSpaces" Type="Int32" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -560,6 +579,7 @@
           <NavigationProperty Name="Feedbacks" Relationship="Retreat_Management_DB.FK__Feedback__Retrea__1F98B2C1" FromRole="Retreat" ToRole="Feedback" />
           <NavigationProperty Name="Organizer" Relationship="Retreat_Management_DB.FK_Retreat_Organizer" FromRole="Retreat" ToRole="Organizer" />
           <NavigationProperty Name="User" Relationship="Retreat_Management_DB.FK__Retreat__Created__0B91BA14" FromRole="Retreat" ToRole="User" />
+          <Property Name="currentBookings" Type="Int32" />
         </EntityType>
         <Association Name="FK__Booking__Retreat__1332DBDC">
           <End Type="Retreat_Management_DB.Retreat" Role="Retreat" Multiplicity="0..1" />
@@ -630,6 +650,7 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="Retreat_Management_DB.Booking">
               <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="NumberOfSpaces" ColumnName="NumberOfSpaces" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="RetreatID" ColumnName="RetreatID" />
@@ -726,6 +747,7 @@
           <EntitySetMapping Name="Retreats">
             <EntityTypeMapping TypeName="Retreat_Management_DB.Retreat">
               <MappingFragment StoreEntitySet="Retreat">
+                <ScalarProperty Name="currentBookings" ColumnName="currentBookings" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />

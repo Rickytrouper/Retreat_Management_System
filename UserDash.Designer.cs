@@ -446,7 +446,7 @@
             this.lbReservationDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReservationDetails.Location = new System.Drawing.Point(12, 422);
             this.lbReservationDetails.Name = "lbReservationDetails";
-            this.lbReservationDetails.Size = new System.Drawing.Size(147, 16);
+            this.lbReservationDetails.Size = new System.Drawing.Size(144, 16);
             this.lbReservationDetails.TabIndex = 6;
             this.lbReservationDetails.Text = "Reservation Details";
             // 

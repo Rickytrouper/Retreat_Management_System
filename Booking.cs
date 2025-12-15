@@ -30,6 +30,7 @@ namespace Retreat_Management_System
         public System.DateTime ExpiryDate { get; set; }
         public string CVV { get; set; }
         public string PaymentStatus { get; set; }
+        public Nullable<int> NumberOfSpaces { get; set; }
     
         public virtual User User { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
