@@ -57,6 +57,7 @@
             this.organizerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastUpdatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentBookings = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVRetreats)).BeginInit();
@@ -145,7 +146,8 @@
             this.createdByDataGridViewTextBoxColumn,
             this.organizerIDDataGridViewTextBoxColumn,
             this.dateCreatedDataGridViewTextBoxColumn,
-            this.lastUpdatedDataGridViewTextBoxColumn});
+            this.lastUpdatedDataGridViewTextBoxColumn,
+            this.currentBookings});
             this.dataGVRetreats.DataSource = this.retreatBindingSource;
             this.dataGVRetreats.Location = new System.Drawing.Point(12, 120);
             this.dataGVRetreats.Name = "dataGVRetreats";
@@ -278,6 +280,12 @@
             this.lastUpdatedDataGridViewTextBoxColumn.HeaderText = "LastUpdated";
             this.lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
             // 
+            // currentBookings
+            // 
+            this.currentBookings.DataPropertyName = "currentBookings";
+            this.currentBookings.HeaderText = "currentBookings";
+            this.currentBookings.Name = "currentBookings";
+            // 
             // EditRetreats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,5 +342,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn organizerIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentBookings;
     }
 }
