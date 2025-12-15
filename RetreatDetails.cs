@@ -22,7 +22,7 @@ namespace Retreat_Management_System
             retreat_Management_DBEntities = new Retreat_Management_DBEntities();
             currentUserId = userId; // Store the user ID
             userDashboard = existingUserDash; // Assign the existing UserDash instance
-
+            pbRetreat.SizeMode = PictureBoxSizeMode.StretchImage; // This will stretch the image to fit the PictureBox
         }
 
         private void RetreatDetails_Load(object sender, EventArgs e)
@@ -30,52 +30,48 @@ namespace Retreat_Management_System
             var retreats = retreat_Management_DBEntities.Retreats.ToList();
             cbRetreatName.DisplayMember = "RetreatName";
             cbRetreatName.ValueMember = "ID";
-            cbRetreatName.DataSource = retreats;            
+            cbRetreatName.DataSource = retreats;
         }
 
-       private void cbRetreatName_SelectedIndexChanged(object sender, EventArgs e)
-{
-    if (cbRetreatName.SelectedItem is Retreat selectedRetreat)
-    {
-        // Fetch the selected retreat from the database using its ID
-        var retreat = retreat_Management_DBEntities.Retreats
-            .FirstOrDefault(r => r.RetreatID == selectedRetreat.RetreatID);
-        
-        if (retreat != null)
+        private void cbRetreatName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Debugging output to check fetched retreat data
-            Console.WriteLine($"Fetched Retreat Name: {retreat.RetreatName}, CurrentBookings: {retreat.currentBookings}, Capacity: {retreat.Capacity}");
+            if (cbRetreatName.SelectedItem is Retreat selectedRetreat)
+            {
+                // Fetch the selected retreat from the database using its ID
+                var retreat = retreat_Management_DBEntities.Retreats
+                    .FirstOrDefault(r => r.RetreatID == selectedRetreat.RetreatID);
 
-            // Populate the text fields with retreat details
-            txtDescription.Text = retreat.Description ?? "N/A";
-            txtLocation.Text = retreat.Location ?? "N/A";
-            txtRetreatDates.Text = $"{retreat.StartDate:MM/dd/yyyy} to {retreat.EndDate:MM/dd/yyyy}";
-            txtRetreatPrice.Text = retreat.Price.ToString("C");
-            lblDiscriptionName.Text = retreat.RetreatName; // Set the label text
+                if (retreat != null)
+                {
+                    // Populate the text fields with retreat details
+                    txtDescription.Text = retreat.Description ?? "N/A";
+                    txtLocation.Text = retreat.Location ?? "N/A";
+                    txtRetreatDates.Text = $"{retreat.StartDate:MM/dd/yyyy} to {retreat.EndDate:MM/dd/yyyy}";
+                    txtRetreatPrice.Text = retreat.Price.ToString("C");
+                    lblDiscriptionName.Text = retreat.RetreatName; // Set the label text
 
-           // Access current bookings directly from the retreat object
-            int currentBookings = retreat.currentBookings ?? 0; // Safe handling of null
-           Console.WriteLine($"Current Bookings After Fetch: {currentBookings}");
+                    // Access current bookings directly from the retreat object
+                    int currentBookings = retreat.currentBookings ?? 0; // Safe handling of null
 
                     // Set the capacity and calculate vacancies
                     int capacity = retreat.Capacity;
-            txtCapacity.Text = capacity.ToString();
-            int vacancy = capacity - currentBookings; // Calculate vacancies
-            txtVacancy.Text = vacancy >= 0 ? vacancy.ToString() : "0"; // Ensure not negative
+                    txtCapacity.Text = capacity.ToString();
+                    int vacancy = capacity - currentBookings; // Calculate vacancies
+                    txtVacancy.Text = vacancy >= 0 ? vacancy.ToString() : "0"; // Ensure not negative
 
-            // Load the retreat image
-            LoadRetreatImage(retreat.ImageURL);
+                    // Load the retreat image
+                    LoadRetreatImage(retreat.ImageURL);
+                }
+                else
+                {
+                    MessageBox.Show("Selected retreat not found in the database.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a retreat.");
+            }
         }
-        else
-        {
-            MessageBox.Show("Selected retreat not found in the database.");
-        }
-    }
-    else
-    {
-        MessageBox.Show("Please select a retreat.");
-    }
-}
 
         public void UpdateVacancy(int retreatId, int numberOfSpaces)
         {
@@ -84,11 +80,9 @@ namespace Retreat_Management_System
             if (retreat != null)
             {
                 int currentBookings = retreat.currentBookings ?? 0; // Handle null safely
-                Console.WriteLine($"Initial - CurrentBookings: {currentBookings}");
 
                 // Calculate new bookings
                 int newTotalBookings = currentBookings + numberOfSpaces;
-                Console.WriteLine($"Total Bookings After Adding: {newTotalBookings} (Adding: {numberOfSpaces})");
 
                 // Check if booking exceeds capacity
                 if (newTotalBookings > retreat.Capacity)
@@ -108,11 +102,10 @@ namespace Retreat_Management_System
                 try
                 {
                     retreat_Management_DBEntities.SaveChanges();
-                    Console.WriteLine("Database updated successfully.");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error saving to database: {ex.Message}");
+                    MessageBox.Show($"Error saving to database: {ex.Message}");
                 }
             }
             else
@@ -121,34 +114,79 @@ namespace Retreat_Management_System
             }
         }
 
-
         private void LoadRetreatImage(string imageUrl)
         {
             if (!string.IsNullOrEmpty(imageUrl))
             {
                 try
                 {
-                    byte[] imageBytes = Convert.FromBase64String(imageUrl);
-                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    if (IsBase64String(imageUrl))
                     {
-                        Image retreatImage = Image.FromStream(ms);
-                        pbRetreat.Image = retreatImage; // Set the decoded image into the PictureBox
+                        string normalizedImageUrl = NormalizeBase64String(imageUrl);
+                        byte[] imageBytes = Convert.FromBase64String(normalizedImageUrl);
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            Image retreatImage = Image.FromStream(ms);
+                            pbRetreat.Image = retreatImage;
+                        }
+                    }
+                    else
+                    {
+                        // Load the image from file path
+                        if (File.Exists(imageUrl))
+                        {
+                            pbRetreat.Image = Image.FromFile(imageUrl);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Image file not found.");
+                            pbRetreat.Image = null;
+                        }
                     }
                 }
                 catch (FormatException ex)
                 {
                     MessageBox.Show("Invalid image format: " + ex.Message);
-                    pbRetreat.Image = null; // Fallback to a default image
+                    pbRetreat.Image = null;
                 }
-                catch (Exception ex) // Catch other potential exceptions
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error loading image: " + ex.Message);
+                    pbRetreat.Image = null;
                 }
             }
             else
             {
-                pbRetreat.Image = null; // Set a default image
+                pbRetreat.Image = null;
             }
+        }
+
+        private bool IsBase64String(string base64)
+        {
+            // Check if the length is divisible by 4 and does not contain invalid characters
+            if (string.IsNullOrEmpty(base64) || base64.Length % 4 != 0)
+            {
+                return false;
+            }
+
+            // Check for invalid characters
+            return base64.All(c => "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".Contains(c));
+        }
+
+        // Method to normalize the Base64 string
+        private string NormalizeBase64String(string base64String)
+        {
+            // Remove any whitespace
+            base64String = base64String.Replace(" ", "").Replace("\n", "").Replace("\r", "");
+
+            // Add necessary padding
+            int padding = base64String.Length % 4;
+            if (padding > 0)
+            {
+                base64String += new string('=', 4 - padding);
+            }
+
+            return base64String;
         }
 
         private void btnBookNow_Click(object sender, EventArgs e)
@@ -177,13 +215,10 @@ namespace Retreat_Management_System
                 }
 
                 // Set the BookingPage as an MDI child
-        bookingPage.MdiParent = (MDIParentForm)this.MdiParent; // Set MDI parent
+                bookingPage.MdiParent = (MDIParentForm)this.MdiParent; // Set MDI parent
                 bookingPage.Show(); // Show the form
 
-                // Hide the current form (UserDash or relevant form)
-                this.Hide(); // Hide the current form until the booking is complete
-
-                // Optionally handle the closing of the booking form to show the user dashboard again
+                // Optional handle the closing of the booking form to show the user dashboard again
                 bookingPage.FormClosed += (s, args) => this.Show(); // Show the UserDash again after BookingPage closes
             }
             else
@@ -203,9 +238,19 @@ namespace Retreat_Management_System
             }
         }
 
-        private void lblRetreatDetails_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            
+            base.OnLoad(e);
+
+            // Set form location to be within MDI container
+            if (this.MdiParent != null)
+            {
+                this.StartPosition = FormStartPosition.CenterParent; // Center form inside MDI parent
+                this.Location = new Point(
+                    Math.Max(0, (this.MdiParent.ClientSize.Width - this.Width) / 2),
+                    Math.Max(0, (this.MdiParent.ClientSize.Height - this.Height) / 2)
+                );
+            }
         }
     }
 }

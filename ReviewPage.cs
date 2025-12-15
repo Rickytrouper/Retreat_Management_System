@@ -25,7 +25,35 @@ namespace Retreat_Management_System
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using (var context = new Retreat_Management_DBEntities())
+                {
+                    // Create new feedback object
+                    var feedback = new Feedback
+                    {
+                        UserID = _currentUserId,
+                        Rating = int.Parse(cbRatingSlection.Text),
+                        Comments = rtbComment.Text,
+                        DateSubmitted = DateTime.Now
+                    };
 
+                    // Add feedback to the database
+                    context.Feedbacks.Add(feedback);
+                    context.SaveChanges(); // Save changes to the database
+
+                    MessageBox.Show("Review submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error submitting review: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Navigate back to UserDash
+                this.Close(); // Close the ReviewPage
+            }
         }
 
         private void LoadFeedback()

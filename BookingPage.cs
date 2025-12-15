@@ -46,11 +46,10 @@ namespace Retreat_Management_System
 
         private void SetupMaskedInput(MaskedTextBox mtb, string mask, string placeholder)
         {
-
             mtb.Mask = mask;
             mtb.PromptChar = ' '; // Use a space as the prompt character
             mtb.Clear(); // Clear any existing text when setting up
-            mtb.TextAlign = HorizontalAlignment.Left; // Ensure text aligns to the left
+           // mtb.TextAlign = HorizontalAlignment.Left; // Ensure text aligns to the left
 
             // Move caret to the beginning on focus
             mtb.Enter += (s, args) =>
@@ -77,7 +76,7 @@ namespace Retreat_Management_System
 
         private void BookingPage_Load(object sender, EventArgs e)
         {
-            SetupMaskedInput(mtbCardNumber, "####-####-####-####", "####-####-####-####");// Standard card number mask
+            SetupMaskedInput(mtbCardNumber, "####-####-####-####", "####-####-####-####"); // Standard card number mask
             SetupMaskedInput(mtbCVV, "###", "###");  // CVV mask
             SetupMaskedInput(mtbExpiryDate, "00/0000", "MM/yyyy"); // Expiry date mask
 
@@ -259,8 +258,6 @@ namespace Retreat_Management_System
 
             return validCard && validCVV && validExpiry && notExpired; // Return the validation result
         }
-
-
 
         private string GenerateTransactionID()
         {

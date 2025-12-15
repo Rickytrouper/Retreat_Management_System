@@ -65,7 +65,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(378, 35);
+            this.label1.Location = new System.Drawing.Point(378, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 46);
             this.label1.TabIndex = 0;
@@ -95,7 +95,7 @@
             // 
             this.lblRetreatName.AutoSize = true;
             this.lblRetreatName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetreatName.Location = new System.Drawing.Point(385, 144);
+            this.lblRetreatName.Location = new System.Drawing.Point(382, 122);
             this.lblRetreatName.Name = "lblRetreatName";
             this.lblRetreatName.Size = new System.Drawing.Size(63, 20);
             this.lblRetreatName.TabIndex = 3;
@@ -105,7 +105,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(742, 144);
+            this.label2.Location = new System.Drawing.Point(739, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 6;
@@ -115,7 +115,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(385, 317);
+            this.label3.Location = new System.Drawing.Point(382, 353);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 20);
             this.label3.TabIndex = 8;
@@ -123,7 +123,7 @@
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(389, 340);
+            this.txtLocation.Location = new System.Drawing.Point(386, 376);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.ReadOnly = true;
             this.txtLocation.Size = new System.Drawing.Size(242, 20);
@@ -133,7 +133,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(385, 204);
+            this.label4.Location = new System.Drawing.Point(382, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 20);
             this.label4.TabIndex = 10;
@@ -141,18 +141,19 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(389, 227);
+            this.txtDescription.Location = new System.Drawing.Point(386, 205);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(242, 76);
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtDescription.Size = new System.Drawing.Size(242, 134);
             this.txtDescription.TabIndex = 11;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(742, 317);
+            this.label5.Location = new System.Drawing.Point(742, 193);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 20);
             this.label5.TabIndex = 12;
@@ -160,15 +161,15 @@
             // 
             // txtRetreatPrice
             // 
-            this.txtRetreatPrice.Location = new System.Drawing.Point(746, 340);
+            this.txtRetreatPrice.Location = new System.Drawing.Point(746, 216);
             this.txtRetreatPrice.Name = "txtRetreatPrice";
             this.txtRetreatPrice.ReadOnly = true;
-            this.txtRetreatPrice.Size = new System.Drawing.Size(153, 20);
+            this.txtRetreatPrice.Size = new System.Drawing.Size(104, 20);
             this.txtRetreatPrice.TabIndex = 13;
             // 
             // txtRetreatDates
             // 
-            this.txtRetreatDates.Location = new System.Drawing.Point(746, 167);
+            this.txtRetreatDates.Location = new System.Drawing.Point(743, 145);
             this.txtRetreatDates.Multiline = true;
             this.txtRetreatDates.Name = "txtRetreatDates";
             this.txtRetreatDates.ReadOnly = true;
@@ -178,7 +179,7 @@
             // cbRetreatName
             // 
             this.cbRetreatName.FormattingEnabled = true;
-            this.cbRetreatName.Location = new System.Drawing.Point(389, 167);
+            this.cbRetreatName.Location = new System.Drawing.Point(386, 145);
             this.cbRetreatName.Name = "cbRetreatName";
             this.cbRetreatName.Size = new System.Drawing.Size(242, 21);
             this.cbRetreatName.TabIndex = 16;
@@ -189,6 +190,7 @@
             this.pbRetreat.Location = new System.Drawing.Point(24, 123);
             this.pbRetreat.Name = "pbRetreat";
             this.pbRetreat.Size = new System.Drawing.Size(339, 389);
+            this.pbRetreat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbRetreat.TabIndex = 17;
             this.pbRetreat.TabStop = false;
             // 
@@ -203,7 +205,7 @@
             // 
             // txtCapacity
             // 
-            this.txtCapacity.Location = new System.Drawing.Point(389, 410);
+            this.txtCapacity.Location = new System.Drawing.Point(386, 446);
             this.txtCapacity.Name = "txtCapacity";
             this.txtCapacity.ReadOnly = true;
             this.txtCapacity.Size = new System.Drawing.Size(85, 20);
@@ -213,7 +215,7 @@
             // 
             this.lbcapacity.AutoSize = true;
             this.lbcapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbcapacity.Location = new System.Drawing.Point(385, 387);
+            this.lbcapacity.Location = new System.Drawing.Point(382, 423);
             this.lbcapacity.Name = "lbcapacity";
             this.lbcapacity.Size = new System.Drawing.Size(70, 20);
             this.lbcapacity.TabIndex = 19;
@@ -221,7 +223,7 @@
             // 
             // txtVacancy
             // 
-            this.txtVacancy.Location = new System.Drawing.Point(389, 476);
+            this.txtVacancy.Location = new System.Drawing.Point(386, 512);
             this.txtVacancy.Name = "txtVacancy";
             this.txtVacancy.ReadOnly = true;
             this.txtVacancy.Size = new System.Drawing.Size(85, 20);
@@ -231,7 +233,7 @@
             // 
             this.lbVacancy.AutoSize = true;
             this.lbVacancy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVacancy.Location = new System.Drawing.Point(385, 453);
+            this.lbVacancy.Location = new System.Drawing.Point(382, 489);
             this.lbVacancy.Name = "lbVacancy";
             this.lbVacancy.Size = new System.Drawing.Size(70, 20);
             this.lbVacancy.TabIndex = 21;
@@ -277,7 +279,7 @@
             this.Controls.Add(this.label1);
             this.Name = "lblRetreatDetails";
             this.Text = "RetreatDetails";
-            this.Load += new System.EventHandler(this.lblRetreatDetails_Load);
+          //  this.Load += new System.EventHandler(this.lblRetreatDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbRetreat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retreatBindingSource)).EndInit();

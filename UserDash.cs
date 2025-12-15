@@ -364,23 +364,17 @@ namespace Retreat_Management_System
 
         private void btnReview_Click(object sender, EventArgs e)
         {
+            // Hide the current UserDash form
             this.Hide();
-            string retrievedUsername = ""; // Placeholder for the username
 
-            using (var context = new Retreat_Management_DBEntities())
-            {
-                var user = context.Users.FirstOrDefault(u => u.UserID == currentUserId);
-                if (user != null)
-                {
-                    retrievedUsername = user.Username; // Fetch the username
-                }
-                else
-                {
-                    MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // Exit if user not found
-                }
-            }
-            
+            // Create an instance of ReviewPage
+            ReviewPage reviewPage = new ReviewPage(currentUserId);
+
+            // Show the ReviewPage
+            reviewPage.Show();
+
+            // Optionally, handle the closing of the review page
+            reviewPage.FormClosed += (s, args) => this.Show(); // Show UserDash again after ReviewPage closes
         }
     }
 }
