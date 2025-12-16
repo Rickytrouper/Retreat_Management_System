@@ -10,58 +10,54 @@ namespace Retreat_Management_System
     public partial class BookingPage : Form
     {
         private readonly Retreat_Management_DBEntities db;
-        private readonly int currentUserId; // Store the user ID
-        private readonly int? currentRetreatId; // Store the retreat ID
-        private decimal paymentAmountPerSpace; // Store the payment amount per space
+        private readonly int currentUserId;
+        private readonly int? currentRetreatId;
+        private decimal paymentAmountPerSpace;
 
-        public BookingPage(int userId, int retreatId, decimal amount, UserDash userDashboard) // Constructor accepting userId, retreatId, and amount
+        public BookingPage(int userId, int retreatId, decimal amount, UserDash userDashboard)
         {
             InitializeComponent();
-            currentUserId = userId; // Store the user ID
-            currentRetreatId = retreatId; // Store the retreat ID
-            paymentAmountPerSpace = amount; // Store the payment amount per space
+            currentUserId = userId;
+            currentRetreatId = retreatId;
+            paymentAmountPerSpace = amount;
+
             btnConfirmBooking.Click += btnConfirmBooking_Click;
             this.Load += BookingPage_Load;
 
-            // Initialize the database context
             db = new Retreat_Management_DBEntities();
         }
 
-        // Method to set the retreat name
         public void SetRetreatName(string retreatName)
         {
-            txtRetreatName.Text = retreatName;  // Set the text of the label to the retreat name
+            txtRetreatName.Text = retreatName;
         }
 
-        // Existing methods for setting user information
         public void SetUserName(string userName)
         {
-            txtUserName.Text = userName; // Set the username in the textbox
+            txtUserName.Text = userName;
         }
 
         public void SetEmail(string email)
         {
-            txtEmail.Text = email; // Set the email in the textbox
+            txtEmail.Text = email;
         }
 
         private void SetupMaskedInput(MaskedTextBox mtb, string mask, string placeholder)
         {
             mtb.Mask = mask;
-            mtb.PromptChar = ' '; // Use a space as the prompt character
-            mtb.Clear(); // Clear any existing text when setting up
-           // mtb.TextAlign = HorizontalAlignment.Left; // Ensure text aligns to the left
+            mtb.PromptChar = ' ';
+            mtb.Clear();
 
-            // Move caret to the beginning on focus
             mtb.Enter += (s, args) =>
             {
-                mtb.SelectAll(); // Select all text on focus to allow easy overwriting
+                mtb.SelectionStart = 0; // Set caret position to the start
             };
 
             mtb.Click += (s, args) =>
             {
                 if (!mtb.MaskFull)
                 {
-                    mtb.Select(mtb.Text.Length, 0); // Allow user to start typing at the end of current text
+                    mtb.SelectionStart = 0; // Set caret position to the start
                 }
             };
 
@@ -69,33 +65,36 @@ namespace Retreat_Management_System
             {
                 if (string.IsNullOrWhiteSpace(mtb.Text))
                 {
-                    mtb.Clear(); // Clear any placeholder if empty
+                    mtb.Clear();
                 }
             };
         }
 
         private void BookingPage_Load(object sender, EventArgs e)
         {
-            SetupMaskedInput(mtbCardNumber, "####-####-####-####", "####-####-####-####"); // Standard card number mask
-            SetupMaskedInput(mtbCVV, "###", "###");  // CVV mask
-            SetupMaskedInput(mtbExpiryDate, "00/0000", "MM/yyyy"); // Expiry date mask
+            SetupMaskedInput(mtbCardNumber, "####-####-####-####", "####-####-####-####");
+            SetupMaskedInput(mtbCVV, "###", "###");
+            SetupMaskedInput(mtbExpiryDate, "00/0000", "MM/yyyy");
 
-            // Load retreat capacity to calculate prices
+            // Assuming these are regular TextBox controls
+            txtUserName.Enter += (s, args) => txtUserName.SelectionStart = 0; // Caret at start
+            txtEmail.Enter += (s, args) => txtEmail.SelectionStart = 0; // Caret at start
+            txtNumOfSpaces.Enter += (s, args) => txtNumOfSpaces.SelectionStart = 0; // Caret at start
+
             var retreat = db.Retreats.Find(currentRetreatId);
             if (retreat != null)
             {
-                paymentAmountPerSpace = retreat.Price; // Assuming Price is a property of Retreat
+                paymentAmountPerSpace = retreat.Price;
                 txtNumOfSpaces.TextChanged += UpdateTotals;
             }
         }
-
         private void UpdateTotals(object sender, EventArgs e)
         {
             if (int.TryParse(txtNumOfSpaces.Text, out int numberOfSpaces))
             {
                 decimal subtotal = paymentAmountPerSpace * numberOfSpaces;
-                txtSubtotal.Text = subtotal.ToString("C"); // Update Subtotal
-                txtTotal.Text = subtotal.ToString("C"); // Assuming no additional fees; adjust as necessary
+                txtSubtotal.Text = subtotal.ToString("C");
+                txtTotal.Text = subtotal.ToString("C");
             }
             else
             {
@@ -112,7 +111,6 @@ namespace Retreat_Management_System
             string expiry = mtbExpiryDate.Text.Trim();
             string cvv = mtbCVV.Text.Trim();
 
-            // Validate input fields
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email))
             {
                 MessageBox.Show("Please fill in your name and email correctly.");
@@ -125,20 +123,20 @@ namespace Retreat_Management_System
                 return;
             }
 
-            // Check availability before proceeding with payment processing
             if (!IsAvailableForBooking(currentRetreatId.Value, numberOfSpaces))
             {
                 MessageBox.Show("The selected retreat does not have enough available spaces. Please adjust your request.");
                 return;
             }
 
-            // Validate payment details
             if (!ProcessPayment(cardNumber, expiry, cvv))
             {
-                return; // Exit if payment validation fails
+                return;
             }
 
-            // Create the booking 
+            // Extracting the visible parts of the card number
+            string maskedCardNumber = $"{cardNumber.Substring(0, 4)}-XXXX-XXXX-{cardNumber.Substring(15, 4)}";
+
             var booking = new Booking
             {
                 UserID = currentUserId,
@@ -147,26 +145,22 @@ namespace Retreat_Management_System
                 Status = "Confirmed",
                 UserName = username,
                 Email = email,
-                CardNumber = cardNumber,
+                CardNumber = maskedCardNumber, // Save the masked number
                 ExpiryDate = DateTime.ParseExact(expiry, "MM/yyyy", CultureInfo.InvariantCulture).AddDays(1).AddMonths(-1),
                 CVV = cvv,
                 PaymentStatus = "Paid",
-                NumberOfSpaces = numberOfSpaces // Store number of spaces
+                NumberOfSpaces = numberOfSpaces
             };
 
-            // Start transaction to ensure atomic operations
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    // Save the booking
                     db.Bookings.Add(booking);
-                    db.SaveChanges(); // Save the booking
+                    db.SaveChanges();
 
-                    // Update the current bookings for the selected retreat
-                    UpdateCurrentBookings(currentRetreatId.Value, numberOfSpaces); // Call the update method
+                    UpdateCurrentBookings(currentRetreatId.Value, numberOfSpaces); // Ensure correct booking update
 
-                    // Create and save payment record
                     var payment = new Payment
                     {
                         Amount = paymentAmountPerSpace * numberOfSpaces,
@@ -178,53 +172,47 @@ namespace Retreat_Management_System
                     };
 
                     db.Payments.Add(payment);
-                    db.SaveChanges(); // Save the payment record
+                    db.SaveChanges();
 
-                    // Commit the transaction
                     transaction.Commit();
                     MessageBox.Show("Booking and payment completed successfully.");
-                    this.Close(); // Close the BookingPage
+                    this.Close();
                 }
                 catch (DbUpdateException dbEx)
                 {
                     MessageBox.Show($"An error occurred while saving your booking: {dbEx.InnerException?.Message}");
-                    transaction.Rollback(); // Rollback the transaction in case of error
+                    transaction.Rollback();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"An unexpected error occurred: {ex.Message}");
-                    transaction.Rollback(); // Rollback the transaction in case of error
+                    transaction.Rollback();
                 }
             }
         }
 
-        // Method to update CurrentBooking
         private void UpdateCurrentBookings(int retreatId, int numberOfSpaces)
         {
-            var retreat = db.Retreats.Find(retreatId);
-            if (retreat == null) return; // Ensure retreat exists
-
-            // Update the CurrentBooking field
-            retreat.currentBookings += numberOfSpaces; // Increment current bookings
-            db.SaveChanges(); // Commit the changes
+            var retreat = db.Retreats.FirstOrDefault(r => r.RetreatID == retreatId);
+            if (retreat != null)
+            {
+                retreat.currentBookings += numberOfSpaces; // Increment current bookings
+                db.SaveChanges(); // Commit the changes
+            }
         }
 
-        private bool IsAvailableForBooking(int? retreatId, int numberOfSpaces)
+        private bool IsAvailableForBooking(int retreatId, int numberOfSpaces)
         {
-            // Ensure retreatId has a value
-            if (!retreatId.HasValue)
-                return false;
-
-            // Get the retreat's capacity
-            var retreat = db.Retreats.Find(retreatId.Value); // Use retreatId.Value
-            if (retreat == null)
-                return false; // Invalid Retreat ID
+            var retreat = db.Retreats.Find(retreatId);
+            if (retreat == null) return false; // Invalid retreat ID
 
             // Count current bookings for this retreat
-            int currentBookings = (int)(db.Bookings.Where(b => b.RetreatID == retreatId.Value).Sum(b => (int?)b.NumberOfSpaces) ?? 0);
+            int currentBookings = db.Bookings
+                .Where(b => b.RetreatID == retreatId)
+                .Sum(b => (int?)b.NumberOfSpaces) ?? 0;
 
             // Check availability
-            return (currentBookings + numberOfSpaces) <= retreat.Capacity; // Ensure total does not exceed capacity
+            return (currentBookings + numberOfSpaces) <= retreat.Capacity;
         }
 
         private bool ProcessPayment(string cardNumber, string expiry, string cvv)
@@ -242,7 +230,6 @@ namespace Retreat_Management_System
 
             bool notExpired = validExpiry && expDate >= DateTime.Now;
 
-            // Provide feedback for each validation
             if (!validCard)
             {
                 MessageBox.Show("Invalid card number format. Please enter the card number as ####-####-####-####.");
@@ -256,12 +243,11 @@ namespace Retreat_Management_System
                 MessageBox.Show("Invalid expiry date. Please ensure it is in MM/YYYY format and not expired.");
             }
 
-            return validCard && validCVV && validExpiry && notExpired; // Return the validation result
+            return validCard && validCVV && validExpiry && notExpired;
         }
 
         private string GenerateTransactionID()
         {
-            // Logic to generate a unique transaction ID
             return Guid.NewGuid().ToString();
         }
 

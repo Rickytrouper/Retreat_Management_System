@@ -131,7 +131,7 @@
             // 
             this.lbRetreatDiscription.AutoSize = true;
             this.lbRetreatDiscription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRetreatDiscription.Location = new System.Drawing.Point(27, 253);
+            this.lbRetreatDiscription.Location = new System.Drawing.Point(59, 393);
             this.lbRetreatDiscription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbRetreatDiscription.Name = "lbRetreatDiscription";
             this.lbRetreatDiscription.Size = new System.Drawing.Size(139, 18);
@@ -227,7 +227,7 @@
             // 
             this.lbUploadImage.AutoSize = true;
             this.lbUploadImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUploadImage.Location = new System.Drawing.Point(94, 609);
+            this.lbUploadImage.Location = new System.Drawing.Point(60, 624);
             this.lbUploadImage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbUploadImage.Name = "lbUploadImage";
             this.lbUploadImage.Size = new System.Drawing.Size(103, 18);
@@ -280,7 +280,7 @@
             // btnImageUpload
             // 
             this.btnImageUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImageUpload.Location = new System.Drawing.Point(211, 605);
+            this.btnImageUpload.Location = new System.Drawing.Point(193, 620);
             this.btnImageUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnImageUpload.Name = "btnImageUpload";
             this.btnImageUpload.Size = new System.Drawing.Size(160, 24);
@@ -291,10 +291,10 @@
             // 
             // rbRetreatDiscription
             // 
-            this.rbRetreatDiscription.Location = new System.Drawing.Point(177, 209);
+            this.rbRetreatDiscription.Location = new System.Drawing.Point(62, 209);
             this.rbRetreatDiscription.Margin = new System.Windows.Forms.Padding(2);
             this.rbRetreatDiscription.Name = "rbRetreatDiscription";
-            this.rbRetreatDiscription.Size = new System.Drawing.Size(281, 182);
+            this.rbRetreatDiscription.Size = new System.Drawing.Size(396, 182);
             this.rbRetreatDiscription.TabIndex = 22;
             this.rbRetreatDiscription.Text = "";
             // 
@@ -312,9 +312,9 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(177, 410);
+            this.pictureBox.Location = new System.Drawing.Point(62, 453);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(281, 160);
+            this.pictureBox.Size = new System.Drawing.Size(396, 160);
             this.pictureBox.TabIndex = 24;
             this.pictureBox.TabStop = false;
             // 
@@ -377,7 +377,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.Red;
-            this.textBox2.Location = new System.Drawing.Point(18, 256);
+            this.textBox2.Location = new System.Drawing.Point(51, 396);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(15, 15);
             this.textBox2.TabIndex = 29;
