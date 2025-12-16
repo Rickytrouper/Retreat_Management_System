@@ -394,6 +394,8 @@ namespace Retreat_Management_System {
             
             private global::System.Data.DataColumn columnPaymentStatus;
             
+            private global::System.Data.DataColumn columnNumberOfSpaces;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BookingDataTable() {
@@ -469,6 +471,14 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NumberOfSpacesColumn {
+                get {
+                    return this.columnNumberOfSpaces;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -504,14 +514,15 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow AddBookingRow(int UserID, System.DateTime BookingDate, string Status, string PaymentStatus) {
+            public BookingRow AddBookingRow(int UserID, System.DateTime BookingDate, string Status, string PaymentStatus, int NumberOfSpaces) {
                 BookingRow rowBookingRow = ((BookingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         UserID,
                         BookingDate,
                         Status,
-                        PaymentStatus};
+                        PaymentStatus,
+                        NumberOfSpaces};
                 rowBookingRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBookingRow);
                 return rowBookingRow;
@@ -546,6 +557,7 @@ namespace Retreat_Management_System {
                 this.columnBookingDate = base.Columns["BookingDate"];
                 this.columnStatus = base.Columns["Status"];
                 this.columnPaymentStatus = base.Columns["PaymentStatus"];
+                this.columnNumberOfSpaces = base.Columns["NumberOfSpaces"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -561,6 +573,8 @@ namespace Retreat_Management_System {
                 base.Columns.Add(this.columnStatus);
                 this.columnPaymentStatus = new global::System.Data.DataColumn("PaymentStatus", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPaymentStatus);
+                this.columnNumberOfSpaces = new global::System.Data.DataColumn("NumberOfSpaces", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNumberOfSpaces);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBookingID}, true));
                 this.columnBookingID.AutoIncrement = true;
@@ -1439,6 +1453,8 @@ namespace Retreat_Management_System {
             
             private global::System.Data.DataColumn columnUserID;
             
+            private global::System.Data.DataColumn columnNumberOfSpaces;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ReservationDataTableDataTable() {
@@ -1586,6 +1602,14 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NumberOfSpacesColumn {
+                get {
+                    return this.columnNumberOfSpaces;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1621,7 +1645,7 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ReservationDataTableRow AddReservationDataTableRow(System.DateTime BookingDate, string Status, string PaymentStatus, decimal Amount, System.DateTime PaymentDate, string RetreatName, string Location, System.DateTime StartDate, System.DateTime EndDate, decimal Price, string ContactInfo, string Username) {
+            public ReservationDataTableRow AddReservationDataTableRow(System.DateTime BookingDate, string Status, string PaymentStatus, decimal Amount, System.DateTime PaymentDate, string RetreatName, string Location, System.DateTime StartDate, System.DateTime EndDate, decimal Price, string ContactInfo, string Username, int NumberOfSpaces) {
                 ReservationDataTableRow rowReservationDataTableRow = ((ReservationDataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1637,7 +1661,8 @@ namespace Retreat_Management_System {
                         Price,
                         ContactInfo,
                         Username,
-                        null};
+                        null,
+                        NumberOfSpaces};
                 rowReservationDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowReservationDataTableRow);
                 return rowReservationDataTableRow;
@@ -1681,6 +1706,7 @@ namespace Retreat_Management_System {
                 this.columnContactInfo = base.Columns["ContactInfo"];
                 this.columnUsername = base.Columns["Username"];
                 this.columnUserID = base.Columns["UserID"];
+                this.columnNumberOfSpaces = base.Columns["NumberOfSpaces"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1714,6 +1740,8 @@ namespace Retreat_Management_System {
                 base.Columns.Add(this.columnUsername);
                 this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserID);
+                this.columnNumberOfSpaces = new global::System.Data.DataColumn("NumberOfSpaces", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNumberOfSpaces);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBookingID}, true));
                 this.columnBookingID.AutoIncrement = true;
@@ -1949,6 +1977,22 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int NumberOfSpaces {
+                get {
+                    try {
+                        return ((int)(this[this.tableBooking.NumberOfSpacesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NumberOfSpaces\' in table \'Booking\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBooking.NumberOfSpacesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsUserIDNull() {
                 return this.IsNull(this.tableBooking.UserIDColumn);
             }
@@ -1969,6 +2013,18 @@ namespace Retreat_Management_System {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetBookingDateNull() {
                 this[this.tableBooking.BookingDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNumberOfSpacesNull() {
+                return this.IsNull(this.tableBooking.NumberOfSpacesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNumberOfSpacesNull() {
+                this[this.tableBooking.NumberOfSpacesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2409,6 +2465,22 @@ namespace Retreat_Management_System {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int NumberOfSpaces {
+                get {
+                    try {
+                        return ((int)(this[this.tableReservationDataTable.NumberOfSpacesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NumberOfSpaces\' in table \'ReservationDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReservationDataTable.NumberOfSpacesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsBookingDateNull() {
                 return this.IsNull(this.tableReservationDataTable.BookingDateColumn);
             }
@@ -2441,6 +2513,18 @@ namespace Retreat_Management_System {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetContactInfoNull() {
                 this[this.tableReservationDataTable.ContactInfoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNumberOfSpacesNull() {
+                return this.IsNull(this.tableReservationDataTable.NumberOfSpacesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNumberOfSpacesNull() {
+                this[this.tableReservationDataTable.NumberOfSpacesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2710,10 +2794,11 @@ namespace Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters {
             tableMapping.ColumnMappings.Add("BookingDate", "BookingDate");
             tableMapping.ColumnMappings.Add("Status", "Status");
             tableMapping.ColumnMappings.Add("PaymentStatus", "PaymentStatus");
+            tableMapping.ColumnMappings.Add("NumberOfSpaces", "NumberOfSpaces");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Booking] WHERE (([BookingID] = @Original_BookingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_BookingDate = 1 AND [BookingDate] IS NULL) OR ([BookingDate] = @Original_BookingDate)) AND ([Status] = @Original_Status) AND ([PaymentStatus] = @Original_PaymentStatus))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Booking] WHERE (([BookingID] = @Original_BookingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_BookingDate = 1 AND [BookingDate] IS NULL) OR ([BookingDate] = @Original_BookingDate)) AND ([Status] = @Original_Status) AND ([PaymentStatus] = @Original_PaymentStatus) AND ((@IsNull_NumberOfSpaces = 1 AND [NumberOfSpaces] IS NULL) OR ([NumberOfSpaces] = @Original_NumberOfSpaces)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -2722,15 +2807,18 @@ namespace Retreat_Management_System.Retreat_Management_DBDataSet2TableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PaymentStatus", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NumberOfSpaces", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberOfSpaces", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumberOfSpaces", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberOfSpaces", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Booking] SET [UserID] = @UserID, [BookingDate] = @BookingDate, [Status] = @Status, [PaymentStatus] = @PaymentStatus WHERE (([BookingID] = @Original_BookingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_BookingDate = 1 AND [BookingDate] IS NULL) OR ([BookingDate] = @Original_BookingDate)) AND ([Status] = @Original_Status) AND ([PaymentStatus] = @Original_PaymentStatus));
-SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE (BookingID = @BookingID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Booking] SET [UserID] = @UserID, [BookingDate] = @BookingDate, [Status] = @Status, [PaymentStatus] = @PaymentStatus, [NumberOfSpaces] = @NumberOfSpaces WHERE (([BookingID] = @Original_BookingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_BookingDate = 1 AND [BookingDate] IS NULL) OR ([BookingDate] = @Original_BookingDate)) AND ([Status] = @Original_Status) AND ([PaymentStatus] = @Original_PaymentStatus) AND ((@IsNull_NumberOfSpaces = 1 AND [NumberOfSpaces] IS NULL) OR ([NumberOfSpaces] = @Original_NumberOfSpaces)));
+SELECT BookingID, UserID, BookingDate, Status, PaymentStatus, NumberOfSpaces FROM Booking WHERE (BookingID = @BookingID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookingDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentStatus", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumberOfSpaces", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberOfSpaces", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2738,6 +2826,8 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PaymentStatus", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NumberOfSpaces", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberOfSpaces", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumberOfSpaces", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberOfSpaces", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookingID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "BookingID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -2754,7 +2844,8 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM dbo.Booking";
+            this._commandCollection[0].CommandText = "SELECT        BookingID, UserID, BookingDate, Status, PaymentStatus, NumberOfSpac" +
+                "es\r\nFROM            Booking";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2815,7 +2906,7 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_BookingID, global::System.Nullable<int> Original_UserID, global::System.Nullable<global::System.DateTime> Original_BookingDate, string Original_Status, string Original_PaymentStatus) {
+        public virtual int Delete(int Original_BookingID, global::System.Nullable<int> Original_UserID, global::System.Nullable<global::System.DateTime> Original_BookingDate, string Original_Status, string Original_PaymentStatus, global::System.Nullable<int> Original_NumberOfSpaces) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_BookingID));
             if ((Original_UserID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -2845,6 +2936,14 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
             else {
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_PaymentStatus));
             }
+            if ((Original_NumberOfSpaces.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_NumberOfSpaces.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2865,7 +2964,7 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> UserID, global::System.Nullable<global::System.DateTime> BookingDate, string Status, string PaymentStatus, int Original_BookingID, global::System.Nullable<int> Original_UserID, global::System.Nullable<global::System.DateTime> Original_BookingDate, string Original_Status, string Original_PaymentStatus, int BookingID) {
+        public virtual int Update(global::System.Nullable<int> UserID, global::System.Nullable<global::System.DateTime> BookingDate, string Status, string PaymentStatus, global::System.Nullable<int> NumberOfSpaces, int Original_BookingID, global::System.Nullable<int> Original_UserID, global::System.Nullable<global::System.DateTime> Original_BookingDate, string Original_Status, string Original_PaymentStatus, global::System.Nullable<int> Original_NumberOfSpaces, int BookingID) {
             if ((UserID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(UserID.Value));
             }
@@ -2890,36 +2989,50 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(PaymentStatus));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_BookingID));
-            if ((Original_UserID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_UserID.Value));
+            if ((NumberOfSpaces.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(NumberOfSpaces.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_BookingID));
+            if ((Original_UserID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_UserID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             if ((Original_BookingDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_BookingDate.Value));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_BookingDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             if ((Original_Status == null)) {
                 throw new global::System.ArgumentNullException("Original_Status");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Status));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Status));
             }
             if ((Original_PaymentStatus == null)) {
                 throw new global::System.ArgumentNullException("Original_PaymentStatus");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_PaymentStatus));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_PaymentStatus));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(BookingID));
+            if ((Original_NumberOfSpaces.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_NumberOfSpaces.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(BookingID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2940,8 +3053,8 @@ SELECT BookingID, UserID, BookingDate, Status, PaymentStatus FROM Booking WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> UserID, global::System.Nullable<global::System.DateTime> BookingDate, string Status, string PaymentStatus, int Original_BookingID, global::System.Nullable<int> Original_UserID, global::System.Nullable<global::System.DateTime> Original_BookingDate, string Original_Status, string Original_PaymentStatus) {
-            return this.Update(UserID, BookingDate, Status, PaymentStatus, Original_BookingID, Original_UserID, Original_BookingDate, Original_Status, Original_PaymentStatus, Original_BookingID);
+        public virtual int Update(global::System.Nullable<int> UserID, global::System.Nullable<global::System.DateTime> BookingDate, string Status, string PaymentStatus, global::System.Nullable<int> NumberOfSpaces, int Original_BookingID, global::System.Nullable<int> Original_UserID, global::System.Nullable<global::System.DateTime> Original_BookingDate, string Original_Status, string Original_PaymentStatus, global::System.Nullable<int> Original_NumberOfSpaces) {
+            return this.Update(UserID, BookingDate, Status, PaymentStatus, NumberOfSpaces, Original_BookingID, Original_UserID, Original_BookingDate, Original_Status, Original_PaymentStatus, Original_NumberOfSpaces, Original_BookingID);
         }
     }
     
@@ -3643,6 +3756,7 @@ SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID, Descript
             tableMapping.ColumnMappings.Add("ContactInfo", "ContactInfo");
             tableMapping.ColumnMappings.Add("Username", "Username");
             tableMapping.ColumnMappings.Add("UserID", "UserID");
+            tableMapping.ColumnMappings.Add("NumberOfSpaces", "NumberOfSpaces");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -3660,7 +3774,7 @@ SELECT RetreatName, Location, StartDate, Price, ContactInfo, RetreatID, Descript
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        Booking.BookingID, Booking.BookingDate, Booking.Status, Booking.PaymentStatus, Payment.Amount, Payment.PaymentDate, Retreat.RetreatName, Retreat.Location, Retreat.StartDate, Retreat.EndDate, Retreat.Price, 
-                         Retreat.ContactInfo, [User].Username, [User].UserID
+                         Retreat.ContactInfo, [User].Username, [User].UserID, Booking.NumberOfSpaces
 FROM            Booking INNER JOIN
                          Payment ON Booking.BookingID = Payment.BookingID INNER JOIN
                          Retreat ON Booking.RetreatID = Retreat.RetreatID INNER JOIN

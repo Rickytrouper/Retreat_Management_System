@@ -110,7 +110,7 @@
             // 
             // txtRetreatLocation
             // 
-            this.txtRetreatLocation.Location = new System.Drawing.Point(617, 139);
+            this.txtRetreatLocation.Location = new System.Drawing.Point(679, 141);
             this.txtRetreatLocation.Margin = new System.Windows.Forms.Padding(2);
             this.txtRetreatLocation.Name = "txtRetreatLocation";
             this.txtRetreatLocation.Size = new System.Drawing.Size(240, 20);
@@ -120,7 +120,7 @@
             // 
             this.lbRetreatLocation.AutoSize = true;
             this.lbRetreatLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRetreatLocation.Location = new System.Drawing.Point(487, 140);
+            this.lbRetreatLocation.Location = new System.Drawing.Point(549, 142);
             this.lbRetreatLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbRetreatLocation.Name = "lbRetreatLocation";
             this.lbRetreatLocation.Size = new System.Drawing.Size(121, 18);
@@ -140,7 +140,7 @@
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(617, 192);
+            this.dtpStartDate.Location = new System.Drawing.Point(679, 194);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(185, 20);
@@ -148,7 +148,7 @@
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(617, 246);
+            this.dtpEndDate.Location = new System.Drawing.Point(679, 248);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpEndDate.MinDate = new System.DateTime(2025, 4, 24, 0, 0, 0, 0);
             this.dtpEndDate.Name = "dtpEndDate";
@@ -160,7 +160,7 @@
             // 
             this.lbStartDate.AutoSize = true;
             this.lbStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStartDate.Location = new System.Drawing.Point(521, 192);
+            this.lbStartDate.Location = new System.Drawing.Point(583, 194);
             this.lbStartDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbStartDate.Name = "lbStartDate";
             this.lbStartDate.Size = new System.Drawing.Size(78, 18);
@@ -171,7 +171,7 @@
             // 
             this.lbEndDate.AutoSize = true;
             this.lbEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEndDate.Location = new System.Drawing.Point(526, 246);
+            this.lbEndDate.Location = new System.Drawing.Point(588, 248);
             this.lbEndDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbEndDate.Name = "lbEndDate";
             this.lbEndDate.Size = new System.Drawing.Size(73, 18);
@@ -182,7 +182,7 @@
             // numPrice
             // 
             this.numPrice.DecimalPlaces = 2;
-            this.numPrice.Location = new System.Drawing.Point(617, 306);
+            this.numPrice.Location = new System.Drawing.Point(679, 308);
             this.numPrice.Margin = new System.Windows.Forms.Padding(2);
             this.numPrice.Maximum = new decimal(new int[] {
             1000000,
@@ -195,7 +195,7 @@
             // 
             // numCapacity
             // 
-            this.numCapacity.Location = new System.Drawing.Point(617, 350);
+            this.numCapacity.Location = new System.Drawing.Point(679, 352);
             this.numCapacity.Margin = new System.Windows.Forms.Padding(2);
             this.numCapacity.Name = "numCapacity";
             this.numCapacity.Size = new System.Drawing.Size(104, 20);
@@ -205,7 +205,7 @@
             // 
             this.lbnumPrice.AutoSize = true;
             this.lbnumPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbnumPrice.Location = new System.Drawing.Point(551, 304);
+            this.lbnumPrice.Location = new System.Drawing.Point(613, 306);
             this.lbnumPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbnumPrice.Name = "lbnumPrice";
             this.lbnumPrice.Size = new System.Drawing.Size(46, 18);
@@ -216,7 +216,7 @@
             // 
             this.lbCapacity.AutoSize = true;
             this.lbCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCapacity.Location = new System.Drawing.Point(530, 350);
+            this.lbCapacity.Location = new System.Drawing.Point(592, 352);
             this.lbCapacity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCapacity.Name = "lbCapacity";
             this.lbCapacity.Size = new System.Drawing.Size(69, 18);
@@ -227,7 +227,7 @@
             // 
             this.lbUploadImage.AutoSize = true;
             this.lbUploadImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUploadImage.Location = new System.Drawing.Point(59, 553);
+            this.lbUploadImage.Location = new System.Drawing.Point(94, 609);
             this.lbUploadImage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbUploadImage.Name = "lbUploadImage";
             this.lbUploadImage.Size = new System.Drawing.Size(103, 18);
@@ -236,7 +236,7 @@
             // 
             // txtContactDetails
             // 
-            this.txtContactDetails.Location = new System.Drawing.Point(617, 408);
+            this.txtContactDetails.Location = new System.Drawing.Point(679, 410);
             this.txtContactDetails.Margin = new System.Windows.Forms.Padding(2);
             this.txtContactDetails.Name = "txtContactDetails";
             this.txtContactDetails.Size = new System.Drawing.Size(185, 20);
@@ -246,7 +246,7 @@
             // 
             this.lbContactDetails.AutoSize = true;
             this.lbContactDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbContactDetails.Location = new System.Drawing.Point(455, 408);
+            this.lbContactDetails.Location = new System.Drawing.Point(517, 410);
             this.lbContactDetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbContactDetails.Name = "lbContactDetails";
             this.lbContactDetails.Size = new System.Drawing.Size(142, 18);
@@ -256,10 +256,10 @@
             // btnSaveRetreat
             // 
             this.btnSaveRetreat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveRetreat.Location = new System.Drawing.Point(435, 618);
+            this.btnSaveRetreat.Location = new System.Drawing.Point(679, 530);
             this.btnSaveRetreat.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveRetreat.Name = "btnSaveRetreat";
-            this.btnSaveRetreat.Size = new System.Drawing.Size(86, 24);
+            this.btnSaveRetreat.Size = new System.Drawing.Size(104, 24);
             this.btnSaveRetreat.TabIndex = 19;
             this.btnSaveRetreat.Text = "Submit";
             this.btnSaveRetreat.UseVisualStyleBackColor = true;
@@ -268,10 +268,10 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(607, 618);
+            this.btnClear.Location = new System.Drawing.Point(679, 473);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(126, 24);
+            this.btnClear.Size = new System.Drawing.Size(104, 24);
             this.btnClear.TabIndex = 20;
             this.btnClear.Text = "Clear Fields";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -280,7 +280,7 @@
             // btnImageUpload
             // 
             this.btnImageUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImageUpload.Location = new System.Drawing.Point(211, 549);
+            this.btnImageUpload.Location = new System.Drawing.Point(211, 605);
             this.btnImageUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnImageUpload.Name = "btnImageUpload";
             this.btnImageUpload.Size = new System.Drawing.Size(160, 24);
@@ -294,7 +294,7 @@
             this.rbRetreatDiscription.Location = new System.Drawing.Point(177, 209);
             this.rbRetreatDiscription.Margin = new System.Windows.Forms.Padding(2);
             this.rbRetreatDiscription.Name = "rbRetreatDiscription";
-            this.rbRetreatDiscription.Size = new System.Drawing.Size(240, 113);
+            this.rbRetreatDiscription.Size = new System.Drawing.Size(281, 182);
             this.rbRetreatDiscription.TabIndex = 22;
             this.rbRetreatDiscription.Text = "";
             // 
@@ -312,9 +312,9 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(177, 373);
+            this.pictureBox.Location = new System.Drawing.Point(177, 410);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(240, 160);
+            this.pictureBox.Size = new System.Drawing.Size(281, 160);
             this.pictureBox.TabIndex = 24;
             this.pictureBox.TabStop = false;
             // 
@@ -389,7 +389,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.Red;
-            this.textBox3.Location = new System.Drawing.Point(476, 142);
+            this.textBox3.Location = new System.Drawing.Point(538, 144);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(15, 15);
             this.textBox3.TabIndex = 30;
@@ -401,7 +401,7 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.Red;
-            this.textBox4.Location = new System.Drawing.Point(513, 195);
+            this.textBox4.Location = new System.Drawing.Point(575, 197);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(15, 15);
             this.textBox4.TabIndex = 31;
@@ -413,7 +413,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.ForeColor = System.Drawing.Color.Red;
-            this.textBox5.Location = new System.Drawing.Point(520, 249);
+            this.textBox5.Location = new System.Drawing.Point(582, 251);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(15, 15);
             this.textBox5.TabIndex = 32;
@@ -425,7 +425,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.ForeColor = System.Drawing.Color.Red;
-            this.textBox6.Location = new System.Drawing.Point(545, 307);
+            this.textBox6.Location = new System.Drawing.Point(607, 309);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(15, 15);
             this.textBox6.TabIndex = 33;
@@ -437,7 +437,7 @@
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.ForeColor = System.Drawing.Color.Red;
-            this.textBox7.Location = new System.Drawing.Point(524, 351);
+            this.textBox7.Location = new System.Drawing.Point(586, 353);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(15, 15);
             this.textBox7.TabIndex = 34;
@@ -449,7 +449,7 @@
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox9.ForeColor = System.Drawing.Color.Red;
-            this.textBox9.Location = new System.Drawing.Point(448, 409);
+            this.textBox9.Location = new System.Drawing.Point(510, 411);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(15, 15);
             this.textBox9.TabIndex = 36;

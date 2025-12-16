@@ -63,6 +63,16 @@ namespace Retreat_Management_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logonew {
+            get {
+                object obj = ResourceManager.GetObject("Logonew", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ZRM1 {
             get {
                 object obj = ResourceManager.GetObject("ZRM1", resourceCulture);

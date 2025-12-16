@@ -485,6 +485,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ZRM1.gif" />
+    <None Include="Resources\Logonew.jpg" />
     <Content Include="RetreatManagement_db.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RetreatManagement_db.Context.cs</LastGenOutput>
